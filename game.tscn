@@ -1,0 +1,264 @@
+[gd_scene format=3 uid="uid://bajjxafk4bccs"]
+
+[ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/0_Golem_Idle_000.png" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scripts/Friendly.gd" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://babusgheg57ci" path="res://Scripts/timer.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Enemy.gd" id="4_fc0e3"]
+
+[node name="Game" type="Node2D" unique_id=183244284]
+
+[node name="Board" type="Node2D" parent="." unique_id=1161749767]
+
+[node name="Timer" type="Timer" parent="Board" unique_id=349400758]
+script = ExtResource("3_feb5d")
+
+[node name="MapTiles" type="Node2D" parent="Board" unique_id=1207332986]
+
+[node name="Gridtimesfour4" type="Node2D" parent="Board/MapTiles" unique_id=1214069454]
+position = Vector2(0, -200)
+
+[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=811081023]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid" unique_id=1824027093]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid" unique_id=2028977568]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=1059545844]
+position = Vector2(100, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid2" unique_id=1481143220]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid2" unique_id=1687777037]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=1382955048]
+position = Vector2(100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid3" unique_id=1236073074]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid3" unique_id=732280730]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=501884046]
+position = Vector2(0, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid4" unique_id=336455671]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid4" unique_id=1424349373]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Gridtimesfour3" type="Node2D" parent="Board/MapTiles" unique_id=1905075516]
+position = Vector2(-200, 0)
+
+[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=2105381421]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid" unique_id=1215189582]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid" unique_id=412543775]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=409925969]
+position = Vector2(100, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid2" unique_id=1210068069]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid2" unique_id=694001585]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=383244016]
+position = Vector2(100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid3" unique_id=1681528558]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid3" unique_id=178783872]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=489844624]
+position = Vector2(0, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid4" unique_id=984525240]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid4" unique_id=1904151275]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Gridtimesfour2" type="Node2D" parent="Board/MapTiles" unique_id=155824152]
+position = Vector2(-200, -200)
+
+[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=430083501]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid" unique_id=1679258395]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid" unique_id=1214822933]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=1268210653]
+position = Vector2(100, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid2" unique_id=1015886306]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid2" unique_id=704734559]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=32418841]
+position = Vector2(100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid3" unique_id=753648199]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid3" unique_id=1322040027]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=643163245]
+position = Vector2(0, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid4" unique_id=424697747]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid4" unique_id=341121252]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Gridtimesfour" type="Node2D" parent="Board/MapTiles" unique_id=914913048]
+
+[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=2110267153]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid" unique_id=309619187]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid" unique_id=274410746]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=76187917]
+position = Vector2(100, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid2" unique_id=71701039]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid2" unique_id=853769346]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=1735015514]
+position = Vector2(100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid3" unique_id=1791237482]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid3" unique_id=2093506549]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=634786405]
+position = Vector2(0, 100)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid4" unique_id=413517636]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid4" unique_id=688992944]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Golem" type="CharacterBody2D" parent="Board" unique_id=473984157]
+position = Vector2(50, 50)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("2_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board/Golem" unique_id=1566192247]
+texture = ExtResource("1_80nbo")
+
+[node name="Golem2" type="CharacterBody2D" parent="Board" unique_id=36741032]
+position = Vector2(-150, -150)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("4_fc0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Board/Golem2" unique_id=1940265062]
+texture = ExtResource("1_80nbo")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]
