@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
 [ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/0_Golem_Idle_000.png" id="1_80nbo"]
-[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scripts/Friendly.gd" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scripts/Entities/Friendly.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://babusgheg57ci" path="res://Scripts/timer.gd" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Enemy.gd" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Entities/Enemy.gd" id="4_fc0e3"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
 
@@ -246,7 +246,7 @@ offset_right = 97.5
 offset_bottom = 97.5
 
 [node name="Golem" type="CharacterBody2D" parent="Board" unique_id=473984157]
-position = Vector2(50, 50)
+position = Vector2(150, 150)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("2_feb5d")
 
