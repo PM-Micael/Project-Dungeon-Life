@@ -4,7 +4,18 @@ class_name Entity
 var enetity_name: String
 var hostile_group_is: String
 
+@export_category("Other")
+@export var starting_position: Vector2
+
+@export_category("Stats")
+@export var max_health: int
+@export var current_health: int
+@export var attack: int
+
+
 func _ready() -> void:
+	position = starting_position
+	
 	var timer = get_node("/root/Game/Board/Timer")
 	timer.action_tick.connect(entity_action)
 
@@ -35,5 +46,9 @@ func _move_to_target(target):
 		else:
 			global_position.x += sign(delta.x) * 100
 
-func _attack_target(target):
-			print("Target reached: " + str(target.name))
+func _attack_target(target: Entity):
+	target.take_damage(self)
+
+func take_damage(attacker: Entity):
+	current_health -= attacker.attack
+	print(str(name) + " was struck for " + str(attacker.attack) + " damage")

@@ -246,9 +246,9 @@ offset_right = 97.5
 offset_bottom = 97.5
 
 [node name="Golem" type="CharacterBody2D" parent="Board" unique_id=473984157]
-position = Vector2(150, 150)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("2_feb5d")
+starting_position = Vector2(150, 150)
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Golem" unique_id=1566192247]
 texture = ExtResource("1_80nbo")
@@ -257,6 +257,7 @@ texture = ExtResource("1_80nbo")
 position = Vector2(-150, -150)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("4_fc0e3")
+starting_position = Vector2(-150, -150)
 
 [node name="Sprite2D" type="Sprite2D" parent="Board/Golem2" unique_id=1940265062]
 texture = ExtResource("1_80nbo")
