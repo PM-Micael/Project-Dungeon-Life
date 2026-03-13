@@ -4,16 +4,22 @@ class_name Entity
 var enetity_name: String
 var hostile_group_is: String
 
+@export_category("Node Refferences")
+@onready var health_bar: ProgressBar = $Control/HealthBar
+
+@export_category("Stats")
+@export var max_health: int = 10
+@export var current_health: int
+@export var attack: int = 1
+
 @export_category("Other")
 @export var starting_position: Vector2
 
-@export_category("Stats")
-@export var max_health: int
-@export var current_health: int
-@export var attack: int
-
-
 func _ready() -> void:
+	current_health = max_health
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+	
 	position = starting_position
 	
 	var timer = get_node("/root/Game/Board/Timer")
@@ -51,4 +57,8 @@ func _attack_target(target: Entity):
 
 func take_damage(attacker: Entity):
 	current_health -= attacker.attack
-	print(str(name) + " was struck for " + str(attacker.attack) + " damage")
+	current_health = clamp(current_health, 0, max_health)
+	
+	health_bar.value = current_health
+	
+	print(str(name) + " health = " + str(health_bar.value))

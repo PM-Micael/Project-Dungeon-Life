@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://babusgheg57ci" path="res://Scripts/timer.gd" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Entities/Enemy.gd" id="4_fc0e3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0e3"]
+bg_color = Color(0.1254902, 0.7882353, 0.16862746, 1)
+
 [node name="Game" type="Node2D" unique_id=183244284]
 
 [node name="Board" type="Node2D" parent="." unique_id=1161749767]
@@ -246,6 +249,7 @@ offset_right = 97.5
 offset_bottom = 97.5
 
 [node name="Golem" type="CharacterBody2D" parent="Board" unique_id=473984157]
+position = Vector2(150, 150)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("2_feb5d")
 starting_position = Vector2(150, 150)
@@ -253,13 +257,41 @@ starting_position = Vector2(150, 150)
 [node name="Sprite2D" type="Sprite2D" parent="Board/Golem" unique_id=1566192247]
 texture = ExtResource("1_80nbo")
 
-[node name="Golem2" type="CharacterBody2D" parent="Board" unique_id=36741032]
+[node name="Control" type="Control" parent="Board/Golem" unique_id=1384685384]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="Board/Golem/Control" unique_id=1136279926]
+layout_mode = 0
+offset_left = -286.6667
+offset_top = -293.33337
+offset_right = 293.33325
+offset_bottom = -226.66675
+theme_override_styles/fill = SubResource("StyleBoxFlat_fc0e3")
+show_percentage = false
+
+[node name="Golem2" type="CharacterBody2D" parent="Board" unique_id=189564218]
 position = Vector2(-150, -150)
 scale = Vector2(0.15, 0.15)
 script = ExtResource("4_fc0e3")
 starting_position = Vector2(-150, -150)
 
-[node name="Sprite2D" type="Sprite2D" parent="Board/Golem2" unique_id=1940265062]
+[node name="Sprite2D" type="Sprite2D" parent="Board/Golem2" unique_id=1981833705]
 texture = ExtResource("1_80nbo")
+
+[node name="Control" type="Control" parent="Board/Golem2" unique_id=474247766]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="Board/Golem2/Control" unique_id=1348811013]
+layout_mode = 0
+offset_left = -286.6667
+offset_top = -293.33337
+offset_right = 293.33325
+offset_bottom = -226.66675
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]

@@ -1,1 +1,4 @@
 Maybe a blood-web type progression like dbd
+
+Buggs:
+	If position is not set to exact amount then the eAI pathing will break
