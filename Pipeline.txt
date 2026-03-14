@@ -1,7 +1,8 @@
 Maybe a blood-web type progression like dbd
 
 Buggs:
-	If position is not set to exact amount then the eAI pathing will break
+	If position is not set to exact amount then the AI pathing will break.
+	Entity moves one space at frame one.
 
 
 2026-03-13:

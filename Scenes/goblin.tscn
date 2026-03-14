@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://l3m8vcykeclq"]
+
+[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scripts/Entities/Goblin.gd" id="1_2gt0r"]
+[ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/0_Golem_Idle_000.png" id="2_o6mmh"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="3_ep384"]
+[ext_resource type="Script" uid="uid://de6h1e3h2oyyd" path="res://Components/Component_Scripts/movment_component.gd" id="4_ajbjq"]
+[ext_resource type="Script" uid="uid://bqd5uw8gl2vog" path="res://Components/Component_Scripts/movment_timer.gd" id="5_p60ou"]
+[ext_resource type="Script" uid="uid://bduynat4styhs" path="res://Components/Component_Scripts/attack_component.gd" id="6_wpiyv"]
+[ext_resource type="Script" uid="uid://dlmrfr4mj8i3l" path="res://Components/Component_Scripts/targeting_component.gd" id="7_m25tm"]
+
+[node name="Goblin" type="CharacterBody2D" unique_id=237873964]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_2gt0r")
+starting_position = Vector2(150, 150)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647490076]
+texture = ExtResource("2_o6mmh")
+
+[node name="Components" type="Node2D" parent="." unique_id=1766493955]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("3_ep384")]
+
+[node name="MovmentComponent" type="Node2D" parent="Components" unique_id=1229004235]
+script = ExtResource("4_ajbjq")
+
+[node name="Timer" type="Timer" parent="Components/MovmentComponent" unique_id=850339712]
+wait_time = 1.0999999999999999
+script = ExtResource("5_p60ou")
+
+[node name="AttackComponent" type="Node2D" parent="Components" unique_id=1546796516]
+script = ExtResource("6_wpiyv")
+
+[node name="Timer" type="Timer" parent="Components/AttackComponent" unique_id=1315612345]
+wait_time = 1.0999999999999999
+
+[node name="TargetingComponent" type="Node2D" parent="Components" unique_id=641565426]
+script = ExtResource("7_m25tm")
