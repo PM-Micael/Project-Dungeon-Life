@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://buwcqf2o5uu2"]
+
+[ext_resource type="Script" uid="uid://dlmrfr4mj8i3l" path="res://Components/Component_Scripts/targeting_component.gd" id="1_ghrik"]
+
+[node name="TargetingComponent" type="Node2D" unique_id=620451675]
+script = ExtResource("1_ghrik")

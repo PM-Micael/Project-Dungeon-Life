@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dxpf0atftnuk4"]
+
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Entities/Golem.gd" id="1_t2gh5"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="2_e77c2"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="2_lqe5q"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_ecptb"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_3yf8f"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="6_t2gh5"]
+[ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/0_Golem_Idle_000.png" id="7_km5yh"]
+
+[node name="Golem" type="CharacterBody2D" unique_id=82236408]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_t2gh5")
+starting_position = Vector2(-150, -150)
+
+[node name="Components" type="Node2D" parent="." unique_id=744595945]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("2_lqe5q")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_ecptb")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("4_3yf8f")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("2_e77c2")]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("6_t2gh5")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1564971062]
+texture = ExtResource("7_km5yh")

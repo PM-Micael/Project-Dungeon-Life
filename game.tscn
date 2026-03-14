@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
 [ext_resource type="PackedScene" uid="uid://l3m8vcykeclq" path="res://Scenes/goblin.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Entities/Golem.gd" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dxpf0atftnuk4" path="res://Scenes/golem.tscn" id="2_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
 
@@ -242,11 +242,8 @@ offset_bottom = 97.5
 
 [node name="Goblin" parent="Board" unique_id=237873964 instance=ExtResource("2_e2o6t")]
 position = Vector2(150, 150)
-attack = null
 
-[node name="Golem" parent="Board" unique_id=1571215695 instance=ExtResource("2_e2o6t")]
+[node name="Golem" parent="Board" unique_id=82236408 instance=ExtResource("2_feb5d")]
 position = Vector2(-150, -150)
-script = ExtResource("4_fc0e3")
-starting_position = Vector2(-150, -150)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]
