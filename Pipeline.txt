@@ -2,3 +2,7 @@ Maybe a blood-web type progression like dbd
 
 Buggs:
 	If position is not set to exact amount then the eAI pathing will break
+
+
+2026-03-13:
+	- Make a script that generates the tile map.

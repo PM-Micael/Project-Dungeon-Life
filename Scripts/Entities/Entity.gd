@@ -5,21 +5,15 @@ var enetity_name: String
 var hostile_group_is: String
 
 @export_category("Node Refferences")
-@onready var health_bar: ProgressBar = $Control/HealthBar
+@onready var health_bar: ProgressBar = $Components/HealthComponent/HealthBar
 
 @export_category("Stats")
-@export var max_health: int = 10
-@export var current_health: int
 @export var attack: int = 1
 
 @export_category("Other")
 @export var starting_position: Vector2
 
 func _ready() -> void:
-	current_health = max_health
-	health_bar.max_value = max_health
-	health_bar.value = current_health
-	
 	position = starting_position
 	
 	var timer = get_node("/root/Game/Board/Timer")
@@ -53,12 +47,5 @@ func _move_to_target(target):
 			global_position.x += sign(delta.x) * 100
 
 func _attack_target(target: Entity):
-	target.take_damage(self)
-
-func take_damage(attacker: Entity):
-	current_health -= attacker.attack
-	current_health = clamp(current_health, 0, max_health)
-	
-	health_bar.value = current_health
-	
-	print(str(name) + " health = " + str(health_bar.value))
+	var target_health_bar: HealthBarComponent = target.get_node("Components/HealthComponent/HealthBar")
+	target_health_bar.take_damage(self)
