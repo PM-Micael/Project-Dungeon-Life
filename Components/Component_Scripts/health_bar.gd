@@ -12,9 +12,7 @@ func _ready() -> void:
 	value = current_health
 
 func take_damage(attacker: Entity):
-	current_health -= attacker.attack
+	current_health -= attacker.attack_component.attack
 	current_health = clamp(current_health, 0, max_health)
 	
 	value = current_health
-	
-	print(str(parent_entity.name) + " health = " + str(value))
