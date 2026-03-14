@@ -242,6 +242,7 @@ offset_bottom = 97.5
 
 [node name="Goblin" parent="Board" unique_id=237873964 instance=ExtResource("2_e2o6t")]
 position = Vector2(150, 150)
+attack_range = 100
 
 [node name="Golem" parent="Board" unique_id=82236408 instance=ExtResource("2_feb5d")]
 position = Vector2(-150, -150)

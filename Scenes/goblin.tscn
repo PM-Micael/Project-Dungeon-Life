@@ -11,6 +11,7 @@
 [node name="Goblin" type="CharacterBody2D" unique_id=237873964]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_2gt0r")
+attack_range = 200
 starting_position = Vector2(150, 150)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647490076]

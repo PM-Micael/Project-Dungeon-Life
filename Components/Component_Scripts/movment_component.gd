@@ -1,15 +1,27 @@
 extends Node2D
 class_name MovmentComponent
 
-@onready var parent_entity: Entity = get_parent().get_parent()
+@export var stop_range = 100
 
+@onready var parent_entity: Entity = get_parent().get_parent()
 @onready var timer: Timer = $Timer
 
 var is_in_target_range: bool = false
 
-func move_to_target(target) -> bool:
-	var delta = target.global_position - global_position
-	if (abs(delta.y) == 0 && abs(delta.x) == 100) || (abs(delta.x) == 0 && abs(delta.y) == 100): # Attack range
+func move_to_target(target: Entity) -> bool:
+	var delta = target.global_position - parent_entity.global_position
+	
+	if parent_entity.attack_component != null:
+		print(str(parent_entity.attack_component.attack_range))
+		stop_range = parent_entity.attack_component.attack_range
+	else:
+		stop_range = 100
+	
+	if ((abs(delta.y) <= stop_range and
+	abs(delta.x) <= stop_range) or
+	(abs(delta.x) <= stop_range and
+	abs(delta.y) <= stop_range)
+	):
 		is_in_target_range = true
 	else:
 		if abs(delta.y) > abs(delta.x):
