@@ -3,8 +3,8 @@ class_name AttackComponent
 
 @onready var entity_parent: Entity = get_parent().get_parent()
 @onready var timer: Timer = $Timer
-@export var attack_damage: int
-@export var attack_range: int
+@export var attack_damage: int = 1
+@export var attack_range: int = 100
 
 var in_target_attack_range: bool = true
 
