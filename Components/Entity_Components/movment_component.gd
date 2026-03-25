@@ -15,7 +15,6 @@ func move_to_target(target: Entity) -> bool:
 	var delta = target.global_position - parent_entity.global_position
 	
 	if parent_entity.attack_component != null:
-		print(str(parent_entity.attack_component.attack_range))
 		stop_range = parent_entity.attack_component.attack_range
 	else:
 		stop_range = 100
