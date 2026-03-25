@@ -8,6 +8,9 @@ class_name MovmentComponent
 
 var is_in_target_range: bool = false
 
+func _ready() -> void:
+	timer.wait_time = 1.1
+
 func move_to_target(target: Entity) -> bool:
 	var delta = target.global_position - parent_entity.global_position
 	

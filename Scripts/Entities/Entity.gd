@@ -3,7 +3,6 @@ class_name Entity
 
 @export_category("Stats")
 @export var max_health: int = 10
-@export var movment_timer: float = 1.1
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
 @onready var health_bar: HealthBarComponent = get_node_or_null("Components/HealthComponent/HealthBar")
@@ -24,8 +23,6 @@ func _ready() -> void:
 func _set_stats():
 	if health_bar != null:
 		health_bar.max_health = max_health
-	if movment_component != null:
-		movment_component.timer.wait_time = movment_timer
 
 func _physics_process(_delta: float) -> void:
 	_action()
