@@ -4,14 +4,18 @@ class_name Entity
 @export_category("Stats")
 @export var max_health: int = 10
 
+var hostile_team: String
+
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
-@onready var health_bar: HealthBarComponent = get_node_or_null("Components/HealthComponent/HealthBar")
+@onready var health_component: HealthComponent = get_node_or_null("Components/HealthComponent")
 @onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")
 @onready var targeting_component: TargetingComponent = get_node_or_null("Components/TargetingComponent")
 @onready var targetable_component: TargetableComponent = get_node_or_null("Components/TargetableComponent")
 @onready var weapon_slot_component: WeaponSlotComponent = get_node_or_null("Components/WeaponSlotComponent")
 @onready var weapon_component: WeaponComponent = get_node_or_null("Components/WeaponComponent")
-var hostile_team: String
+
+@onready var ui_components_health_bar: ProgressBar = get_node_or_null("UIComponents/HealthBar")
+@onready var ui_components_weapon_energy_bar: ProgressBar = get_node_or_null("UIComponents/WeaponEnergyProgressBar")
 
 @export_category("Other")
 @export var starting_position: Vector2
@@ -21,8 +25,8 @@ func _ready() -> void:
 	_set_stats()
 
 func _set_stats():
-	if health_bar != null:
-		health_bar.max_health = max_health
+	if health_component != null:
+		health_component.max_health = max_health
 
 func _physics_process(_delta: float) -> void:
 	_action()

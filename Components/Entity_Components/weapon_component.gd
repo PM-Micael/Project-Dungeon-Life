@@ -6,6 +6,7 @@ var current_weapon_energy: int = 70
 var weapon_energy_gained_on_attack: int = 10
 
 var added_attack_damage_multiplier: int
+var weapon_energy_bar: ProgressBar
 
 # Character -> Components -> WeaponSlotComponent -> Weapon -> Components -> WeaponComponent
 @onready var entity_holding_weapon: Entity = get_parent().get_parent().get_parent().get_parent().get_parent()
@@ -14,8 +15,16 @@ func _ready() -> void:
 	# This might not be needed when I start spawning in nodes from config files and database
 	await get_tree().process_frame
 	
+	set_weapon_energy_bar()
+	
 	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
 	entity_holding_weapon.attack_component.post_attack_target.connect(_finish_attack)
+
+func set_weapon_energy_bar():
+		weapon_energy_bar = entity_holding_weapon.ui_components_weapon_energy_bar
+		
+		weapon_energy_bar.max_value = max_weapon_energy
+		weapon_energy_bar.value = current_weapon_energy
 
 func _prep_attack():
 	entity_holding_weapon.attack_component.weapon_added_multiplier += added_attack_damage_multiplier
@@ -25,11 +34,12 @@ func _finish_attack():
 	entity_holding_weapon.attack_component.weapon_added_multiplier -= added_attack_damage_multiplier
 
 func adjust_energy():
-	current_weapon_energy += weapon_energy_gained_on_attack
-	print("Weapon energy at: " + str(current_weapon_energy) + "/" + str(max_weapon_energy))
+	current_weapon_energy += weapon_energy_gained_on_attack # Changing both bar and value might be conveluted
 	if current_weapon_energy >= max_weapon_energy:
 		_weapon_skill()
 		current_weapon_energy = 0
+		
+	weapon_energy_bar.value = current_weapon_energy
 
 func _weapon_skill():
 	print("Using [weapon_skill]")

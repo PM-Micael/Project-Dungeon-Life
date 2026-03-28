@@ -18,7 +18,7 @@ var in_target_attack_range: bool = true
 func attack_target(target: Entity):
 	pre_attack_target.emit()
 	
-	var target_health_bar: HealthBarComponent = target.get_node_or_null("Components/HealthComponent/HealthBar")
+	var target_health_bar: HealthComponent = target.health_component
 	if target_health_bar != null:
 		target_health_bar.take_damage(entity_parent)
 	
