@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bok8av2qavev5"]
+
+[ext_resource type="Script" uid="uid://c8ggiihhd0xuo" path="res://Scenes/Clients/team_loadout_menu.gd" id="1_820an"]
+[ext_resource type="PackedScene" uid="uid://dwxeiv4nrretc" path="res://Scenes/Clients/UIComponents/entity_select_component.tscn" id="1_hwg2t"]
+
+[node name="TeamLoadoutMenu" type="Node2D" unique_id=436161591]
+script = ExtResource("1_820an")
+
+[node name="EntitySelectComponent" parent="." unique_id=303699788 instance=ExtResource("1_hwg2t")]
+offset_left = 192.99998
+offset_top = 130.99998
+offset_right = 192.99998
+offset_bottom = 130.99998
+scale = Vector2(0.2, 0.2)

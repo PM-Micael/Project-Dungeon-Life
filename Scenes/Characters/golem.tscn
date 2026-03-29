@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxpf0atftnuk4"]
 
-[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scripts/Entities/Golem.gd" id="1_t2gh5"]
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scenes/Characters/golem.gd" id="1_t2gh5"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="2_e77c2"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="2_lqe5q"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_3yf8f"]
@@ -23,7 +23,7 @@ starting_position = Vector2(-150, -150)
 
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("6_t2gh5")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1564971062]
+[node name="EntitySprite" type="Sprite2D" parent="." unique_id=1564971062]
 texture = ExtResource("7_km5yh")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("7_t2gh5")]

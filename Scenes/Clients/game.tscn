@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
-[ext_resource type="PackedScene" uid="uid://l3m8vcykeclq" path="res://Scenes/goblin.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://dxpf0atftnuk4" path="res://Scenes/golem.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://l3m8vcykeclq" path="res://Scenes/Characters/goblin.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dxpf0atftnuk4" path="res://Scenes/Characters/golem.tscn" id="2_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
 
