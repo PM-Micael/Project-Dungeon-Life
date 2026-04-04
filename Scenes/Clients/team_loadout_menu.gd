@@ -1,12 +1,15 @@
 extends Node2D
+class_name TeamLoadoutMenu
 
 var entity_menu_select: PackedScene = preload("res://Scenes/Clients/UIComponents/entity_select_component.tscn")
 var character_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Characters/goblin.tscn"),
 	preload("res://Scenes/Characters/golem.tscn"),
+	preload("res://Scenes/Characters/petamer.tscn"),
 ]
 var available_characters: Array[Entity]
 var character_preview_instance: EntitySelectComponent
+var team_comp: Array
 
 @onready var team_slot_1: TeamSlot = get_node_or_null("TeamSlotsContainer/TeamSlot1")
 @onready var team_slot_2: TeamSlot = get_node_or_null("TeamSlotsContainer/TeamSlot2")
@@ -50,15 +53,19 @@ func _load_character_selection_menu():
 		character_preview_instance.name += "_" + str(loop_itteration)
 		character_preview_instance.scale = Vector2(0.2, 0.2)
 		character_preview_instance.position = Vector2(100 * (loop_itteration+1), 500)
-		character_preview_instance.selected.connect(_on_character_selected)
+		character_preview_instance.selected.connect(_on_character_chosen)
 		
 		get_node("EntitySelectMenu").add_child(character_preview_instance)
 		loop_itteration += 1
 
-func _free_character_selection_node():
-	character_preview_instance.queue_free()
-
-func _on_character_selected(new_entity: Entity):
-	print("Character selected")
+func _on_character_chosen(new_entity: Entity):
+	if (new_entity in team_comp):
+		print("No dupes allowed.")
+		return
+	
+	
+	team_comp.append(new_entity)
+	print(str(new_entity.name) + " was added to team")
+	team_comp.erase(currently_selected_team_slot.currently_selected_entity)
 	currently_selected_team_slot.currently_selected_entity = new_entity
 	currently_selected_team_slot.get_node("Sprite2D").texture = new_entity.get_node("Sprite2D").texture
