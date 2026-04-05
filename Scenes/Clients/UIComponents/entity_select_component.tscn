@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://dwxeiv4nrretc"]
 
 [ext_resource type="Script" uid="uid://ciu5rva81oyyl" path="res://Scenes/Clients/UIComponents/entity_select_component.gd" id="1_hccf2"]
-[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_entity.gd" id="3_iql3w"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cg7g"]
-size = Vector2(520, 520)
+[ext_resource type="PackedScene" uid="uid://d38kd2l38rgp6" path="res://Scenes/Clients/UIComponents/clickable_object.tscn" id="2_26l3p"]
 
 [node name="EntitySelectComponent" type="Control" unique_id=303699788]
 layout_mode = 3
@@ -33,8 +30,4 @@ offset_bottom = 250.0
 mouse_filter = 2
 color = Color(0.0018451646, 0, 0.16916567, 1)
 
-[node name="ClickableEntity" type="Area2D" parent="." unique_id=170068965]
-script = ExtResource("3_iql3w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableEntity" unique_id=1616482630]
-shape = SubResource("RectangleShape2D_5cg7g")
+[node name="ClickableEntity" parent="." unique_id=1384005923 instance=ExtResource("2_26l3p")]

@@ -1,0 +1,336 @@
+[gd_scene format=3 uid="uid://djuih4ym5jkn2"]
+
+[ext_resource type="Script" uid="uid://bpqlhl8q367sx" path="res://Scenes/Environment/tile.gd" id="1_8gl4x"]
+[ext_resource type="PackedScene" uid="uid://d38kd2l38rgp6" path="res://Scenes/Clients/UIComponents/clickable_object.tscn" id="2_n27b5"]
+[ext_resource type="PackedScene" uid="uid://b2elcwb3kpxol" path="res://Scenes/Environment/tile_style.tscn" id="3_uv4bv"]
+
+[node name="MapTiles" type="Node2D" unique_id=2113342636]
+
+[node name="FriendlySide" type="Node2D" parent="." unique_id=1567904702]
+
+[node name="Row" type="Node2D" parent="FriendlySide" unique_id=427726565]
+
+[node name="Tile" type="Node2D" parent="FriendlySide/Row" unique_id=941417270]
+position = Vector2(-400, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile" unique_id=1384005923 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile" unique_id=1062800870 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile2" type="Node2D" parent="FriendlySide/Row" unique_id=1948882633]
+position = Vector2(-300, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile2" unique_id=1298598673 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile2" unique_id=606450192 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile3" type="Node2D" parent="FriendlySide/Row" unique_id=1220756203]
+position = Vector2(-200, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile3" unique_id=281808073 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile3" unique_id=977302318 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile4" type="Node2D" parent="FriendlySide/Row" unique_id=853483134]
+position = Vector2(-100, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile4" unique_id=110818821 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile4" unique_id=2104135431 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile5" type="Node2D" parent="FriendlySide/Row" unique_id=1916799301]
+position = Vector2(0, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile5" unique_id=954443521 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile5" unique_id=132563479 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile6" type="Node2D" parent="FriendlySide/Row" unique_id=67579940]
+position = Vector2(100, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile6" unique_id=1974349300 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile6" unique_id=1916767064 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile7" type="Node2D" parent="FriendlySide/Row" unique_id=2024407237]
+position = Vector2(200, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile7" unique_id=1796937456 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile7" unique_id=329770747 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile8" type="Node2D" parent="FriendlySide/Row" unique_id=659991718]
+position = Vector2(300, 300)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row/Tile8" unique_id=2068300553 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row/Tile8" unique_id=837205215 instance=ExtResource("3_uv4bv")]
+
+[node name="Row2" type="Node2D" parent="FriendlySide" unique_id=1042860904]
+
+[node name="Tile" type="Node2D" parent="FriendlySide/Row2" unique_id=467934382]
+position = Vector2(-400, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile" unique_id=77702719 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile" unique_id=1632083176 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile2" type="Node2D" parent="FriendlySide/Row2" unique_id=478625621]
+position = Vector2(-300, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile2" unique_id=1816106182 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile2" unique_id=948683540 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile3" type="Node2D" parent="FriendlySide/Row2" unique_id=691694881]
+position = Vector2(-200, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile3" unique_id=672948751 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile3" unique_id=165073871 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile4" type="Node2D" parent="FriendlySide/Row2" unique_id=1075505706]
+position = Vector2(-100, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile4" unique_id=410012558 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile4" unique_id=1717847755 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile5" type="Node2D" parent="FriendlySide/Row2" unique_id=1535127114]
+position = Vector2(0, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile5" unique_id=2033627124 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile5" unique_id=2114376956 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile6" type="Node2D" parent="FriendlySide/Row2" unique_id=749617393]
+position = Vector2(100, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile6" unique_id=611927203 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile6" unique_id=172039074 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile7" type="Node2D" parent="FriendlySide/Row2" unique_id=1062339037]
+position = Vector2(200, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile7" unique_id=962938559 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile7" unique_id=1678299222 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile8" type="Node2D" parent="FriendlySide/Row2" unique_id=1588048520]
+position = Vector2(300, 200)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row2/Tile8" unique_id=21083741 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row2/Tile8" unique_id=536644469 instance=ExtResource("3_uv4bv")]
+
+[node name="Row3" type="Node2D" parent="FriendlySide" unique_id=1789556593]
+
+[node name="Tile" type="Node2D" parent="FriendlySide/Row3" unique_id=1613267803]
+position = Vector2(-400, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile" unique_id=1764749327 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile" unique_id=352390970 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile2" type="Node2D" parent="FriendlySide/Row3" unique_id=944871734]
+position = Vector2(-300, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile2" unique_id=604053653 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile2" unique_id=910684950 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile3" type="Node2D" parent="FriendlySide/Row3" unique_id=2005597974]
+position = Vector2(-200, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile3" unique_id=934179918 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile3" unique_id=2072058304 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile4" type="Node2D" parent="FriendlySide/Row3" unique_id=1899754962]
+position = Vector2(-100, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile4" unique_id=1105056631 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile4" unique_id=112491900 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile5" type="Node2D" parent="FriendlySide/Row3" unique_id=291883583]
+position = Vector2(0, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile5" unique_id=2115534929 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile5" unique_id=1859529626 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile6" type="Node2D" parent="FriendlySide/Row3" unique_id=1197835446]
+position = Vector2(100, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile6" unique_id=1502362269 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile6" unique_id=694532733 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile7" type="Node2D" parent="FriendlySide/Row3" unique_id=538201435]
+position = Vector2(200, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile7" unique_id=1182959023 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile7" unique_id=1283551037 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile8" type="Node2D" parent="FriendlySide/Row3" unique_id=597152335]
+position = Vector2(300, 100)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row3/Tile8" unique_id=350743722 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row3/Tile8" unique_id=1982254856 instance=ExtResource("3_uv4bv")]
+
+[node name="Row4" type="Node2D" parent="FriendlySide" unique_id=1112792752]
+
+[node name="Tile" type="Node2D" parent="FriendlySide/Row4" unique_id=1463826503]
+position = Vector2(-400, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile" unique_id=231496855 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile" unique_id=66744583 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile2" type="Node2D" parent="FriendlySide/Row4" unique_id=1700714997]
+position = Vector2(-300, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile2" unique_id=425675722 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile2" unique_id=1389373951 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile3" type="Node2D" parent="FriendlySide/Row4" unique_id=43442001]
+position = Vector2(-200, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile3" unique_id=125059806 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile3" unique_id=1262698768 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile4" type="Node2D" parent="FriendlySide/Row4" unique_id=278686908]
+position = Vector2(-100, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile4" unique_id=714562947 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile4" unique_id=1578646330 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile5" type="Node2D" parent="FriendlySide/Row4" unique_id=5795128]
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile5" unique_id=2053080328 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile5" unique_id=348554773 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile6" type="Node2D" parent="FriendlySide/Row4" unique_id=745090740]
+position = Vector2(100, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile6" unique_id=421466825 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile6" unique_id=1667575744 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile7" type="Node2D" parent="FriendlySide/Row4" unique_id=529876571]
+position = Vector2(200, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile7" unique_id=41906622 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile7" unique_id=1107322548 instance=ExtResource("3_uv4bv")]
+
+[node name="Tile8" type="Node2D" parent="FriendlySide/Row4" unique_id=541375145]
+position = Vector2(300, 0)
+script = ExtResource("1_8gl4x")
+
+[node name="ClickableObject" parent="FriendlySide/Row4/Tile8" unique_id=916135224 instance=ExtResource("2_n27b5")]
+position = Vector2(50, 50)
+scale = Vector2(0.19, 0.19)
+
+[node name="TileStyle" parent="FriendlySide/Row4/Tile8" unique_id=1924704120 instance=ExtResource("3_uv4bv")]

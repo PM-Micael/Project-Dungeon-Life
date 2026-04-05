@@ -1,5 +1,5 @@
 extends Area2D
-class_name ClickableEntity
+class_name ClickableObject
 
 @onready var parent = get_parent()
 

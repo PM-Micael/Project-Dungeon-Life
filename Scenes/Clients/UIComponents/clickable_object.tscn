@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d38kd2l38rgp6"]
+
+[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_entity.gd" id="1_kgsiq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cg7g"]
+size = Vector2(520, 520)
+
+[node name="ClickableEntity" type="Area2D" unique_id=1384005923]
+z_index = 3
+script = ExtResource("1_kgsiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386152851]
+shape = SubResource("RectangleShape2D_5cg7g")
