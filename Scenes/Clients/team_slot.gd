@@ -3,7 +3,6 @@ class_name TeamSlot
 
 signal team_slot_slected
 
-@onready var currenty_slected_entity_scene: PackedScene
 @onready var currently_selected_entity: Entity
 
 func on_clicked():

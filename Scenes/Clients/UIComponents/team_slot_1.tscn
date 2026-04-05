@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dy0w5o8217e1y"]
+
+[ext_resource type="Script" uid="uid://cnspguj2vu6ra" path="res://Scenes/Clients/team_slot.gd" id="1_08iwr"]
+[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_entity.gd" id="2_pdov1"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kgiqf"]
+size = Vector2(360, 460)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgiqf"]
+size = Vector2(79, 106)
+
+[node name="TeamSlot1" type="Control" unique_id=1507817831]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 440.0
+offset_bottom = 240.0
+mouse_filter = 2
+script = ExtResource("1_08iwr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=136815964]
+scale = Vector2(0.2, 0.2)
+texture = SubResource("PlaceholderTexture2D_kgiqf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=882336498]
+script = ExtResource("2_pdov1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2138638845]
+position = Vector2(-3.5, 7)
+shape = SubResource("RectangleShape2D_kgiqf")

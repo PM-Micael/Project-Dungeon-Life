@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbsnn77s3ygpe"
-path="res://.godot/imported/0_Golem_Idle_000.png-2993e53e17cde788d3818732a277d3ce.ctex"
+uid="uid://r28e71ukne2p"
+path="res://.godot/imported/0_Necromancer_of_the_Shadow_Idle_000.png-3661e89d61447d8d8e4194f1d8328686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/0_Golem_Idle_000.png"
-dest_files=["res://.godot/imported/0_Golem_Idle_000.png-2993e53e17cde788d3818732a277d3ce.ctex"]
+source_file="res://Assets/Units/0_Necromancer_of_the_Shadow_Idle_000.png"
+dest_files=["res://.godot/imported/0_Necromancer_of_the_Shadow_Idle_000.png-3661e89d61447d8d8e4194f1d8328686.ctex"]
 
 [params]
 

@@ -16,5 +16,4 @@ func _ready() -> void:
 		sprite.texture = entity_sprite.texture
 
 func on_clicked():
-	print("Entity selected")
 	selected.emit(entity_scene)

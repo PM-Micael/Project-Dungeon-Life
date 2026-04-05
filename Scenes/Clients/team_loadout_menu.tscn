@@ -1,102 +1,19 @@
 [gd_scene format=3 uid="uid://bok8av2qavev5"]
 
 [ext_resource type="Script" uid="uid://c8ggiihhd0xuo" path="res://Scenes/Clients/team_loadout_menu.gd" id="1_820an"]
-[ext_resource type="Script" uid="uid://cnspguj2vu6ra" path="res://Scenes/Clients/team_slot.gd" id="3_kgiqf"]
-[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_entity.gd" id="4_cm1x8"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kgiqf"]
-size = Vector2(360, 460)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgiqf"]
-size = Vector2(79, 106)
+[ext_resource type="Script" uid="uid://csmbq3wctk8qc" path="res://Scenes/Clients/start_button.gd" id="4_rsfnj"]
 
 [node name="TeamLoadoutMenu" type="Node2D" unique_id=436161591]
 script = ExtResource("1_820an")
 
 [node name="TeamSlotsContainer" type="Node2D" parent="." unique_id=1101958126]
 
-[node name="TeamSlot1" type="Control" parent="TeamSlotsContainer" unique_id=1230120459]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 400.0
-offset_top = 200.0
-offset_right = 440.0
-offset_bottom = 240.0
-mouse_filter = 2
-script = ExtResource("3_kgiqf")
-
-[node name="Sprite2D" type="Sprite2D" parent="TeamSlotsContainer/TeamSlot1" unique_id=123090908]
-scale = Vector2(0.2, 0.2)
-texture = SubResource("PlaceholderTexture2D_kgiqf")
-
-[node name="Area2D" type="Area2D" parent="TeamSlotsContainer/TeamSlot1" unique_id=52190788]
-script = ExtResource("4_cm1x8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeamSlotsContainer/TeamSlot1/Area2D" unique_id=362235476]
-position = Vector2(-3.5, 7)
-shape = SubResource("RectangleShape2D_kgiqf")
-
-[node name="TeamSlot2" type="Control" parent="TeamSlotsContainer" unique_id=1234885453]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 500.0
-offset_top = 200.0
-offset_right = 540.0
-offset_bottom = 240.0
-mouse_filter = 2
-script = ExtResource("3_kgiqf")
-
-[node name="Sprite2D" type="Sprite2D" parent="TeamSlotsContainer/TeamSlot2" unique_id=1234166182]
-scale = Vector2(0.2, 0.2)
-texture = SubResource("PlaceholderTexture2D_kgiqf")
-
-[node name="Area2D" type="Area2D" parent="TeamSlotsContainer/TeamSlot2" unique_id=222123758]
-script = ExtResource("4_cm1x8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeamSlotsContainer/TeamSlot2/Area2D" unique_id=939287810]
-position = Vector2(-3.5, 7)
-shape = SubResource("RectangleShape2D_kgiqf")
-
-[node name="TeamSlot3" type="Control" parent="TeamSlotsContainer" unique_id=1030243589]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 600.0
-offset_top = 200.0
-offset_right = 640.0
-offset_bottom = 240.0
-mouse_filter = 2
-script = ExtResource("3_kgiqf")
-
-[node name="Sprite2D" type="Sprite2D" parent="TeamSlotsContainer/TeamSlot3" unique_id=900695498]
-scale = Vector2(0.2, 0.2)
-texture = SubResource("PlaceholderTexture2D_kgiqf")
-
-[node name="Area2D" type="Area2D" parent="TeamSlotsContainer/TeamSlot3" unique_id=1952920939]
-script = ExtResource("4_cm1x8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeamSlotsContainer/TeamSlot3/Area2D" unique_id=1766683694]
-position = Vector2(-3.5, 7)
-shape = SubResource("RectangleShape2D_kgiqf")
-
-[node name="TeamSlot4" type="Control" parent="TeamSlotsContainer" unique_id=36000133]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 700.0
-offset_top = 200.0
-offset_right = 740.0
-offset_bottom = 240.0
-mouse_filter = 2
-script = ExtResource("3_kgiqf")
-
-[node name="Sprite2D" type="Sprite2D" parent="TeamSlotsContainer/TeamSlot4" unique_id=1869071249]
-scale = Vector2(0.2, 0.2)
-texture = SubResource("PlaceholderTexture2D_kgiqf")
-
-[node name="Area2D" type="Area2D" parent="TeamSlotsContainer/TeamSlot4" unique_id=444914003]
-script = ExtResource("4_cm1x8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeamSlotsContainer/TeamSlot4/Area2D" unique_id=834133105]
-position = Vector2(-3.5, 7)
-shape = SubResource("RectangleShape2D_kgiqf")
-
 [node name="EntitySelectMenu" type="Node2D" parent="." unique_id=1715817666]
+
+[node name="Button" type="Button" parent="." unique_id=974859405]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 100.0
+text = "Play"
+script = ExtResource("4_rsfnj")

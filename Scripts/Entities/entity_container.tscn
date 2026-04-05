@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://kmo544hvrev0"]
+
+[ext_resource type="Script" uid="uid://bly4ejv6orjo4" path="res://Scripts/Entities/entity_container.gd" id="1_wcgeq"]
+
+[node name="EntityContainer" type="Node2D" unique_id=1285138186]
+script = ExtResource("1_wcgeq")

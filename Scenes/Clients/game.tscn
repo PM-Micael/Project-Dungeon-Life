@@ -1,248 +1,468 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
-[ext_resource type="PackedScene" uid="uid://l3m8vcykeclq" path="res://Scenes/Characters/goblin.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://dxpf0atftnuk4" path="res://Scenes/Characters/golem.tscn" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://ctwubuunfjxy8" path="res://Scenes/Clients/in_game.gd" id="1_mfgt8"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
+script = ExtResource("1_mfgt8")
 
 [node name="Board" type="Node2D" parent="." unique_id=1161749767]
 
 [node name="MapTiles" type="Node2D" parent="Board" unique_id=1207332986]
 
-[node name="Gridtimesfour4" type="Node2D" parent="Board/MapTiles" unique_id=1214069454]
-position = Vector2(0, -200)
+[node name="Row" type="Node2D" parent="Board/MapTiles" unique_id=1834122148]
+position = Vector2(0, 300)
 
-[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=811081023]
+[node name="Tile" type="Node2D" parent="Board/MapTiles/Row" unique_id=484035643]
+position = Vector2(-400, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid" unique_id=1824027093]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile" unique_id=1122285776]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid" unique_id=2028977568]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile" unique_id=1402837133]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=1059545844]
-position = Vector2(100, 100)
+[node name="Tile2" type="Node2D" parent="Board/MapTiles/Row" unique_id=284763954]
+position = Vector2(-300, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid2" unique_id=1481143220]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile2" unique_id=300545809]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid2" unique_id=1687777037]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile2" unique_id=582037210]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=1382955048]
-position = Vector2(100, 0)
-
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid3" unique_id=1236073074]
-offset_right = 100.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid3" unique_id=732280730]
-offset_left = 2.5
-offset_top = 2.5
-offset_right = 97.5
-offset_bottom = 97.5
-
-[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour4" unique_id=501884046]
-position = Vector2(0, 100)
-
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid4" unique_id=336455671]
-offset_right = 100.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour4/Grid4" unique_id=1424349373]
-offset_left = 2.5
-offset_top = 2.5
-offset_right = 97.5
-offset_bottom = 97.5
-
-[node name="Gridtimesfour3" type="Node2D" parent="Board/MapTiles" unique_id=1905075516]
+[node name="Tile3" type="Node2D" parent="Board/MapTiles/Row" unique_id=1029897127]
 position = Vector2(-200, 0)
 
-[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=2105381421]
-
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid" unique_id=1215189582]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile3" unique_id=1016966481]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid" unique_id=412543775]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile3" unique_id=1481737152]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=409925969]
-position = Vector2(100, 100)
+[node name="Tile4" type="Node2D" parent="Board/MapTiles/Row" unique_id=460316750]
+position = Vector2(-100, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid2" unique_id=1210068069]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile4" unique_id=1237984111]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid2" unique_id=694001585]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile4" unique_id=1948438003]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=383244016]
+[node name="Tile5" type="Node2D" parent="Board/MapTiles/Row" unique_id=407558475]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile5" unique_id=1271563542]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile5" unique_id=2129154846]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile6" type="Node2D" parent="Board/MapTiles/Row" unique_id=1396989769]
 position = Vector2(100, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid3" unique_id=1681528558]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile6" unique_id=1987331838]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid3" unique_id=178783872]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile6" unique_id=1535989573]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour3" unique_id=489844624]
-position = Vector2(0, 100)
+[node name="Tile7" type="Node2D" parent="Board/MapTiles/Row" unique_id=142521969]
+position = Vector2(200, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid4" unique_id=984525240]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile7" unique_id=1762172804]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour3/Grid4" unique_id=1904151275]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile7" unique_id=27828060]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Gridtimesfour2" type="Node2D" parent="Board/MapTiles" unique_id=155824152]
-position = Vector2(-200, -200)
+[node name="Tile8" type="Node2D" parent="Board/MapTiles/Row" unique_id=166329832]
+position = Vector2(300, 0)
 
-[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=430083501]
-
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid" unique_id=1679258395]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row/Tile8" unique_id=682471651]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid" unique_id=1214822933]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row/Tile8" unique_id=947476321]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=1268210653]
-position = Vector2(100, 100)
+[node name="Row2" type="Node2D" parent="Board/MapTiles" unique_id=972879996]
+position = Vector2(0, 200)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid2" unique_id=1015886306]
+[node name="Tile" type="Node2D" parent="Board/MapTiles/Row2" unique_id=1991848442]
+position = Vector2(-400, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile" unique_id=846622483]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid2" unique_id=704734559]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile" unique_id=1287654753]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=32418841]
+[node name="Tile2" type="Node2D" parent="Board/MapTiles/Row2" unique_id=1171224078]
+position = Vector2(-300, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile2" unique_id=1344307748]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile2" unique_id=1355965029]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile3" type="Node2D" parent="Board/MapTiles/Row2" unique_id=1079415887]
+position = Vector2(-200, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile3" unique_id=1838133882]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile3" unique_id=1211443672]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile4" type="Node2D" parent="Board/MapTiles/Row2" unique_id=726889645]
+position = Vector2(-100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile4" unique_id=979105234]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile4" unique_id=925751750]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile5" type="Node2D" parent="Board/MapTiles/Row2" unique_id=147112459]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile5" unique_id=22380634]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile5" unique_id=1004641662]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile6" type="Node2D" parent="Board/MapTiles/Row2" unique_id=875277898]
 position = Vector2(100, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid3" unique_id=753648199]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile6" unique_id=1191338371]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid3" unique_id=1322040027]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile6" unique_id=393383472]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour2" unique_id=643163245]
+[node name="Tile7" type="Node2D" parent="Board/MapTiles/Row2" unique_id=50516206]
+position = Vector2(200, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile7" unique_id=1141878253]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile7" unique_id=1040592301]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile8" type="Node2D" parent="Board/MapTiles/Row2" unique_id=255469447]
+position = Vector2(300, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row2/Tile8" unique_id=1827517555]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row2/Tile8" unique_id=2021709695]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Row3" type="Node2D" parent="Board/MapTiles" unique_id=656395878]
 position = Vector2(0, 100)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid4" unique_id=424697747]
+[node name="Tile" type="Node2D" parent="Board/MapTiles/Row3" unique_id=356896181]
+position = Vector2(-400, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile" unique_id=1418313339]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour2/Grid4" unique_id=341121252]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile" unique_id=1280221208]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Gridtimesfour" type="Node2D" parent="Board/MapTiles" unique_id=914913048]
+[node name="Tile2" type="Node2D" parent="Board/MapTiles/Row3" unique_id=2012222713]
+position = Vector2(-300, 0)
 
-[node name="Grid" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=2110267153]
-
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid" unique_id=309619187]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile2" unique_id=701285939]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid" unique_id=274410746]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile2" unique_id=2141311811]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid2" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=76187917]
-position = Vector2(100, 100)
+[node name="Tile3" type="Node2D" parent="Board/MapTiles/Row3" unique_id=573005593]
+position = Vector2(-200, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid2" unique_id=71701039]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile3" unique_id=258686430]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid2" unique_id=853769346]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile3" unique_id=1172277391]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid3" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=1735015514]
+[node name="Tile4" type="Node2D" parent="Board/MapTiles/Row3" unique_id=1096659716]
+position = Vector2(-100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile4" unique_id=1423147502]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile4" unique_id=1001531560]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile5" type="Node2D" parent="Board/MapTiles/Row3" unique_id=1070447114]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile5" unique_id=504623834]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile5" unique_id=1639460219]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile6" type="Node2D" parent="Board/MapTiles/Row3" unique_id=955408438]
 position = Vector2(100, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid3" unique_id=1791237482]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile6" unique_id=1327420209]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid3" unique_id=2093506549]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile6" unique_id=1777282520]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Grid4" type="Node2D" parent="Board/MapTiles/Gridtimesfour" unique_id=634786405]
-position = Vector2(0, 100)
+[node name="Tile7" type="Node2D" parent="Board/MapTiles/Row3" unique_id=203788829]
+position = Vector2(200, 0)
 
-[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid4" unique_id=413517636]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile7" unique_id=576612431]
 offset_right = 100.0
 offset_bottom = 100.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Gridtimesfour/Grid4" unique_id=688992944]
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile7" unique_id=1313434780]
 offset_left = 2.5
 offset_top = 2.5
 offset_right = 97.5
 offset_bottom = 97.5
 
-[node name="Goblin" parent="Board" unique_id=237873964 instance=ExtResource("2_e2o6t")]
-position = Vector2(150, 150)
+[node name="Tile8" type="Node2D" parent="Board/MapTiles/Row3" unique_id=451916485]
+position = Vector2(300, 0)
 
-[node name="Golem" parent="Board" unique_id=121038861 instance=ExtResource("2_feb5d")]
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row3/Tile8" unique_id=882522535]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row3/Tile8" unique_id=650487753]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Row4" type="Node2D" parent="Board/MapTiles" unique_id=1762426597]
+
+[node name="Tile" type="Node2D" parent="Board/MapTiles/Row4" unique_id=114163363]
+position = Vector2(-400, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile" unique_id=1498024697]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile" unique_id=2125800477]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile2" type="Node2D" parent="Board/MapTiles/Row4" unique_id=2041120425]
+position = Vector2(-300, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile2" unique_id=131887650]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile2" unique_id=752664425]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile3" type="Node2D" parent="Board/MapTiles/Row4" unique_id=629700575]
+position = Vector2(-200, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile3" unique_id=1348663080]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile3" unique_id=1578157678]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile4" type="Node2D" parent="Board/MapTiles/Row4" unique_id=1820942789]
+position = Vector2(-100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile4" unique_id=46171660]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile4" unique_id=645726664]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile5" type="Node2D" parent="Board/MapTiles/Row4" unique_id=2061901523]
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile5" unique_id=443607915]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile5" unique_id=728357632]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile6" type="Node2D" parent="Board/MapTiles/Row4" unique_id=1824290350]
+position = Vector2(100, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile6" unique_id=561572426]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile6" unique_id=572360656]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile7" type="Node2D" parent="Board/MapTiles/Row4" unique_id=276295982]
+position = Vector2(200, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile7" unique_id=861995309]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile7" unique_id=1694204081]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
+
+[node name="Tile8" type="Node2D" parent="Board/MapTiles/Row4" unique_id=1820139521]
+position = Vector2(300, 0)
+
+[node name="GridSiluet1" type="ColorRect" parent="Board/MapTiles/Row4/Tile8" unique_id=1605874773]
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Board/MapTiles/Row4/Tile8" unique_id=668215624]
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 97.5
+offset_bottom = 97.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]
+zoom = Vector2(0.8, 0.8)
