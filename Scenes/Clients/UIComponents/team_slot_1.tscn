@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dy0w5o8217e1y"]
 
 [ext_resource type="Script" uid="uid://cnspguj2vu6ra" path="res://Scenes/Clients/team_slot.gd" id="1_08iwr"]
-[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_entity.gd" id="2_pdov1"]
+[ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_object.gd" id="2_pdov1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kgiqf"]
 size = Vector2(360, 460)

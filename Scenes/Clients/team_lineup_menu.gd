@@ -4,12 +4,32 @@ class_name TeamLineupMenu
 @onready var player_characters: Array[Entity] # (Self note) Instanciated scenes. NOT added as children
 @onready var enemy_characters: Array[Entity]
 @onready var board: Node2D = get_node("Board")
-@onready var selected_friendly_character
+@onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
+@onready var ui_scene: Control = get_node_or_null("UI")
+
+@onready var currently_selected_tile: Tile
+@onready var currently_selected_character: Entity
 
 func _ready() -> void:
-	place_friendly_characters()
+	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
+	create_fiendly_characters_on_ui()
+	place_friendly_characters_board()
 
-func place_friendly_characters(): # Maybe only run on ready
+func create_fiendly_characters_on_ui():
+	var entity_select_component_scene: PackedScene = load(("res://Scenes/Clients/UIComponents/entity_select_component.tscn"))
+	var loop_itteration: int = 0
+	var column: int = 1
+	for c in player_characters:
+		var entity_select_component_instance: EntitySelectComponent = entity_select_component_scene.instantiate()
+		entity_select_component_instance.selected.connect(place_friendly_characters_ui)
+		entity_select_component_instance.entity = c
+		entity_select_component_instance.scale = Vector2(0.25, 0.25)
+		entity_select_component_instance.position = Vector2(-600*column, -300+(loop_itteration*200))
+		
+		ui_scene.get_node("FriendlyCharacterContainers").add_child(entity_select_component_instance)
+		loop_itteration += 1
+
+func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	var loop_itteration: int = 0
@@ -31,3 +51,37 @@ func place_friendly_characters(): # Maybe only run on ready
 		
 		loop_itteration += 1
 	return
+
+func place_friendly_characters_ui(entity: Entity):
+	currently_selected_character = entity
+	place_character_on_tile()
+
+func _on_tile_clicked(tile: Tile):
+	currently_selected_tile = tile
+	place_character_on_tile()
+
+func _on_character_clicked(entity_select_component: EntitySelectComponent):
+	#entity_select_component.entity = currently_selected_character
+	place_character_on_tile()
+
+func place_character_on_tile():
+	if currently_selected_character == null:
+		print("Select character")
+		return
+	elif currently_selected_tile == null:
+		print("Select tile")
+		return
+	
+	for c in player_characters:
+		if c == currently_selected_character:
+			c.position.x = currently_selected_tile.position.x + 50
+			c.position.y = currently_selected_tile.position.y + 50
+		
+			var instances: Array[Node] = get_node("Board/Characters").get_children()
+			for i in instances:
+				if i.entity == c:
+					i.position = c.position
+					break
+	
+	#currently_selected_character = null
+	currently_selected_tile = null

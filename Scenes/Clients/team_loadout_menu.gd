@@ -50,7 +50,7 @@ func _load_character_selection_menu():
 	for character in available_characters:
 		character_preview_instance = entity_menu_select.instantiate()
 		
-		character_preview_instance.entity_scene = character
+		character_preview_instance.entity = character
 		character_preview_instance.name += "_" + str(loop_itteration)
 		character_preview_instance.scale = Vector2(0.2, 0.2)
 		character_preview_instance.position = Vector2(100 * (loop_itteration+1), 500)

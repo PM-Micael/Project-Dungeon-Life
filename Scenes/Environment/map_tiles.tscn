@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://djuih4ym5jkn2"]
 
 [ext_resource type="Script" uid="uid://bpqlhl8q367sx" path="res://Scenes/Environment/tile.gd" id="1_8gl4x"]
+[ext_resource type="Script" uid="uid://6oi70l0j0xnl" path="res://Scenes/Environment/map_tiles.gd" id="1_kfbu7"]
 [ext_resource type="PackedScene" uid="uid://d38kd2l38rgp6" path="res://Scenes/Clients/UIComponents/clickable_object.tscn" id="2_n27b5"]
 [ext_resource type="PackedScene" uid="uid://b2elcwb3kpxol" path="res://Scenes/Environment/tile_style.tscn" id="3_uv4bv"]
 
 [node name="MapTiles" type="Node2D" unique_id=2113342636]
+script = ExtResource("1_kfbu7")
 
 [node name="FriendlySide" type="Node2D" parent="." unique_id=1567904702]
 

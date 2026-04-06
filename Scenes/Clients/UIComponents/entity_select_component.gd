@@ -3,17 +3,17 @@ class_name EntitySelectComponent
 
 signal selected
 
-@export var entity_scene: Entity
+@export var entity: Entity
 
 @onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
 
 @onready var clickable_entity: ClickableObject = get_node_or_null("ClickableEntity")
 
 func _ready() -> void:
-	var entity_sprite: Sprite2D = entity_scene.get_node_or_null("Sprite2D")
+	var entity_sprite: Sprite2D = entity.get_node_or_null("Sprite2D")
 	
 	if entity_sprite:
 		sprite.texture = entity_sprite.texture
 
 func on_clicked():
-	selected.emit(entity_scene)
+	selected.emit(entity)
