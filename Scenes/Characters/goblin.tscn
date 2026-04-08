@@ -17,9 +17,6 @@ scale = Vector2(0.15, 0.15)
 script = ExtResource("1_8kkht")
 starting_position = Vector2(150, 150)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647490076]
-texture = ExtResource("2_2gt0r")
-
 [node name="Components" type="Node2D" parent="." unique_id=1766493955]
 
 [node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("4_2gt0r")]
@@ -41,5 +38,8 @@ script = ExtResource("9_ajbjq")
 [node name="WeaponComponent" parent="Components/WeaponSlotComponent/BurstStaff/Components" unique_id=47458186 instance=ExtResource("10_p60ou")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("3_ep384")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647490076]
+texture = ExtResource("2_2gt0r")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_p60ou")]

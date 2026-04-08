@@ -36,7 +36,7 @@ func create_fiendly_characters_on_ui():
 		entity_select_component_instance.selected.connect(place_friendly_characters_ui)
 		entity_select_component_instance.entity = c
 		entity_select_component_instance.scale = Vector2(0.25, 0.25)
-		entity_select_component_instance.position = Vector2(-600*column, -300+(loop_itteration*200))
+		entity_select_component_instance.position = Vector2(200*column, -300+(loop_itteration*200))
 		
 		ui_scene.get_node("FriendlyCharacterContainers").add_child(entity_select_component_instance)
 		loop_itteration += 1
