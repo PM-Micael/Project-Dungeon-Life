@@ -4,3 +4,6 @@
 
 [node name="EntityContainer" type="Node2D" unique_id=1285138186]
 script = ExtResource("1_wcgeq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1341516110]
+scale = Vector2(0.15, 0.15)

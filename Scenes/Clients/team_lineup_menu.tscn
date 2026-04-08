@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
 [ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
+[ext_resource type="Script" uid="uid://bk1badatwimpj" path="res://Scenes/Clients/entity_containers.gd" id="5_gdxfq"]
 [ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="5_hqjli"]
+[ext_resource type="Script" uid="uid://baviarj0hrfe0" path="res://Scenes/Clients/unit_selection_frame.gd" id="5_kgsvi"]
 [ext_resource type="Texture2D" uid="uid://d1r5203vnkp61" path="res://Assets/Units/0_Skeleton_Warrior_Idle_000.png" id="5_qn83p"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
@@ -58,6 +60,7 @@ script = ExtResource("4_t8u3g")
 offset_top = -475.0
 offset_right = 850.0
 offset_bottom = 475.0
+mouse_filter = 2
 color = Color(0.30496624, 0.1610038, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=1537463212]
@@ -65,9 +68,11 @@ offset_left = 25.0
 offset_top = -450.0
 offset_right = 825.0
 offset_bottom = 450.0
+mouse_filter = 2
 color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 
 [node name="UnitSelectionFrame" type="Node2D" parent="UI/Inventory" unique_id=1283372284]
+script = ExtResource("5_kgsvi")
 
 [node name="Style" type="Node2D" parent="UI/Inventory/UnitSelectionFrame" unique_id=1713573389]
 
@@ -75,6 +80,7 @@ color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 offset_top = -480.0
 offset_right = 850.0
 offset_bottom = -305.0
+mouse_filter = 2
 color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UI/Inventory/UnitSelectionFrame/Style" unique_id=443370070]
@@ -82,7 +88,11 @@ offset_left = 12.5
 offset_top = -468.0
 offset_right = 837.5
 offset_bottom = -318.0
+mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
+
+[node name="EntityContainers" type="Node2D" parent="UI/Inventory/UnitSelectionFrame" unique_id=1846782545]
+script = ExtResource("5_gdxfq")
 
 [node name="UnitLoadoutFrame" type="Node2D" parent="UI/Inventory" unique_id=2032775302]
 
@@ -97,6 +107,7 @@ offset_left = 275.0
 offset_top = -300.0
 offset_right = 550.0
 offset_bottom = 50.0
+mouse_filter = 2
 color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview/Style" unique_id=554139410]
@@ -104,6 +115,7 @@ offset_left = 287.5
 offset_top = -287.5
 offset_right = 537.5
 offset_bottom = 37.5
+mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview" unique_id=465598240]
