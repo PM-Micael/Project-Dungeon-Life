@@ -22,3 +22,7 @@ func take_damage(attacker: Entity):
 	
 	if current_health <= 0:
 		is_alive = false
+		die()
+
+func die():
+	parent_entity.queue_free()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_lxyuk"]
 [ext_resource type="Script" uid="uid://cab48t3stycys" path="res://Scenes/Clients/game_board.gd" id="2_d67pp"]
 [ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
-[ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/start_stage_button.gd" id="3_f3h6d"]
+[ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
 script = ExtResource("1_lxyuk")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bok8av2qavev5"]
 
 [ext_resource type="Script" uid="uid://c8ggiihhd0xuo" path="res://Scenes/Clients/team_loadout_menu.gd" id="1_820an"]
-[ext_resource type="Script" uid="uid://csmbq3wctk8qc" path="res://Scenes/Clients/start_button.gd" id="4_rsfnj"]
+[ext_resource type="Script" uid="uid://csmbq3wctk8qc" path="res://Scenes/Clients/Buttons/start_button.gd" id="4_rsfnj"]
 
 [node name="TeamLoadoutMenu" type="Node2D" unique_id=436161591]
 script = ExtResource("1_820an")

@@ -6,6 +6,7 @@ var available_characters: Array[Entity]
 var character_preview_instance: EntitySelectComponent
 
 @onready var currently_selected_team_slot: TeamSlot
+@onready var team_slots: Array[TeamSlot]
 @onready var team_slot_amount: int = 4
 
 func _ready() -> void:
@@ -13,15 +14,20 @@ func _ready() -> void:
 	var loop_itteration: int = 0
 	for i in range(team_slot_amount):
 		var team_slot: PackedScene = load("res://Scenes/Clients/UIComponents/team_slot_1.tscn")
-		var instance: TeamSlot = team_slot.instantiate()
-		instance.name = "TeamSlot_" + str(loop_itteration+1)
-		instance.position = Vector2(400 + (100*loop_itteration), 200)
-		instance.team_slot_slected.connect(_on_select_team_slot)
-		get_node("TeamSlotsContainer").add_child(instance)
+		var team_slot_instance: TeamSlot = team_slot.instantiate()
+		team_slot_instance.name = "TeamSlot_" + str(loop_itteration+1)
+		team_slot_instance.position = Vector2(400 + (100*loop_itteration), 200)
+		team_slot_instance.team_slot_slected.connect(_on_select_team_slot)
+		team_slots.append(team_slot_instance)
+		get_node("TeamSlotsContainer").add_child(team_slot_instance)
+		
+		if loop_itteration == 0:
+			currently_selected_team_slot = team_slot_instance
 		
 		loop_itteration += 1
 	
 	_fill_available_characters()
+	_load_character_selection_menu()
 
 func _fill_available_characters():
 	for scene in Globals.owned_units:
@@ -58,13 +64,17 @@ func _on_character_chosen(new_entity: Entity):
 		print("No dupes allowed.")
 		return
 	
-	
 	Globals.dungeon_team.append(new_entity)
-	print(str(new_entity.name) + " was added to team")
 	Globals.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
 	available_characters.erase(new_entity)
 	if currently_selected_team_slot.currently_selected_entity != null:
 		available_characters.append(currently_selected_team_slot.currently_selected_entity)
 	currently_selected_team_slot.currently_selected_entity = new_entity
 	currently_selected_team_slot.get_node("Sprite2D").texture = new_entity.get_node("Sprite2D").texture
+	
+	for s in team_slots:
+		if s.currently_selected_entity == null:
+			currently_selected_team_slot = s
+			break
+	
 	_load_character_selection_menu()

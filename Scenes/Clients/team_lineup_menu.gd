@@ -17,7 +17,10 @@ func _ready() -> void:
 
 func _load_enemy_units(): #´Hardcoded palceholder
 	var enemies: Array[PackedScene] = [
-		load("res://Scenes/Characters/skeleton.tscn")
+		load("res://Scenes/Characters/skeleton.tscn"),
+		load("res://Scenes/Characters/skeleton.tscn"),
+		load("res://Scenes/Characters/skeleton.tscn"),
+		load("res://Scenes/Characters/skeleton.tscn"),
 	]
 	
 	for scene in enemies:
