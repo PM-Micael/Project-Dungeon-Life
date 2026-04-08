@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
+[ext_resource type="Script" uid="uid://brjuvjrs0dycq" path="res://Scenes/Clients/game.gd" id="1_hj2ne"]
+
 [node name="Game" type="Node2D" unique_id=183244284]
+script = ExtResource("1_hj2ne")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]
 zoom = Vector2(0.8, 0.8)

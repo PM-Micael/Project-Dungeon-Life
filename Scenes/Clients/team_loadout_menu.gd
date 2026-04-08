@@ -2,21 +2,14 @@ extends Node2D
 class_name TeamLoadoutMenu
 
 var entity_menu_select: PackedScene = preload("res://Scenes/Clients/UIComponents/entity_select_component.tscn")
-var available_character_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Characters/goblin.tscn"),
-	preload("res://Scenes/Characters/golem.tscn"),
-	preload("res://Scenes/Characters/petamer.tscn"),
-	preload("res://Scenes/Characters/soulbound.tscn"),
-	preload("res://Scenes/Characters/orbath.tscn"),
-]
 var available_characters: Array[Entity]
 var character_preview_instance: EntitySelectComponent
-var team_comp: Array[Entity]
 
 @onready var currently_selected_team_slot: TeamSlot
 @onready var team_slot_amount: int = 4
 
 func _ready() -> void:
+	# Adds TeamSlots in the scene
 	var loop_itteration: int = 0
 	for i in range(team_slot_amount):
 		var team_slot: PackedScene = load("res://Scenes/Clients/UIComponents/team_slot_1.tscn")
@@ -31,7 +24,7 @@ func _ready() -> void:
 	_fill_available_characters()
 
 func _fill_available_characters():
-	for scene in available_character_scenes:
+	for scene in Globals.owned_units:
 		var instance: Entity = scene.instantiate()
 		available_characters.append(instance)
 
@@ -61,14 +54,14 @@ func _load_character_selection_menu():
 		loop_itteration += 1
 
 func _on_character_chosen(new_entity: Entity):
-	if (new_entity in team_comp):
+	if (new_entity in Globals.dungeon_team):
 		print("No dupes allowed.")
 		return
 	
 	
-	team_comp.append(new_entity)
+	Globals.dungeon_team.append(new_entity)
 	print(str(new_entity.name) + " was added to team")
-	team_comp.erase(currently_selected_team_slot.currently_selected_entity)
+	Globals.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
 	available_characters.erase(new_entity)
 	if currently_selected_team_slot.currently_selected_entity != null:
 		available_characters.append(currently_selected_team_slot.currently_selected_entity)

@@ -13,7 +13,7 @@ func _button_pressed():
 	var enemy_conainer_nodes = parent.get_node("Board/Characters/EnemyUnits").get_children()
 	
 	for f:EntityContainer in friendly_container_nodes:
-		for i:Entity in board_scene.friendly_units:
+		for i:Entity in Globals.dungeon_team:
 			if f.entity.name == i.name:
 				i.position = f.position
 				break
@@ -23,9 +23,6 @@ func _button_pressed():
 		e.free()
 	
 	var in_game_instance: Node2D = game_scene.instantiate()
-	
-	board_scene.friendly_units = parent.player_characters
-	board_scene.enemy_units = parent.enemy_characters
 	
 	if board_scene:
 		board_scene.get_parent().remove_child(board_scene)

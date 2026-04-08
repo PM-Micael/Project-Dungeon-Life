@@ -1,9 +1,7 @@
 extends Node2D
 class_name TeamLineupMenu
 
-@onready var player_characters: Array[Entity] # (Self note) Instanciated scenes. NOT added as children
-@onready var enemy_characters: Array[Entity]
-@onready var board: Node2D = get_node("Board")
+@onready var board: GameBoard = get_node("Board")
 @onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
 @onready var ui_scene: Control = get_node_or_null("UI")
 
@@ -24,13 +22,13 @@ func _load_enemy_units(): #´Hardcoded palceholder
 	
 	for scene in enemies:
 		var instance: Entity = scene.instantiate()
-		enemy_characters.append(instance)
+		board.enemy_units.append(instance)
 
 func create_fiendly_characters_on_ui():
 	var entity_select_component_scene: PackedScene = load(("res://Scenes/Clients/UIComponents/entity_select_component.tscn"))
 	var loop_itteration: int = 0
 	var column: int = 1
-	for c in player_characters:
+	for c in Globals.dungeon_team:
 		var entity_select_component_instance: EntitySelectComponent = entity_select_component_scene.instantiate()
 		entity_select_component_instance.selected.connect(place_friendly_characters_ui)
 		entity_select_component_instance.entity = c
@@ -44,11 +42,12 @@ func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	var loop_itteration: int = 0
-	for c in player_characters:
+	for c in Globals.dungeon_team:
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		entity_container_instance.name = "EntityContainer_" + str(loop_itteration+1)
 		entity_container_instance.entity = c
 		entity_container_instance.position = Vector2(-150+(loop_itteration*100), 250)
+		c.starting_position = entity_container_instance.position
 		
 		var sprite_instance = Sprite2D.new()
 		sprite_instance.name = "Sprite2D"
@@ -58,19 +57,18 @@ func place_friendly_characters_board(): # Maybe only run on ready
 		entity_container_instance.add_child(sprite_instance)
 		board.get_node("Characters/FriendlyUnits").add_child(entity_container_instance)
 		
-		c.position = sprite_instance.position
-		
 		loop_itteration += 1
 
 func place_enemy_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	var loop_itteration: int = 0
-	for c in enemy_characters:
+	for c in board.enemy_units:
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		entity_container_instance.name = "EntityContainer_" + str(loop_itteration+1)
 		entity_container_instance.entity = c
 		entity_container_instance.position = Vector2(-150+(loop_itteration*100), -250)
+		c.starting_position = entity_container_instance.position
 		
 		var sprite_instance = Sprite2D.new()
 		sprite_instance.name = "Sprite2D"
@@ -105,10 +103,11 @@ func place_character_on_tile():
 		return
 	
 	
-	for c in player_characters:
+	for c in Globals.dungeon_team:
 		if c == currently_selected_character:
 			c.position.x = currently_selected_tile.position.x + 50
 			c.position.y = currently_selected_tile.position.y + 50
+			c.starting_position = c.position
 		
 			var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
 			for i in instances:

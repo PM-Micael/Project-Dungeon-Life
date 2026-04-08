@@ -9,9 +9,6 @@ func _ready():
 
 func _button_pressed():
 	var team_lineup_menu: TeamLineupMenu = game_scene.instantiate()
-	for c in team_loadout_menu.team_comp:
-		team_lineup_menu.player_characters.append(c)
-	
 	
 	get_tree().root.add_child(team_lineup_menu)
 	get_tree().current_scene.queue_free()
