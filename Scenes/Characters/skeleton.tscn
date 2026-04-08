@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dlm4kjdn5oixh"]
+
+[ext_resource type="Script" uid="uid://ce43ki614dscf" path="res://Scenes/Characters/skeleton.gd" id="1_chrbj"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_dn8tv"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_fm2vy"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_o32p2"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_ip8ft"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_pkvph"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="7_fm2vy"]
+[ext_resource type="Texture2D" uid="uid://d1r5203vnkp61" path="res://Assets/Units/0_Skeleton_Warrior_Idle_000.png" id="8_o32p2"]
+
+[node name="Skeleton" type="Node2D" unique_id=980251153]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_chrbj")
+
+[node name="Components" type="Node2D" parent="." unique_id=1396426078]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("2_dn8tv")]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("3_fm2vy")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("4_o32p2")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("5_ip8ft")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_pkvph")]
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("7_fm2vy")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=429862481]
+texture = ExtResource("8_o32p2")

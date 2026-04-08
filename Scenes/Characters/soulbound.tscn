@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_43js5"]
 
 [node name="Soulbound" type="Node2D" unique_id=1900615410]
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_kld18")
 
 [node name="Components" type="Node2D" parent="." unique_id=1267721361]

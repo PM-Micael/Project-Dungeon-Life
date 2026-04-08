@@ -9,10 +9,11 @@
 [ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapon/burst_staff.gd" id="7_ol1wl"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="8_ndldv"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_mfr6o"]
-[ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/0_Dark_Oracle_Idle_000.png" id="10_ucu2c"]
+[ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/1_Dark_Oracle_Idle_000.png" id="10_ucu2c"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_degpt"]
 
 [node name="Petamer" type="Node2D" unique_id=1855330443]
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_tew1s")
 
 [node name="Components" type="Node2D" parent="." unique_id=1510287697]

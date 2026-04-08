@@ -1,16 +1,23 @@
 [gd_scene format=3 uid="uid://bqk2h8lpks42o"]
 
 [ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_lxyuk"]
+[ext_resource type="Script" uid="uid://cab48t3stycys" path="res://Scenes/Clients/game_board.gd" id="2_d67pp"]
 [ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
+[ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/start_stage_button.gd" id="3_f3h6d"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
 script = ExtResource("1_lxyuk")
 
 [node name="Board" type="Node2D" parent="." unique_id=519372427]
+script = ExtResource("2_d67pp")
 
 [node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
 
 [node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
+
+[node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
+
+[node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=139511734]
 zoom = Vector2(0.8, 0.8)
@@ -33,3 +40,11 @@ offset_right = 300.0
 offset_bottom = 800.0
 mouse_filter = 2
 color = Color(0, 0.40100813, 0.40172544, 1)
+
+[node name="StartStage" type="Button" parent="." unique_id=1100139550]
+offset_left = 450.0
+offset_top = -100.0
+offset_right = 543.0
+offset_bottom = -69.0
+text = "Start Stage"
+script = ExtResource("3_f3h6d")

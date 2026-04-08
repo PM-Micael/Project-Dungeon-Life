@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7mods3s1cg1r"
-path="res://.godot/imported/0_Dark_Oracle_Idle_000.png-c960a9c2a9d5b82b2ab2351b557d4c48.ctex"
+uid="uid://clgfder7bq2cc"
+path="res://.godot/imported/1_Dark_Oracle_Idle_000.png-b0d7fc2cdfe4059e18c193a7c7184851.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Units/0_Dark_Oracle_Idle_000.png"
-dest_files=["res://.godot/imported/0_Dark_Oracle_Idle_000.png-c960a9c2a9d5b82b2ab2351b557d4c48.ctex"]
+source_file="res://Assets/Units/1_Dark_Oracle_Idle_000.png"
+dest_files=["res://.godot/imported/1_Dark_Oracle_Idle_000.png-b0d7fc2cdfe4059e18c193a7c7184851.ctex"]
 
 [params]
 

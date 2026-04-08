@@ -14,6 +14,17 @@ func _ready() -> void:
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	create_fiendly_characters_on_ui()
 	place_friendly_characters_board()
+	_load_enemy_units()
+	place_enemy_characters_board()
+
+func _load_enemy_units(): #´Hardcoded palceholder
+	var enemies: Array[PackedScene] = [
+		load("res://Scenes/Characters/skeleton.tscn")
+	]
+	
+	for scene in enemies:
+		var instance: Entity = scene.instantiate()
+		enemy_characters.append(instance)
 
 func create_fiendly_characters_on_ui():
 	var entity_select_component_scene: PackedScene = load(("res://Scenes/Clients/UIComponents/entity_select_component.tscn"))
@@ -45,12 +56,33 @@ func place_friendly_characters_board(): # Maybe only run on ready
 		sprite_instance.scale = Vector2(0.15, 0.15)
 		
 		entity_container_instance.add_child(sprite_instance)
-		board.get_node("Characters").add_child(entity_container_instance)
+		board.get_node("Characters/FriendlyUnits").add_child(entity_container_instance)
 		
 		c.position = sprite_instance.position
 		
 		loop_itteration += 1
-	return
+
+func place_enemy_characters_board(): # Maybe only run on ready
+	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
+	
+	var loop_itteration: int = 0
+	for c in enemy_characters:
+		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
+		entity_container_instance.name = "EntityContainer_" + str(loop_itteration+1)
+		entity_container_instance.entity = c
+		entity_container_instance.position = Vector2(-150+(loop_itteration*100), -250)
+		
+		var sprite_instance = Sprite2D.new()
+		sprite_instance.name = "Sprite2D"
+		sprite_instance.texture = c.get_node("Sprite2D").texture
+		sprite_instance.scale = Vector2(0.15, 0.15)
+		
+		entity_container_instance.add_child(sprite_instance)
+		board.get_node("Characters/EnemyUnits").add_child(entity_container_instance)
+		
+		c.position = sprite_instance.position
+		
+		loop_itteration += 1
 
 func place_friendly_characters_ui(entity: Entity):
 	currently_selected_character = entity
@@ -72,16 +104,16 @@ func place_character_on_tile():
 		print("Select tile")
 		return
 	
+	
 	for c in player_characters:
 		if c == currently_selected_character:
 			c.position.x = currently_selected_tile.position.x + 50
 			c.position.y = currently_selected_tile.position.y + 50
 		
-			var instances: Array[Node] = get_node("Board/Characters").get_children()
+			var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
 			for i in instances:
 				if i.entity == c:
 					i.position = c.position
 					break
 	
-	#currently_selected_character = null
 	currently_selected_tile = null

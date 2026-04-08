@@ -7,6 +7,7 @@ var available_character_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Characters/golem.tscn"),
 	preload("res://Scenes/Characters/petamer.tscn"),
 	preload("res://Scenes/Characters/soulbound.tscn"),
+	preload("res://Scenes/Characters/orbath.tscn"),
 ]
 var available_characters: Array[Entity]
 var character_preview_instance: EntitySelectComponent
