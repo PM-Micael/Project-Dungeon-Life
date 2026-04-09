@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_7jq7u"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_4t4a5"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_gdmg0"]
-[ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapon/burst_staff.gd" id="7_ol1wl"]
+[ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapons/burst_staff.gd" id="7_ol1wl"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="8_ndldv"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_mfr6o"]
 [ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/1_Dark_Oracle_Idle_000.png" id="10_ucu2c"]

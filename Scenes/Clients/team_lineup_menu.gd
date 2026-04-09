@@ -3,7 +3,7 @@ class_name TeamLineupMenu
 
 @onready var board: GameBoard = get_node("Board")
 @onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
-@onready var ui_scene: Control = get_node_or_null("UI")
+@onready var ui_scene = get_node_or_null("UI")
 
 @onready var currently_selected_tile: Tile
 @onready var currently_selected_character: Entity

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="6_ep384"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="7_ajbjq"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="8_o6mmh"]
-[ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapon/burst_staff.gd" id="9_ajbjq"]
+[ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapons/burst_staff.gd" id="9_ajbjq"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="10_p60ou"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_p60ou"]
 

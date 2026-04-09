@@ -3,7 +3,7 @@ class_name TeamLoadoutMenu
 
 var entity_menu_select: PackedScene = preload("res://Scenes/Clients/UIComponents/entity_select_component.tscn")
 var available_characters: Array[Entity]
-var character_preview_instance: EntitySelectComponent
+var character_preview_instance: EntitySelectComponent # Can be replaced with clickalee_object ???
 
 @onready var currently_selected_team_slot: TeamSlot
 @onready var team_slots: Array[TeamSlot]
@@ -52,7 +52,9 @@ func _load_character_selection_menu():
 		
 		character_preview_instance.entity = character
 		character_preview_instance.name += "_" + str(loop_itteration)
-		character_preview_instance.scale = Vector2(0.2, 0.2)
+		character_preview_instance.get_node("Sprite2D").scale = Vector2(0.2, 0.2)
+		character_preview_instance.get_node("ClickableEntity").get_node("CollisionShape2D").scale = Vector2(0.2, 0.2)
+		character_preview_instance.get_node("ClickableEntity").get_node("PopupMenu").menu_type = "null"
 		character_preview_instance.position = Vector2(100 * (loop_itteration+1), 500)
 		character_preview_instance.selected.connect(_on_character_chosen)
 		

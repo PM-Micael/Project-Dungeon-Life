@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name EntityContainer
 
 @onready var entity: Entity:
@@ -15,3 +15,7 @@ func _set_sprite():
 
 func on_clicked():
 	get_parent().entity_container_clicked(self)
+
+func on_right_click_option_selected(id: int):
+	get_parent().on_right_click_option_selected(id, self)
+	print("EntityContainer right clicked")
