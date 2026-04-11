@@ -49,7 +49,7 @@ func _load_character_selection_menu():
 		character_preview_instance.name += "_" + str(loop_itteration)
 		character_preview_instance.get_node("Sprite2D").scale = Vector2(0.2, 0.2)
 		character_preview_instance.get_node("ClickableEntity").get_node("CollisionShape2D").scale = Vector2(0.2, 0.2)
-		character_preview_instance.get_node("ClickableEntity").get_node("PopupMenu").menu_type = "null"
+		character_preview_instance.get_node("ClickableEntity").get_node("PopupMenu").menu_type = PopupMenuType.Type.NONE
 		character_preview_instance.position = Vector2(100 * (loop_itteration+1), 500)
 		character_preview_instance.selected.connect(_on_character_chosen)
 		

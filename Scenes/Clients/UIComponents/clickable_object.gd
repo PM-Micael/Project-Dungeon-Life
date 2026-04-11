@@ -15,6 +15,9 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 				parent.on_clicked()
 			
 			MOUSE_BUTTON_RIGHT:
+				if popup_menu == null:
+					return
+					
 				popup_menu.position = get_viewport().get_mouse_position()
 				popup_menu.popup()
 

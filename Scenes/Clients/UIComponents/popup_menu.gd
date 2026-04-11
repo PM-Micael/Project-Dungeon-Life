@@ -3,9 +3,10 @@ extends PopupMenu
 @onready var menu_type: int
 
 func _ready() -> void:
-	if menu_type == null:
-		add_item("Null")
-	
+	if menu_type < 0:
+		queue_free()
+		return
+		
 	match menu_type:
 		PopupMenuType.Type.BACKPACK_ITEM:
 			add_item("Select", 0)
