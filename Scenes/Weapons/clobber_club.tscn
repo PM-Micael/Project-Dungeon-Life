@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://detmaptpliv6b" path="res://Scenes/Weapons/clobber_club.gd" id="1_m0dkl"]
 [ext_resource type="Texture2D" uid="uid://blhgxwmypmb3l" path="res://Assets/Weapons/club.png" id="1_vb78t"]
+[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="3_ayri6"]
 
 [node name="ClobberClub" type="Node2D" unique_id=1186105180]
 script = ExtResource("1_m0dkl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1575686128]
 texture = ExtResource("1_vb78t")
+
+[node name="Components" type="Node2D" parent="." unique_id=1506982920]
+
+[node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_ayri6")]

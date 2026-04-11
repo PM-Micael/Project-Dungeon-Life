@@ -2,6 +2,7 @@ extends Node2D
 class_name Inventory
 
 @onready var unit_selection_frame_entity_containers_node: Node2D = get_node("UnitSelectionFrame/EntityContainers")
+@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
 @onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
@@ -47,8 +48,8 @@ func _fill_backpack_frame():
 		loop_itterations += 1
 
 # On click events
-func entity_container_clicked(entity_container: EntityContainer):
-	unit_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
+func entity_unit_selection_container_clicked(entity_container: EntityContainer):
+	unit_loadout_frame.unit_entity = entity_container.entity
 
 func on_right_click_option_selected(id: int, entity_container: EntityContainer) -> void:
 	match id:
@@ -56,6 +57,21 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			print("Not Implimented")
 		1:
 			print("Attempting to equip item.")
+			
+			DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
 			weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
+			
+			return
+			if entity_container.entity.get_node("Components").get_node("WeaponComponent") != null:
+				# Is a weapon
+				#weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
+				
+				#var wc = unit_loadout_frame.unit_entity.get_node("Components/WeaponSlotComponent").get_child()
+				for u in DungeonData.dungeon_team:
+					if u.display_name == unit_loadout_frame.unit_entity.display_name:
+						u = unit_loadout_frame.unit_entity
+						break
+				
+				_fill_entity_selection_frame()
 		2:
 			print("Not Implimented")

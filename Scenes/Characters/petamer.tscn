@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_7jq7u"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_4t4a5"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_gdmg0"]
-[ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapons/burst_staff.gd" id="7_ol1wl"]
-[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="8_ndldv"]
+[ext_resource type="PackedScene" uid="uid://dxw4set8d1xrh" path="res://Scenes/Weapons/burst_staff.tscn" id="8_o1mot"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_mfr6o"]
 [ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/1_Dark_Oracle_Idle_000.png" id="10_ucu2c"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_degpt"]
@@ -26,17 +25,12 @@ script = ExtResource("1_tew1s")
 
 [node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("5_4t4a5")]
 
-[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=688991603]
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("9_mfr6o")]
+
+[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=460454159]
 script = ExtResource("6_gdmg0")
 
-[node name="BurstStaff" type="Node2D" parent="Components/WeaponSlotComponent" unique_id=98666696]
-script = ExtResource("7_ol1wl")
-
-[node name="Components" type="Node2D" parent="Components/WeaponSlotComponent/BurstStaff" unique_id=1093225256]
-
-[node name="WeaponComponent" parent="Components/WeaponSlotComponent/BurstStaff/Components" unique_id=47458186 instance=ExtResource("8_ndldv")]
-
-[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("9_mfr6o")]
+[node name="BurstStaff" parent="Components/WeaponSlotComponent" unique_id=1525957550 instance=ExtResource("8_o1mot")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=915472074]
 texture = ExtResource("10_ucu2c")

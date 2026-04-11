@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_3yf8f"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="6_k8mju"]
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="6_t2gh5"]
+[ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="7_bbaxc"]
 [ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/Units/0_Golem_Idle_000.png" id="7_km5yh"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="7_t2gh5"]
+[ext_resource type="PackedScene" uid="uid://7vfeu6xkfonk" path="res://Scenes/Weapons/clobber_club.tscn" id="8_bbaxc"]
 
 [node name="Golem" type="Node2D" unique_id=121038861]
 scale = Vector2(0.15, 0.15)
@@ -25,6 +27,11 @@ starting_position = Vector2(-150, -150)
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("6_t2gh5")]
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("6_k8mju")]
+
+[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=1864437906]
+script = ExtResource("7_bbaxc")
+
+[node name="ClobberClub" parent="Components/WeaponSlotComponent" unique_id=1186105180 instance=ExtResource("8_bbaxc")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1564971062]
 texture = ExtResource("7_km5yh")
