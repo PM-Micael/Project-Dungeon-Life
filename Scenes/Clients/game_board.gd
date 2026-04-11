@@ -6,7 +6,7 @@ class_name GameBoard
 @onready var enemy_units: Array[Entity]
 
 func place_friendly_units_on_board():
-	for u in Globals.dungeon_team:
+	for u in DungeonData.dungeon_team:
 		friendly_units_node.add_child(u)
 
 func place_enemy_units_on_board():

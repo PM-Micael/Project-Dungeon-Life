@@ -2,7 +2,6 @@ extends Node2D
 class_name TeamLoadoutMenu
 
 var entity_menu_select: PackedScene = preload("res://Scenes/Clients/UIComponents/entity_select_component.tscn")
-var available_characters: Array[Entity]
 var character_preview_instance: EntitySelectComponent # Can be replaced with clickalee_object ???
 
 @onready var currently_selected_team_slot: TeamSlot
@@ -10,6 +9,8 @@ var character_preview_instance: EntitySelectComponent # Can be replaced with cli
 @onready var team_slot_amount: int = 4
 
 func _ready() -> void:
+	DungeonData.initialize_data()
+	
 	# Adds TeamSlots in the scene
 	var loop_itteration: int = 0
 	for i in range(team_slot_amount):
@@ -26,13 +27,7 @@ func _ready() -> void:
 		
 		loop_itteration += 1
 	
-	_fill_available_characters()
 	_load_character_selection_menu()
-
-func _fill_available_characters():
-	for scene in Globals.owned_units:
-		var instance: Entity = scene.instantiate()
-		available_characters.append(instance)
 
 func _on_select_team_slot(team_slot_scene: TeamSlot):
 	currently_selected_team_slot = team_slot_scene
@@ -47,10 +42,10 @@ func _load_character_selection_menu():
 			child.queue_free()
 	
 	var loop_itteration = 0
-	for character in available_characters:
+	for unit in DungeonData.available_units_as_entities:
 		character_preview_instance = entity_menu_select.instantiate()
 		
-		character_preview_instance.entity = character
+		character_preview_instance.entity = unit
 		character_preview_instance.name += "_" + str(loop_itteration)
 		character_preview_instance.get_node("Sprite2D").scale = Vector2(0.2, 0.2)
 		character_preview_instance.get_node("ClickableEntity").get_node("CollisionShape2D").scale = Vector2(0.2, 0.2)
@@ -62,15 +57,15 @@ func _load_character_selection_menu():
 		loop_itteration += 1
 
 func _on_character_chosen(new_entity: Entity):
-	if (new_entity in Globals.dungeon_team):
+	if (new_entity in DungeonData.dungeon_team):
 		print("No dupes allowed.")
 		return
 	
-	Globals.dungeon_team.append(new_entity)
-	Globals.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
-	available_characters.erase(new_entity)
+	DungeonData.dungeon_team.append(new_entity)
+	DungeonData.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
+	DungeonData.available_units_as_entities.erase(new_entity)
 	if currently_selected_team_slot.currently_selected_entity != null:
-		available_characters.append(currently_selected_team_slot.currently_selected_entity)
+		DungeonData.available_units_as_entities.append(currently_selected_team_slot.currently_selected_entity)
 	currently_selected_team_slot.currently_selected_entity = new_entity
 	currently_selected_team_slot.get_node("Sprite2D").texture = new_entity.get_node("Sprite2D").texture
 	

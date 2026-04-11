@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Globals="*uid://bgbudg866glv0"
 PopupMenuTypes="*uid://bs3vfwjrilbqr"
+DungeonData="*uid://bcar2mpom4rjn"
 
 [display]
 

@@ -4,6 +4,7 @@ class_name Entity
 @export_category("Stats")
 @export var max_health: int = 10
 
+var display_name: String
 var hostile_team: String
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
