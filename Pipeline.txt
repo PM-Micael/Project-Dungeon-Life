@@ -15,3 +15,6 @@ Buggs:
 2026-04-08:
 	Check if all the nodes in "Invenetory" Can use all the same one script
 	Inspect how Global positions in scenes interact with the new popup system
+
+2026-04-20:
+	Make preview scenes have entity containers that show off entity

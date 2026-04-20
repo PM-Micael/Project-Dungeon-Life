@@ -49,6 +49,7 @@ func _fill_backpack_frame():
 
 # On click events
 func entity_unit_selection_container_clicked(entity_container: EntityContainer):
+	# Edit here
 	unit_loadout_frame.unit_entity = entity_container.entity
 
 func on_right_click_option_selected(id: int, entity_container: EntityContainer) -> void:
@@ -58,9 +59,15 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 		1:
 			print("Attempting to equip item.")
 			
+			## Swap containers
 			DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
 			weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
 			
+			for i in  DungeonData.backpack_contents_as_entities:
+				if i.display_name == unit_loadout_frame.unit_entity.display_name:
+					DungeonData.backpack_contents_as_entities.erase(i)
+					break
+			_fill_backpack_frame()
 			return
 			if entity_container.entity.get_node("Components").get_node("WeaponComponent") != null:
 				# Is a weapon

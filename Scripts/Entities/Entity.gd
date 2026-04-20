@@ -4,6 +4,7 @@ class_name Entity
 @export_category("Stats")
 @export var max_health: int = 10
 
+var id: String
 var display_name: String
 var hostile_team: String
 

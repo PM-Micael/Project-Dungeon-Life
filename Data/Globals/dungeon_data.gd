@@ -59,12 +59,13 @@ func update_dungeon_team_entity(updated_entity: Entity):
 			break
 
 func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity):
-	var unit_weapons: = unit_entity.get_node("Components/WeaponSlotComponent").get_children()
+	unit_entity.reparent(weapon_entity.get_parent())
+	weapon_entity.reparent(unit_entity.get_parent())
 	
-	#Drop other weapon
-	if unit_weapons != null or not unit_weapons.size() <= 0:
-		# Has weapon's
-		for i in unit_weapons:
-			i.free()
+	##Drop other weapon
+	#if unit_weapons != null or not unit_weapons.size() <= 0:
+		## Has weapon's
+		#for i in unit_weapons:
+			#i.free()
 	
 	unit_entity.get_node("Components/WeaponSlotComponent").add_child(weapon_entity)

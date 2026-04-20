@@ -7,7 +7,8 @@ class_name EntityContainer
 		_set_sprite()
 
 func _ready() -> void:
-	_set_sprite()
+	#_set_sprite()
+	return
 
 func _set_sprite():
 	var sprite: Sprite2D = get_child(0)
