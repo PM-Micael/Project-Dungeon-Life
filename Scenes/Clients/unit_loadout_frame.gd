@@ -19,6 +19,8 @@ func _ready() -> void:
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
 	weapon_container_instance.name = "WeaponContainer"
+	weapon_container_instance.position = Vector2(150, -125)
+	weapon_container_instance.scale = Vector2(1.5, 1.5)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
 	
