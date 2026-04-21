@@ -12,7 +12,11 @@ func _ready() -> void:
 
 func _set_sprite():
 	var sprite: Sprite2D = get_child(0)
-	sprite.texture = entity.get_node("Sprite2D").texture
+	if entity != null:
+		sprite.texture = entity.get_node("Sprite2D").texture
+		return
+	
+	sprite.texture = null
 
 func on_clicked():
 	get_parent().entity_container_clicked(self)

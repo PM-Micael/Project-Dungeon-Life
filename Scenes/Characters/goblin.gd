@@ -1,7 +1,7 @@
 extends Entity
 
 func _init() -> void:
-	id = "item_weapon_goblin"
+	id = "unt_goblin"
 
 func _ready() -> void:
 	super._ready()

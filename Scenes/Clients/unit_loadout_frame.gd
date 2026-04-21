@@ -7,29 +7,36 @@ class_name UnitLoadoutFrame
 		_on_unit_entity_change()
  
 var unit_entity_container: EntityContainer
+var weapon_entity_container: EntityContainer
 
 func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-	var container_instance = container_scene.instantiate()
-	container_instance.name = "UnitContainer"
-	container_instance.position = Vector2(412.5, -125.0)
-	container_instance.scale = Vector2(2, 2)
-	get_node("UnitPreview").add_child(container_instance)
+	var unit_container_instance = container_scene.instantiate()
+	unit_container_instance.name = "UnitContainer"
+	unit_container_instance.position = Vector2(412.5, -125.0)
+	unit_container_instance.scale = Vector2(2, 2)
+	get_node("UnitPreview").add_child(unit_container_instance)
+	
+	var weapon_container_instance: EntityContainer = container_scene.instantiate()
+	weapon_container_instance.name = "WeaponContainer"
+	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
+	
+	
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
+	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
 	
 
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
-	############################
 	
 	var weapon_slot_component = unit_entity.get_node("Components/WeaponSlotComponent")
 	var weapon = weapon_slot_component.get_child(0)
 	if weapon == null:
 		print(unit_entity.display_name + " has no weapon")
-		get_node("WeaponPreviewFrame/Sprite2D").texture = null
+		weapon_entity_container.entity = null
 		return
-		
-	get_node("WeaponPreviewFrame/Sprite2D").texture = weapon.get_node("Sprite2D").texture
+	
+	weapon_entity_container.entity = weapon
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")

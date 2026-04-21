@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
 [ext_resource type="Script" uid="uid://bk1badatwimpj" path="res://Scenes/Clients/entity_containers.gd" id="5_gdxfq"]
-[ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/Weapons/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="5_hqjli"]
 [ext_resource type="Script" uid="uid://baviarj0hrfe0" path="res://Scenes/Clients/unit_selection_frame.gd" id="5_kgsvi"]
 [ext_resource type="Script" uid="uid://br3l6ovn64fqg" path="res://Scenes/Clients/unit_loadout_frame.gd" id="7_1v8r6"]
 [ext_resource type="Script" uid="uid://chhnif2k18yst" path="res://Scenes/Clients/weapon_preview_frame.gd" id="9_g78to"]
@@ -135,11 +134,6 @@ offset_right = 212.5
 offset_bottom = -12.5
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame" unique_id=463759200]
-position = Vector2(150, -125)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("5_hqjli")
 
 [node name="BackpackFrame" type="Node2D" parent="UI/Inventory" unique_id=357991881]
 script = ExtResource("9_vprbv")
