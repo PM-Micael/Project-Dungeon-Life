@@ -11,9 +11,29 @@ config_version=5
 [application]
 
 config/name="Project Dungeon Life"
-run/main_scene="uid://bajjxafk4bccs"
+run/main_scene="uid://bok8av2qavev5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*uid://bgbudg866glv0"
+PopupMenuTypes="*uid://bs3vfwjrilbqr"
+DungeonData="*uid://bcar2mpom4rjn"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Components/": "blue",
+"res://Data/": "orange",
+"res://Scripts/": "red"
+}
 
 [physics]
 

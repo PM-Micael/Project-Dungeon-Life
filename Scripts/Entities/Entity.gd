@@ -1,19 +1,23 @@
-extends CharacterBody2D
+extends Node2D
 class_name Entity
 
 @export_category("Stats")
 @export var max_health: int = 10
-@export var attack_damage: int = 1
-@export var attack_range: int = 100
-@export var movment_timer: float = 1.1
 
-@onready var health_bar: HealthBarComponent = get_node_or_null("Components/HealthComponent/HealthBar")
-@onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")
+var id: String
+var display_name: String
+var hostile_team: String
+
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
+@onready var health_component: HealthComponent = get_node_or_null("Components/HealthComponent")
+@onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")
 @onready var targeting_component: TargetingComponent = get_node_or_null("Components/TargetingComponent")
 @onready var targetable_component: TargetableComponent = get_node_or_null("Components/TargetableComponent")
+@onready var weapon_slot_component: WeaponSlotComponent = get_node_or_null("Components/WeaponSlotComponent")
+@onready var weapon_component: WeaponComponent = get_node_or_null("Components/WeaponComponent")
 
-var hostile_team: String
+@onready var ui_components_health_bar: ProgressBar = get_node_or_null("UIComponents/HealthBar")
+@onready var ui_components_weapon_energy_bar: ProgressBar = get_node_or_null("UIComponents/WeaponEnergyProgressBar")
 
 @export_category("Other")
 @export var starting_position: Vector2
@@ -23,13 +27,8 @@ func _ready() -> void:
 	_set_stats()
 
 func _set_stats():
-	if health_bar != null:
-		health_bar.max_health = max_health
-	if movment_component != null:
-		movment_component.timer.wait_time = movment_timer
-	if attack_component != null:
-		attack_component.attack_damage = attack_damage
-		attack_component.attack_range = attack_range
+	if health_component != null:
+		health_component.max_health = max_health
 
 func _physics_process(_delta: float) -> void:
 	_action()
@@ -55,7 +54,7 @@ func movment_component_action():
 				movment_component.move_to_target(targeting_component.target)
 			movment_component.timer.start()
 
-func attack_component_action():
+func attack_component_action(): # perhaps more fficient if statment can be implimented
 	if attack_component != null:
 		if (attack_component.in_target_attack_range &&
 		attack_component.timer.time_left <= 0.1 &&

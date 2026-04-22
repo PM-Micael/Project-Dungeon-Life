@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://bqk2h8lpks42o"]
+
+[ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_lxyuk"]
+[ext_resource type="Script" uid="uid://cab48t3stycys" path="res://Scenes/Clients/game_board.gd" id="2_d67pp"]
+[ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
+[ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
+[ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
+[ext_resource type="Script" uid="uid://bk1badatwimpj" path="res://Scenes/Clients/entity_containers.gd" id="5_gdxfq"]
+[ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/Weapons/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="5_hqjli"]
+[ext_resource type="Script" uid="uid://baviarj0hrfe0" path="res://Scenes/Clients/unit_selection_frame.gd" id="5_kgsvi"]
+[ext_resource type="Texture2D" uid="uid://d1r5203vnkp61" path="res://Assets/Units/0_Skeleton_Warrior_Idle_000.png" id="5_qn83p"]
+[ext_resource type="Script" uid="uid://br3l6ovn64fqg" path="res://Scenes/Clients/unit_loadout_frame.gd" id="7_1v8r6"]
+[ext_resource type="Script" uid="uid://chhnif2k18yst" path="res://Scenes/Clients/weapon_preview_frame.gd" id="9_g78to"]
+[ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="9_vprbv"]
+
+[node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
+script = ExtResource("1_lxyuk")
+
+[node name="Board" type="Node2D" parent="." unique_id=519372427]
+position = Vector2(-400, 0)
+script = ExtResource("2_d67pp")
+
+[node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
+
+[node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
+
+[node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
+
+[node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=139511734]
+zoom = Vector2(0.75, 0.75)
+
+[node name="UI" type="Node2D" parent="." unique_id=1579880122]
+
+[node name="FriendlyCharacterContainers" type="Node2D" parent="UI" unique_id=2112734781]
+position = Vector2(500, 0)
+
+[node name="Style" type="Node2D" parent="UI/FriendlyCharacterContainers" unique_id=2093928566]
+z_index = -5
+position = Vector2(0, -400)
+
+[node name="ColorRect" type="ColorRect" parent="UI/FriendlyCharacterContainers/Style" unique_id=944984054]
+offset_left = 150.0
+offset_right = 350.0
+offset_bottom = 800.0
+mouse_filter = 2
+color = Color(0, 0.40100813, 0.40172544, 1)
+
+[node name="Inventory" type="Node2D" parent="UI" unique_id=1201850667]
+script = ExtResource("4_t8u3g")
+
+[node name="MainBackround" type="Node2D" parent="UI/Inventory" unique_id=680883079]
+
+[node name="Style" type="Node2D" parent="UI/Inventory/MainBackround" unique_id=2130989595]
+
+[node name="Frame" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=829408487]
+offset_top = -475.0
+offset_right = 850.0
+offset_bottom = 475.0
+mouse_filter = 2
+color = Color(0.30496624, 0.1610038, 0, 1)
+
+[node name="Backround" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=1537463212]
+offset_left = 25.0
+offset_top = -450.0
+offset_right = 825.0
+offset_bottom = 450.0
+mouse_filter = 2
+color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
+
+[node name="UnitSelectionFrame" type="Node2D" parent="UI/Inventory" unique_id=1283372284]
+script = ExtResource("5_kgsvi")
+
+[node name="Style" type="Node2D" parent="UI/Inventory/UnitSelectionFrame" unique_id=1713573389]
+
+[node name="Frame" type="ColorRect" parent="UI/Inventory/UnitSelectionFrame/Style" unique_id=26696761]
+offset_top = -480.0
+offset_right = 850.0
+offset_bottom = -305.0
+mouse_filter = 2
+color = Color(0.30588236, 0.16078432, 0, 1)
+
+[node name="Backround" type="ColorRect" parent="UI/Inventory/UnitSelectionFrame/Style" unique_id=443370070]
+offset_left = 12.5
+offset_top = -468.0
+offset_right = 837.5
+offset_bottom = -318.0
+mouse_filter = 2
+color = Color(0.015686275, 0, 0.15686275, 1)
+
+[node name="EntityContainers" type="Node2D" parent="UI/Inventory/UnitSelectionFrame" unique_id=1846782545]
+script = ExtResource("5_gdxfq")
+
+[node name="UnitLoadoutFrame" type="Node2D" parent="UI/Inventory" unique_id=2032775302]
+script = ExtResource("7_1v8r6")
+
+[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=220332286]
+
+[node name="UnitPreview" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=1755487554]
+
+[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview" unique_id=45012506]
+
+[node name="Frame" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview/Style" unique_id=238977279]
+offset_left = 275.0
+offset_top = -300.0
+offset_right = 550.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.30588236, 0.16078432, 0, 1)
+
+[node name="Backround" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview/Style" unique_id=554139410]
+offset_left = 287.5
+offset_top = -287.5
+offset_right = 537.5
+offset_bottom = 37.5
+mouse_filter = 2
+color = Color(0.015686275, 0, 0.15686275, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview" unique_id=465598240]
+visible = false
+position = Vector2(412.5, -125)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_qn83p")
+
+[node name="WeaponPreviewFrame" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=1040620059]
+script = ExtResource("9_g78to")
+
+[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame" unique_id=423688435]
+
+[node name="Frame" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame/Style" unique_id=719675641]
+offset_left = 75.0
+offset_top = -250.0
+offset_right = 225.0
+mouse_filter = 2
+color = Color(0.30588236, 0.16078432, 0, 1)
+
+[node name="Backround" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame/Style" unique_id=1022337563]
+offset_left = 87.5
+offset_top = -237.5
+offset_right = 212.5
+offset_bottom = -12.5
+mouse_filter = 2
+color = Color(0.015686275, 0, 0.15686275, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame" unique_id=463759200]
+position = Vector2(150, -125)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_hqjli")
+
+[node name="BackpackFrame" type="Node2D" parent="UI/Inventory" unique_id=357991881]
+script = ExtResource("9_vprbv")
+
+[node name="StartStage" type="Button" parent="." unique_id=1100139550]
+z_index = 10
+offset_left = -159.0
+offset_top = -299.0
+offset_right = -2.0
+offset_bottom = -135.0
+text = "Start Stage"
+script = ExtResource("3_f3h6d")

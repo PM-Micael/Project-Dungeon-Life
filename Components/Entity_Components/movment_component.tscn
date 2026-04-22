@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5iw7v64su0bm"]
 
-[ext_resource type="Script" uid="uid://de6h1e3h2oyyd" path="res://Components/Component_Scripts/movment_component.gd" id="1_6lnmd"]
-[ext_resource type="Script" uid="uid://bqd5uw8gl2vog" path="res://Components/Component_Scripts/movment_timer.gd" id="2_dx6tv"]
+[ext_resource type="Script" uid="uid://de6h1e3h2oyyd" path="res://Components/Entity_Components/movment_component.gd" id="1_6lnmd"]
+[ext_resource type="Script" uid="uid://bqd5uw8gl2vog" path="res://Components/Entity_Components/movment_timer.gd" id="2_dx6tv"]
 
 [node name="MovmentComponent" type="Node2D" unique_id=565826085]
 script = ExtResource("1_6lnmd")

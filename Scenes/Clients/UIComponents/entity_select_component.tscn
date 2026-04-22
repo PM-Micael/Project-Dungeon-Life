@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dwxeiv4nrretc"]
+
+[ext_resource type="Script" uid="uid://ciu5rva81oyyl" path="res://Scenes/Clients/UIComponents/entity_select_component.gd" id="1_hccf2"]
+[ext_resource type="PackedScene" uid="uid://d38kd2l38rgp6" path="res://Scenes/Clients/UIComponents/clickable_object.tscn" id="2_26l3p"]
+
+[node name="EntitySelectComponent" type="Control" unique_id=303699788]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_hccf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1896467008]
+scale = Vector2(0.5, 0.5)
+
+[node name="ClickableEntity" parent="." unique_id=1384005923 instance=ExtResource("2_26l3p")]

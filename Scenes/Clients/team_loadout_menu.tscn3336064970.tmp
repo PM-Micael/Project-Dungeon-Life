@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bok8av2qavev5"]
+
+[ext_resource type="Script" uid="uid://c8ggiihhd0xuo" path="res://Scenes/Clients/team_loadout_menu.gd" id="1_820an"]
+[ext_resource type="Script" uid="uid://csmbq3wctk8qc" path="res://Scenes/Clients/Buttons/start_button.gd" id="4_rsfnj"]
+
+[node name="TeamLoadoutMenu" type="Node2D" unique_id=436161591]
+script = ExtResource("1_820an")
+
+[node name="TeamSlotsContainer" type="Node2D" parent="." unique_id=1101958126]
+
+[node name="EntitySelectMenu" type="Node2D" parent="." unique_id=1715817666]
+
+[node name="Button" type="Button" parent="." unique_id=974859405]
+offset_left = 131.0
+offset_top = 351.0
+offset_right = 231.0
+offset_bottom = 401.0
+text = "Play"
+script = ExtResource("4_rsfnj")
