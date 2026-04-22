@@ -57,28 +57,25 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 		0:
 			print("Not Implimented")
 		1:
-			print("Attempting to equip item.")
+			print("Arrempting to equip item")
 			
-			## Swap containers
-			DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
-			weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
+			if unit_loadout_frame.unit_entity == null:
+				print("No unit selected")
+				return
 			
-			for i in  DungeonData.backpack_contents_as_entities:
-				if i.display_name == unit_loadout_frame.unit_entity.display_name:
-					DungeonData.backpack_contents_as_entities.erase(i)
-					break
+			entity_container.remove_child(entity_container.entity)
+			
+			var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
+			
+			DungeonData.backpack_contents_as_entities.erase(entity_container.entity)
+			
+			if old_weapon != null:
+				DungeonData.backpack_contents_as_entities.append(old_weapon)
+			
+			unit_loadout_frame._on_unit_entity_change()
+			
+			for child in backpack_frame.get_children():
+				child.queue_free()
 			_fill_backpack_frame()
-			return
-			if entity_container.entity.get_node("Components").get_node("WeaponComponent") != null:
-				# Is a weapon
-				#weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
-				
-				#var wc = unit_loadout_frame.unit_entity.get_node("Components/WeaponSlotComponent").get_child()
-				for u in DungeonData.dungeon_team:
-					if u.display_name == unit_loadout_frame.unit_entity.display_name:
-						u = unit_loadout_frame.unit_entity
-						break
-				
-				_fill_entity_selection_frame()
 		2:
 			print("Not Implimented")
