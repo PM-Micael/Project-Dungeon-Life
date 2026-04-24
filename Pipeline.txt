@@ -16,5 +16,14 @@ Buggs:
 	Check if all the nodes in "Invenetory" Can use all the same one script
 	Inspect how Global positions in scenes interact with the new popup system
 
-2026-04-20:
-	Make preview scenes have entity containers that show off entity
+2026-04-22:
+	What the In game right side cliend needs to display:
+		- Game speed
+		- Meta data:
+			Enteties on board
+			Buffs
+		
+		- PS: Loot should not be displayed nor colected untill stage has been beten
+
+2026-04-24:
+	Remove the top selection of team line up and have the enteties be clickable

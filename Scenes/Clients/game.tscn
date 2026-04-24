@@ -1,9 +1,168 @@
 [gd_scene format=3 uid="uid://bajjxafk4bccs"]
 
 [ext_resource type="Script" uid="uid://brjuvjrs0dycq" path="res://Scenes/Clients/game.gd" id="1_hj2ne"]
+[ext_resource type="Texture2D" uid="uid://d1r5203vnkp61" path="res://Assets/Units/0_Skeleton_Warrior_Idle_000.png" id="2_xuauc"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
 script = ExtResource("1_hj2ne")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1535000232]
-zoom = Vector2(0.8, 0.8)
+[node name="RoundOver" type="Node2D" parent="." unique_id=600023374]
+visible = false
+z_index = 2
+
+[node name="Style" type="Node2D" parent="RoundOver" unique_id=825279262]
+
+[node name="Frame" type="ColorRect" parent="RoundOver/Style" unique_id=329730282]
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+
+[node name="Backround" type="ColorRect" parent="RoundOver/Style" unique_id=492760652]
+offset_left = -475.0
+offset_top = -275.0
+offset_right = 475.0
+offset_bottom = 275.0
+color = Color(0, 0, 0, 1)
+
+[node name="Loot" type="Node2D" parent="RoundOver" unique_id=2008647117]
+
+[node name="Label" type="Label" parent="RoundOver/Loot" unique_id=582526313]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 25
+text = "Loot"
+
+[node name="Title" type="Node2D" parent="RoundOver" unique_id=563898534]
+
+[node name="Label" type="Label" parent="RoundOver/Title" unique_id=198203393]
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -131.0
+theme_override_font_sizes/font_size = 50
+text = "VICTORY"
+horizontal_alignment = 1
+
+[node name="NextStageButton" type="Button" parent="RoundOver" unique_id=61404615]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 350.0
+offset_bottom = 200.0
+text = "Next Stage"
+
+[node name="UI" type="Node2D" parent="." unique_id=1861840769]
+z_index = 1
+
+[node name="InfoClient" type="Node2D" parent="UI" unique_id=1942112423]
+
+[node name="MainBackround" type="Node2D" parent="UI/InfoClient" unique_id=57892724]
+
+[node name="Style" type="Node2D" parent="UI/InfoClient/MainBackround" unique_id=1799684437]
+
+[node name="Frame" type="ColorRect" parent="UI/InfoClient/MainBackround/Style" unique_id=1177161117]
+offset_top = -475.0
+offset_right = 850.0
+offset_bottom = 475.0
+mouse_filter = 2
+color = Color(0.30496624, 0.1610038, 0, 1)
+
+[node name="Backround" type="ColorRect" parent="UI/InfoClient/MainBackround/Style" unique_id=749793359]
+offset_left = 23.0
+offset_top = -450.0
+offset_right = 823.0
+offset_bottom = 450.0
+mouse_filter = 2
+color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
+
+[node name="BoardUnits" type="Node2D" parent="UI/InfoClient/MainBackround" unique_id=1806990186]
+
+[node name="Style" type="Node2D" parent="UI/InfoClient/MainBackround/BoardUnits" unique_id=795675704]
+
+[node name="Frame" type="ColorRect" parent="UI/InfoClient/MainBackround/BoardUnits/Style" unique_id=765164861]
+offset_left = 100.0
+offset_top = -250.0
+offset_right = 750.0
+offset_bottom = 420.0
+mouse_filter = 2
+
+[node name="Backround" type="ColorRect" parent="UI/InfoClient/MainBackround/BoardUnits/Style" unique_id=1185549854]
+offset_left = 110.0
+offset_top = -240.0
+offset_right = 740.0
+offset_bottom = 410.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Line" type="ColorRect" parent="UI/InfoClient/MainBackround/BoardUnits/Style" unique_id=1586977449]
+offset_left = 420.0
+offset_top = -240.0
+offset_right = 430.0
+offset_bottom = 410.0
+
+[node name="DEBUG" type="Node2D" parent="UI/InfoClient/MainBackround/BoardUnits" unique_id=1030169537]
+
+[node name="UnitContainer" type="Node2D" parent="UI/InfoClient/MainBackround/BoardUnits/DEBUG" unique_id=745858203]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/InfoClient/MainBackround/BoardUnits/DEBUG/UnitContainer" unique_id=1245963231]
+position = Vector2(180, -150)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_xuauc")
+
+[node name="Label" type="Label" parent="UI/InfoClient/MainBackround/BoardUnits/DEBUG/UnitContainer" unique_id=1776838188]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TEEST"
+
+[node name="UnitContainer2" type="Node2D" parent="UI/InfoClient/MainBackround/BoardUnits/DEBUG" unique_id=226331110]
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI/InfoClient/MainBackround/BoardUnits/DEBUG/UnitContainer2" unique_id=269031425]
+position = Vector2(500, -150)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_xuauc")
+
+[node name="GameSpeed" type="Node2D" parent="UI/InfoClient/MainBackround" unique_id=1951309278]
+
+[node name="Style" type="Node2D" parent="UI/InfoClient/MainBackround/GameSpeed" unique_id=1908136115]
+
+[node name="Frame" type="ColorRect" parent="UI/InfoClient/MainBackround/GameSpeed/Style" unique_id=933139658]
+offset_left = 50.0
+offset_top = -425.0
+offset_right = 260.0
+offset_bottom = -325.0
+mouse_filter = 2
+
+[node name="Backround" type="ColorRect" parent="UI/InfoClient/MainBackround/GameSpeed/Style" unique_id=54603464]
+offset_left = 55.0
+offset_top = -420.0
+offset_right = 255.0
+offset_bottom = -330.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UI/InfoClient/MainBackround/GameSpeed" unique_id=2089415218]
+offset_left = 125.0
+offset_top = -400.0
+offset_right = 180.0
+offset_bottom = -351.0
+theme_override_font_sizes/font_size = 35
+text = "1x"
+
+[node name="Collectables" type="Node2D" parent="UI" unique_id=1508594497]
+
+[node name="Style" type="Node2D" parent="UI/Collectables" unique_id=283909136]
+
+[node name="Frame" type="ColorRect" parent="UI/Collectables/Style" unique_id=389530164]
+offset_left = -850.0
+offset_top = -480.0
+offset_bottom = -400.0
+
+[node name="Backround" type="ColorRect" parent="UI/Collectables/Style" unique_id=1330924912]
+offset_left = -845.0
+offset_top = -475.0
+offset_right = -5.0
+offset_bottom = -405.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1083022266]
+zoom = Vector2(0.75, 0.75)
