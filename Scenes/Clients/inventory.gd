@@ -10,23 +10,6 @@ class_name Inventory
 func _ready() -> void:
 	_fill_backpack_frame()
 
-func _fill_entity_selection_frame():
-	var loop_itterations: int = 0
-	for e in DungeonData.dungeon_team:
-		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-		entity_container_instance.entity = e
-		entity_container_instance.position = Vector2(100*(loop_itterations+1), -400)
-		
-		# Makes it clickable
-		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
-		var clickable_object_instance = clickable_object_scene.instantiate()
-		clickable_object_instance.scale = Vector2(0.15, 0.15)
-		
-		entity_container_instance.add_child(clickable_object_instance)
-		unit_selection_frame_entity_containers_node.add_child(entity_container_instance)
-		loop_itterations += 1
-
 func _fill_backpack_frame():
 	var loop_itterations: int = 0
 	for e in DungeonData.backpack_contents_as_entities:
@@ -48,7 +31,6 @@ func _fill_backpack_frame():
 
 # On click events
 func entity_unit_selection_container_clicked(entity_container: EntityContainer):
-	# Edit here
 	unit_loadout_frame.unit_entity = entity_container.entity
 
 func on_right_click_option_selected(id: int, entity_container: EntityContainer) -> void:
