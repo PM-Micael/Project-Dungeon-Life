@@ -1,6 +1,8 @@
 extends Node2D
 class_name WeaponComponent
 
+signal use_weapon_skill
+
 var max_weapon_energy: int = 100
 var current_weapon_energy: int = 70
 var weapon_energy_gained_on_attack: int = 10
@@ -29,17 +31,14 @@ func set_weapon_energy_bar():
 func _prep_attack():
 	entity_holding_weapon.attack_component.weapon_added_multiplier += added_attack_damage_multiplier
 
-func _finish_attack():
-	adjust_energy()
+func _finish_attack(targets: Array[Entity]):
+	adjust_energy(targets)
 	entity_holding_weapon.attack_component.weapon_added_multiplier -= added_attack_damage_multiplier
 
-func adjust_energy():
+func adjust_energy(targets: Array[Entity]):
 	current_weapon_energy += weapon_energy_gained_on_attack # Changing both bar and value might be conveluted
 	if current_weapon_energy >= max_weapon_energy:
-		_weapon_skill()
+		use_weapon_skill.emit(targets)
 		current_weapon_energy = 0
 		
 	weapon_energy_bar.value = current_weapon_energy
-
-func _weapon_skill():
-	print("Using [weapon_skill]")

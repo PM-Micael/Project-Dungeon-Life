@@ -26,7 +26,7 @@ func _action():
 
 func targeting_component_action():
 	if targeting_component != null:
-			targeting_component.select_target(hostile_team)
+			targeting_component.select_closest_target(hostile_team)
 
 func movment_component_action():
 	if movment_component != null:
