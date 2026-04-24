@@ -27,18 +27,18 @@ func _ready() -> void:
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
 	
-
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
 	
 	var weapon_slot_component = unit_entity.get_node("Components/WeaponSlotComponent")
-	var weapon = weapon_slot_component.get_child(0)
-	if weapon == null:
-		print(unit_entity.display_name + " has no weapon")
-		weapon_entity_container.entity = null
-		return
+	if weapon_slot_component != null:
+		var weapon = weapon_slot_component.get_child(0)
+		if weapon == null:
+			print(unit_entity.display_name + " has no weapon")
+			weapon_entity_container.entity = null
+			return
 	
-	weapon_entity_container.entity = weapon
+		weapon_entity_container.entity = weapon
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")

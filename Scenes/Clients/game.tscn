@@ -2,54 +2,10 @@
 
 [ext_resource type="Script" uid="uid://brjuvjrs0dycq" path="res://Scenes/Clients/game.gd" id="1_hj2ne"]
 [ext_resource type="Texture2D" uid="uid://d1r5203vnkp61" path="res://Assets/Units/0_Skeleton_Warrior_Idle_000.png" id="2_xuauc"]
+[ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="3_mfgt8"]
 
 [node name="Game" type="Node2D" unique_id=183244284]
 script = ExtResource("1_hj2ne")
-
-[node name="RoundOver" type="Node2D" parent="." unique_id=600023374]
-visible = false
-z_index = 2
-
-[node name="Style" type="Node2D" parent="RoundOver" unique_id=825279262]
-
-[node name="Frame" type="ColorRect" parent="RoundOver/Style" unique_id=329730282]
-offset_left = -500.0
-offset_top = -300.0
-offset_right = 500.0
-offset_bottom = 300.0
-
-[node name="Backround" type="ColorRect" parent="RoundOver/Style" unique_id=492760652]
-offset_left = -475.0
-offset_top = -275.0
-offset_right = 475.0
-offset_bottom = 275.0
-color = Color(0, 0, 0, 1)
-
-[node name="Loot" type="Node2D" parent="RoundOver" unique_id=2008647117]
-
-[node name="Label" type="Label" parent="RoundOver/Loot" unique_id=582526313]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 25
-text = "Loot"
-
-[node name="Title" type="Node2D" parent="RoundOver" unique_id=563898534]
-
-[node name="Label" type="Label" parent="RoundOver/Title" unique_id=198203393]
-offset_left = -150.0
-offset_top = -200.0
-offset_right = 150.0
-offset_bottom = -131.0
-theme_override_font_sizes/font_size = 50
-text = "VICTORY"
-horizontal_alignment = 1
-
-[node name="NextStageButton" type="Button" parent="RoundOver" unique_id=61404615]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 350.0
-offset_bottom = 200.0
-text = "Next Stage"
 
 [node name="UI" type="Node2D" parent="." unique_id=1861840769]
 z_index = 1
@@ -148,6 +104,8 @@ offset_bottom = -351.0
 theme_override_font_sizes/font_size = 35
 text = "1x"
 
+[node name="UnitLoadoutFrame" parent="UI/InfoClient" unique_id=599129927 instance=ExtResource("3_mfgt8")]
+
 [node name="Collectables" type="Node2D" parent="UI" unique_id=1508594497]
 
 [node name="Style" type="Node2D" parent="UI/Collectables" unique_id=283909136]
@@ -163,6 +121,51 @@ offset_top = -475.0
 offset_right = -5.0
 offset_bottom = -405.0
 color = Color(0, 0, 0, 1)
+
+[node name="RoundOver" type="Node2D" parent="." unique_id=600023374]
+visible = false
+z_index = 2
+
+[node name="Style" type="Node2D" parent="RoundOver" unique_id=825279262]
+
+[node name="Frame" type="ColorRect" parent="RoundOver/Style" unique_id=329730282]
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+
+[node name="Backround" type="ColorRect" parent="RoundOver/Style" unique_id=492760652]
+offset_left = -475.0
+offset_top = -275.0
+offset_right = 475.0
+offset_bottom = 275.0
+color = Color(0, 0, 0, 1)
+
+[node name="Loot" type="Node2D" parent="RoundOver" unique_id=2008647117]
+
+[node name="Label" type="Label" parent="RoundOver/Loot" unique_id=582526313]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 25
+text = "Loot"
+
+[node name="Title" type="Node2D" parent="RoundOver" unique_id=563898534]
+
+[node name="Label" type="Label" parent="RoundOver/Title" unique_id=198203393]
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -131.0
+theme_override_font_sizes/font_size = 50
+text = "VICTORY"
+horizontal_alignment = 1
+
+[node name="NextStageButton" type="Button" parent="RoundOver" unique_id=61404615]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 350.0
+offset_bottom = 200.0
+text = "Next Stage"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1083022266]
 zoom = Vector2(0.75, 0.75)

@@ -1,7 +1,6 @@
 extends Node2D
 class_name Inventory
 
-@onready var unit_selection_frame_entity_containers_node: Node2D = get_node("UnitSelectionFrame/EntityContainers")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
 @onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")
