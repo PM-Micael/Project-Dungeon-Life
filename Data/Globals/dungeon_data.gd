@@ -9,6 +9,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Characters/petamer.tscn"),
 	preload("res://Scenes/Characters/soulbound.tscn"),
 	preload("res://Scenes/Characters/orbath.tscn"),
+	preload("res://Scenes/Characters/zac.tscn"),
 ]
 
 const type_skeleton: String = "skeleton"

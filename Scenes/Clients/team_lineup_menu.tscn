@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
 [ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
-[ext_resource type="Script" uid="uid://br3l6ovn64fqg" path="res://Scenes/Clients/unit_loadout_frame.gd" id="7_1v8r6"]
-[ext_resource type="Script" uid="uid://chhnif2k18yst" path="res://Scenes/Clients/weapon_preview_frame.gd" id="9_g78to"]
+[ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="5_qn83p"]
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="9_vprbv"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
@@ -51,51 +50,7 @@ offset_bottom = 450.0
 mouse_filter = 2
 color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 
-[node name="UnitLoadoutFrame" type="Node2D" parent="UI/Inventory" unique_id=2032775302]
-script = ExtResource("7_1v8r6")
-
-[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=220332286]
-
-[node name="UnitPreview" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=1755487554]
-
-[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview" unique_id=45012506]
-
-[node name="Frame" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview/Style" unique_id=238977279]
-offset_left = 275.0
-offset_top = -400.0
-offset_right = 550.0
-offset_bottom = -50.0
-mouse_filter = 2
-color = Color(0.30588236, 0.16078432, 0, 1)
-
-[node name="Backround" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/UnitPreview/Style" unique_id=554139410]
-offset_left = 287.5
-offset_top = -387.5
-offset_right = 537.5
-offset_bottom = -62.5
-mouse_filter = 2
-color = Color(0.015686275, 0, 0.15686275, 1)
-
-[node name="WeaponPreviewFrame" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame" unique_id=1040620059]
-script = ExtResource("9_g78to")
-
-[node name="Style" type="Node2D" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame" unique_id=423688435]
-
-[node name="Frame" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame/Style" unique_id=719675641]
-offset_left = 75.0
-offset_top = -350.0
-offset_right = 225.0
-offset_bottom = -100.0
-mouse_filter = 2
-color = Color(0.30588236, 0.16078432, 0, 1)
-
-[node name="Backround" type="ColorRect" parent="UI/Inventory/UnitLoadoutFrame/WeaponPreviewFrame/Style" unique_id=1022337563]
-offset_left = 87.5
-offset_top = -337.5
-offset_right = 212.5
-offset_bottom = -112.5
-mouse_filter = 2
-color = Color(0.015686275, 0, 0.15686275, 1)
+[node name="UnitLoadoutFrame" parent="UI/Inventory" unique_id=599129927 instance=ExtResource("5_qn83p")]
 
 [node name="BackpackFrame" type="Node2D" parent="UI/Inventory" unique_id=357991881]
 script = ExtResource("9_vprbv")
