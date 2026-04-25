@@ -42,7 +42,7 @@ func place_enemy_units_dev():
 	for e in enemy_formation:
 		var enemy_type: String = e["type"]
 		var enemy_position: Vector2 = e["position"]
-		var enemy_scene: PackedScene = load("res://Scenes/Characters/" + enemy_type + ".tscn")
+		var enemy_scene: PackedScene = load("res://Scenes/Units/" + enemy_type + ".tscn")
 		var enemy_instance: Entity = enemy_scene.instantiate()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		

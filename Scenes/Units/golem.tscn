@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxpf0atftnuk4"]
 
-[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scenes/Characters/golem.gd" id="1_t2gh5"]
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scenes/Units/golem.gd" id="1_t2gh5"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="2_e77c2"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="2_lqe5q"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_3yf8f"]

@@ -1,0 +1,17 @@
+class_name Debuff
+extends Resource
+
+var id: String
+var display_name: String
+var warer: Unit
+var duration: float
+var stacks: int = 1
+
+func apply(target: Entity) -> void:
+	pass
+
+func tick(target: Entity, delta: float) -> void:
+	pass
+
+func remove(target: Entity) -> void:
+	pass

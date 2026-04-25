@@ -4,12 +4,12 @@ extends Node
 var dungeon_team: Array[Entity]
 var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Characters/goblin.tscn"),
-	preload("res://Scenes/Characters/golem.tscn"),
-	preload("res://Scenes/Characters/petamer.tscn"),
-	preload("res://Scenes/Characters/soulbound.tscn"),
-	preload("res://Scenes/Characters/orbath.tscn"),
-	preload("res://Scenes/Characters/zac.tscn"),
+	preload("res://Scenes/Units/goblin.tscn"),
+	preload("res://Scenes/Units/golem.tscn"),
+	preload("res://Scenes/Units/petamer.tscn"),
+	preload("res://Scenes/Units/soulbound.tscn"),
+	preload("res://Scenes/Units/orbath.tscn"),
+	preload("res://Scenes/Units/zac/zac.tscn"),
 ]
 
 const type_skeleton: String = "skeleton"

@@ -5,6 +5,8 @@ extends Unit
 @export_category("Stats")
 @export var max_health: int = 20
 
+var devour_stacks: int = 0
+
 func _init() -> void:
 	id = "unit_zac"
 	passive_description = "Dealing damage to an enemy marks them.
@@ -21,4 +23,10 @@ func _set_stats():
 	health_component.set_stats(max_health)
 
 func _apply_devour_debuff(targets: Array[Entity]):
-	print("Devour")
+	for u in targets:
+		u.debuff_component.add_debuff(_construct_devour_mark_debuff())
+
+func _construct_devour_mark_debuff() -> DevourersMark:
+	var mark = DevourersMark.new()
+	
+	return mark

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://l3m8vcykeclq"]
 
-[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scenes/Characters/goblin.gd" id="1_8kkht"]
+[ext_resource type="Script" uid="uid://ciuufxffrudu8" path="res://Scenes/Units/goblin.gd" id="1_8kkht"]
 [ext_resource type="Texture2D" uid="uid://cl7vvanda28gm" path="res://Assets/Units/0_Goblin_Idle_000.png" id="2_2gt0r"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="3_ep384"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_2gt0r"]

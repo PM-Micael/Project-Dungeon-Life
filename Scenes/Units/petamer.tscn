@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://y14of0ec05ag"]
 
-[ext_resource type="Script" uid="uid://0k6lopmh5hu3" path="res://Scenes/Characters/petamer.gd" id="1_tew1s"]
+[ext_resource type="Script" uid="uid://0k6lopmh5hu3" path="res://Scenes/Units/petamer.gd" id="1_tew1s"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_gcern"]
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_u7sw3"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_7jq7u"]

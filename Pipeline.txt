@@ -18,3 +18,6 @@ Buggs:
 			Buffs
 		
 		- PS: Loot should not be displayed nor colected untill stage has been beten
+
+2026-04-25:
+	Check if other scripts could be a "Resource" instead of "Node"
