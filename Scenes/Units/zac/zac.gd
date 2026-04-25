@@ -18,13 +18,14 @@ func _ready() -> void:
 	_set_stats()
 	_info("zac", "Zac", "Team 1", "Team 2")
 	attack_component.post_attack_target.connect(_apply_devour_debuff)
+	# Connect to damage by weapon skill
 
 func _set_stats():
 	health_component.set_stats(max_health)
 
 func _apply_devour_debuff(targets: Array[Entity]):
 	for u in targets:
-		u.debuff_component.add_debuff(_construct_devour_mark_debuff())
+		u.debuff_component.add_debuff(_construct_devour_mark_debuff(), self)
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()

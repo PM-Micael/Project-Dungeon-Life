@@ -5,8 +5,9 @@ class_name DebuffComponent
 
 var active_debuffs: Array[Debuff] = []
 
-func add_debuff(debuff: Debuff):
+func add_debuff(debuff: Debuff, owner: Unit):
 	debuff.warer = parent_entity
+	debuff.owner = owner
 	for existing in active_debuffs:
 		if debuff.stacks > 1:
 			print("Stacking debuff")

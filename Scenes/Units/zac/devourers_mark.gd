@@ -7,11 +7,12 @@ func _init() -> void:
 	duration = 7
 	stacks = 1
 
-func _reset_state() -> void:
+func apply(target: Entity) -> void:
 	warer.health_component.damage_taken.connect(_on_warer_took_damage)
 
-func _on_warer_took_damage(owner: Unit):
-	if warer.health_component.current_health == warer.health_component.max_health * 0.7:
+func _on_warer_took_damage(attacker: Unit):
+	#check applier
+	if attacker == owner and warer.health_component.current_health <= warer.health_component.max_health * 0.05:
+		print(owner.display_name + " Devourered")
 		owner.devour_stacks += 1
-		print("Get Devourered")
 		warer.health_component.die()
