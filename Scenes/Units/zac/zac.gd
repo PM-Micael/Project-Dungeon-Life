@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 20
+@export var max_health: int = 100
 
 var devour_stacks: int = 0
 

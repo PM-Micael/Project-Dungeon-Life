@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_nxu0w"]
 
-[node name="Zac" type="Node2D" unique_id=750954088]
+[node name="Zac" type="Node2D" unique_id=750954088 groups=["units"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_gbevl")
 
@@ -33,7 +33,7 @@ script = ExtResource("5_uhhh1")
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("8_tv1r3")]
 
-[node name="DebuffComponent" parent="Components" unique_id=1677900983 groups=["units"] instance=ExtResource("9_nxu0w")]
+[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_nxu0w")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1478507541]
 texture = ExtResource("8_h7u56")

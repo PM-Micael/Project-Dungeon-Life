@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 10
+@export var max_health: int = 100
 
 func _init() -> void:
 	id = "unit_skeleton"

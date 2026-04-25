@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 10
+@export var max_health: int = 100
 
 func _init() -> void:
 	id = "unit_petamer"
@@ -21,26 +21,27 @@ func _set_stats():
 
 func _connect_to_all_units():
 	for entity: Entity in get_tree().get_nodes_in_group("units"):
-		print("Connecting to " + entity.name)
 		if entity.debuff_component != null:
 			entity.debuff_component.debuff_applied.connect(_on_debuff_applied)
 		if entity.buff_component != null:
 			entity.buff_component.buff_applied.connect(_on_buff_applied)
 
 func _on_debuff_applied(target: Entity):
-	if target.hostile_team == hostile_team:
+	if target.hostile_team == "Team 1":
 		_send_familiar(target, false)
 
 func _on_buff_applied(target: Entity):
-	if target.hostile_team != hostile_team:
+	if target.is_in_group("Team 1"):
 		_send_familiar(target, true)
 
 func _send_familiar(target: Entity, is_heal: bool):
 	if is_heal:
+		## Send Soothe
 		var buff_count = target.buff_component.active_buffs.size()
 		target.health_component.heal(buff_count)
 		print("Soothe sent to " + target.display_name)
 	else:
+		## Send Wrath
 		var debuff_count = target.debuff_component.active_debuffs.size()
 		target.health_component.take_damage_flat(debuff_count, self)
 		print("Wrath sent to " + target.display_name)
