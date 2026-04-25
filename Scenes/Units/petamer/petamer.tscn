@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/1_Dark_Oracle_Idle_000.png" id="10_ucu2c"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_degpt"]
 
-[node name="Petamer" type="Node2D" unique_id=1855330443]
+[node name="Petamer" type="Node2D" unique_id=1855330443 groups=["units"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_tew1s")
 

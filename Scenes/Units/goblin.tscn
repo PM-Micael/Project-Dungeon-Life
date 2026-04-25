@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_ots5y"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_p60ou"]
 
-[node name="Goblin" type="Node2D" unique_id=1568172664]
+[node name="Goblin" type="Node2D" unique_id=1568172664 groups=["unit"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_8kkht")
 

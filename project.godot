@@ -35,6 +35,10 @@ folder_colors={
 "res://Scripts/": "red"
 }
 
+[global_group]
+
+units=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

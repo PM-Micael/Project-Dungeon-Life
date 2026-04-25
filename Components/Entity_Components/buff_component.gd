@@ -1,6 +1,8 @@
 extends Node2D
 class_name BuffComponent
 
+signal buff_applied(target: Entity)
+
 @onready var parent_entity: Entity = get_parent().get_parent()
 
 var active_buffs: Array[Buff] = []
@@ -16,6 +18,7 @@ func add_buff(buff: Buff, owner: Unit):
 			return
 	active_buffs.append(buff)
 	buff.apply(parent_entity)
+	buff_applied.emit(parent_entity)
 
 func _process(delta: float) -> void:
 	for buff in active_buffs:

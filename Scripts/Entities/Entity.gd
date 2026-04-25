@@ -7,6 +7,7 @@ var hostile_team: String
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
 @onready var debuff_component: DebuffComponent = get_node_or_null("Components/DebuffComponent")
+@onready var buff_component: BuffComponent = get_node_or_null("Components/BuffComponent")
 @onready var health_component: HealthComponent = get_node_or_null("Components/HealthComponent")
 @onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")
 @onready var targeting_component: TargetingComponent = get_node_or_null("Components/TargetingComponent")

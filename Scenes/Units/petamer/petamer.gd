@@ -20,7 +20,8 @@ func _set_stats():
 	health_component.set_stats(max_health)
 
 func _connect_to_all_units():
-	for entity in get_tree().get_nodes_in_group("units"):
+	for entity: Entity in get_tree().get_nodes_in_group("units"):
+		print("Connecting to " + entity.name)
 		if entity.debuff_component != null:
 			entity.debuff_component.debuff_applied.connect(_on_debuff_applied)
 		if entity.buff_component != null:

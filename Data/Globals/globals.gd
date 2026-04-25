@@ -3,7 +3,7 @@ extends Node
 var owned_units: Array[PackedScene] = [
 	preload("res://Scenes/Units/goblin.tscn"),
 	preload("res://Scenes/Units/golem.tscn"),
-	preload("res://Scenes/Units/petamer.tscn"),
+	preload("res://Scenes/Units/petamer/petamer.tscn"),
 	preload("res://Scenes/Units/soulbound.tscn"),
 	preload("res://Scenes/Units/orbath.tscn"),
 ]

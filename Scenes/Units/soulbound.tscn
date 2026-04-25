@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://r28e71ukne2p" path="res://Assets/Units/0_Necromancer_of_the_Shadow_Idle_000.png" id="10_ymjy2"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_43js5"]
 
-[node name="Soulbound" type="Node2D" unique_id=1900615410]
+[node name="Soulbound" type="Node2D" unique_id=1900615410 groups=["units"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_kld18")
 
