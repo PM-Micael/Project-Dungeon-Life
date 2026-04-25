@@ -14,6 +14,10 @@ var weapon_added_multiplier: int = 0
 
 var in_target_attack_range: bool = true
 
+func set_stats_absolute(set_attack_damage: int, set_attack_range: int):
+	attack_damage = set_attack_damage
+	attack_range = set_attack_range
+
 func attack_target(target: Entity):
 	pre_attack_target.emit(target)
 	

@@ -2,6 +2,7 @@ extends Unit
 
 @export_category("Stats")
 @export var max_health: int = 100
+@export var attack_damage: int = 2
 
 var devour_stacks: int = 0
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 
 func _set_stats():
 	health_component.set_stats(max_health)
+	attack_component.set_stats_absolute(attack_damage, 100)
 
 func _apply_devour_debuff(targets: Array[Entity]):
 	for u in targets:
