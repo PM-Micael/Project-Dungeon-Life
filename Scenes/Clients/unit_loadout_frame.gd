@@ -13,13 +13,13 @@ func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var unit_container_instance = container_scene.instantiate()
 	unit_container_instance.name = "UnitContainer"
-	unit_container_instance.position = Vector2(412.5, -125.0)
+	unit_container_instance.position = Vector2(425, -225.0)
 	unit_container_instance.scale = Vector2(2, 2)
 	get_node("UnitPreview").add_child(unit_container_instance)
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
 	weapon_container_instance.name = "WeaponContainer"
-	weapon_container_instance.position = Vector2(150, -125)
+	weapon_container_instance.position = Vector2(150, -175)
 	weapon_container_instance.scale = Vector2(1.5, 1.5)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
@@ -27,18 +27,17 @@ func _ready() -> void:
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
 	
-
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
 	
 	var weapon_slot_component = unit_entity.get_node("Components/WeaponSlotComponent")
-	var weapon = weapon_slot_component.get_child(0)
-	if weapon == null:
-		print(unit_entity.display_name + " has no weapon")
-		weapon_entity_container.entity = null
-		return
+	if weapon_slot_component != null:
+		var weapon = weapon_slot_component.get_child(0)
+		if weapon == null:
+			weapon_entity_container.entity = null
+			return
 	
-	weapon_entity_container.entity = weapon
+		weapon_entity_container.entity = weapon
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")

@@ -9,6 +9,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Characters/petamer.tscn"),
 	preload("res://Scenes/Characters/soulbound.tscn"),
 	preload("res://Scenes/Characters/orbath.tscn"),
+	preload("res://Scenes/Characters/zac.tscn"),
 ]
 
 const type_skeleton: String = "skeleton"
@@ -58,14 +59,13 @@ func update_dungeon_team_entity(updated_entity: Entity):
 			e = updated_entity
 			break
 
-func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity):
-	unit_entity.reparent(weapon_entity.get_parent())
-	weapon_entity.reparent(unit_entity.get_parent())
+func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entity:
+	var weapon_slot: Node = unit_entity.get_node("Components/WeaponSlotComponent")
 	
-	##Drop other weapon
-	#if unit_weapons != null or not unit_weapons.size() <= 0:
-		## Has weapon's
-		#for i in unit_weapons:
-			#i.free()
+	var old_weapon: Entity = null
+	for child in weapon_slot.get_children():
+		old_weapon = child
+		weapon_slot.remove_child(child)
 	
-	unit_entity.get_node("Components/WeaponSlotComponent").add_child(weapon_entity)
+	weapon_slot.add_child(weapon_entity)
+	return old_weapon

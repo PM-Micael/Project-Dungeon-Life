@@ -1,32 +1,13 @@
 extends Node2D
 class_name Inventory
 
-@onready var unit_selection_frame_entity_containers_node: Node2D = get_node("UnitSelectionFrame/EntityContainers")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
 @onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
 
 func _ready() -> void:
-	_fill_entity_selection_frame()
 	_fill_backpack_frame()
-
-func _fill_entity_selection_frame():
-	var loop_itterations: int = 0
-	for e in DungeonData.dungeon_team:
-		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-		entity_container_instance.entity = e
-		entity_container_instance.position = Vector2(100*(loop_itterations+1), -400)
-		
-		# Makes it clickable
-		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
-		var clickable_object_instance = clickable_object_scene.instantiate()
-		clickable_object_instance.scale = Vector2(0.15, 0.15)
-		
-		entity_container_instance.add_child(clickable_object_instance)
-		unit_selection_frame_entity_containers_node.add_child(entity_container_instance)
-		loop_itterations += 1
 
 func _fill_backpack_frame():
 	var loop_itterations: int = 0
@@ -49,7 +30,6 @@ func _fill_backpack_frame():
 
 # On click events
 func entity_unit_selection_container_clicked(entity_container: EntityContainer):
-	# Edit here
 	unit_loadout_frame.unit_entity = entity_container.entity
 
 func on_right_click_option_selected(id: int, entity_container: EntityContainer) -> void:
@@ -57,28 +37,25 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 		0:
 			print("Not Implimented")
 		1:
-			print("Attempting to equip item.")
+			print("Arrempting to equip item")
 			
-			## Swap containers
-			DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
-			weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
+			if unit_loadout_frame.unit_entity == null:
+				print("No unit selected")
+				return
 			
-			for i in  DungeonData.backpack_contents_as_entities:
-				if i.display_name == unit_loadout_frame.unit_entity.display_name:
-					DungeonData.backpack_contents_as_entities.erase(i)
-					break
+			entity_container.remove_child(entity_container.entity)
+			
+			var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
+			
+			DungeonData.backpack_contents_as_entities.erase(entity_container.entity)
+			
+			if old_weapon != null:
+				DungeonData.backpack_contents_as_entities.append(old_weapon)
+			
+			unit_loadout_frame._on_unit_entity_change()
+			
+			for child in backpack_frame.get_children():
+				child.queue_free()
 			_fill_backpack_frame()
-			return
-			if entity_container.entity.get_node("Components").get_node("WeaponComponent") != null:
-				# Is a weapon
-				#weapon_preview_frame.get_node("Sprite2D").texture = entity_container.entity.get_node("Sprite2D").texture
-				
-				#var wc = unit_loadout_frame.unit_entity.get_node("Components/WeaponSlotComponent").get_child()
-				for u in DungeonData.dungeon_team:
-					if u.display_name == unit_loadout_frame.unit_entity.display_name:
-						u = unit_loadout_frame.unit_entity
-						break
-				
-				_fill_entity_selection_frame()
 		2:
 			print("Not Implimented")

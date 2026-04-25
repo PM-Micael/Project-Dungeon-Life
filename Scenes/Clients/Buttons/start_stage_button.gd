@@ -28,6 +28,7 @@ func _button_pressed():
 		board_scene.get_parent().remove_child(board_scene)
 		board_scene.place_friendly_units_on_board()
 		board_scene.place_enemy_units_on_board()
+		board_scene.game_on = true
 		in_game_instance.add_child(board_scene)
 	
 	get_tree().root.add_child(in_game_instance)

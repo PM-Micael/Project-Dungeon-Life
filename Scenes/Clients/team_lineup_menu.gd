@@ -4,29 +4,13 @@ class_name TeamLineupMenu
 @onready var board: GameBoard = get_node("Board")
 @onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
 @onready var ui_scene = get_node_or_null("UI")
-
-@onready var currently_selected_tile: Tile
-@onready var currently_selected_character: Entity
+@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
+@onready var currently_selected_unit_entity_container: EntityContainer = null
 
 func _ready() -> void:
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
-	create_fiendly_characters_on_ui()
 	place_friendly_characters_board()
 	place_enemy_units_dev()
-
-func create_fiendly_characters_on_ui():
-	var entity_select_component_scene: PackedScene = load(("res://Scenes/Clients/UIComponents/entity_select_component.tscn"))
-	var loop_itteration: int = 0
-	var column: int = 1
-	for c in Globals.dungeon_team:
-		var entity_select_component_instance: EntitySelectComponent = entity_select_component_scene.instantiate()
-		entity_select_component_instance.selected.connect(place_friendly_characters_ui)
-		entity_select_component_instance.entity = c
-		entity_select_component_instance.scale = Vector2(0.25, 0.25)
-		entity_select_component_instance.position = Vector2(200*column, -300+(loop_itteration*200))
-		
-		ui_scene.get_node("FriendlyCharacterContainers").add_child(entity_select_component_instance)
-		loop_itteration += 1
 
 func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
@@ -79,37 +63,51 @@ func place_enemy_units_dev():
 		
 		loop_itteration += 1
 
-func place_friendly_characters_ui(entity: Entity):
-	currently_selected_character = entity
-	place_character_on_tile()
-
-func _on_tile_clicked(tile: Tile):
-	currently_selected_tile = tile
-	place_character_on_tile()
-
-func _on_character_clicked(entity_select_component: EntitySelectComponent):
-	#entity_select_component.entity = currently_selected_character
-	place_character_on_tile()
-
-func place_character_on_tile():
-	if currently_selected_character == null:
-		print("Select character")
-		return
-	elif currently_selected_tile == null:
-		print("Select tile")
-		return
-	
-	
-	for c in DungeonData.dungeon_team:
-		if c == currently_selected_character:
-			c.position.x = currently_selected_tile.position.x + 50
-			c.position.y = currently_selected_tile.position.y + 50
-			c.starting_position = c.position
+func _on_tile_clicked(tile: Tile) -> void:
+	if currently_selected_unit_entity_container == null:
+		_try_select_unit_on_tile(tile)
+	else:
+		_move_selected_unit_to_tile(tile)
 		
-			var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
-			for i in instances:
-				if i.entity == c:
-					i.position = c.position
-					break
+func _try_select_unit_on_tile(tile: Tile) -> void:
+	var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
+	for container in instances:
+		if container.position.is_equal_approx(tile.position + Vector2(50, 50)):
+			if container == currently_selected_unit_entity_container:
+				# If clicking on seleected unit: de-select it
+				_set_highlight(container, false)
+				currently_selected_unit_entity_container = null
+				return
+			currently_selected_unit_entity_container = container
+			_set_highlight(container, true)
+			unit_loadout_frame.unit_entity = container.entity
+			return
+
+func _move_selected_unit_to_tile(tile: Tile) -> void:
+	var new_pos: Vector2 = tile.position + Vector2(50, 50)
+	var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
+	for container in instances:
+		if container.position.is_equal_approx(new_pos):
+			_set_highlight(currently_selected_unit_entity_container, false)
+			currently_selected_unit_entity_container = container
+			_set_highlight(container, true)
+			unit_loadout_frame.unit_entity = container.entity
+			return
 	
-	currently_selected_tile = null
+	_set_highlight(currently_selected_unit_entity_container, false)
+	currently_selected_unit_entity_container.position = new_pos
+	currently_selected_unit_entity_container.entity.starting_position = new_pos
+	currently_selected_unit_entity_container = null
+
+func _set_highlight(container: EntityContainer, enabled: bool) -> void:
+	var highlight: ColorRect = container.get_node_or_null("Highlight")
+	if enabled and highlight == null:
+		highlight = ColorRect.new()
+		highlight.name = "Highlight"
+		highlight.color = Color(1, 1, 0, 0.4)
+		highlight.size = Vector2(80, 80)
+		highlight.position = Vector2(-40, -40)
+		highlight.z_index = 10
+		container.add_child(highlight)
+	elif not enabled and highlight != null:
+		highlight.queue_free()

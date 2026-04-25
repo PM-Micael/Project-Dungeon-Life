@@ -1,9 +1,6 @@
 extends Node2D
 class_name Entity
 
-@export_category("Stats")
-@export var max_health: int = 10
-
 var id: String
 var display_name: String
 var hostile_team: String
@@ -19,17 +16,6 @@ var hostile_team: String
 @onready var ui_components_health_bar: ProgressBar = get_node_or_null("UIComponents/HealthBar")
 @onready var ui_components_weapon_energy_bar: ProgressBar = get_node_or_null("UIComponents/WeaponEnergyProgressBar")
 
-@export_category("Other")
-@export var starting_position: Vector2
-
-func _ready() -> void:
-	position = starting_position
-	_set_stats()
-
-func _set_stats():
-	if health_component != null:
-		health_component.max_health = max_health
-
 func _physics_process(_delta: float) -> void:
 	_action()
 
@@ -40,7 +26,7 @@ func _action():
 
 func targeting_component_action():
 	if targeting_component != null:
-			targeting_component.select_target(hostile_team)
+			targeting_component.select_closest_target(hostile_team)
 
 func movment_component_action():
 	if movment_component != null:

@@ -5,7 +5,7 @@ class_name TargetingComponent
 
 var target: Entity
 
-func select_target(target_team: String):
+func select_closest_target(target_team: String):
 	var enemies = get_tree().get_nodes_in_group(target_team)
 	if enemies.is_empty():
 		return
