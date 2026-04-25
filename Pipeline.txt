@@ -21,3 +21,9 @@ Buggs:
 
 2026-04-25:
 	Check if other scripts could be a "Resource" instead of "Node"
+
+2026-04-25:
+	Good characters to add:
+		Petamer
+		Clobber
+	

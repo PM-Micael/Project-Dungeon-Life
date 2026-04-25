@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_freko"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_bwklo"]
 [ext_resource type="PackedScene" uid="uid://dxw4set8d1xrh" path="res://Scenes/Weapons/burst_staff.tscn" id="7_tungj"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="9_3dsnx"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_dx3r0"]
 [ext_resource type="Texture2D" uid="uid://c7mods3s1cg1r" path="res://Assets/Units/0_Dark_Oracle_Idle_000.png" id="10_tungj"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_xlq5k"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_hkh34"]
 
 [node name="Orbath" type="Node2D" unique_id=641933196]
@@ -31,6 +33,10 @@ script = ExtResource("6_bwklo")
 [node name="BurstStaff" parent="Components/WeaponSlotComponent" unique_id=1525957550 instance=ExtResource("7_tungj")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("9_dx3r0")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("9_3dsnx")]
+
+[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("10_xlq5k")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1402037842]
 texture = ExtResource("10_tungj")

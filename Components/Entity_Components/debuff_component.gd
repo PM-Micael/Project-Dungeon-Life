@@ -1,6 +1,9 @@
 extends Node2D
 class_name DebuffComponent
 
+signal debuff_applied(target: Entity)
+signal debuff_extended(target: Entity)
+
 @onready var parent_entity: Entity = get_parent().get_parent()
 
 var active_debuffs: Array[Debuff] = []
@@ -13,9 +16,11 @@ func add_debuff(debuff: Debuff, owner: Unit):
 			print("Stacking debuff")
 		elif existing.id == debuff.id:
 			existing.duration = debuff.duration
+			debuff_extended.emit(parent_entity)
 			return
 	active_debuffs.append(debuff)
 	debuff.apply(parent_entity)
+	debuff_applied.emit(parent_entity)
 
 func _process(delta: float) -> void:
 	for debuff in active_debuffs:

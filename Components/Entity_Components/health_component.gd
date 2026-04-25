@@ -27,5 +27,19 @@ func take_damage(attacker: Entity):
 		die()
 		return
 
+func take_damage_flat(amount: int):
+	current_health -= amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
+	damage_taken.emit(null)
+	if current_health <= 0:
+		is_alive = false
+		die()
+
+func heal(amount: int):
+	current_health += amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
+
 func die():
 	parent_entity.queue_free()

@@ -1,7 +1,5 @@
 extends Unit
 
-@export_category("Info")
-
 @export_category("Stats")
 @export var max_health: int = 20
 
@@ -10,8 +8,8 @@ var devour_stacks: int = 0
 func _init() -> void:
 	id = "unit_zac"
 	passive_description = "Dealing damage to an enemy marks them.
-	Dealing damage to a marked enemy with 5% or less executes them and grants Zac a stack of Devour.
-	Each stack of devour grants plus 1 max heaelth"
+		Dealing damage to a marked enemy with 5% or less executes them and grants Zac a stack of Devour.
+		Each stack of devour grants plus 1 max heaelth"
 
 func _ready() -> void:
 	super._ready()

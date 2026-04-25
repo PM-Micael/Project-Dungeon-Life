@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="5_uhhh1"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_oetp8"]
 [ext_resource type="Texture2D" uid="uid://cex3ysf0ntpim" path="res://Assets/Units/0_Minotaur_Idle_000.png" id="8_h7u56"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_tv1r3"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_nxu0w"]
 
 [node name="Zac" type="Node2D" unique_id=750954088]
 scale = Vector2(0.15, 0.15)
@@ -28,6 +30,10 @@ script = ExtResource("1_gbevl")
 script = ExtResource("5_uhhh1")
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_oetp8")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("8_tv1r3")]
+
+[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_nxu0w")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1478507541]
 texture = ExtResource("8_h7u56")
