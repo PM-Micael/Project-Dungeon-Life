@@ -26,9 +26,24 @@ func move_to_target(target: Entity) -> bool:
 	):
 		is_in_target_range = true
 	else:
+		var collision_component: CollisionComponent = parent_entity.get_node_or_null("Components/CollisionComponent")
+		
+		var preferred_step: Vector2 = parent_entity.global_position
+		var fallback_step: Vector2 = parent_entity.global_position
 		if abs(delta.y) > abs(delta.x):
-			parent_entity.global_position.y += sign(delta.y) * 100
+			preferred_step.y += sign(delta.y) * 100
+			fallback_step.x += sign(delta.x) * 100
 		else:
-			parent_entity.global_position.x += sign(delta.x) * 100
+			preferred_step.x += sign(delta.x) * 100
+			fallback_step.y += sign(delta.y) * 100
+		
+		if collision_component != null:
+			if collision_component.is_position_free(preferred_step):
+				collision_component.move_to(preferred_step)
+			elif collision_component.is_position_free(fallback_step):
+				collision_component.move_to(fallback_step)
+			# else: both blocked, wait for next tick
+		else:
+			parent_entity.global_position = preferred_step
 	
 	return is_in_target_range
