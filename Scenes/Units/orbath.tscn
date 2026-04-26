@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c7mods3s1cg1r" path="res://Assets/Units/0_Dark_Oracle_Idle_000.png" id="10_tungj"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_xlq5k"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_hkh34"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="11_xlq5k"]
 
 [node name="Orbath" type="Node2D" unique_id=641933196 groups=["units"]]
 scale = Vector2(0.15, 0.15)
@@ -37,6 +38,8 @@ script = ExtResource("6_bwklo")
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("9_3dsnx")]
 
 [node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("10_xlq5k")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("11_xlq5k")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1402037842]
 texture = ExtResource("10_tungj")

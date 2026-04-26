@@ -12,7 +12,13 @@ func _exit_tree() -> void:
 	_unregister_position(parent_entity.global_position)
 
 func is_position_free(pos: Vector2) -> bool:
-	return not occupied_positions.has(pos) or occupied_positions[pos] == parent_entity
+	if not occupied_positions.has(pos):
+		return true
+	var occupant = occupied_positions[pos]
+	if occupant == parent_entity:
+		return true
+	# Only block if the occupant also has a CollisionComponent
+	return occupant.get_node_or_null("Components/CollisionComponent") == null
 
 func move_to(new_pos: Vector2) -> void:
 	_unregister_position(parent_entity.global_position)

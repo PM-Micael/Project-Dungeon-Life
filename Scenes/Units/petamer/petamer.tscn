@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_mfr6o"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_bban6"]
 [ext_resource type="Texture2D" uid="uid://clgfder7bq2cc" path="res://Assets/Units/1_Dark_Oracle_Idle_000.png" id="10_ucu2c"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="11_bban6"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_degpt"]
 
 [node name="Petamer" type="Node2D" unique_id=1855330443 groups=["units"]]
@@ -37,6 +38,8 @@ script = ExtResource("6_gdmg0")
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("9_grs6x")]
 
 [node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("10_bban6")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("11_bban6")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=915472074]
 texture = ExtResource("10_ucu2c")
