@@ -27,7 +27,7 @@ func take_damage(attacker: Entity):
 		die()
 		return
 
-func take_damage_flat(amount: int, attacker: Entity):
+func take_damage_flat(attacker: Entity, amount: int):
 	current_health -= amount
 	current_health = clamp(current_health, 0, max_health)
 	health_bar.value = current_health

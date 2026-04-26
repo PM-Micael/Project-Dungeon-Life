@@ -45,5 +45,5 @@ func _send_familiar(target: Entity, is_heal: bool):
 	else:
 		## Send Wrath
 		var debuff_count = target.debuff_component.active_debuffs.size()
-		target.health_component.take_damage_flat(debuff_count, self)
+		target.health_component.take_damage_flat(self, debuff_count)
 		print("Wrath sent to " + target.display_name)

@@ -23,7 +23,10 @@ func attack_target(target: Entity):
 	
 	var target_health_bar: HealthComponent = target.health_component
 	if target_health_bar != null:
-		target_health_bar.take_damage(entity_parent)
+		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage())
 	
 	var targets: Array[Entity] = [target]
 	post_attack_target.emit(targets)
+
+func get_total_attack_damage() -> int:
+	return attack_damage + weapon_added_multiplier

@@ -38,8 +38,8 @@ func _on_unit_entity_change():
 			weapon_entity_container.entity = weapon
 
 	# Update StatsFrame
-	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + "/" + str(unit_entity.health_component.max_health)
-	get_node("StatsFrame/Attack/ValueLabel").text = str(unit_entity.attack_component.attack_damage)
+	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
+	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 
 	# Connect signals for real-time updates (disconnect first to avoid duplicates)
 	if unit_entity.health_component.damage_taken.is_connected(_on_selected_unit_health_changed):
@@ -53,12 +53,12 @@ func _on_unit_entity_change():
 func _on_selected_unit_health_changed(_attacker: Entity):
 	if not is_instance_valid(unit_entity):
 		return
-	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + "/" + str(unit_entity.health_component.max_health)
+	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
 
 func _on_selected_unit_attacked(_targets: Array[Entity]):
 	if not is_instance_valid(unit_entity):
 		return
-	get_node("StatsFrame/Attack/ValueLabel").text = str(unit_entity.attack_component.attack_damage)
+	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")
@@ -74,3 +74,12 @@ func change_unit_weapon(new_weapon_entity: Entity):
 	for u in unit_selection_container_entities:
 		if u.entity.display_name == unit_entity.display_name:
 			u.entity = unit_entity
+
+func _get_display_attack_damage() -> int:
+	var total = unit_entity.attack_component.attack_damage
+	var weapon_slot = unit_entity.weapon_slot_component
+	if weapon_slot != null:
+		var weapon = weapon_slot.get_child(0)
+		if weapon != null:
+			total += weapon.weapon_component.added_attack_damage_multiplier
+	return total
