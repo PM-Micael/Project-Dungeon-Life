@@ -1,7 +1,8 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 100
+@export var base_health: int = 100
+@export var attack_damage: int = 2
 
 func _init() -> void:
 	id = "unit_petamer"
@@ -17,7 +18,8 @@ func _ready() -> void:
 	_connect_to_all_units()
 
 func _set_stats():
-	health_component.set_stats(max_health)
+	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
+	attack_component.set_stats_absolute(attack_damage, 100)
 
 func _connect_to_all_units():
 	for entity: Entity in get_tree().get_nodes_in_group("units"):

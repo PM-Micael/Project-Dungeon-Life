@@ -13,7 +13,7 @@ func _button_pressed():
 	var enemy_conainer_nodes = parent.get_node("Board/Characters/EnemyUnits").get_children()
 	
 	for f:EntityContainer in friendly_container_nodes:
-		for i:Entity in Globals.dungeon_team:
+		for i:Entity in DungeonData.dungeon_team:
 			if f.entity.name == i.name:
 				i.position = f.position
 				break
