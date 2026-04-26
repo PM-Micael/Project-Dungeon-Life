@@ -9,6 +9,7 @@ extends Node2D
 var game_on: bool = false
 
 func _ready() -> void:
+	unit_loadout_frame.show_stats = true
 	game_board_node.round_over.connect(_on_round_over)
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 

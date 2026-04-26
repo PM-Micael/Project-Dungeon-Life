@@ -9,8 +9,10 @@ class_name TeamLineupMenu
 
 func _ready() -> void:
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
+	unit_loadout_frame.show_stats = false
 	place_friendly_characters_board()
 	place_enemy_units_dev()
+
 
 func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
