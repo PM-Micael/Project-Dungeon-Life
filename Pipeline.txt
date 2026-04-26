@@ -28,6 +28,5 @@ Buggs:
 		Clobber
 	
 
-Before bed:
-	Crash when trying to palce units on new grid.
-	check _attack_component_added_weapon_multiplier vs weapon_component_multiplier/addedweapon asdfasfsadfa
+2026-04-26:
+	Finalize unit pathfinding

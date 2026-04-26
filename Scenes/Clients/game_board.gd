@@ -1,7 +1,7 @@
 extends Node2D
 class_name GameBoard
 
-signal round_over
+signal round_over(player_won: bool)
 
 @onready var enemy_units_node: Node2D = get_node("Characters/EnemyUnits")
 @onready var friendly_units_node: Node2D = get_node("Characters/FriendlyUnits")
@@ -31,9 +31,9 @@ func _check_units_alive():
 	if enemies.size() == 0:
 		print("You win")
 		game_on = false
-		round_over.emit()
+		round_over.emit(true)
 	elif friendlies.size() == 0:
 		print("You loose")
 		game_on = false
-		round_over.emit()
+		round_over.emit(false)
 	
