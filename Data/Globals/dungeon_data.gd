@@ -16,13 +16,13 @@ const type_skeleton: String = "skeleton"
 
 var enemy_formations: Array = [
 	[
-		{ "type": "skeleton", "position": Vector2(-150, -250) },
+		{ "type": "skeleton", "position": Vector2(0, 0) },
 		{ "type": "skeleton", "position": Vector2(-50, -250) },
 		{ "type": "skeleton", "position": Vector2(50, -250) },
 		{ "type": "skeleton", "position": Vector2(150, -250) },
 	],
 	[
-		{ "type": "skeleton", "position": Vector2(-350, -50) },
+		{ "type": "skeleton", "position": Vector2(0, 0) },
 		{ "type": "skeleton", "position": Vector2(-150, -50) },
 		{ "type": "skeleton", "position": Vector2(150, -50) },
 		{ "type": "skeleton", "position": Vector2(350, -50) },

@@ -22,7 +22,9 @@ func _setup():
 	#window.always_on_top = true
 	
 	window.mouse_passthrough = true
-	window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
+	window.mouse_passthrough_polygon = PlayerData.board_scale_1
+	board.scale = Vector2(1, 1)
+	board.position = Vector2(0, 0)
 
 func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")

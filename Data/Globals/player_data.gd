@@ -20,3 +20,21 @@ var dungeon_enemy_snapshot: Array[Dictionary] = []
 # --- Future Firebase hooks ---
 # func load_from_json(data: Dictionary) -> void: ...
 # func to_json() -> Dictionary: ...
+
+var board_scale_1: PackedVector2Array = PackedVector2Array(
+	[
+		Vector2(1120.0, 280.0),
+		Vector2(1120.0, 1080.0),
+		Vector2(1920.0, 1080.0),
+		Vector2(1920.0, 280.0),
+		]
+	)
+
+var board_scale_2: PackedVector2Array = PackedVector2Array(
+	[
+		Vector2(1520.0, 680.0),
+		Vector2(1520.0, 1080.0),
+		Vector2(1920.0, 1080.0),
+		Vector2(1920.0, 680.0),
+	]
+)
