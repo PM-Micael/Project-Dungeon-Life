@@ -21,20 +21,26 @@ var dungeon_enemy_snapshot: Array[Dictionary] = []
 # func load_from_json(data: Dictionary) -> void: ...
 # func to_json() -> Dictionary: ...
 
-var board_scale_1: PackedVector2Array = PackedVector2Array(
-	[
+var polygon_shape: Dictionary = {
+	"board_scale": 
+	{
+		1: [
 		Vector2(1120.0, 280.0),
 		Vector2(1120.0, 1080.0),
 		Vector2(1920.0, 1080.0),
 		Vector2(1920.0, 280.0),
-		]
-	)
-
-var board_scale_2: PackedVector2Array = PackedVector2Array(
-	[
+		],
+		0.5: 	
+		[
 		Vector2(1520.0, 680.0),
 		Vector2(1520.0, 1080.0),
 		Vector2(1920.0, 1080.0),
 		Vector2(1920.0, 680.0),
-	]
-)
+		]
+	},
+	"board_position_based_on_scale":
+	{
+		0.5: Vector2(760.0, 340.0),
+		1: Vector2(560.0, 140.0),
+	}
+}

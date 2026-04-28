@@ -21,11 +21,13 @@ func _setup():
 	#window.borderless = true
 	#window.always_on_top = true
 	
-	window.mouse_passthrough = true
+	#window.mouse_passthrough = true
 	#window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
-	window.mouse_passthrough_polygon = PlayerData.board_scale_1
+	window.mouse_passthrough_polygon = PlayerData.polygon_shape["board_scale"][1]
+	var position: Vector2 = PlayerData.polygon_shape["board_position_based_on_scale"][1]
 	board.scale = Vector2(1, 1)
-	#board.position = Vector2(0, 0)
+	board.position = Vector2(position)
+
 
 func place_friendly_characters_board():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
