@@ -22,20 +22,28 @@ func _setup():
 	#window.always_on_top = true
 	
 	window.mouse_passthrough = true
+	#window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
 	window.mouse_passthrough_polygon = PlayerData.board_scale_1
 	board.scale = Vector2(1, 1)
 	board.position = Vector2(0, 0)
 
-func place_friendly_characters_board(): # Maybe only run on ready
+func place_friendly_characters_board():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
+	
+	var friendly_side = map_tiles_scene.get_node("FriendlySide")
+	var front_row = friendly_side.get_node("Row")
+	var tiles = front_row.get_children()
 	
 	var loop_itteration: int = 0
 	for c in DungeonData.dungeon_team:
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		entity_container_instance.name = "EntityContainer_" + str(loop_itteration+1)
 		entity_container_instance.entity = c
-		entity_container_instance.position = Vector2(-150+(loop_itteration*100), 250)
-		c.starting_position = entity_container_instance.position
+		
+		# Use the actual tile position so units land on the tile correctly
+		var tile_position: Vector2 = tiles[loop_itteration].position + map_tiles_scene.position + Vector2(50, 50)
+		entity_container_instance.position = tile_position
+		c.starting_position = entity_container_instance.position #+ Vector2(50, 50)
 		
 		var sprite_instance = Sprite2D.new()
 		sprite_instance.name = "Sprite2D"
@@ -49,7 +57,7 @@ func place_friendly_characters_board(): # Maybe only run on ready
 
 func place_enemy_units_dev():
 	var enemy_formation_index: int = randi_range(0, DungeonData.enemy_formations.size() -1)
-	var enemy_formation: Array = DungeonData.enemy_formations[enemy_formation_index]
+	var enemy_formation: Array = DungeonData.enemy_formations[0]
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	var loop_itteration: int = 0
