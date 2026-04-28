@@ -8,11 +8,21 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 func _ready() -> void:
+	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	unit_loadout_frame.show_stats = false
 	place_friendly_characters_board()
 	place_enemy_units_dev()
 
+func _setup():
+	var window = get_window()
+	#get_viewport().transparent_bg = true
+	#window.transient = true
+	#window.borderless = true
+	#window.always_on_top = true
+	
+	window.mouse_passthrough = true
+	window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
 
 func place_friendly_characters_board(): # Maybe only run on ready
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")

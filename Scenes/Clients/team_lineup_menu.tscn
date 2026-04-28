@@ -12,10 +12,11 @@
 script = ExtResource("1_lxyuk")
 
 [node name="Board" type="Node2D" parent="." unique_id=519372427]
-position = Vector2(-400, 0)
+position = Vector2(1461, 675)
 script = ExtResource("2_d67pp")
 
 [node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
+position = Vector2(-531, -137)
 
 [node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
 
@@ -23,10 +24,8 @@ script = ExtResource("2_d67pp")
 
 [node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=139511734]
-zoom = Vector2(0.75, 0.75)
-
 [node name="UI" type="Node2D" parent="." unique_id=1579880122]
+position = Vector2(611, -462)
 
 [node name="Inventory" type="Node2D" parent="UI" unique_id=1201850667]
 script = ExtResource("4_t8u3g")
@@ -72,6 +71,7 @@ offset_bottom = -405.0
 color = Color(0, 0, 0, 1)
 
 [node name="StartStage" type="Button" parent="." unique_id=1100139550]
+visible = false
 z_index = 10
 offset_left = -159.0
 offset_top = -299.0
@@ -79,3 +79,7 @@ offset_right = -2.0
 offset_bottom = -135.0
 text = "Start Stage"
 script = ExtResource("3_f3h6d")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=801118442]
+position = Vector2(472, 523)
+polygon = PackedVector2Array(163, -251, 166, 533, 960, 540, 953, -257)
