@@ -17,12 +17,16 @@ func _ready() -> void:
 func _setup():
 	var window = get_window()
 	window.borderless = true
-	#window.mouse_passthrough_polygon = $CollisionPolygon2D2.polygon
-	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][021]
-	var position: Vector2 = PlayerData.polygon_shape["board_position_setup"][021]
-	board.scale = Vector2(0.4, 0.4)
-	board.position = Vector2(position)
+	_set_layout(022, 1)
 
+
+func _set_layout(id: int, scale: float):
+	var window = get_window()
+	#window.mouse_passthrough_polygon = $CollisionPolygon2D2.polygon
+	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][id]
+	var position: Vector2 = PlayerData.polygon_shape["board_position_setup"][id]
+	board.scale = Vector2(scale, scale)
+	board.position = Vector2(position)
 
 func place_friendly_characters_board():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
