@@ -16,16 +16,11 @@ func _ready() -> void:
 
 func _setup():
 	var window = get_window()
-	#get_viewport().transparent_bg = true
-	#window.transient = true
-	#window.borderless = true
-	#window.always_on_top = true
-	
-	#window.mouse_passthrough = true
-	#window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
-	window.mouse_passthrough_polygon = PlayerData.polygon_shape["board_scale"][1]
-	var position: Vector2 = PlayerData.polygon_shape["board_position_based_on_scale"][1]
-	board.scale = Vector2(1, 1)
+	window.borderless = true
+	#window.mouse_passthrough_polygon = $CollisionPolygon2D2.polygon
+	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][021]
+	var position: Vector2 = PlayerData.polygon_shape["board_position_setup"][021]
+	board.scale = Vector2(0.4, 0.4)
 	board.position = Vector2(position)
 
 

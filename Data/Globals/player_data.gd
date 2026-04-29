@@ -22,25 +22,63 @@ var dungeon_enemy_snapshot: Array[Dictionary] = []
 # func to_json() -> Dictionary: ...
 
 var polygon_shape: Dictionary = {
-	"board_scale": 
+	"setups": 
 	{
-		1: [
-		Vector2(1120.0, 280.0),
-		Vector2(1120.0, 1080.0),
+		001: 	
+		[
 		Vector2(1920.0, 1080.0),
+		Vector2(1600.0, 1080.0),
+		Vector2(1600.0, 760.0),
+		Vector2(1920.0, 760.0),
+		],
+		010: [
+		Vector2(1920.0, 1080.0),
+		Vector2(1120.0, 1080.0),
+		Vector2(1120.0, 280.0),
 		Vector2(1920.0, 280.0),
 		],
-		0.5: 	
-		[
-		Vector2(1520.0, 680.0),
-		Vector2(1520.0, 1080.0),
+		002: [
 		Vector2(1920.0, 1080.0),
-		Vector2(1920.0, 680.0),
-		]
+		Vector2(1120.0, 1080.0),
+		Vector2(1120.0, 280.0),
+		Vector2(1920.0, 280.0),
+		],
+		011: [
+		Vector2(1920.0, 1080.0),
+		Vector2(1280.0, 1080.0),
+		Vector2(1280.0, 760.0),
+		Vector2(1920.0, 760.0),
+		],
+		012: [
+		Vector2(1920.0, 1080.0),
+		Vector2(800.0, 1080.0),
+		Vector2(800.0, 760.0),
+		Vector2(1120.0, 760.0),
+		Vector2(1120.0, 280.0),
+		Vector2(1920.0, 280.0),
+		],
+		021: [
+		Vector2(1920.0, 1080.0),
+		Vector2(800.0, 1080.0),
+		Vector2(800.0, 280.0),
+		Vector2(1600.0, 280.0),
+		Vector2(1600.0, 760.0),
+		Vector2(1920.0, 760.0),
+		],
+		022: [
+		Vector2(1920.0, 1080.0),
+		Vector2(320.0, 1080.0),
+		Vector2(320.0, 280.0),
+		Vector2(1920.0, 280.0),
+		],
 	},
-	"board_position_based_on_scale":
+	"board_position_setup":
 	{
-		0.5: Vector2(760.0, 340.0),
-		1: Vector2(560.0, 140.0),
+		001: Vector2(1720.0, 880.0),
+		002: Vector2(1520.0, 680.0),
+		011: Vector2(1760.0, 920.0),
+		012: Vector2(1520.0, 680.0),
+		021: Vector2(1760.0, 920.0),
+		022: Vector2(1520.0, 680.0),
 	}
 }

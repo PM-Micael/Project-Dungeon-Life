@@ -12,8 +12,8 @@
 script = ExtResource("1_lxyuk")
 
 [node name="Board" type="Node2D" parent="." unique_id=519372427]
-position = Vector2(760, 340)
-scale = Vector2(0.5, 0.5)
+position = Vector2(1760, 920)
+scale = Vector2(0.4, 0.4)
 script = ExtResource("2_d67pp")
 
 [node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
@@ -73,11 +73,24 @@ color = Color(0, 0, 0, 1)
 
 [node name="StartStage" type="Button" parent="." unique_id=1100139550]
 z_index = 10
-offset_left = 797.0
-offset_top = 143.0
-offset_right = 954.0
-offset_bottom = 307.0
+offset_left = 1762.0
+offset_top = 760.0
+offset_right = 1919.0
+offset_bottom = 924.0
 text = "Start Stage"
 script = ExtResource("3_f3h6d")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1246694810]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1260364263]
+polygon = PackedVector2Array(1920, 1080, 800, 1080, 800, 280, 1600, 280, 1600, 760, 1920, 760)
+
+[node name="Board2" type="Node2D" parent="." unique_id=2080953348]
+position = Vector2(1200, 680)
+script = ExtResource("2_d67pp")
+
+[node name="MapTiles" parent="Board2" unique_id=1070177042 instance=ExtResource("2_ffa1w")]
+
+[node name="Characters" type="Node2D" parent="Board2" unique_id=859266018]
+
+[node name="EnemyUnits" type="Node2D" parent="Board2/Characters" unique_id=1648968144]
+
+[node name="FriendlyUnits" type="Node2D" parent="Board2/Characters" unique_id=495512547]
