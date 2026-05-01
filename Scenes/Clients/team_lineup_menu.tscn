@@ -25,8 +25,8 @@ script = ExtResource("2_d67pp")
 [node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
 
 [node name="UI" type="Node2D" parent="." unique_id=1579880122]
-visible = false
-position = Vector2(611, -462)
+position = Vector2(1280, 950)
+scale = Vector2(0.4, 0.4)
 
 [node name="Inventory" type="Node2D" parent="UI" unique_id=1201850667]
 script = ExtResource("4_t8u3g")
@@ -37,16 +37,15 @@ script = ExtResource("4_t8u3g")
 
 [node name="Frame" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=829408487]
 offset_top = -475.0
-offset_right = 850.0
-offset_bottom = 475.0
+offset_right = 800.0
+offset_bottom = 325.0
 mouse_filter = 2
-color = Color(0.30496624, 0.1610038, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=1537463212]
-offset_left = 25.0
-offset_top = -450.0
-offset_right = 825.0
-offset_bottom = 450.0
+offset_left = 5.0
+offset_top = -470.0
+offset_right = 795.0
+offset_bottom = 320.0
 mouse_filter = 2
 color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 
@@ -81,16 +80,29 @@ text = "Start Stage"
 script = ExtResource("3_f3h6d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1260364263]
-polygon = PackedVector2Array(1920, 1080, 800, 1080, 800, 280, 1600, 280, 1600, 760, 1920, 760)
+polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 1280, 1080, 1280, 760, 1920, 760, 1919.9, 0.1, 1090, 0.1, 1090, 40, 910, 40, 910, 1)
 
-[node name="Board2" type="Node2D" parent="." unique_id=2080953348]
-position = Vector2(1200, 680)
-script = ExtResource("2_d67pp")
+[node name="LayoutSwitch" type="Node2D" parent="." unique_id=1648626660]
+position = Vector2(910, 0)
 
-[node name="MapTiles" parent="Board2" unique_id=1070177042 instance=ExtResource("2_ffa1w")]
+[node name="Style" type="Node2D" parent="LayoutSwitch" unique_id=1437065326]
 
-[node name="Characters" type="Node2D" parent="Board2" unique_id=859266018]
+[node name="Background" type="ColorRect" parent="LayoutSwitch/Style" unique_id=1159560703]
+offset_right = 180.0
+offset_bottom = 41.0
+color = Color(0.25882354, 0.25882354, 0.40392157, 1)
 
-[node name="EnemyUnits" type="Node2D" parent="Board2/Characters" unique_id=1648968144]
+[node name="BoardSwitch" type="Node2D" parent="LayoutSwitch" unique_id=2132776015]
+position = Vector2(108, 0)
 
-[node name="FriendlyUnits" type="Node2D" parent="Board2/Characters" unique_id=495512547]
+[node name="Style" type="Node2D" parent="LayoutSwitch/BoardSwitch" unique_id=326140303]
+
+[node name="ColorRect" type="ColorRect" parent="LayoutSwitch/BoardSwitch/Style" unique_id=618218119]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2006932557]
+offset_left = 1820.0
+offset_top = 12.0
+offset_right = 1860.0
+offset_bottom = 52.0

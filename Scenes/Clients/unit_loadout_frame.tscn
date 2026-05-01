@@ -54,14 +54,14 @@ color = Color(0.015686275, 0, 0.15686275, 1)
 [node name="Frame" type="ColorRect" parent="StatsFrame/Style" unique_id=291619055]
 offset_left = 40.0
 offset_right = 390.0
-offset_bottom = 440.0
+offset_bottom = 287.0
 mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="StatsFrame/Style" unique_id=915401141]
 offset_left = 45.0
 offset_top = 5.0
 offset_right = 385.0
-offset_bottom = 435.0
+offset_bottom = 282.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 

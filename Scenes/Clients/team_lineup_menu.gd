@@ -11,18 +11,18 @@ func _ready() -> void:
 	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	unit_loadout_frame.show_stats = false
-	place_friendly_characters_board()
+	place_friendly_characters_board() 
 	place_enemy_units_dev()
 
 func _setup():
 	var window = get_window()
 	window.borderless = true
-	_set_layout(022, 1)
+	_set_layout(011, 0.4)
 
 
 func _set_layout(id: int, scale: float):
 	var window = get_window()
-	#window.mouse_passthrough_polygon = $CollisionPolygon2D2.polygon
+	window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
 	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][id]
 	var position: Vector2 = PlayerData.polygon_shape["board_position_setup"][id]
 	board.scale = Vector2(scale, scale)

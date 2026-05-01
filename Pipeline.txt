@@ -26,7 +26,6 @@ Buggs:
 	Good characters to add:
 		Petamer
 		Clobber
-	
 
 2026-04-26:
 	Finalize unit pathfinding
@@ -34,3 +33,6 @@ Buggs:
 2026-04-28:
 	On the desktop version:
 		Placing player units at the start of team_lineup is scalable as you move frieendly units. Enemy units placing are as well but differently. Look up and make final desition.
+		
+2026-04-29:
+	Add a swich for different layouts
