@@ -7,6 +7,15 @@ class_name TeamLineupMenu
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
+var current_board_layout_id: int:
+	set(value):
+		current_board_layout_id = value
+		_set_layout()
+var current_inventory_layout_id: int:
+	set(value):
+		current_inventory_layout_id = value
+		_set_layout()
+
 func _ready() -> void:
 	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
@@ -17,16 +26,32 @@ func _ready() -> void:
 func _setup():
 	var window = get_window()
 	window.borderless = true
-	_set_layout(011, 0.4)
+	current_board_layout_id = 1
+	current_inventory_layout_id = 1
 
 
-func _set_layout(id: int, scale: float):
+func _set_layout():
+	var layout_id: String = (str(0) + str(current_inventory_layout_id) + str(current_board_layout_id))
+	
 	var window = get_window()
 	window.mouse_passthrough_polygon = $CollisionPolygon2D.polygon
-	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][id]
-	var position: Vector2 = PlayerData.polygon_shape["board_position_setup"][id]
-	board.scale = Vector2(scale, scale)
-	board.position = Vector2(position)
+	window.mouse_passthrough_polygon = PlayerData.polygon_shape["setups"][layout_id]
+	var board_position: Vector2 = PlayerData.polygon_shape["position_setup"][layout_id]["board"]
+	var invencory_position: Vector2 = PlayerData.polygon_shape["position_setup"][layout_id]["inventory"]
+	
+	# Placeholder solution
+	if current_board_layout_id == 1:
+		board.scale = Vector2(0.4, 0.4)
+	elif current_board_layout_id == 2:
+		board.scale = Vector2(1, 1)
+	
+	if current_inventory_layout_id == 1:
+		get_node("UI").scale = Vector2(0.4, 0.4)
+	elif current_inventory_layout_id == 2:
+		get_node("UI").scale = Vector2(1, 1)
+	
+	board.position = Vector2(board_position)
+	get_node("UI").position = Vector2(invencory_position)
 
 func place_friendly_characters_board():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
@@ -91,7 +116,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 		_try_select_unit_on_tile(tile)
 	else:
 		_move_selected_unit_to_tile(tile)
-		
+
 func _try_select_unit_on_tile(tile: Tile) -> void:
 	var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
 	for container in instances:
@@ -134,3 +159,6 @@ func _set_highlight(container: EntityContainer, enabled: bool) -> void:
 		container.add_child(highlight)
 	elif not enabled and highlight != null:
 		highlight.queue_free()
+
+func change_board_layout():
+	return

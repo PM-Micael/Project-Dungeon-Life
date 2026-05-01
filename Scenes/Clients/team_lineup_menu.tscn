@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
 [ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="5_qn83p"]
+[ext_resource type="Script" uid="uid://bprtdlylcotm7" path="res://Scenes/Clients/board_switch_button.gd" id="8_gdxfq"]
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="9_vprbv"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
@@ -25,8 +26,7 @@ script = ExtResource("2_d67pp")
 [node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
 
 [node name="UI" type="Node2D" parent="." unique_id=1579880122]
-position = Vector2(1280, 950)
-scale = Vector2(0.4, 0.4)
+position = Vector2(800, 755)
 
 [node name="Inventory" type="Node2D" parent="UI" unique_id=1201850667]
 script = ExtResource("4_t8u3g")
@@ -92,14 +92,19 @@ offset_right = 180.0
 offset_bottom = 41.0
 color = Color(0.25882354, 0.25882354, 0.40392157, 1)
 
-[node name="BoardSwitch" type="Node2D" parent="LayoutSwitch" unique_id=2132776015]
-position = Vector2(108, 0)
+[node name="Button" type="Button" parent="LayoutSwitch" unique_id=478519840]
+offset_left = 108.0
+offset_right = 148.0
+offset_bottom = 41.0
+text = "Board"
+script = ExtResource("8_gdxfq")
 
-[node name="Style" type="Node2D" parent="LayoutSwitch/BoardSwitch" unique_id=326140303]
-
-[node name="ColorRect" type="ColorRect" parent="LayoutSwitch/BoardSwitch/Style" unique_id=618218119]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Button2" type="Button" parent="LayoutSwitch" unique_id=1206661168]
+offset_left = 15.0
+offset_right = 70.0
+offset_bottom = 41.0
+text = "Menu"
+script = ExtResource("8_gdxfq")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2006932557]
 offset_left = 1820.0
