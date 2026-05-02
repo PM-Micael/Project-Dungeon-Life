@@ -8,7 +8,7 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 func _ready() -> void:
-	LocalData.initialize_data(board, ui_scene)
+	LocalData.initialize_data(ui_scene, board )
 	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	unit_loadout_frame.show_stats = false

@@ -4,10 +4,14 @@ extends Node2D
 @onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/InfoClient/MainBackround/UnitLoadoutFrame")
 @onready var currently_selected_unit_entity: Entity = null
+@onready var ui: Node2D = get_node("UI")
+
 
 var game_on: bool = false
 
 func _ready() -> void:
+	LocalData.initialize_data(ui)
+	
 	get_node("RoundOver/VictoryScreen").visible = false
 	get_node("RoundOver/DefeatScreen").visible = false
 	unit_loadout_frame.show_stats = true
