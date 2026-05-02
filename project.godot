@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PopupMenuTypes="*uid://bs3vfwjrilbqr"
 DungeonData="*uid://bcar2mpom4rjn"
 PlayerData="*uid://bgbudg866glv0"
+LocalData="*uid://c1pyjus1lfren"
 
 [display]
 
