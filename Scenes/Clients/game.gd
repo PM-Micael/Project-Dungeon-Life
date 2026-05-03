@@ -10,7 +10,7 @@ extends Node2D
 var game_on: bool = false
 
 func _ready() -> void:
-	LocalData.initialize_data(ui)
+	LocalData.initialize_data(ui, game_board_node)
 	
 	get_node("RoundOver/VictoryScreen").visible = false
 	get_node("RoundOver/DefeatScreen").visible = false
