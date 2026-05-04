@@ -14,11 +14,11 @@ func _ready() -> void:
 
 func move_to_tile(target_tile: Vector2i):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity_tile, target_tile)
 	if next_pos != Vector2():
-		BoardGrid.set_tile_solid(parent_entity_tile, false)
 		parent_entity.position = next_pos
-		BoardGrid.set_tile_solid(next_pos, true)
+		BoardGrid.set_tile_solid(BoardGrid.world_to_tile(next_pos), true)
 
 func move_to_target_tile(target: Entity) -> bool:
 	var attack_range: int = 100
