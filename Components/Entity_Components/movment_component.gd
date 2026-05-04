@@ -10,10 +10,10 @@ var is_in_target_range: bool = false
 
 func _ready() -> void:
 	timer.wait_time = 1.1
-	parent_entity.position = Vector2(BoardGrid.debug_start_position) * BoardGrid.astar.cell_size
+	# Use the unit's own tile_position instead of the global debug value
 
-func move_to_grid():
-	var next_pos = BoardGrid.move_towards_grid_destination(parent_entity.tile_position)
+func move_to_tile(target_tile: Vector2i = Vector2i(7, 7)):
+	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity.tile_position, target_tile)
 	parent_entity.position = next_pos
 	parent_entity.tile_position = BoardGrid.world_to_tile(next_pos)
 	print("position: ", parent_entity.position)

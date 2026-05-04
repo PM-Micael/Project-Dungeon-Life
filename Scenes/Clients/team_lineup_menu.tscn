@@ -13,12 +13,10 @@
 script = ExtResource("1_lxyuk")
 
 [node name="Board" type="Node2D" parent="." unique_id=519372427]
-position = Vector2(1760, 920)
-scale = Vector2(0.4, 0.4)
+position = Vector2(1120, 280)
 script = ExtResource("2_d67pp")
 
 [node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
-position = Vector2(0, 0)
 
 [node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
 
@@ -81,6 +79,7 @@ text = "Start Stage"
 script = ExtResource("3_f3h6d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1260364263]
+visible = false
 polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 1280, 1080, 1280, 760, 1920, 760, 1919.9, 0.1, 1090, 0.1, 1090, 40, 910, 40, 910, 1)
 
 [node name="LayoutSwitch" type="Node2D" parent="." unique_id=1648626660]

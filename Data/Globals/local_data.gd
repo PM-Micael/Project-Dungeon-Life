@@ -121,27 +121,27 @@ var polygon_shape: Dictionary = {
 	"position_setup":
 	{
 		"001": {
-			"board": Vector2(1720.0, 880.0),
+			"board": Vector2(1600.0, 760.0),
 			"inventory": Vector2(0, 0)
 		},
 		"002": {
-			"board": Vector2(1520.0, 680.0),
+			"board": Vector2(1120.0, 280.0),
 			"inventory": Vector2(0, 0)
 		},
 		"011": {
-			"board": Vector2(1760.0, 920.0),
+			"board": Vector2(1600.0, 760.0),
 			"inventory": Vector2(1280.0, 950.0)
 		},
 		"012": {
-			"board": Vector2(1520.0, 680.0),
+			"board": Vector2(1120.0, 280.0),
 			"inventory": Vector2(800.0, 950.0)
 		},
 		"021": {
-			"board": Vector2(1760.0, 920.0),
+			"board": Vector2(1600.0, 760.0),
 			"inventory": Vector2(800.0, 755.0)
 		},
 		"022": {
-			"board": Vector2(1520.0, 680.0),
+			"board": Vector2(1120.0, 280.0),
 			"inventory": Vector2(320.0, 755.0)
 		},
 	}

@@ -11,13 +11,13 @@ func _init() -> void:
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 
-func move_towards_grid_destination(
+func move_towards_tile_destination(
 	start_position: Vector2i = debug_start_position,
-	destination: Vector2i = debug_destination
+	tile_destination: Vector2i = debug_destination
 	) -> Vector2:
 	var movment_index: int = 1
 	var stop_range: int = 1
-	var path = astar.get_point_path(start_position, destination)
+	var path = astar.get_point_path(start_position, tile_destination)
 	if path.size() > stop_range:
 		#print("Path: ", path)
 		#print("Destination: ", destination)

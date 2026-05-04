@@ -33,7 +33,7 @@ func targeting_component_action():
 func movment_component_action():
 	if movment_component != null:
 		if movment_component.timer.time_left <= 0.1:
-			movment_component.move_to_grid()
+			movment_component.move_to_tile()
 			movment_component.timer.start()
 		
 		return

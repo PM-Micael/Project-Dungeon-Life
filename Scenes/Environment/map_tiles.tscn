@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b2elcwb3kpxol" path="res://Scenes/Environment/tile_style.tscn" id="3_uv4bv"]
 
 [node name="MapTiles" type="Node2D" unique_id=2113342636]
-position = Vector2(400, 400)
 script = ExtResource("1_kfbu7")
 
 [node name="FriendlySide" type="Node2D" parent="." unique_id=1567904702]
@@ -14,7 +13,7 @@ script = ExtResource("1_kfbu7")
 [node name="Row" type="Node2D" parent="FriendlySide" unique_id=427726565]
 
 [node name="Tile" type="Node2D" parent="FriendlySide/Row" unique_id=941417270]
-position = Vector2(-400, 300)
+position = Vector2(0, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile" unique_id=1384005923 instance=ExtResource("2_n27b5")]
@@ -24,7 +23,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile" unique_id=1062800870 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="FriendlySide/Row" unique_id=1948882633]
-position = Vector2(-300, 300)
+position = Vector2(100, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile2" unique_id=1298598673 instance=ExtResource("2_n27b5")]
@@ -34,7 +33,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile2" unique_id=606450192 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="FriendlySide/Row" unique_id=1220756203]
-position = Vector2(-200, 300)
+position = Vector2(200, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile3" unique_id=281808073 instance=ExtResource("2_n27b5")]
@@ -44,7 +43,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile3" unique_id=977302318 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="FriendlySide/Row" unique_id=853483134]
-position = Vector2(-100, 300)
+position = Vector2(300, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile4" unique_id=110818821 instance=ExtResource("2_n27b5")]
@@ -54,7 +53,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile4" unique_id=2104135431 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="FriendlySide/Row" unique_id=1916799301]
-position = Vector2(0, 300)
+position = Vector2(400, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile5" unique_id=954443521 instance=ExtResource("2_n27b5")]
@@ -64,7 +63,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile5" unique_id=132563479 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="FriendlySide/Row" unique_id=67579940]
-position = Vector2(100, 300)
+position = Vector2(500, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile6" unique_id=1974349300 instance=ExtResource("2_n27b5")]
@@ -74,7 +73,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile6" unique_id=1916767064 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="FriendlySide/Row" unique_id=2024407237]
-position = Vector2(200, 300)
+position = Vector2(600, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile7" unique_id=1796937456 instance=ExtResource("2_n27b5")]
@@ -84,7 +83,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row/Tile7" unique_id=329770747 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="FriendlySide/Row" unique_id=659991718]
-position = Vector2(300, 300)
+position = Vector2(700, 700)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row/Tile8" unique_id=2068300553 instance=ExtResource("2_n27b5")]
@@ -96,7 +95,7 @@ scale = Vector2(0.19, 0.19)
 [node name="Row2" type="Node2D" parent="FriendlySide" unique_id=1042860904]
 
 [node name="Tile" type="Node2D" parent="FriendlySide/Row2" unique_id=467934382]
-position = Vector2(-400, 200)
+position = Vector2(0, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile" unique_id=77702719 instance=ExtResource("2_n27b5")]
@@ -106,7 +105,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile" unique_id=1632083176 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="FriendlySide/Row2" unique_id=478625621]
-position = Vector2(-300, 200)
+position = Vector2(100, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile2" unique_id=1816106182 instance=ExtResource("2_n27b5")]
@@ -116,7 +115,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile2" unique_id=948683540 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="FriendlySide/Row2" unique_id=691694881]
-position = Vector2(-200, 200)
+position = Vector2(200, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile3" unique_id=672948751 instance=ExtResource("2_n27b5")]
@@ -126,7 +125,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile3" unique_id=165073871 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="FriendlySide/Row2" unique_id=1075505706]
-position = Vector2(-100, 200)
+position = Vector2(300, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile4" unique_id=410012558 instance=ExtResource("2_n27b5")]
@@ -136,7 +135,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile4" unique_id=1717847755 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="FriendlySide/Row2" unique_id=1535127114]
-position = Vector2(0, 200)
+position = Vector2(400, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile5" unique_id=2033627124 instance=ExtResource("2_n27b5")]
@@ -146,7 +145,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile5" unique_id=2114376956 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="FriendlySide/Row2" unique_id=749617393]
-position = Vector2(100, 200)
+position = Vector2(500, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile6" unique_id=611927203 instance=ExtResource("2_n27b5")]
@@ -156,7 +155,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile6" unique_id=172039074 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="FriendlySide/Row2" unique_id=1062339037]
-position = Vector2(200, 200)
+position = Vector2(600, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile7" unique_id=962938559 instance=ExtResource("2_n27b5")]
@@ -166,7 +165,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row2/Tile7" unique_id=1678299222 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="FriendlySide/Row2" unique_id=1588048520]
-position = Vector2(300, 200)
+position = Vector2(700, 600)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row2/Tile8" unique_id=21083741 instance=ExtResource("2_n27b5")]
@@ -178,7 +177,7 @@ scale = Vector2(0.19, 0.19)
 [node name="Row3" type="Node2D" parent="FriendlySide" unique_id=1789556593]
 
 [node name="Tile" type="Node2D" parent="FriendlySide/Row3" unique_id=1613267803]
-position = Vector2(-400, 100)
+position = Vector2(0, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile" unique_id=1764749327 instance=ExtResource("2_n27b5")]
@@ -188,7 +187,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile" unique_id=352390970 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="FriendlySide/Row3" unique_id=944871734]
-position = Vector2(-300, 100)
+position = Vector2(100, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile2" unique_id=604053653 instance=ExtResource("2_n27b5")]
@@ -198,7 +197,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile2" unique_id=910684950 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="FriendlySide/Row3" unique_id=2005597974]
-position = Vector2(-200, 100)
+position = Vector2(200, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile3" unique_id=934179918 instance=ExtResource("2_n27b5")]
@@ -208,7 +207,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile3" unique_id=2072058304 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="FriendlySide/Row3" unique_id=1899754962]
-position = Vector2(-100, 100)
+position = Vector2(300, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile4" unique_id=1105056631 instance=ExtResource("2_n27b5")]
@@ -218,7 +217,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile4" unique_id=112491900 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="FriendlySide/Row3" unique_id=291883583]
-position = Vector2(0, 100)
+position = Vector2(400, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile5" unique_id=2115534929 instance=ExtResource("2_n27b5")]
@@ -228,7 +227,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile5" unique_id=1859529626 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="FriendlySide/Row3" unique_id=1197835446]
-position = Vector2(100, 100)
+position = Vector2(500, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile6" unique_id=1502362269 instance=ExtResource("2_n27b5")]
@@ -238,7 +237,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile6" unique_id=694532733 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="FriendlySide/Row3" unique_id=538201435]
-position = Vector2(200, 100)
+position = Vector2(600, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile7" unique_id=1182959023 instance=ExtResource("2_n27b5")]
@@ -248,7 +247,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row3/Tile7" unique_id=1283551037 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="FriendlySide/Row3" unique_id=597152335]
-position = Vector2(300, 100)
+position = Vector2(700, 500)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row3/Tile8" unique_id=350743722 instance=ExtResource("2_n27b5")]
@@ -260,7 +259,7 @@ scale = Vector2(0.19, 0.19)
 [node name="Row4" type="Node2D" parent="FriendlySide" unique_id=1112792752]
 
 [node name="Tile" type="Node2D" parent="FriendlySide/Row4" unique_id=1463826503]
-position = Vector2(-400, 0)
+position = Vector2(0, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile" unique_id=231496855 instance=ExtResource("2_n27b5")]
@@ -270,7 +269,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile" unique_id=66744583 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="FriendlySide/Row4" unique_id=1700714997]
-position = Vector2(-300, 0)
+position = Vector2(100, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile2" unique_id=425675722 instance=ExtResource("2_n27b5")]
@@ -280,7 +279,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile2" unique_id=1389373951 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="FriendlySide/Row4" unique_id=43442001]
-position = Vector2(-200, 0)
+position = Vector2(200, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile3" unique_id=125059806 instance=ExtResource("2_n27b5")]
@@ -290,7 +289,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile3" unique_id=1262698768 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="FriendlySide/Row4" unique_id=278686908]
-position = Vector2(-100, 0)
+position = Vector2(300, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile4" unique_id=714562947 instance=ExtResource("2_n27b5")]
@@ -300,6 +299,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile4" unique_id=1578646330 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="FriendlySide/Row4" unique_id=5795128]
+position = Vector2(400, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile5" unique_id=2053080328 instance=ExtResource("2_n27b5")]
@@ -309,7 +309,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile5" unique_id=348554773 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="FriendlySide/Row4" unique_id=745090740]
-position = Vector2(100, 0)
+position = Vector2(500, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile6" unique_id=421466825 instance=ExtResource("2_n27b5")]
@@ -319,7 +319,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile6" unique_id=1667575744 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="FriendlySide/Row4" unique_id=529876571]
-position = Vector2(200, 0)
+position = Vector2(600, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile7" unique_id=41906622 instance=ExtResource("2_n27b5")]
@@ -329,7 +329,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile7" unique_id=1107322548 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="FriendlySide/Row4" unique_id=541375145]
-position = Vector2(300, 0)
+position = Vector2(700, 400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="FriendlySide/Row4/Tile8" unique_id=916135224 instance=ExtResource("2_n27b5")]
@@ -339,9 +339,9 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="FriendlySide/Row4/Tile8" unique_id=1924704120 instance=ExtResource("3_uv4bv")]
 
 [node name="ColorRect" type="ColorRect" parent="FriendlySide" unique_id=970038081]
-offset_left = -400.0
-offset_right = 400.0
-offset_bottom = 400.0
+offset_top = 400.0
+offset_right = 800.0
+offset_bottom = 800.0
 mouse_filter = 2
 color = Color(0, 0.3807291, 0.74525017, 0.39215687)
 
@@ -350,7 +350,7 @@ color = Color(0, 0.3807291, 0.74525017, 0.39215687)
 [node name="Row" type="Node2D" parent="EnemySide" unique_id=854631402]
 
 [node name="Tile" type="Node2D" parent="EnemySide/Row" unique_id=1567007048]
-position = Vector2(-400, -300)
+position = Vector2(0, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile" unique_id=475549558 instance=ExtResource("2_n27b5")]
@@ -360,7 +360,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile" unique_id=945282846 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="EnemySide/Row" unique_id=1528307798]
-position = Vector2(-300, -300)
+position = Vector2(100, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile2" unique_id=1006262708 instance=ExtResource("2_n27b5")]
@@ -370,7 +370,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile2" unique_id=1587208361 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="EnemySide/Row" unique_id=497184974]
-position = Vector2(-200, -300)
+position = Vector2(200, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile3" unique_id=500755161 instance=ExtResource("2_n27b5")]
@@ -380,7 +380,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile3" unique_id=987363345 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="EnemySide/Row" unique_id=215522852]
-position = Vector2(-100, -300)
+position = Vector2(300, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile4" unique_id=2117022000 instance=ExtResource("2_n27b5")]
@@ -390,7 +390,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile4" unique_id=185176720 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="EnemySide/Row" unique_id=1676222099]
-position = Vector2(0, -300)
+position = Vector2(400, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile5" unique_id=1439188204 instance=ExtResource("2_n27b5")]
@@ -400,7 +400,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile5" unique_id=1024211698 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="EnemySide/Row" unique_id=1824512781]
-position = Vector2(100, -300)
+position = Vector2(500, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile6" unique_id=229173986 instance=ExtResource("2_n27b5")]
@@ -410,7 +410,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile6" unique_id=973881897 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="EnemySide/Row" unique_id=389550024]
-position = Vector2(200, -300)
+position = Vector2(600, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile7" unique_id=269188642 instance=ExtResource("2_n27b5")]
@@ -420,7 +420,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row/Tile7" unique_id=1489376216 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="EnemySide/Row" unique_id=29832514]
-position = Vector2(300, -300)
+position = Vector2(700, 100)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row/Tile8" unique_id=1828469553 instance=ExtResource("2_n27b5")]
@@ -432,7 +432,7 @@ scale = Vector2(0.19, 0.19)
 [node name="Row2" type="Node2D" parent="EnemySide" unique_id=1475304782]
 
 [node name="Tile" type="Node2D" parent="EnemySide/Row2" unique_id=1046345215]
-position = Vector2(-400, -200)
+position = Vector2(0, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile" unique_id=1109956888 instance=ExtResource("2_n27b5")]
@@ -442,7 +442,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile" unique_id=1751216586 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="EnemySide/Row2" unique_id=1848180837]
-position = Vector2(-300, -200)
+position = Vector2(100, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile2" unique_id=30251952 instance=ExtResource("2_n27b5")]
@@ -452,7 +452,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile2" unique_id=2009611290 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="EnemySide/Row2" unique_id=1474057344]
-position = Vector2(-200, -200)
+position = Vector2(200, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile3" unique_id=1747382447 instance=ExtResource("2_n27b5")]
@@ -462,7 +462,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile3" unique_id=2057445966 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="EnemySide/Row2" unique_id=1996364272]
-position = Vector2(-100, -200)
+position = Vector2(300, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile4" unique_id=1156257032 instance=ExtResource("2_n27b5")]
@@ -472,7 +472,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile4" unique_id=1576038861 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="EnemySide/Row2" unique_id=1769169067]
-position = Vector2(0, -200)
+position = Vector2(400, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile5" unique_id=774664155 instance=ExtResource("2_n27b5")]
@@ -482,7 +482,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile5" unique_id=1049879267 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="EnemySide/Row2" unique_id=1736695881]
-position = Vector2(100, -200)
+position = Vector2(500, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile6" unique_id=655016884 instance=ExtResource("2_n27b5")]
@@ -492,7 +492,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile6" unique_id=86347647 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="EnemySide/Row2" unique_id=1771449072]
-position = Vector2(200, -200)
+position = Vector2(600, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile7" unique_id=1411616819 instance=ExtResource("2_n27b5")]
@@ -502,7 +502,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row2/Tile7" unique_id=1025524250 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="EnemySide/Row2" unique_id=871177943]
-position = Vector2(300, -200)
+position = Vector2(700, 200)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row2/Tile8" unique_id=1397194075 instance=ExtResource("2_n27b5")]
@@ -514,7 +514,7 @@ scale = Vector2(0.19, 0.19)
 [node name="Row3" type="Node2D" parent="EnemySide" unique_id=1724227654]
 
 [node name="Tile" type="Node2D" parent="EnemySide/Row3" unique_id=841511685]
-position = Vector2(-400, -100)
+position = Vector2(0, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile" unique_id=1653161790 instance=ExtResource("2_n27b5")]
@@ -524,7 +524,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile" unique_id=1304758625 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="EnemySide/Row3" unique_id=1209049654]
-position = Vector2(-300, -100)
+position = Vector2(100, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile2" unique_id=383314431 instance=ExtResource("2_n27b5")]
@@ -534,7 +534,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile2" unique_id=423145141 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="EnemySide/Row3" unique_id=1941638416]
-position = Vector2(-200, -100)
+position = Vector2(200, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile3" unique_id=199027209 instance=ExtResource("2_n27b5")]
@@ -544,7 +544,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile3" unique_id=1316707121 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="EnemySide/Row3" unique_id=2027598749]
-position = Vector2(-100, -100)
+position = Vector2(300, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile4" unique_id=2143814777 instance=ExtResource("2_n27b5")]
@@ -554,7 +554,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile4" unique_id=217284936 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="EnemySide/Row3" unique_id=1164094122]
-position = Vector2(0, -100)
+position = Vector2(400, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile5" unique_id=1101380635 instance=ExtResource("2_n27b5")]
@@ -564,7 +564,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile5" unique_id=279471193 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="EnemySide/Row3" unique_id=380457123]
-position = Vector2(100, -100)
+position = Vector2(500, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile6" unique_id=2026868498 instance=ExtResource("2_n27b5")]
@@ -574,7 +574,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile6" unique_id=376329761 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="EnemySide/Row3" unique_id=437675780]
-position = Vector2(200, -100)
+position = Vector2(600, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile7" unique_id=720751703 instance=ExtResource("2_n27b5")]
@@ -584,7 +584,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row3/Tile7" unique_id=1875487039 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="EnemySide/Row3" unique_id=556775065]
-position = Vector2(300, -100)
+position = Vector2(700, 300)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row3/Tile8" unique_id=1879050422 instance=ExtResource("2_n27b5")]
@@ -596,7 +596,6 @@ scale = Vector2(0.19, 0.19)
 [node name="Row4" type="Node2D" parent="EnemySide" unique_id=2082966745]
 
 [node name="Tile" type="Node2D" parent="EnemySide/Row4" unique_id=976894442]
-position = Vector2(-400, -400)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile" unique_id=1959552821 instance=ExtResource("2_n27b5")]
@@ -606,7 +605,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile" unique_id=445461939 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile2" type="Node2D" parent="EnemySide/Row4" unique_id=20825217]
-position = Vector2(-300, -400)
+position = Vector2(100, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile2" unique_id=1344689239 instance=ExtResource("2_n27b5")]
@@ -616,7 +615,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile2" unique_id=717995453 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile3" type="Node2D" parent="EnemySide/Row4" unique_id=1278293935]
-position = Vector2(-200, -400)
+position = Vector2(200, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile3" unique_id=1783506728 instance=ExtResource("2_n27b5")]
@@ -626,7 +625,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile3" unique_id=973376404 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile4" type="Node2D" parent="EnemySide/Row4" unique_id=1764894440]
-position = Vector2(-100, -400)
+position = Vector2(300, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile4" unique_id=1794954036 instance=ExtResource("2_n27b5")]
@@ -636,7 +635,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile4" unique_id=308477102 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile5" type="Node2D" parent="EnemySide/Row4" unique_id=586324277]
-position = Vector2(0, -400)
+position = Vector2(400, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile5" unique_id=2049238597 instance=ExtResource("2_n27b5")]
@@ -646,7 +645,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile5" unique_id=703483333 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile6" type="Node2D" parent="EnemySide/Row4" unique_id=598038409]
-position = Vector2(100, -400)
+position = Vector2(500, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile6" unique_id=1553530387 instance=ExtResource("2_n27b5")]
@@ -656,7 +655,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile6" unique_id=919622205 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile7" type="Node2D" parent="EnemySide/Row4" unique_id=696526825]
-position = Vector2(200, -400)
+position = Vector2(600, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile7" unique_id=1014440364 instance=ExtResource("2_n27b5")]
@@ -666,7 +665,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile7" unique_id=1946239517 instance=ExtResource("3_uv4bv")]
 
 [node name="Tile8" type="Node2D" parent="EnemySide/Row4" unique_id=397427389]
-position = Vector2(300, -400)
+position = Vector2(700, 0)
 script = ExtResource("1_8gl4x")
 
 [node name="ClickableObject" parent="EnemySide/Row4/Tile8" unique_id=16880980 instance=ExtResource("2_n27b5")]
@@ -676,8 +675,7 @@ scale = Vector2(0.19, 0.19)
 [node name="TileStyle" parent="EnemySide/Row4/Tile8" unique_id=1586880124 instance=ExtResource("3_uv4bv")]
 
 [node name="ColorRect" type="ColorRect" parent="EnemySide" unique_id=176002548]
-offset_left = -400.0
-offset_top = -400.0
-offset_right = 400.0
+offset_right = 800.0
+offset_bottom = 400.0
 mouse_filter = 2
 color = Color(0.75423014, 0.044342093, 9.62615e-08, 0.39215687)
