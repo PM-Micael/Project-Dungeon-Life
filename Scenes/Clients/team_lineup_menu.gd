@@ -55,7 +55,8 @@ func place_friendly_characters_board():
 
 func place_enemy_units_dev():
 	var enemy_formation_index: int = randi_range(0, DungeonData.enemy_formations.size() - 1)
-	var enemy_formation: Array = DungeonData.enemy_formations[enemy_formation_index]
+	var debug_formation_index = 0
+	var enemy_formation: Array = DungeonData.enemy_formations[debug_formation_index]
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0

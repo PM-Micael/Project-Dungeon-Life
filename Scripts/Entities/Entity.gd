@@ -32,6 +32,11 @@ func targeting_component_action():
 
 func movment_component_action():
 	if movment_component != null:
+		if movment_component.timer.time_left <= 0.1:
+			movment_component.move_to_grid()
+			movment_component.timer.start()
+		
+		return
 		if (movment_component.timer.time_left <= 0.1 &&
 		(targeting_component != null &&
 		targeting_component.target != null)
@@ -39,6 +44,7 @@ func movment_component_action():
 			if(attack_component != null):
 				attack_component.in_target_attack_range = movment_component.move_to_target(targeting_component.target) # Set attack range
 			else:
+				movment_component.move_to_grid()
 				movment_component.move_to_target(targeting_component.target)
 			movment_component.timer.start()
 

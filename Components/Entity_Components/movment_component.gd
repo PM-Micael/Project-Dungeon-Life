@@ -10,6 +10,16 @@ var is_in_target_range: bool = false
 
 func _ready() -> void:
 	timer.wait_time = 1.1
+	parent_entity.position = Vector2(BoardGrid.debug_start_position) * BoardGrid.astar.cell_size
+
+func move_to_grid():
+	var next_pos = BoardGrid.move_towards_grid_destination(parent_entity.tile_position)
+	parent_entity.position = next_pos
+	parent_entity.tile_position = BoardGrid.world_to_tile(next_pos)
+	print("position: ", parent_entity.position)
+	if next_pos != Vector2():
+		parent_entity.position = next_pos
+		# get_point_path() already returns positions in local pixel coords
 
 func move_to_target(target: Entity) -> bool:
 	var delta = target.global_position - parent_entity.global_position

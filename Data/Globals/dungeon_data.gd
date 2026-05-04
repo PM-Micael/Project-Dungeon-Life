@@ -15,6 +15,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 const type_skeleton: String = "skeleton"
 
 var enemy_formations: Array = [
+	[],
 	[
 		{ "type": "skeleton", "position": Vector2(-150, -150) },
 		{ "type": "skeleton", "position": Vector2(-50, -150) },

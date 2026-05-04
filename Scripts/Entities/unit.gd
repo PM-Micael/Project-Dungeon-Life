@@ -4,6 +4,7 @@ class_name Unit
 @export_category("Info")
 var passive_description: String
 var starting_position: Vector2
+var tile_position: Vector2i = Vector2i(0, 0)
 
 @export_category("")
 
