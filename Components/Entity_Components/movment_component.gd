@@ -15,49 +15,21 @@ func _ready() -> void:
 func move_to_tile(target_tile: Vector2i):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity_tile, target_tile)
-	var next_pos_tile = BoardGrid.world_to_tile(next_pos)
 	if next_pos != Vector2():
 		BoardGrid.set_tile_solid(parent_entity_tile, false)
 		parent_entity.position = next_pos
-		BoardGrid.set_tile_solid(next_pos_tile, true)
+		BoardGrid.set_tile_solid(next_pos, true)
 
-func move_to_target_tile(target: Entity):
+func move_to_target_tile(target: Entity) -> bool:
+	var attack_range: int = 100
+	if parent_entity.attack_component != null:
+		attack_range = parent_entity.attack_component.attack_range
+
+	var distance = parent_entity.position.distance_to(target.position)
+	
+	if distance <= attack_range:
+		return true  # In range, don't move
+	
 	var target_tile: Vector2i = BoardGrid.world_to_tile(target.position)
 	move_to_tile(target_tile)
-
-func move_to_target(target: Entity) -> bool:	
-	var delta = target.global_position - parent_entity.global_position
-	
-	if parent_entity.attack_component != null:
-		stop_range = parent_entity.attack_component.attack_range
-	else:
-		stop_range = 100
-	
-	if ((abs(delta.y) <= stop_range and
-	abs(delta.x) <= stop_range) or
-	(abs(delta.x) <= stop_range and
-	abs(delta.y) <= stop_range)
-	):
-		is_in_target_range = true
-	else:
-		var collision_component: CollisionComponent = parent_entity.get_node_or_null("Components/CollisionComponent")
-		
-		var preferred_step: Vector2 = parent_entity.global_position
-		var fallback_step: Vector2 = parent_entity.global_position
-		if abs(delta.y) > abs(delta.x):
-			preferred_step.y += sign(delta.y) * 100
-			fallback_step.x += sign(delta.x) * 100
-		else:
-			preferred_step.x += sign(delta.x) * 100
-			fallback_step.y += sign(delta.y) * 100
-		
-		if collision_component != null:
-			if collision_component.is_position_free(preferred_step):
-				collision_component.move_to(preferred_step)
-			elif collision_component.is_position_free(fallback_step):
-				collision_component.move_to(fallback_step)
-			# else: both blocked, wait for next tick
-		else:
-			parent_entity.global_position = preferred_step
-	
-	return is_in_target_range
+	return false

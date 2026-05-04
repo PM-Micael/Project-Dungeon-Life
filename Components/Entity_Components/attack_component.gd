@@ -12,7 +12,7 @@ var weapon_added_multiplier: int = 0
 @onready var entity_parent: Entity = get_parent().get_parent()
 @onready var timer: Timer = $Timer
 
-var in_target_attack_range: bool = true
+var in_target_attack_range: bool = false
 
 func set_stats_absolute(set_attack_damage: int, set_attack_range: int):
 	attack_damage = set_attack_damage

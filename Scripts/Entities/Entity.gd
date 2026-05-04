@@ -33,11 +33,11 @@ func targeting_component_action():
 func movment_component_action():
 	if movment_component != null:
 		if (movment_component.timer.time_left <= 0.1 and
-		(targeting_component != null and 
-		targeting_component.target != null)
+		targeting_component != null and 
+		targeting_component.target != null
 		):
 			if attack_component != null:
-				movment_component.move_to_target_tile(targeting_component.target)
+				attack_component.in_target_attack_range = movment_component.move_to_target_tile(targeting_component.target)
 				movment_component.timer.start()
 		
 		return
