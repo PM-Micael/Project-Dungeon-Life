@@ -15,18 +15,17 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 const type_skeleton: String = "skeleton"
 
 var enemy_formations: Array = [
-	[],
 	[
-		{ "type": "skeleton", "position": Vector2(-150, -150) },
-		{ "type": "skeleton", "position": Vector2(-50, -150) },
-		{ "type": "skeleton", "position": Vector2(50, -150) },
-		{ "type": "skeleton", "position": Vector2(150, -150) },
+		{ "type": "skeleton", "position": Vector2(250, 350) },
+		{ "type": "skeleton", "position": Vector2(350, 350) },
+		{ "type": "skeleton", "position": Vector2(450, 350) },
+		{ "type": "skeleton", "position": Vector2(550, 350) },
 	],
 	[
-		{ "type": "skeleton", "position": Vector2(350, -50) },
-		{ "type": "skeleton", "position": Vector2(150, -50) },
-		{ "type": "skeleton", "position": Vector2(-150, -50) },
-		{ "type": "skeleton", "position": Vector2(-350, -50) },
+		{ "type": "skeleton", "position": Vector2(50, 350) },
+		{ "type": "skeleton", "position": Vector2(250, 350) },
+		{ "type": "skeleton", "position": Vector2(550, 350) },
+		{ "type": "skeleton", "position": Vector2(750, 350) },
 	]
 ]
 

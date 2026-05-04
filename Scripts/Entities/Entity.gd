@@ -36,9 +36,8 @@ func movment_component_action():
 		(targeting_component != null and 
 		targeting_component.target != null)
 		):
-			if(attack_component != null):
-				
-				movment_component.move_to_tile()
+			if attack_component != null:
+				movment_component.move_to_target_tile(targeting_component.target)
 				movment_component.timer.start()
 		
 		return

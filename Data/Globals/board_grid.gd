@@ -12,8 +12,8 @@ func _init() -> void:
 	astar.update()
 
 func move_towards_tile_destination(
-	start_position: Vector2i = debug_start_position,
-	tile_destination: Vector2i = debug_destination
+	start_position: Vector2i,
+	tile_destination: Vector2i
 	) -> Vector2:
 	var movment_index: int = 1
 	var stop_range: int = 1
@@ -21,8 +21,11 @@ func move_towards_tile_destination(
 	if path.size() > stop_range:
 		#print("Path: ", path)
 		#print("Destination: ", destination)
-		return path[movment_index] +  Vector2(50, 50)
+		return path[movment_index] + Vector2(50, 50)
 	return Vector2()
 
 func world_to_tile(world_pos: Vector2) -> Vector2i:
-	return Vector2(world_pos / astar.cell_size)
+	return Vector2i(world_pos / astar.cell_size)
+
+func set_tile_solid(tile: Vector2i, solid: bool) -> void:
+	astar.set_point_solid(tile, solid)

@@ -12,16 +12,20 @@ func _ready() -> void:
 	timer.wait_time = 1.1
 	# Use the unit's own tile_position instead of the global debug value
 
-func move_to_tile(target_tile: Vector2i = Vector2i(7, 7)):
-	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity.tile_position, target_tile)
-	parent_entity.position = next_pos
-	parent_entity.tile_position = BoardGrid.world_to_tile(next_pos)
-	print("position: ", parent_entity.position)
+func move_to_tile(target_tile: Vector2i):
+	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity_tile, target_tile)
+	var next_pos_tile = BoardGrid.world_to_tile(next_pos)
 	if next_pos != Vector2():
+		BoardGrid.set_tile_solid(parent_entity_tile, false)
 		parent_entity.position = next_pos
-		# get_point_path() already returns positions in local pixel coords
+		BoardGrid.set_tile_solid(next_pos_tile, true)
 
-func move_to_target(target: Entity) -> bool:
+func move_to_target_tile(target: Entity):
+	var target_tile: Vector2i = BoardGrid.world_to_tile(target.position)
+	move_to_tile(target_tile)
+
+func move_to_target(target: Entity) -> bool:	
 	var delta = target.global_position - parent_entity.global_position
 	
 	if parent_entity.attack_component != null:
