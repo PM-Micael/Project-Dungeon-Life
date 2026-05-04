@@ -27,5 +27,8 @@ func move_towards_tile_destination(
 func world_to_tile(world_pos: Vector2) -> Vector2i:
 	return Vector2i(world_pos / astar.cell_size)
 
+func tile_to_world(tile: Vector2i) -> Vector2:
+	return Vector2(tile) * astar.cell_size + astar.cell_size / 2
+	
 func set_tile_solid(tile: Vector2i, solid: bool):
 	astar.set_point_solid(tile, solid)

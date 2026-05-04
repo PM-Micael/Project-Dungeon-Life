@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlm4kjdn5oixh"]
 
-[ext_resource type="Script" uid="uid://ce43ki614dscf" path="res://Scenes/Units/skeleton.gd" id="1_chrbj"]
+[ext_resource type="Script" uid="uid://ce43ki614dscf" path="res://Scenes/Units/skeleton/skeleton.gd" id="1_chrbj"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_dn8tv"]
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_fm2vy"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_o32p2"]

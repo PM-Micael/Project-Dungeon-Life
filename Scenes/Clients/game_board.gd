@@ -5,7 +5,8 @@ signal round_over(player_won: bool)
 
 @onready var enemy_units_node: Node2D = get_node("Characters/EnemyUnits")
 @onready var friendly_units_node: Node2D = get_node("Characters/FriendlyUnits")
-@onready var enemy_units: Array[Entity]
+@onready var enemy_units: Array[Unit]
+@onready var friendly_units: Array[Unit]
 
 var game_on: bool = false
 
@@ -18,11 +19,8 @@ func place_friendly_units_on_board():
 		friendly_units_node.add_child(u)
 
 func place_enemy_units_on_board():
-	if enemy_units and enemy_units.size() > 0:
-		for u in enemy_units:
-			enemy_units_node.add_child(u)
-	else:
-		print("No enemy units")
+	for u in enemy_units:
+		enemy_units_node.add_child(u)
 
 func _check_units_alive():
 	var enemies: Array = enemy_units_node.get_children()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dk0c5j4pcma0h"]
 
-[ext_resource type="Script" uid="uid://d0wuhiboklc6e" path="res://Scenes/Units/orbath.gd" id="1_py4j4"]
+[ext_resource type="Script" uid="uid://d0wuhiboklc6e" path="res://Scenes/Units/orbath/orbath.gd" id="1_py4j4"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_qqd5c"]
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_tungj"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_hkh34"]

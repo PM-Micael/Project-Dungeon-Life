@@ -7,14 +7,14 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Units/goblin.tscn"),
 	preload("res://Scenes/Units/golem.tscn"),
 	preload("res://Scenes/Units/petamer/petamer.tscn"),
-	preload("res://Scenes/Units/soulbound.tscn"),
-	preload("res://Scenes/Units/orbath.tscn"),
+	preload("res://Scenes/Units/soulbound/soulbound.tscn"),
+	preload("res://Scenes/Units/orbath/orbath.tscn"),
 	preload("res://Scenes/Units/zac/zac.tscn"),
 ]
 
 const type_skeleton: String = "skeleton"
 
-var enemy_formations: Array = [
+var enemy_formations: Array[Array] = [
 	[
 		{ "type": "skeleton", "position": Vector2(250, 150) },
 		{ "type": "skeleton", "position": Vector2(350, 150) },

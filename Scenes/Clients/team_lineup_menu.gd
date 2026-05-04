@@ -15,8 +15,8 @@ func _ready() -> void:
 	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	unit_loadout_frame.show_stats = false
-	place_friendly_characters_board()
-	place_enemy_units_dev()
+	place_friendly_units_dev()
+	place_enemy_units()
 	board.round_over.connect(_on_round_over)
 
 func _setup():
@@ -26,44 +26,52 @@ func _setup():
 
 # ─── Unit Placement ───────────────────────────────────────────────────────────
 
-func place_friendly_characters_board():
+func place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-
 	var friendly_side = map_tiles_scene.get_node("FriendlySide")
-	var front_row = friendly_side.get_node("Row")
-	var tiles = front_row.get_children()
+	var tiles = friendly_side.get_node("Row").get_children()
+	
+	for i in DungeonData.dungeon_team.size():
+		var unit: Unit = DungeonData.dungeon_team[i]
+		var world_pos: Vector2 = BoardGrid.tile_to_world(BoardGrid.world_to_tile(
+			tiles[i].position + map_tiles_scene.position + Vector2(50, 50)))
+			
+		var container: EntityContainer = entity_container_scene.instantiate()
+		container.name = "EntityContainer_" + str(i + 1)
+		container.entity = unit
+		container.position = world_pos
+		unit.starting_position = world_pos
+		
+		board.get_node("Characters/FriendlyUnits").add_child(container)
 
-	var loop_itteration: int = 0
-	for c in DungeonData.dungeon_team:
+func place_friendly_units_dev():
+	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
+	
+	for u in PlayerData.dngeon_team_formation:
+		var unit_name: String = u["unit_name"]
+		var unit_starting_position = u["starting_position"]
+		var unit_scene: PackedScene = load("res://Scenes/Units/" + unit_name + "/" + unit_name + ".tscn")
+		var unit_instance: Unit = unit_scene.instantiate()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-		entity_container_instance.name = "EntityContainer_" + str(loop_itteration + 1)
-		entity_container_instance.entity = c
-
-		var tile_position: Vector2 = tiles[loop_itteration].position + map_tiles_scene.position + Vector2(50, 50)
-		entity_container_instance.position = tile_position
-		c.starting_position = entity_container_instance.position
-
-		var sprite_instance = Sprite2D.new()
-		sprite_instance.name = "Sprite2D"
-		sprite_instance.texture = c.get_node("Sprite2D").texture
-		sprite_instance.scale = Vector2(0.15, 0.15)
-
-		entity_container_instance.add_child(sprite_instance)
+		
+		entity_container_instance.name = "EntityContainer_" + unit_name
+		entity_container_instance.entity = unit_instance
+		entity_container_instance.position = unit_starting_position
+		unit_instance.starting_position = entity_container_instance.position
+		
 		board.get_node("Characters/FriendlyUnits").add_child(entity_container_instance)
+		board.friendly_units.append(unit_instance)
 
-		loop_itteration += 1
-
-func place_enemy_units_dev():
+func place_enemy_units():
 	var enemy_formation_index: int = randi_range(0, DungeonData.enemy_formations.size() - 1)
-	var debug_formation_index = 0
-	var enemy_formation: Array = DungeonData.enemy_formations[debug_formation_index]
+	var enemy_formation: Array = DungeonData.enemy_formations[enemy_formation_index]
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
 	for e in enemy_formation:
 		var enemy_type: String = e["type"]
 		var enemy_position: Vector2 = e["position"]
-		var enemy_scene: PackedScene = load("res://Scenes/Units/" + enemy_type + ".tscn")
+		var enemy_scene: PackedScene = load("res://Scenes/Units/" + enemy_type + "/" + enemy_type + ".tscn")
 		var enemy_instance: Entity = enemy_scene.instantiate()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 
@@ -72,12 +80,6 @@ func place_enemy_units_dev():
 		entity_container_instance.position = enemy_position
 		enemy_instance.starting_position = entity_container_instance.position
 
-		var sprite_instance = Sprite2D.new()
-		sprite_instance.name = "Sprite2D"
-		sprite_instance.texture = enemy_instance.get_node("Sprite2D").texture
-		sprite_instance.scale = Vector2(0.15, 0.15)
-
-		entity_container_instance.add_child(sprite_instance)
 		board.get_node("Characters/EnemyUnits").add_child(entity_container_instance)
 		board.enemy_units.append(enemy_instance)
 
@@ -222,6 +224,3 @@ func _set_highlight(container: EntityContainer, enabled: bool) -> void:
 		container.add_child(highlight)
 	elif not enabled and highlight != null:
 		highlight.queue_free()
-
-func change_board_layout():
-	return
