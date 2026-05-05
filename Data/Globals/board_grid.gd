@@ -11,24 +11,53 @@ func _init() -> void:
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 
-func move_towards_tile_destination(
-	start_position: Vector2i,
-	tile_destination: Vector2i
-	) -> Vector2:
+func move_towards_tile_destination(start_position: Vector2i, tile_destination: Vector2i) -> Vector2:
 	var movment_index: int = 1
 	var stop_range: int = 1
-	var path = astar.get_point_path(start_position, tile_destination)
+	
+	var actual_destination = tile_destination
+	if astar.is_point_solid(tile_destination):
+		actual_destination = get_closest_walkable_tile_to(tile_destination, start_position)
+	
+	var path: PackedVector2Array = astar.get_point_path(start_position, actual_destination)
 	if path.size() > stop_range:
-		#print("Path: ", path)
-		#print("Destination: ", destination)
 		return path[movment_index] + Vector2(50, 50)
 	return Vector2()
+
+func get_closest_walkable_tile_to(target_tile: Vector2i, from_tile: Vector2i) -> Vector2i:
+	# If the target itself is free, just use it
+	if not astar.is_point_solid(target_tile):
+		return target_tile
+	
+	# Search outward in increasing Manhattan distance
+	var max_search_radius: int = 5
+	var best_tile: Vector2i = target_tile
+	var best_distance: float = INF
+	
+	for radius in range(1, max_search_radius + 1):
+		for dx in range(-radius, radius + 1):
+			for dy in range(-radius, radius + 1):
+				if abs(dx) + abs(dy) != radius:
+					continue  # Only check the ring at this exact radius
+				var candidate: Vector2i = target_tile + Vector2i(dx, dy)
+				if not astar.region.has_point(candidate):
+					continue
+				if astar.is_point_solid(candidate):
+					continue
+				var dist: float = from_tile.distance_to(candidate)
+				if dist < best_distance:
+					best_distance = dist
+					best_tile = candidate
+		if best_distance < INF:
+			break  # Found something at this radius, no need to go further
+	
+	return best_tile
 
 func world_to_tile(world_pos: Vector2) -> Vector2i:
 	return Vector2i(world_pos / astar.cell_size)
 
 func tile_to_world(tile: Vector2i) -> Vector2:
 	return Vector2(tile) * astar.cell_size + astar.cell_size / 2
-	
+
 func set_tile_solid(tile: Vector2i, solid: bool):
 	astar.set_point_solid(tile, solid)

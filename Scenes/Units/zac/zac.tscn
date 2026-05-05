@@ -36,7 +36,7 @@ script = ExtResource("5_uhhh1")
 
 [node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_nxu0w")]
 
-[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("10_nxu0w")]
+[node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("10_nxu0w")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1478507541]
 texture = ExtResource("8_h7u56")

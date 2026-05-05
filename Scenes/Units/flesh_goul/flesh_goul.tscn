@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_svtj0"]
 [ext_resource type="Texture2D" uid="uid://cl7vvanda28gm" path="res://Assets/Units/0_Goblin_Idle_000.png" id="10_my3dw"]
 
-[node name="FleshGoul" type="Node2D" unique_id=166116170]
+[node name="FleshGoul" type="Node2D" unique_id=166116170 groups=["units"]]
 script = ExtResource("1_a6kgj")
 
 [node name="Components" type="Node2D" parent="." unique_id=1254067138]

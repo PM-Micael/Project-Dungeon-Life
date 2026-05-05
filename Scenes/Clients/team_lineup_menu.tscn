@@ -20,9 +20,9 @@ script = ExtResource("2_d67pp")
 
 [node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
 
-[node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
-
 [node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
+
+[node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
 
 [node name="UI" type="Node2D" parent="." unique_id=1579880122]
 position = Vector2(800, 755)

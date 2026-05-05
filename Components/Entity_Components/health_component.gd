@@ -42,4 +42,6 @@ func heal(amount: int):
 	health_bar.value = current_health
 
 func die():
+	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	parent_entity.queue_free()
