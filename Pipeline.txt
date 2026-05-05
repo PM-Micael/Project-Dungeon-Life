@@ -36,3 +36,6 @@ Buggs:
 		
 2026-04-29:
 	Add a swich for different layouts
+
+2026-05-04:
+	Ad a new unit the game and add it at the back of enemy formations to test if friendly units start moving after killing something

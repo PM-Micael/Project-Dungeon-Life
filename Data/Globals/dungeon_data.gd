@@ -20,12 +20,14 @@ var enemy_formations: Array[Array] = [
 		{ "type": "skeleton", "position": Vector2(350, 150) },
 		{ "type": "skeleton", "position": Vector2(450, 150) },
 		{ "type": "skeleton", "position": Vector2(550, 150) },
+		{ "type": "flesh_goul", "position": Vector2(450, 50) },
 	],
 	[
 		{ "type": "skeleton", "position": Vector2(50, 350) },
 		{ "type": "skeleton", "position": Vector2(250, 350) },
 		{ "type": "skeleton", "position": Vector2(550, 350) },
 		{ "type": "skeleton", "position": Vector2(750, 350) },
+		{ "type": "flesh_goul", "position": Vector2(450, 50) },
 	]
 ]
 

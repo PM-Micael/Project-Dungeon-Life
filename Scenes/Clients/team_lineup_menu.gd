@@ -47,7 +47,7 @@ func place_friendly_units():
 func place_friendly_units_dev():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
-	for u in PlayerData.dngeon_team_formation:
+	for u in PlayerData.dungeon_team_formation:
 		var unit_name: String = u["unit_name"]
 		var unit_starting_position = u["starting_position"]
 		var unit_scene: PackedScene = load("res://Scenes/Units/" + unit_name + "/" + unit_name + ".tscn")

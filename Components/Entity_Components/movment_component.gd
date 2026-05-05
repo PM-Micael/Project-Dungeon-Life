@@ -21,13 +21,13 @@ func move_to_tile(target_tile: Vector2i):
 		BoardGrid.set_tile_solid(BoardGrid.world_to_tile(next_pos), true)
 
 func move_to_target_tile(target: Entity) -> bool:
-	var attack_range: int = 100
 	if parent_entity.attack_component != null:
-		attack_range = parent_entity.attack_component.attack_range
-
+		stop_range = parent_entity.attack_component.attack_range
+	else:
+		stop_range = 100
 	var distance = parent_entity.position.distance_to(target.position)
 	
-	if distance <= attack_range:
+	if distance <= stop_range:
 		return true  # In range, don't move
 	
 	var target_tile: Vector2i = BoardGrid.world_to_tile(target.position)
