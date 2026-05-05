@@ -15,7 +15,7 @@ func _ready() -> void:
 	_setup()
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	unit_loadout_frame.show_stats = false
-	place_friendly_units_dev()
+	place_friendly_units()
 	place_enemy_units()
 	board.round_over.connect(_on_round_over)
 
@@ -23,28 +23,9 @@ func _setup():
 	var window = get_window()
 	window.borderless = true
 
-
 # ─── Unit Placement ───────────────────────────────────────────────────────────
 
 func place_friendly_units():
-	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-	var friendly_side = map_tiles_scene.get_node("FriendlySide")
-	var tiles = friendly_side.get_node("Row").get_children()
-	
-	for i in DungeonData.dungeon_team.size():
-		var unit: Unit = DungeonData.dungeon_team[i]
-		var world_pos: Vector2 = BoardGrid.tile_to_world(BoardGrid.world_to_tile(
-			tiles[i].position + map_tiles_scene.position + Vector2(50, 50)))
-			
-		var container: EntityContainer = entity_container_scene.instantiate()
-		container.name = "EntityContainer_" + str(i + 1)
-		container.entity = unit
-		container.position = world_pos
-		unit.starting_position = world_pos
-		
-		board.get_node("Characters/FriendlyUnits").add_child(container)
-
-func place_friendly_units_dev():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	for u in PlayerData.dungeon_team_formation:

@@ -13,7 +13,6 @@ func _ready() -> void:
 	# Use the unit's own tile_position instead of the global debug value
 
 func move_to_tile(target_tile: Vector2i):
-	print(str(parent_entity.name) + " is moving")
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity_tile, target_tile)
