@@ -22,13 +22,16 @@ func _ready() -> void:
 	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
 	entity_holding_weapon.attack_component.post_attack_target.connect(_finish_attack)
 
+func set_stats_absolute(set_added_damage: int):
+	added_attack_damage_multiplier = set_added_damage
+
 func set_weapon_energy_bar():
 		weapon_energy_bar = entity_holding_weapon.ui_components_weapon_energy_bar
 		
 		weapon_energy_bar.max_value = max_weapon_energy
 		weapon_energy_bar.value = current_weapon_energy
 
-func _prep_attack():
+func _prep_attack(target: Entity):
 	entity_holding_weapon.attack_component.weapon_added_multiplier += added_attack_damage_multiplier
 
 func _finish_attack(targets: Array[Entity]):

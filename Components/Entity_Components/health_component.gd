@@ -7,6 +7,8 @@ class_name  HealthComponent
 @export var max_health: int
 @export var current_health: int
 
+signal damage_taken(attacker: Entity)
+
 var is_alive: bool = true
 
 func set_stats(set_max_health: int):
@@ -18,12 +20,28 @@ func set_stats(set_max_health: int):
 func take_damage(attacker: Entity):
 	current_health -= attacker.attack_component.attack_damage
 	current_health = clamp(current_health, 0, max_health)
-	
 	health_bar.value = current_health
-	
+	damage_taken.emit(attacker)
+	if current_health <= 0:
+		is_alive = false
+		die()
+		return
+
+func take_damage_flat(attacker: Entity, amount: int):
+	current_health -= amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
+	damage_taken.emit(attacker)
 	if current_health <= 0:
 		is_alive = false
 		die()
 
+func heal(amount: int):
+	current_health += amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
+
 func die():
+	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	parent_entity.queue_free()

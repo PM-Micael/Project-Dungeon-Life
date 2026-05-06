@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxpf0atftnuk4"]
 
-[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scenes/Characters/golem.gd" id="1_t2gh5"]
+[ext_resource type="Script" uid="uid://pc3xyf414sr1" path="res://Scenes/Units/golem.gd" id="1_t2gh5"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="2_e77c2"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="2_lqe5q"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="4_3yf8f"]
@@ -10,11 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://cbsnn77s3ygpe" path="res://Assets/Units/0_Golem_Idle_000.png" id="7_km5yh"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="7_t2gh5"]
 [ext_resource type="PackedScene" uid="uid://7vfeu6xkfonk" path="res://Scenes/Weapons/clobber_club.tscn" id="8_bbaxc"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="9_jafpm"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_vae5d"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="11_vae5d"]
 
-[node name="Golem" type="Node2D" unique_id=121038861]
+[node name="Golem" type="Node2D" unique_id=121038861 groups=["units"]]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_t2gh5")
-starting_position = Vector2(-150, -150)
 
 [node name="Components" type="Node2D" parent="." unique_id=744595945]
 
@@ -32,6 +34,12 @@ starting_position = Vector2(-150, -150)
 script = ExtResource("7_bbaxc")
 
 [node name="ClobberClub" parent="Components/WeaponSlotComponent" unique_id=1186105180 instance=ExtResource("8_bbaxc")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("9_jafpm")]
+
+[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("10_vae5d")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("11_vae5d")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1564971062]
 texture = ExtResource("7_km5yh")

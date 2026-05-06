@@ -17,14 +17,25 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*uid://bgbudg866glv0"
 PopupMenuTypes="*uid://bs3vfwjrilbqr"
 DungeonData="*uid://bcar2mpom4rjn"
+PlayerData="*uid://bgbudg866glv0"
+LocalData="*uid://c1pyjus1lfren"
+BoardGrid="*uid://dq3uan8m2l3k6"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/size/no_focus=true
+window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
+window/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)
+window/defaults/default_environment=""
 
 [file_customization]
 
@@ -35,6 +46,10 @@ folder_colors={
 "res://Scripts/": "red"
 }
 
+[global_group]
+
+units=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -44,3 +59,5 @@ folder_colors={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)
+viewport/transparent_background=true

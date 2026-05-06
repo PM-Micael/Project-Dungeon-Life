@@ -1,15 +1,15 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 10
+@export var max_health: int = 100
 
 func _init() -> void:
-	id = "unit_petamer"
+	id = "unit_flesh_goul"
 
 func _ready() -> void:
 	super._ready()
 	_set_stats()
-	_info("petamer", "Petamer", "Team 1", "Team 2")
+	_info("flesh_goul", "Flesh Goul", "Team 2", "Team 1")
 
 func _set_stats():
 	health_component.set_stats(max_health)

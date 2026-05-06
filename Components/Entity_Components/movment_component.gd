@@ -10,25 +10,26 @@ var is_in_target_range: bool = false
 
 func _ready() -> void:
 	timer.wait_time = 1.1
+	# Use the unit's own tile_position instead of the global debug value
 
-func move_to_target(target: Entity) -> bool:
-	var delta = target.global_position - parent_entity.global_position
-	
+func move_to_tile(target_tile: Vector2i):
+	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+	BoardGrid.set_tile_solid(parent_entity_tile, false)
+	var next_pos = BoardGrid.move_towards_tile_destination(parent_entity_tile, target_tile)
+	if next_pos != Vector2():
+		parent_entity.position = next_pos
+		BoardGrid.set_tile_solid(BoardGrid.world_to_tile(next_pos), true)
+
+func move_to_target_tile(target: Entity) -> bool:
 	if parent_entity.attack_component != null:
 		stop_range = parent_entity.attack_component.attack_range
 	else:
 		stop_range = 100
+	var distance = parent_entity.position.distance_to(target.position)
 	
-	if ((abs(delta.y) <= stop_range and
-	abs(delta.x) <= stop_range) or
-	(abs(delta.x) <= stop_range and
-	abs(delta.y) <= stop_range)
-	):
-		is_in_target_range = true
-	else:
-		if abs(delta.y) > abs(delta.x):
-			parent_entity.global_position.y += sign(delta.y) * 100
-		else:
-			parent_entity.global_position.x += sign(delta.x) * 100
+	if distance <= stop_range:
+		return true  # In range, don't move
 	
-	return is_in_target_range
+	var target_tile: Vector2i = BoardGrid.world_to_tile(target.position)
+	move_to_tile(target_tile)
+	return false

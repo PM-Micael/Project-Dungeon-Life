@@ -18,3 +18,24 @@ Buggs:
 			Buffs
 		
 		- PS: Loot should not be displayed nor colected untill stage has been beten
+
+2026-04-25:
+	Check if other scripts could be a "Resource" instead of "Node"
+
+2026-04-25:
+	Good characters to add:
+		Petamer
+		Clobber
+
+2026-04-26:
+	Finalize unit pathfinding
+
+2026-04-28:
+	On the desktop version:
+		Placing player units at the start of team_lineup is scalable as you move frieendly units. Enemy units placing are as well but differently. Look up and make final desition.
+		
+
+2026-05-06:
+	Potential wave scaling formula:
+		Wave each wave (up to 10) has a set amount of formations that can be placed on the board.
+		

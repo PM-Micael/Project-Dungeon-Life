@@ -61,8 +61,8 @@ func _on_character_chosen(new_entity: Entity):
 		print("No dupes allowed.")
 		return
 	
-	DungeonData.dungeon_team.append(new_entity)
-	DungeonData.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
+	PlayerData.dungeon_team.append(new_entity)
+	PlayerData.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)
 	DungeonData.available_units_as_entities.erase(new_entity)
 	if currently_selected_team_slot.currently_selected_entity != null:
 		DungeonData.available_units_as_entities.append(currently_selected_team_slot.currently_selected_entity)

@@ -4,28 +4,78 @@ extends Node
 var dungeon_team: Array[Entity]
 var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Characters/goblin.tscn"),
-	preload("res://Scenes/Characters/golem.tscn"),
-	preload("res://Scenes/Characters/petamer.tscn"),
-	preload("res://Scenes/Characters/soulbound.tscn"),
-	preload("res://Scenes/Characters/orbath.tscn"),
-	preload("res://Scenes/Characters/zac.tscn"),
+	preload("res://Scenes/Units/goblin.tscn"),
+	preload("res://Scenes/Units/golem.tscn"),
+	preload("res://Scenes/Units/petamer/petamer.tscn"),
+	preload("res://Scenes/Units/soulbound/soulbound.tscn"),
+	preload("res://Scenes/Units/orbath/orbath.tscn"),
+	preload("res://Scenes/Units/zac/zac.tscn"),
 ]
 
-const type_skeleton: String = "skeleton"
+var dungeon_wave_formations: Dictionary = {
+	"wave_1": [
+		{
+			"formation_1":[
+				{ "type": "skeleton", "position": Vector2(250, 150) },
+				{ "type": "skeleton", "position": Vector2(350, 150) },
+				{ "type": "skeleton", "position": Vector2(450, 150) },
+				{ "type": "skeleton", "position": Vector2(550, 150) },
+			],
+			"formation_2":[
+				{ "type": "skeleton", "position": Vector2(50, 350) },
+				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(750, 350) },
+			]
+		}
+	],
+	"wave_2":[
+		{
+			"formation_1":[
+				{ "type": "skeleton", "position": Vector2(250, 150) },
+				{ "type": "skeleton", "position": Vector2(350, 150) },
+				{ "type": "skeleton", "position": Vector2(450, 150) },
+				{ "type": "skeleton", "position": Vector2(550, 150) },
+			],
+			"formation_2":[
+				{ "type": "skeleton", "position": Vector2(50, 350) },
+				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(750, 350) },
+			]
+		}
+	]
+}
 
-var enemy_formations: Array = [
+var dungeon_scaling: Dictionary = {
+	"tier_1":{
+		"base_health_multiplier": 1.0,
+		"base_health_increase_per_wave": 0.1,
+		"base_attack_multiplier": 1.0,
+		"base_attack_increase_per_wave": 0.1,
+	},
+	"tier_2":{
+		"base_health_multiplier": 1.2,
+		"base_health_increase_per_wave": 0.2,
+		"base_attack_multiplier": 1.2,
+		"base_attack_increase_per_wave": 0.2,
+	}
+}
+
+var enemy_formations: Array[Array] = [
 	[
-		{ "type": "skeleton", "position": Vector2(-150, -250) },
-		{ "type": "skeleton", "position": Vector2(-50, -250) },
-		{ "type": "skeleton", "position": Vector2(50, -250) },
-		{ "type": "skeleton", "position": Vector2(150, -250) },
+		{ "type": "skeleton", "position": Vector2(250, 150) },
+		{ "type": "skeleton", "position": Vector2(350, 150) },
+		{ "type": "skeleton", "position": Vector2(450, 150) },
+		{ "type": "skeleton", "position": Vector2(550, 150) },
+		{ "type": "flesh_goul", "position": Vector2(450, 50) },
 	],
 	[
-		{ "type": "skeleton", "position": Vector2(-350, -50) },
-		{ "type": "skeleton", "position": Vector2(-150, -50) },
-		{ "type": "skeleton", "position": Vector2(150, -50) },
-		{ "type": "skeleton", "position": Vector2(350, -50) },
+		{ "type": "skeleton", "position": Vector2(50, 350) },
+		{ "type": "skeleton", "position": Vector2(250, 350) },
+		{ "type": "skeleton", "position": Vector2(550, 350) },
+		{ "type": "skeleton", "position": Vector2(750, 350) },
+		{ "type": "flesh_goul", "position": Vector2(450, 50) },
 	]
 ]
 

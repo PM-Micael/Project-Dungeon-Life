@@ -46,3 +46,55 @@ offset_right = 212.5
 offset_bottom = -62.5
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
+
+[node name="StatsFrame" type="Node2D" parent="." unique_id=1537041036]
+
+[node name="Style" type="Node2D" parent="StatsFrame" unique_id=288942816]
+
+[node name="Frame" type="ColorRect" parent="StatsFrame/Style" unique_id=291619055]
+offset_left = 40.0
+offset_right = 390.0
+offset_bottom = 287.0
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="StatsFrame/Style" unique_id=915401141]
+offset_left = 45.0
+offset_top = 5.0
+offset_right = 385.0
+offset_bottom = 282.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Health" type="Node2D" parent="StatsFrame" unique_id=903937688]
+
+[node name="KeyLabel" type="Label" parent="StatsFrame/Health" unique_id=306027619]
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 172.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 30
+text = "Health:"
+
+[node name="ValueLabel" type="Label" parent="StatsFrame/Health" unique_id=510109698]
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 322.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 30
+
+[node name="Attack" type="Node2D" parent="StatsFrame" unique_id=1155441891]
+
+[node name="KeyLabel" type="Label" parent="StatsFrame/Attack" unique_id=559051840]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 172.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 30
+text = "Attack:"
+
+[node name="ValueLabel" type="Label" parent="StatsFrame/Attack" unique_id=1498128156]
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 322.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 30

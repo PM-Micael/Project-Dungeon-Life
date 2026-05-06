@@ -6,6 +6,11 @@ class_name UnitLoadoutFrame
 		unit_entity = value
 		_on_unit_entity_change()
  
+var show_stats: bool = false:
+	set(value):
+		show_stats = value
+		_toggle_show_stats()
+
 var unit_entity_container: EntityContainer
 var weapon_entity_container: EntityContainer
 
@@ -23,10 +28,12 @@ func _ready() -> void:
 	weapon_container_instance.scale = Vector2(1.5, 1.5)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
-	
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
-	
+
+func _toggle_show_stats():
+	get_node("StatsFrame").visible = show_stats
+
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
 	
@@ -35,9 +42,32 @@ func _on_unit_entity_change():
 		var weapon = weapon_slot_component.get_child(0)
 		if weapon == null:
 			weapon_entity_container.entity = null
-			return
-	
-		weapon_entity_container.entity = weapon
+		else:
+			weapon_entity_container.entity = weapon
+
+	# Update StatsFrame
+	if show_stats:
+		get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
+		get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
+
+		# Connect signals for real-time updates (disconnect first to avoid duplicates)
+		if unit_entity.health_component.damage_taken.is_connected(_on_selected_unit_health_changed):
+			unit_entity.health_component.damage_taken.disconnect(_on_selected_unit_health_changed)
+		unit_entity.health_component.damage_taken.connect(_on_selected_unit_health_changed)
+
+		if unit_entity.attack_component.post_attack_target.is_connected(_on_selected_unit_attacked):
+			unit_entity.attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
+		unit_entity.attack_component.post_attack_target.connect(_on_selected_unit_attacked)
+
+func _on_selected_unit_health_changed(_attacker: Entity):
+	if not is_instance_valid(unit_entity):
+		return
+	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
+
+func _on_selected_unit_attacked(_targets: Array[Entity]):
+	if not is_instance_valid(unit_entity):
+		return
+	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")
@@ -53,3 +83,12 @@ func change_unit_weapon(new_weapon_entity: Entity):
 	for u in unit_selection_container_entities:
 		if u.entity.display_name == unit_entity.display_name:
 			u.entity = unit_entity
+
+func _get_display_attack_damage() -> int:
+	var total = unit_entity.attack_component.attack_damage
+	var weapon_slot = unit_entity.weapon_slot_component
+	if weapon_slot != null:
+		var weapon = weapon_slot.get_child(0)
+		if weapon != null:
+			total += weapon.weapon_component.added_attack_damage_multiplier
+	return total

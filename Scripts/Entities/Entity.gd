@@ -6,6 +6,8 @@ var display_name: String
 var hostile_team: String
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
+@onready var debuff_component: DebuffComponent = get_node_or_null("Components/DebuffComponent")
+@onready var buff_component: BuffComponent = get_node_or_null("Components/BuffComponent")
 @onready var health_component: HealthComponent = get_node_or_null("Components/HealthComponent")
 @onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")
 @onready var targeting_component: TargetingComponent = get_node_or_null("Components/TargetingComponent")
@@ -30,17 +32,18 @@ func targeting_component_action():
 
 func movment_component_action():
 	if movment_component != null:
-		if (movment_component.timer.time_left <= 0.1 &&
-		(targeting_component != null &&
-		targeting_component.target != null)
+		if (movment_component.timer.time_left <= 0.1 and
+		targeting_component != null and 
+		targeting_component.target != null
 		):
-			if(attack_component != null):
-				attack_component.in_target_attack_range = movment_component.move_to_target(targeting_component.target) # Set attack range
+			if attack_component != null:
+				attack_component.in_target_attack_range = movment_component.move_to_target_tile(targeting_component.target)
 			else:
-				movment_component.move_to_target(targeting_component.target)
+				movment_component.move_to_target_tile(targeting_component.target)
+			
 			movment_component.timer.start()
 
-func attack_component_action(): # perhaps more fficient if statment can be implimented
+func attack_component_action(): # perhaps more efficient if statment can be implimented
 	if attack_component != null:
 		if (attack_component.in_target_attack_range &&
 		attack_component.timer.time_left <= 0.1 &&

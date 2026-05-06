@@ -1,6 +1,6 @@
 extends Button
 
-@onready var game_scene 
+@onready var game_scene
 @onready var team_loadout_menu: TeamLoadoutMenu = get_parent()
 
 func _ready():
@@ -8,6 +8,14 @@ func _ready():
 	pressed.connect(_button_pressed)
 
 func _button_pressed():
+	if PlayerData.dungeon_team.size() > 0:
+		var loop_itteration:int = 0
+		for unit in PlayerData.dungeon_team:
+			unit.starting_position = Vector2(50.0 + (100*loop_itteration), 750.0)
+			loop_itteration += 1
+			
+		PlayerData.save_dungeon_team_as_formation()
+	
 	var team_lineup_menu: TeamLineupMenu = game_scene.instantiate()
 	
 	get_tree().root.add_child(team_lineup_menu)

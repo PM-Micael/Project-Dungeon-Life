@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dbm6d1baf47sx"]
+[gd_scene format=3 uid="uid://bqk2h8lpks42o"]
 
-[ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_gdxfq"]
+[ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_lxyuk"]
 [ext_resource type="Script" uid="uid://cab48t3stycys" path="res://Scenes/Clients/game_board.gd" id="2_d67pp"]
 [ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_ffa1w"]
 [ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="9_vprbv"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
-script = ExtResource("1_gdxfq")
+script = ExtResource("1_lxyuk")
 
 [node name="Board" type="Node2D" parent="." unique_id=519372427]
 position = Vector2(1120, 280)
@@ -20,108 +20,12 @@ script = ExtResource("2_d67pp")
 
 [node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
 
-[node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
-
 [node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
 
-[node name="RoundOver" type="Node2D" parent="Board" unique_id=923098683]
-z_index = 2
-
-[node name="DefeatScreen" type="Node2D" parent="Board/RoundOver" unique_id=1987322970]
-visible = false
-
-[node name="Style" type="Node2D" parent="Board/RoundOver/DefeatScreen" unique_id=414819232]
-
-[node name="Frame" type="ColorRect" parent="Board/RoundOver/DefeatScreen/Style" unique_id=1688408993]
-offset_left = -500.0
-offset_top = -300.0
-offset_right = 500.0
-offset_bottom = 300.0
-
-[node name="Backround" type="ColorRect" parent="Board/RoundOver/DefeatScreen/Style" unique_id=321556827]
-offset_left = -475.0
-offset_top = -275.0
-offset_right = 475.0
-offset_bottom = 275.0
-color = Color(0, 0, 0, 1)
-
-[node name="ReplayStageButton" type="Button" parent="Board/RoundOver/DefeatScreen" unique_id=436118848]
-offset_left = -125.0
-offset_top = 100.0
-offset_right = 125.0
-offset_bottom = 200.0
-text = "Replay
-"
-
-[node name="EditTeamButton" type="Button" parent="Board/RoundOver/DefeatScreen" unique_id=1096012677]
-offset_left = 185.0
-offset_top = 100.0
-offset_right = 435.0
-offset_bottom = 200.0
-text = "Edit Team"
-
-[node name="ExitDungeonButton" type="Button" parent="Board/RoundOver/DefeatScreen" unique_id=1848585967]
-offset_left = -425.0
-offset_top = 100.0
-offset_right = -175.0
-offset_bottom = 200.0
-text = "Exit Dungeon"
-
-[node name="TitleLabel" type="Label" parent="Board/RoundOver/DefeatScreen" unique_id=1520802694]
-offset_left = -150.0
-offset_top = -200.0
-offset_right = 150.0
-offset_bottom = -131.0
-theme_override_font_sizes/font_size = 50
-text = "Defeat"
-horizontal_alignment = 1
-
-[node name="VictoryScreen" type="Node2D" parent="Board/RoundOver" unique_id=1451011084]
-visible = false
-
-[node name="Style" type="Node2D" parent="Board/RoundOver/VictoryScreen" unique_id=1833773821]
-
-[node name="Frame" type="ColorRect" parent="Board/RoundOver/VictoryScreen/Style" unique_id=37006935]
-offset_left = 70.0
-offset_top = 275.0
-offset_right = 730.0
-offset_bottom = 535.0
-
-[node name="Backround" type="ColorRect" parent="Board/RoundOver/VictoryScreen/Style" unique_id=2090224216]
-offset_left = 75.0
-offset_top = 280.0
-offset_right = 725.0
-offset_bottom = 530.0
-color = Color(0, 0, 0, 1)
-
-[node name="Loot" type="Node2D" parent="Board/RoundOver/VictoryScreen" unique_id=1243888286]
-
-[node name="Label" type="Label" parent="Board/RoundOver/VictoryScreen/Loot" unique_id=1697109604]
-offset_left = 150.0
-offset_top = 303.0
-offset_right = 204.0
-offset_bottom = 338.0
-theme_override_font_sizes/font_size = 25
-text = "Loot"
-
-[node name="NextStageButton" type="Button" parent="Board/RoundOver/VictoryScreen" unique_id=1958681816]
-offset_left = 531.0
-offset_top = 425.0
-offset_right = 681.0
-offset_bottom = 500.0
-text = "Next Stage"
-
-[node name="TitleLabel" type="Label" parent="Board/RoundOver/VictoryScreen" unique_id=844148844]
-offset_left = 250.0
-offset_top = 303.0
-offset_right = 550.0
-offset_bottom = 372.0
-theme_override_font_sizes/font_size = 50
-text = "Victory"
-horizontal_alignment = 1
+[node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
 
 [node name="UI" type="Node2D" parent="." unique_id=1579880122]
-position = Vector2(320, 755)
+position = Vector2(800, 755)
 
 [node name="Inventory" type="Node2D" parent="UI" unique_id=1201850667]
 script = ExtResource("4_t8u3g")
@@ -167,10 +71,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="StartStage" type="Button" parent="." unique_id=1100139550]
 z_index = 10
-offset_left = 1770.0
-offset_top = 830.0
-offset_right = 1927.0
-offset_bottom = 994.0
+offset_left = 1762.0
+offset_top = 760.0
+offset_right = 1919.0
+offset_bottom = 924.0
 text = "Start Stage"
 script = ExtResource("3_f3h6d")
 

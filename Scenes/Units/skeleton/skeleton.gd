@@ -2,6 +2,7 @@ extends Unit
 
 @export_category("Stats")
 @export var max_health: int = 10
+@export var attack_damage: int = 1
 
 func _init() -> void:
 	id = "unit_skeleton"
@@ -13,3 +14,4 @@ func _ready() -> void:
 
 func _set_stats():
 	health_component.set_stats(max_health)
+	attack_component.set_stats_absolute(attack_damage, 100)

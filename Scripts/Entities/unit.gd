@@ -7,7 +7,6 @@ var starting_position: Vector2
 
 @export_category("")
 
-
 func _init() -> void:
 	id = "unt_zac"
 
