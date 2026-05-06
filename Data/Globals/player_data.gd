@@ -1,14 +1,16 @@
 extends Node
 
-# --- Auth (future Firebase) ---
 var player_id: String = ""
 var display_name: String = ""
 
-# --- Persistent State ---
 var inner_sanctum: Dictionary = {
 	"life": 2,
 	"power": 1
 }
+
+# Progression data
+var dungeon_tier: int = 1
+var dungeon_wave: int = 1
 
 var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]

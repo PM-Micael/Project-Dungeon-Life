@@ -12,7 +12,55 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Units/zac/zac.tscn"),
 ]
 
-const type_skeleton: String = "skeleton"
+var dungeon_wave_formations: Dictionary = {
+	"wave_1": [
+		{
+			"formation_1":[
+				{ "type": "skeleton", "position": Vector2(250, 150) },
+				{ "type": "skeleton", "position": Vector2(350, 150) },
+				{ "type": "skeleton", "position": Vector2(450, 150) },
+				{ "type": "skeleton", "position": Vector2(550, 150) },
+			],
+			"formation_2":[
+				{ "type": "skeleton", "position": Vector2(50, 350) },
+				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(750, 350) },
+			]
+		}
+	],
+	"wave_2":[
+		{
+			"formation_1":[
+				{ "type": "skeleton", "position": Vector2(250, 150) },
+				{ "type": "skeleton", "position": Vector2(350, 150) },
+				{ "type": "skeleton", "position": Vector2(450, 150) },
+				{ "type": "skeleton", "position": Vector2(550, 150) },
+			],
+			"formation_2":[
+				{ "type": "skeleton", "position": Vector2(50, 350) },
+				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(750, 350) },
+			]
+		}
+	]
+}
+
+var dungeon_scaling: Dictionary = {
+	"tier_1":{
+		"base_health_multiplier": 1.0,
+		"base_health_increase_per_wave": 0.1,
+		"base_attack_multiplier": 1.0,
+		"base_attack_increase_per_wave": 0.1,
+	},
+	"tier_2":{
+		"base_health_multiplier": 1.2,
+		"base_health_increase_per_wave": 0.2,
+		"base_attack_multiplier": 1.2,
+		"base_attack_increase_per_wave": 0.2,
+	}
+}
 
 var enemy_formations: Array[Array] = [
 	[
