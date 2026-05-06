@@ -8,7 +8,6 @@ func _ready():
 	pressed.connect(_button_pressed)
 
 func _button_pressed():
-	print(str(PlayerData.dungeon_team.size()))
 	if PlayerData.dungeon_team.size() > 0:
 		var loop_itteration:int = 0
 		for unit in PlayerData.dungeon_team:

@@ -45,11 +45,13 @@ func place_friendly_units():
 		board.friendly_units.append(unit_instance)
 
 func place_enemy_units():
-	#var enemy_formation_index: int = randi_range(0, DungeonData.enemy_formations.size() - 1)
-	var enemy_formation_index: int = randi_range(0, DungeonData.dungeon_wave_formations["wave_" + str(current_wave)].size() - 1)
-	print("Enemy formation index: " + str(enemy_formation_index))
-	#var enemy_formation: Array = DungeonData.enemy_formations[enemy_formation_index]
-	var enemy_formation: Array = DungeonData.dungeon_wave_formations["wave_"+str(current_wave)]["formation_"+str(enemy_formation_index+1)]
+	var wave_key: String = "wave_" + str(current_wave)
+	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations[wave_key][0]
+	
+	var formation_count: int = formations_dict.size()
+	var enemy_formation_index: int = randi_range(0, formation_count - 1)
+	
+	var enemy_formation: Array = formations_dict["formation_" + str(enemy_formation_index + 1)]
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
