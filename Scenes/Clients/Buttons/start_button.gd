@@ -1,6 +1,6 @@
 extends Button
 
-@onready var game_scene 
+@onready var game_scene
 @onready var team_loadout_menu: TeamLoadoutMenu = get_parent()
 
 func _ready():

@@ -7,6 +7,7 @@ signal round_over(player_won: bool)
 @onready var friendly_units_node: Node2D = get_node("Characters/FriendlyUnits")
 @onready var enemy_units: Array[Unit]
 @onready var friendly_units: Array[Unit]
+@onready var victory_screen = get_node("RoundOver/VictoryScreen")
 
 var game_on: bool = false
 
@@ -26,9 +27,10 @@ func place_enemy_units_on_board():
 func _check_units_alive():
 	var enemies: Array = enemy_units_node.get_children()
 	var friendlies: Array = friendly_units_node.get_children()
-	
+
 	if enemies.size() == 0:
 		print("You win")
+		victory_screen.visible = true
 		game_on = false
 		round_over.emit(true)
 	elif friendlies.size() == 0:

@@ -71,6 +71,7 @@ func place_enemy_units():
 
 func start_game() -> void:
 	game_on = true
+	board.game_on = true
 	unit_loadout_frame.show_stats = true
 	_deselect_current_unit()
 
