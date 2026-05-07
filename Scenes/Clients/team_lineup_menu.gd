@@ -62,7 +62,7 @@ func _place_friendly_units():
 		entity_container_instance.position = unit_starting_position
 		unit_instance.starting_position = entity_container_instance.position
 		
-		board.get_node("Characters/FriendlyUnits").add_child(entity_container_instance)
+		board.get_node("Units/FriendlyUnits").add_child(entity_container_instance)
 		board.friendly_units.append(unit_instance)
 
 func _place_enemy_units():
@@ -88,7 +88,7 @@ func _place_enemy_units():
 		entity_container_instance.position = enemy_position
 		enemy_instance.starting_position = entity_container_instance.position
 
-		board.get_node("Characters/EnemyUnits").add_child(entity_container_instance)
+		board.get_node("Units/EnemyUnits").add_child(entity_container_instance)
 		board.enemy_units.append(enemy_instance)
 
 		loop_itteration += 1
@@ -123,7 +123,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 
 func _try_select_friendly_unit_on_tile(tile: Tile) -> void:
 	var tile_pos: Vector2 = tile.position + Vector2(50, 50)
-	var friendly_instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
+	var friendly_instances: Array[Node] = get_node("Board/Units/FriendlyUnits").get_children()
 	for container in friendly_instances:
 		if container.position.is_equal_approx(tile_pos):
 			if container == currently_selected_unit_entity_container:
@@ -137,7 +137,7 @@ func _try_select_friendly_unit_on_tile(tile: Tile) -> void:
 
 func _move_selected_unit_to_tile(tile: Tile) -> void:
 	var new_pos: Vector2 = tile.position + Vector2(50, 50)
-	var instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
+	var instances: Array[Node] = get_node("Board/Units/FriendlyUnits").get_children()
 	for container in instances:
 		if container.position.is_equal_approx(new_pos):
 			# Tile occupied — swap selection to that unit instead
@@ -157,14 +157,14 @@ func _move_selected_unit_to_tile(tile: Tile) -> void:
 
 func _try_select_any_unit_on_tile(tile: Tile) -> void:
 	var tile_pos: Vector2 = tile.position + Vector2(50, 50)
-	var friendly_instances: Array[Node] = get_node("Board/Characters/FriendlyUnits").get_children()
+	var friendly_instances: Array[Node] = get_node("Board/Units/FriendlyUnits").get_children()
 	for unit in friendly_instances:
 		if unit.position.is_equal_approx(tile_pos):
 			_deselect_current_unit()
 			_handle_in_game_unit_selected(unit)
 			return
 
-	var enemy_instances: Array[Node] = get_node("Board/Characters/EnemyUnits").get_children()
+	var enemy_instances: Array[Node] = get_node("Board/Units/EnemyUnits").get_children()
 	for unit in enemy_instances:
 		if unit.position.is_equal_approx(tile_pos):
 			_deselect_current_unit()
@@ -212,11 +212,11 @@ func _deselect_current_unit() -> void:
 		_set_highlight(currently_selected_unit_entity_container, false)
 		currently_selected_unit_entity_container = null
 	# Also clear any in-game highlight on raw Entity nodes
-	for unit in get_node("Board/Characters/FriendlyUnits").get_children():
+	for unit in get_node("Board/Units/FriendlyUnits").get_children():
 		var h = unit.get_node_or_null("Highlight")
 		if h:
 			h.queue_free()
-	for unit in get_node("Board/Characters/EnemyUnits").get_children():
+	for unit in get_node("Board/Units/EnemyUnits").get_children():
 		var h = unit.get_node_or_null("Highlight")
 		if h:
 			h.queue_free()

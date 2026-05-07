@@ -18,11 +18,11 @@ script = ExtResource("2_d67pp")
 
 [node name="MapTiles" parent="Board" unique_id=2113342636 instance=ExtResource("2_ffa1w")]
 
-[node name="Characters" type="Node2D" parent="Board" unique_id=1093298139]
+[node name="Units" type="Node2D" parent="Board" unique_id=1093298139]
 
-[node name="FriendlyUnits" type="Node2D" parent="Board/Characters" unique_id=1578838553]
+[node name="FriendlyUnits" type="Node2D" parent="Board/Units" unique_id=1578838553]
 
-[node name="EnemyUnits" type="Node2D" parent="Board/Characters" unique_id=1640656187]
+[node name="EnemyUnits" type="Node2D" parent="Board/Units" unique_id=1640656187]
 
 [node name="RoundOver" type="Node2D" parent="Board" unique_id=923098683]
 z_index = 2

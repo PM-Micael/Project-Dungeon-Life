@@ -4,8 +4,8 @@ class_name GameBoard
 signal round_over(player_won: bool)
 
 @onready var game_parent: TeamLineupMenu = get_parent()
-@onready var enemy_units_node: Node2D = get_node("Characters/EnemyUnits")
-@onready var friendly_units_node: Node2D = get_node("Characters/FriendlyUnits")
+@onready var enemy_units_node: Node2D = get_node("Units/EnemyUnits")
+@onready var friendly_units_node: Node2D = get_node("Units/FriendlyUnits")
 @onready var enemy_units: Array[Unit]
 @onready var friendly_units: Array[Unit]
 @onready var victory_screen: Node2D = get_node("RoundOver/VictoryScreen")

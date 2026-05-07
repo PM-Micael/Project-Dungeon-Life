@@ -6,6 +6,9 @@ extends Unit
 @export var base_critical_percent_chance: int = 15
 @export var base_critical_damage_multiplier: float = 1.65
 
+@export_category("Effects")
+@export var unity_count: int = 0
+
 func _init() -> void:
 	id = "walking_hive"
 	passive_description = "Dealing critical damage applies chmical toxin to target hit.
@@ -15,6 +18,7 @@ func _ready() -> void:
 	super._ready()
 	_set_stats()
 	_info("walking_hive", "Walking Hive", "Team 1", "Team 2")
+	unity_count = _check_unity_in_battle()
 
 func _set_stats():
 	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
