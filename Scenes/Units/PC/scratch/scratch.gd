@@ -21,11 +21,11 @@ func _set_stats():
 	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
 	attack_component.set_stats_absolute(attack_damage, 200, base_critical_percent_chance, base_critical_damage_multiplier)
 
-func _apply_chemical_toxin(targets: Array[Entity]):
-	for u in targets:
-		u.debuff_component.add_debuff(_construct_devour_mark_debuff(), self)
+func _apply_chemical_toxin(targets: Array[Entity], was_crit:bool):
+	if was_crit:
+		for u in targets:
+			u.debuff_component.add_debuff(_construct_chemical_toxin(), self)
 
-func _construct_devour_mark_debuff() -> DevourersMark:
-	var mark = DevourersMark.new()
-	
+func _construct_chemical_toxin() -> ChemicalToxin:
+	var mark = ChemicalToxin.new()
 	return mark

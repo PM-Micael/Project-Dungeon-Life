@@ -31,5 +31,4 @@ func _apply_devour_debuff(targets: Array[Entity]):
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()
-	
 	return mark
