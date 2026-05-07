@@ -36,11 +36,33 @@ var dungeon_wave_formations: Dictionary = {
 				{ "type": "skeleton", "position": Vector2(350, 150) },
 				{ "type": "skeleton", "position": Vector2(450, 150) },
 				{ "type": "skeleton", "position": Vector2(550, 150) },
+				{ "type": "skeleton", "position": Vector2(650, 150) },
 			],
 			"formation_2":[
 				{ "type": "skeleton", "position": Vector2(50, 350) },
 				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(350, 350) },
 				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(750, 350) },
+			]
+		}
+	],
+	"room_3":[
+		{
+			"formation_1":[
+				{ "type": "skeleton", "position": Vector2(150, 150) },
+				{ "type": "skeleton", "position": Vector2(250, 150) },
+				{ "type": "skeleton", "position": Vector2(350, 150) },
+				{ "type": "skeleton", "position": Vector2(450, 150) },
+				{ "type": "skeleton", "position": Vector2(550, 150) },
+				{ "type": "skeleton", "position": Vector2(650, 150) },
+			],
+			"formation_2":[
+				{ "type": "skeleton", "position": Vector2(50, 350) },
+				{ "type": "skeleton", "position": Vector2(150, 150) },
+				{ "type": "skeleton", "position": Vector2(250, 350) },
+				{ "type": "skeleton", "position": Vector2(550, 350) },
+				{ "type": "skeleton", "position": Vector2(650, 350) },
 				{ "type": "skeleton", "position": Vector2(750, 350) },
 			]
 		}

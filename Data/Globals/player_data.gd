@@ -18,38 +18,38 @@ var dungeon_team_formation: Array[Dictionary] = [
 	{
 		"unit_name": "petamer",
 		"starting_position": Vector2(150.0, 650.0),
-		"weapon_name": ""
+		"weapon_id": ""
 	},
 	{
 		"unit_name": "soulbound",
 		"starting_position": Vector2(250.0, 650.0),
-		"weapon_name": "burst_staff"
+		"weapon_id": "burst_staff"
 	},
 	{
 		"unit_name": "orbath",
 		"starting_position": Vector2(350.0, 650.0),
-		"weapon_name": "burst_staff"
+		"weapon_id": "burst_staff"
 	},
 	{
 		"unit_name": "zac",
 		"starting_position": Vector2(450.0, 650.0),
-		"weapon_name": ""
+		"weapon_id": ""
 	},
 ]
 
-func save_dungeon_team_as_formation():
+func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 	var new_formation: Array[Dictionary] = []
 	
-	for unit in dungeon_team:
-		var weaepon_name: String = ""
+	for unit in team_array:
+		var weapon_id: String = ""
 		var weapon_slot = unit.get_node_or_null("Components/WeaponSlotComponent")
 		if weapon_slot != null and weapon_slot.get_child_count() > 0:
-			weaepon_name = weapon_slot.get_child(0).name
+			weapon_id = weapon_slot.get_child(0).id
 		
 		var dict: Dictionary = {
 			"unit_name": unit.name,
 			"starting_position": unit.starting_position,
-			"weapon_id": weaepon_name
+			"weapon_id": weapon_id
 		}
 		new_formation.append(dict)
 	

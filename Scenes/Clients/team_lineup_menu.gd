@@ -44,13 +44,13 @@ func _place_friendly_units():
 	for u in PlayerData.dungeon_team_formation:
 		var unit_name: String = u["unit_name"]
 		var unit_starting_position = u["starting_position"]
-		var weapon_name = u["weapon_name"]
+		var weapon_id = u["weapon_id"]
 		
 		var unit_scene: PackedScene = load("res://Scenes/Units/" + unit_name + "/" + unit_name + ".tscn")
 		var unit_instance: Unit = unit_scene.instantiate()
 		
-		if weapon_name != "":
-			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_name+".tscn")
+		if weapon_id != "":
+			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_id+".tscn")
 			var weapon_instance: Entity = weapon_scene.instantiate()
 			var weapon_slot = unit_instance.get_node("Components/WeaponSlotComponent")
 			weapon_slot.add_child(weapon_instance)

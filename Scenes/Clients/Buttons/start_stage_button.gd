@@ -7,6 +7,7 @@ func _ready():
 	pressed.connect(_button_pressed)
 
 func _button_pressed():
+	PlayerData.save_dungeon_team_as_formation(parent.board.friendly_units)
 	var board_scene: GameBoard = get_node_or_null("/root/TeamLineupMenu/Board")
 	var friendly_container_nodes := parent.get_node("Board/Characters/FriendlyUnits").get_children()
 	var enemy_container_nodes := parent.get_node("Board/Characters/EnemyUnits").get_children()
