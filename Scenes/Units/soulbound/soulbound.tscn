@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_tih6u"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_xor7y"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_b6ot6"]
-[ext_resource type="PackedScene" uid="uid://dxw4set8d1xrh" path="res://Scenes/Weapons/burst_staff.tscn" id="8_1vsbw"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_g52l7"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="9_lg2mf"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_52bwn"]
@@ -32,8 +31,6 @@ script = ExtResource("1_kld18")
 
 [node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=2077620033]
 script = ExtResource("6_b6ot6")
-
-[node name="BurstStaff" parent="Components/WeaponSlotComponent" unique_id=1525957550 instance=ExtResource("8_1vsbw")]
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("9_lg2mf")]
 
