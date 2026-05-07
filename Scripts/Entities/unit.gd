@@ -19,3 +19,8 @@ func _info(_name: String, _display_name: String, _friendly_team: String, _hostil
 	add_to_group(_friendly_team)
 	hostile_team = _hostile_team
 	
+
+func queue_free_unit():
+	var tile = BoardGrid.world_to_tile(position)
+	BoardGrid.set_tile_solid(tile, false)
+	queue_free()

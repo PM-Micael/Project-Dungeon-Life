@@ -13,7 +13,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	"wave_1": [
+	"room_1": [
 		{
 			"formation_1":[
 				{ "type": "skeleton", "position": Vector2(250, 150) },
@@ -29,7 +29,7 @@ var dungeon_wave_formations: Dictionary = {
 			]
 		}
 	],
-	"wave_2":[
+	"room_2":[
 		{
 			"formation_1":[
 				{ "type": "skeleton", "position": Vector2(250, 150) },
@@ -50,9 +50,9 @@ var dungeon_wave_formations: Dictionary = {
 var dungeon_scaling: Dictionary = {
 	"tier_1":{
 		"base_health_multiplier": 1.0,
-		"base_health_increase_per_wave": 0.1,
+		"base_health_increase_per_tenth_room": 0.1,
 		"base_attack_multiplier": 1.0,
-		"base_attack_increase_per_wave": 0.1,
+		"base_attack_increase_per_tenth_room": 0.1,
 	},
 	"tier_2":{
 		"base_health_multiplier": 1.2,

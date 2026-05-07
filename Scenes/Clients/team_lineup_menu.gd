@@ -6,27 +6,39 @@ class_name TeamLineupMenu
 @onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
 @onready var ui_scene = get_node_or_null("UI")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
+@onready var next_stage_button: Button = get_node("Board/RoundOver/VictoryScreen/NextStageButton")
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 var game_on: bool = false
-var current_wave: int = 1
+var current_room: int = 1
 
 func _ready() -> void:
 	LocalData.initialize_data(ui_scene, board)
-	_setup()
-	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
-	unit_loadout_frame.show_stats = false
-	place_friendly_units()
-	place_enemy_units()
-	board.round_over.connect(_on_round_over)
+	_window_setup()
+	_connect_events()
+	_setup_stage()
 
-func _setup():
+func _connect_events():
+	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
+	board.round_over.connect(_on_round_over)
+	next_stage_button.pressed.connect(_setup_stage)
+
+func _window_setup():
 	var window = get_window()
 	window.borderless = true
 
+func _setup_stage():
+	board.victory_screen.visible = false
+	board.defeat_screen.visible = false
+	board.friendly_units.clear()
+	board.enemy_units.clear()
+	_place_friendly_units()
+	_place_enemy_units()
+	unit_loadout_frame.show_stats = false
+
 # ─── Unit Placement ───────────────────────────────────────────────────────────
 
-func place_friendly_units():
+func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
 	for u in PlayerData.dungeon_team_formation:
@@ -44,9 +56,9 @@ func place_friendly_units():
 		board.get_node("Characters/FriendlyUnits").add_child(entity_container_instance)
 		board.friendly_units.append(unit_instance)
 
-func place_enemy_units():
-	var wave_key: String = "wave_" + str(current_wave)
-	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations[wave_key][0]
+func _place_enemy_units():
+	var room_key: String = "room_" + str(current_room)
+	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations[room_key][0]
 	
 	var formation_count: int = formations_dict.size()
 	var enemy_formation_index: int = randi_range(0, formation_count - 1)
