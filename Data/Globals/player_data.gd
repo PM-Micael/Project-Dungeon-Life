@@ -42,7 +42,7 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 			weapon_id = weapon_slot.get_child(0).id
 		
 		var dict: Dictionary = {
-			"unit_name": unit.name,
+			"unit_name": unit.id,
 			"starting_position": unit.starting_position,
 			"weapon_id": weapon_id
 		}

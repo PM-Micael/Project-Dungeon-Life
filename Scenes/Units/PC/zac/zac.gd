@@ -9,7 +9,7 @@ extends Unit
 var devour_stacks: int = 0
 
 func _init() -> void:
-	id = "unit_zac"
+	id = "zac"
 	passive_description = "Dealing damage to an enemy marks them.
 		Dealing damage to a marked enemy with 5% or less executes them and grants Zac a stack of Devour.
 		Each stack of devour grants plus 1 max heaelth"
