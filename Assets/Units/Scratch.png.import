@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4qbotx1kujg3"
-path="res://.godot/imported/0_Zombie_Villager_Idle_000.png-4a6a569d870abbd42199bc56841ff04a.ctex"
+uid="uid://cyiwpcpckp8s3"
+path="res://.godot/imported/Scratch.png-ffab442db00fc5ef358938010ce5bdbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Units/0_Zombie_Villager_Idle_000.png"
-dest_files=["res://.godot/imported/0_Zombie_Villager_Idle_000.png-4a6a569d870abbd42199bc56841ff04a.ctex"]
+source_file="res://Assets/Units/Scratch.png"
+dest_files=["res://.godot/imported/Scratch.png-ffab442db00fc5ef358938010ce5bdbe.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var base_health: int = 200
+@export var base_health: int = 20
 @export var attack_damage: int = 2
 @export var base_critical_percent_chance: int = 15
 @export var base_critical_damage_multiplier: float = 1.6

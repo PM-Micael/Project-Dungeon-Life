@@ -1,5 +1,11 @@
 extends Node
 
+const EnemyType = {
+	FLESH_GOUL = "flesh_goul",
+	FLESH_HULK = "flesh_hulk",
+	SKELETON = "skeleton"
+}
+
 # Units
 var dungeon_team: Array[Entity]
 var available_units_as_entities: Array[Entity]
@@ -13,6 +19,25 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
+	"putrid_layers": {
+		"room_1": [
+			{
+				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 250) },
+				],
+			}
+		],
+		"room_2":[
+			{
+				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 250) },
+				],
+			}
+		]
+	},
 	"room_1": [
 		{
 			"formation_1":[
@@ -83,23 +108,6 @@ var dungeon_scaling: Dictionary = {
 		"base_attack_increase_per_wave": 0.2,
 	}
 }
-
-var enemy_formations: Array[Array] = [
-	[
-		{ "type": "skeleton", "position": Vector2(250, 150) },
-		{ "type": "skeleton", "position": Vector2(350, 150) },
-		{ "type": "skeleton", "position": Vector2(450, 150) },
-		{ "type": "skeleton", "position": Vector2(550, 150) },
-		{ "type": "flesh_goul", "position": Vector2(450, 50) },
-	],
-	[
-		{ "type": "skeleton", "position": Vector2(50, 350) },
-		{ "type": "skeleton", "position": Vector2(250, 350) },
-		{ "type": "skeleton", "position": Vector2(550, 350) },
-		{ "type": "skeleton", "position": Vector2(750, 350) },
-		{ "type": "flesh_goul", "position": Vector2(450, 50) },
-	]
-]
 
 # Inventory
 var backpack_contents_as_entities: Array[Entity]

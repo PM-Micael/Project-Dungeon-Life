@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_7enmy"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_ihlvo"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_s2q4m"]
-[ext_resource type="Texture2D" uid="uid://cyiwpcpckp8s3" path="res://Assets/Units/0_Zombie_Villager_Idle_000.png" id="11_rpeeu"]
+[ext_resource type="Texture2D" uid="uid://cyiwpcpckp8s3" path="res://Assets/Units/Scratch.png" id="11_rpeeu"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="12_fu8xi"]
 
 [node name="Scratch" type="Node2D" unique_id=1233185424]

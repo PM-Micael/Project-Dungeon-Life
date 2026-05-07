@@ -4,7 +4,7 @@ var player_id: String = ""
 var display_name: String = ""
 
 var inner_sanctum: Dictionary = {
-	"life": 2,
+	"life": 1,
 	"power": 1
 }
 

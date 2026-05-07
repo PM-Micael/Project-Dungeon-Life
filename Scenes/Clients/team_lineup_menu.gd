@@ -67,7 +67,7 @@ func _place_friendly_units():
 
 func _place_enemy_units():
 	var room_key: String = "room_" + str(current_room)
-	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations[room_key][0]
+	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations["putrid_layers"][room_key][0]
 	
 	var formation_count: int = formations_dict.size()
 	var enemy_formation_index: int = randi_range(0, formation_count - 1)
