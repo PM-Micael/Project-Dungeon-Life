@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _set_stats():
 	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
-	attack_component.set_stats_absolute(attack_damage, 200, base_critical_percent_chance, base_critical_damage_multiplier)
+	attack_component.set_stats_absolute(attack_damage, 300, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_chemical_toxin(targets: Array[Entity], was_crit:bool):
 	if was_crit:

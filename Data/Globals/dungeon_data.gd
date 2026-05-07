@@ -1,5 +1,9 @@
 extends Node
 
+const Zone = {
+	PUTRID_LAYERS = "putrid_layers"
+}
+
 const EnemyType = {
 	FLESH_GOUL = "flesh_goul",
 	FLESH_HULK = "flesh_hulk",
@@ -19,7 +23,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	"putrid_layers": {
+	Zone.PUTRID_LAYERS: {
 		"room_1": [
 			{
 				"formation_1":[

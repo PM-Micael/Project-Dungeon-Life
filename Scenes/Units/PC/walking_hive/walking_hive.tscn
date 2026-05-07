@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cqx3i8gy5v24w"]
+
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="1_5psmv"]
+[ext_resource type="Script" uid="uid://dvtrkia0xmatf" path="res://Scenes/Units/PC/walking_hive/walking_hive.gd" id="1_vlonv"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="2_vlonv"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_v3uia"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_p32eb"]
+[ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="5_q44od"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_8rcd3"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="7_44frx"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="8_psvux"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="9_82kvg"]
+[ext_resource type="Texture2D" uid="uid://dadm3akbxl1fe" path="res://Assets/Units/0_Reaper_Man_Idle_000.png" id="10_5psmv"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_qj47k"]
+
+[node name="WalkingHive" type="Node2D" unique_id=1319104232]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_vlonv")
+
+[node name="Components" type="Node2D" parent="." unique_id=704127956]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("1_5psmv")]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_vlonv")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_v3uia")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_p32eb")]
+
+[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=241725634]
+script = ExtResource("5_q44od")
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_8rcd3")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("7_44frx")]
+
+[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_psvux")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("9_82kvg")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721653816]
+texture = ExtResource("10_5psmv")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_qj47k")]

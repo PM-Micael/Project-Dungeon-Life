@@ -17,12 +17,17 @@ var dungeon_team: Array[Unit]
 var dungeon_team_formation: Array[Dictionary] = [
 	{
 		"unit_name": "scratch",
-		"starting_position": Vector2(150.0, 650.0),
+		"starting_position": Vector2(350.0, 650.0),
 		"weapon_id": ""
 	},
 	{
 		"unit_name": "zac",
-		"starting_position": Vector2(250.0, 650.0),
+		"starting_position": Vector2(350.0, 450.0),
+		"weapon_id": ""
+	},
+		{
+		"unit_name": "walking_hive",
+		"starting_position": Vector2(350.0, 550.0),
 		"weapon_id": ""
 	},
 ]
