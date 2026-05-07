@@ -16,23 +16,13 @@ var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]
 var dungeon_team_formation: Array[Dictionary] = [
 	{
-		"unit_name": "petamer",
+		"unit_name": "scratch",
 		"starting_position": Vector2(150.0, 650.0),
 		"weapon_id": ""
 	},
 	{
-		"unit_name": "soulbound",
-		"starting_position": Vector2(250.0, 650.0),
-		"weapon_id": "burst_staff"
-	},
-	{
-		"unit_name": "orbath",
-		"starting_position": Vector2(350.0, 650.0),
-		"weapon_id": "burst_staff"
-	},
-	{
 		"unit_name": "zac",
-		"starting_position": Vector2(450.0, 650.0),
+		"starting_position": Vector2(250.0, 650.0),
 		"weapon_id": ""
 	},
 ]

@@ -6,10 +6,10 @@ var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Units/goblin.tscn"),
 	preload("res://Scenes/Units/golem.tscn"),
-	preload("res://Scenes/Units/petamer/petamer.tscn"),
-	preload("res://Scenes/Units/soulbound/soulbound.tscn"),
-	preload("res://Scenes/Units/orbath/orbath.tscn"),
-	preload("res://Scenes/Units/zac/zac.tscn"),
+	preload("res://Scenes/Units/PC/petamer/petamer.tscn"),
+	preload("res://Scenes/Units/PC/soulbound/soulbound.tscn"),
+	preload("res://Scenes/Units/PC/orbath/orbath.tscn"),
+	preload("res://Scenes/Units/PC/zac/zac.tscn"),
 ]
 
 var dungeon_wave_formations: Dictionary = {

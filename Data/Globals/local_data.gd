@@ -15,8 +15,8 @@ var current_inventory_layout_id: int:
 func initialize_data(_ui: Node2D, _board: GameBoard = board):
 	board = _board
 	ui = _ui
-	current_board_layout_id = 1
-	current_inventory_layout_id = 1
+	current_board_layout_id = 2
+	current_inventory_layout_id = 2
 
 func _set_layout():
 	var layout_id: String = (str(0) + str(current_inventory_layout_id) + str(current_board_layout_id))

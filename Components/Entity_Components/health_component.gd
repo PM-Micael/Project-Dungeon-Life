@@ -7,7 +7,7 @@ class_name  HealthComponent
 @export var max_health: int
 @export var current_health: int
 
-signal damage_taken(attacker: Entity)
+signal damage_taken(attacker: Entity, is_crit: bool)
 
 var is_alive: bool = true
 
@@ -27,11 +27,11 @@ func take_damage(attacker: Entity):
 		die()
 		return
 
-func take_damage_flat(attacker: Entity, amount: int):
+func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	current_health -= amount
 	current_health = clamp(current_health, 0, max_health)
 	health_bar.value = current_health
-	damage_taken.emit(attacker)
+	damage_taken.emit(attacker, is_crit)
 	if current_health <= 0:
 		is_alive = false
 		die()

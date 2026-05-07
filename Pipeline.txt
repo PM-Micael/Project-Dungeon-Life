@@ -39,3 +39,5 @@ Buggs:
 	Potential wave scaling formula:
 		Wave each wave (up to 10) has a set amount of formations that can be placed on the board.
 		
+2026-05-07:
+	Maybe change the name of zac to D.O.T.L (Devourer Of The Living) or something similar

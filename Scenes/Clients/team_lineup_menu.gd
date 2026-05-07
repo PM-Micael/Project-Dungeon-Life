@@ -46,7 +46,7 @@ func _place_friendly_units():
 		var unit_starting_position = u["starting_position"]
 		var weapon_id = u["weapon_id"]
 		
-		var unit_scene: PackedScene = load("res://Scenes/Units/" + unit_name + "/" + unit_name + ".tscn")
+		var unit_scene: PackedScene = load("res://Scenes/Units/PC/" + unit_name + "/" + unit_name + ".tscn")
 		var unit_instance: Unit = unit_scene.instantiate()
 		
 		if weapon_id != "":
@@ -79,7 +79,7 @@ func _place_enemy_units():
 	for e in enemy_formation:
 		var enemy_type: String = e["type"]
 		var enemy_position: Vector2 = e["position"]
-		var enemy_scene: PackedScene = load("res://Scenes/Units/" + enemy_type + "/" + enemy_type + ".tscn")
+		var enemy_scene: PackedScene = load("res://Scenes/Units/NPC/" + enemy_type + "/" + enemy_type + ".tscn")
 		var enemy_instance: Unit = enemy_scene.instantiate()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 
