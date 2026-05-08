@@ -22,7 +22,7 @@ func _info(_name: String, _display_name: String, _friendly_team: String, _hostil
 	hostile_team = _hostile_team
 
 func _check_unity_in_battle() -> int:
-	var children: Array[Unit] = get_tree().get_nodes("TeamLineupMenu/Board/Units/FriendlyUnits").get_children()
+	var children: Array[Node] = get_node("/root/TeamLineupMenu/Board/Units/FriendlyUnits").get_children()
 	var unity_units: int = 0
 	
 	for unit in children:

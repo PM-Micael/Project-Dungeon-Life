@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 	if game_on:
 		_check_units_alive()
 
-
 func place_friendly_units_on_board():
 	for u in friendly_units:
 		friendly_units_node.add_child(u)

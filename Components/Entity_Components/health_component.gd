@@ -1,13 +1,14 @@
 extends Node2D
 class_name  HealthComponent
 
+signal damage_taken(attacker: Entity, is_crit: bool)
+signal died(killer: Unit)
+
 @onready var parent_entity: Entity = get_parent().get_parent()
 @onready var health_bar:  = get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
 
 @export var max_health: int
 @export var current_health: int
-
-signal damage_taken(attacker: Entity, is_crit: bool)
 
 var is_alive: bool = true
 
@@ -25,7 +26,6 @@ func take_damage(attacker: Entity):
 	if current_health <= 0:
 		is_alive = false
 		die()
-		return
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	current_health -= amount
