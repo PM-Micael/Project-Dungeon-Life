@@ -1,4 +1,4 @@
-extends Debuff
+extends Affliction
 class_name DevourersMark
 
 func _init() -> void:
@@ -13,9 +13,10 @@ func apply(target: Entity) -> void:
 func debuff_effect():
 	warer.health_component.damage_taken.connect(_on_warer_took_damage)
 
-func _on_warer_took_damage(attacker: Unit):
-	#check applier
-	if attacker == owner and warer.health_component.current_health <= warer.health_component.max_health * 0.05:
+func _on_warer_took_damage(attacker: Entity, _is_crit: bool):
+	if not is_instance_valid(owner):
+		return
+	if warer.health_component.current_health <= warer.health_component.max_health * 0.05:
 		print(owner.display_name + " Devourered")
 		owner.devour_stacks += 1
 		warer.health_component.die(attacker)

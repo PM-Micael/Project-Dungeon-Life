@@ -25,10 +25,10 @@ func _set_stats():
 	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
 	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
 
-func _apply_devour_debuff(targets: Array[Entity]):
+func _apply_devour_debuff(targets: Array[Entity], is_crit: bool):
 	for u in targets:
-		if u.debuff_component != null:
-			u.debuff_component.add_debuff(_construct_devour_mark_debuff(), self)
+		if u.effect_component != null:
+			u.effect_component.add_affliction(_construct_devour_mark_debuff(), self)
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()

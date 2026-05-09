@@ -12,7 +12,11 @@ func _ready() -> void:
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
 func _calculate_damage() -> int:
-	return 2
+	var wearer: Entity = weapon_component.entity_holding_weapon
+	
+	var total_damage = wearer.attack_component.get_total_attack_damage(false)
+	
+	return total_damage
 
 func _weapon_skill(targets: Array[Entity]):
 	# Walk up to the entity holding these gloves
