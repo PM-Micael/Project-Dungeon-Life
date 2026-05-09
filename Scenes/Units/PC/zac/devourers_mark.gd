@@ -8,6 +8,9 @@ func _init() -> void:
 	stacks = 1
 
 func apply(target: Entity) -> void:
+	debuff_effect()
+
+func debuff_effect():
 	warer.health_component.damage_taken.connect(_on_warer_took_damage)
 
 func _on_warer_took_damage(attacker: Unit):
@@ -15,4 +18,4 @@ func _on_warer_took_damage(attacker: Unit):
 	if attacker == owner and warer.health_component.current_health <= warer.health_component.max_health * 0.05:
 		print(owner.display_name + " Devourered")
 		owner.devour_stacks += 1
-		warer.health_component.die()
+		warer.health_component.die(attacker)

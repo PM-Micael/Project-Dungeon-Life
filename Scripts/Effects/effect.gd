@@ -1,4 +1,4 @@
-class_name Debuff
+class_name Effect
 extends Resource
 
 var id: String

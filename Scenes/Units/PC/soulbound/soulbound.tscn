@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_b6ot6"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="9_g52l7"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="9_lg2mf"]
-[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="10_52bwn"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="10_52bwn"]
 [ext_resource type="Texture2D" uid="uid://r28e71ukne2p" path="res://Assets/Units/0_Necromancer_of_the_Shadow_Idle_000.png" id="10_ymjy2"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_43js5"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="11_52bwn"]

@@ -6,7 +6,7 @@ var display_name: String
 var hostile_team: String
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
-@onready var debuff_component: DebuffComponent = get_node_or_null("Components/DebuffComponent")
+@onready var effect_component: EffectComponent = get_node_or_null("Components/EffectComponent")
 @onready var buff_component: BuffComponent = get_node_or_null("Components/BuffComponent")
 @onready var health_component: HealthComponent = get_node_or_null("Components/HealthComponent")
 @onready var movment_component: MovmentComponent = get_node_or_null("Components/MovmentComponent")

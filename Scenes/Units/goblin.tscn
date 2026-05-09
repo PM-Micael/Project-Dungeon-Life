@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="7_ajbjq"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_h62md"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="8_o6mmh"]
-[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_ots5y"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_ots5y"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_ots5y"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_p60ou"]
 

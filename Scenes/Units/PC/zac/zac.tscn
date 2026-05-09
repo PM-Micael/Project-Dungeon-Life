@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cex3ysf0ntpim" path="res://Assets/Units/0_Minotaur_Idle_000.png" id="8_h7u56"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_tv1r3"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
-[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="9_nxu0w"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_nxu0w"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_nxu0w"]
 
 [node name="Zac" type="Node2D" unique_id=750954088 groups=["units"]]

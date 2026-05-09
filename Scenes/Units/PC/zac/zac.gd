@@ -27,7 +27,8 @@ func _set_stats():
 
 func _apply_devour_debuff(targets: Array[Entity]):
 	for u in targets:
-		u.debuff_component.add_debuff(_construct_devour_mark_debuff(), self)
+		if u.debuff_component != null:
+			u.debuff_component.add_debuff(_construct_devour_mark_debuff(), self)
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()

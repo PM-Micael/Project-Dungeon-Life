@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_my3dw"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_8ry6l"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_ebxeg"]
-[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/debuff_component.tscn" id="7_t1eum"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="7_t1eum"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="8_k3suj"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_iys0x"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_svtj0"]
@@ -28,11 +28,11 @@ script = ExtResource("1_a6kgj")
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("6_ebxeg")]
 
-[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("7_t1eum")]
-
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("8_k3suj")]
 
 [node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("9_iys0x")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("7_t1eum")]
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_svtj0")]
 

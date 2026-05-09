@@ -12,6 +12,11 @@ signal died(killer: Unit)
 
 var is_alive: bool = true
 
+func get_health_percent() -> float:
+	if max_health <= 0:
+		return 0.0
+	return float(current_health) / float(max_health)
+
 func set_stats(set_max_health: int):
 	max_health = set_max_health
 	current_health = max_health
@@ -25,7 +30,7 @@ func take_damage(attacker: Entity):
 	damage_taken.emit(attacker)
 	if current_health <= 0:
 		is_alive = false
-		die()
+		die(attacker)
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	current_health -= amount
@@ -34,14 +39,15 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	damage_taken.emit(attacker, is_crit)
 	if current_health <= 0:
 		is_alive = false
-		die()
+		die(attacker)
 
 func heal(amount: int):
 	current_health += amount
 	current_health = clamp(current_health, 0, max_health)
 	health_bar.value = current_health
 
-func die():
+func die(killer: Unit):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
+	died.emit(killer)
 	parent_entity.queue_free()
