@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="6_6o7jy"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_lqhoy"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_pk4wc"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_oevjm"]
 [ext_resource type="Texture2D" uid="uid://vqskmvk4uhx8" path="res://Assets/Units/0_Orc_Idle_000.png" id="9_yljnp"]
 
-[node name="FleshHulk" type="Node2D" unique_id=1287196777]
+[node name="FleshHulk" type="Node2D" unique_id=1287196777 groups=["units"]]
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_ntsm4")
 
 [node name="Components" type="Node2D" parent="." unique_id=1232184197]
@@ -26,9 +28,11 @@ script = ExtResource("1_ntsm4")
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_0epsn")]
 
-[node name="DebuffComponent" parent="Components" unique_id=1677900983 instance=ExtResource("6_6o7jy")]
-
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_lqhoy")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("9_oevjm")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("6_6o7jy")]
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("8_pk4wc")]
 

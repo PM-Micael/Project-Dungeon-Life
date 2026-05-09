@@ -23,22 +23,12 @@ func set_stats(set_max_health: int):
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 
-func take_damage(attacker: Entity):
-	current_health -= attacker.attack_component.attack_damage
-	current_health = clamp(current_health, 0, max_health)
-	health_bar.value = current_health
-	damage_taken.emit(attacker)
-	if current_health <= 0:
-		is_alive = false
-		die(attacker)
-
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	current_health -= amount
 	current_health = clamp(current_health, 0, max_health)
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
 	if current_health <= 0:
-		is_alive = false
 		die(attacker)
 
 func heal(amount: int):
@@ -47,6 +37,9 @@ func heal(amount: int):
 	health_bar.value = current_health
 
 func die(killer: Unit):
+	if not is_alive:
+		return
+	is_alive = false
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	died.emit(parent_entity)

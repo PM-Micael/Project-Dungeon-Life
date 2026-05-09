@@ -13,9 +13,21 @@ signal round_over(player_won: bool)
 
 var game_on: bool = false
 
+func _ready() -> void:
+	for unit in friendly_units:
+		unit.health_component.died.connect(_on_friendly_unit_died)
+	for unit in enemy_units:
+		unit.health_component.died.connect(_on_enemy_unit_died)
+
 func _physics_process(delta: float) -> void:
 	if game_on:
 		_check_units_alive()
+
+func _on_friendly_unit_died(unit: Unit):
+	friendly_units.erase(unit)
+
+func _on_enemy_unit_died(unit: Unit):
+	enemy_units.erase(unit)
 
 func place_friendly_units_on_board():
 	for u in friendly_units:

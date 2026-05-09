@@ -24,7 +24,7 @@ func _set_stats():
 func _apply_chemical_toxin(targets: Array[Entity], was_crit:bool):
 	if was_crit:
 		for u in targets:
-			u.debuff_component.add_debuff(_construct_chemical_toxin(), self)
+			u.effect_component.add_debuff(_construct_chemical_toxin(), self)
 
 func _construct_chemical_toxin() -> ChemicalToxin:
 	var mark = ChemicalToxin.new()

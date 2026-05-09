@@ -30,12 +30,15 @@ func _on_debuff_applied(target: Unit):
 		for debuff in affliction_debuffs:
 			debuff.debuff_effect()
 
-func blood_collector(dead_unit: Unit):
+func blood_collector(dead_unit: Unit): 
 	var board: GameBoard = dead_unit.get_node("/root/TeamLineupMenu/Board")
 	var lowest_health_unit: Unit
 	var lowest_health: float = -1.0
 	
 	for unit in board.friendly_units:
+		if not is_instance_valid(unit):
+			continue
+		
 		var unit_health_percent =  unit.health_component.get_health_percent()
 		
 		if lowest_health == -1.0:
@@ -49,4 +52,3 @@ func blood_collector(dead_unit: Unit):
 		lowest_health_unit.health_component.heal(
 			int(lowest_health_unit.health_component.max_health * max_health_heal)
 		)
-	print(lowest_health_unit.display_name+" healed: "+str(max_health_heal))
