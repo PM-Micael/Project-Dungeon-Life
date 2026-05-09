@@ -1,6 +1,6 @@
 extends Entity
 
-@export var basic_attack_damage: int = 2
+@export var basic_attack_damage: int = 1
 
 func _init() -> void:
 	id = "rumble_gloves"
@@ -8,6 +8,7 @@ func _init() -> void:
 func _ready() -> void:
 	name = "rumble_gloves"
 	display_name = "Rumble Gloves"
+	weapon_component.weapon_energy_gained_on_damage_taken = 3
 	weapon_component.set_stats_absolute(basic_attack_damage)
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
@@ -42,4 +43,3 @@ func _weapon_skill(targets: Array[Entity]):
 				if entity is Entity and entity.position.is_equal_approx(world_pos):
 					if entity.health_component != null:
 						entity.health_component.take_damage_flat(wearer, _calculate_damage(), false)
-						print(entity.name + "Got RUMBLED!!!")

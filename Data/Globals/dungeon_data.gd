@@ -89,8 +89,36 @@ var dungeon_wave_formations: Dictionary = {
 		"room_7":[
 			{
 				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 350) },
+				],
+			}
+		],
+		"room_8":[
+			{
+				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(750, 350) },
+				],
+			}
+		],
+		"room_9":[
+			{
+				"formation_1":[
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(250, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(550, 350) },
 				],
 			}
 		],
