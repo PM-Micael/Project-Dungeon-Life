@@ -32,6 +32,5 @@ func _connect_blood_flies():
 func _apply_blood_flies(unit: Node):
 	await unit.ready
 	unit.effect_component.add_affliction(BloodFlies.new(), self)
-	print(self.display_name+" applied blood flies to "+unit.name)
 	return
 	

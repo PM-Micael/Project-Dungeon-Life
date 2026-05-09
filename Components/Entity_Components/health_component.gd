@@ -2,7 +2,7 @@ extends Node2D
 class_name  HealthComponent
 
 signal damage_taken(attacker: Entity, is_crit: bool)
-signal died(killer: Unit)
+signal died(this_unit: Unit)
 
 @onready var parent_entity: Entity = get_parent().get_parent()
 @onready var health_bar:  = get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
@@ -49,5 +49,5 @@ func heal(amount: int):
 func die(killer: Unit):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
-	died.emit(killer)
+	died.emit(parent_entity)
 	parent_entity.queue_free()

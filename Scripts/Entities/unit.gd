@@ -14,6 +14,7 @@ var unity: String
 
 func _ready() -> void:
 	position = starting_position
+	BoardGrid.set_tile_solid(BoardGrid.world_to_tile(position), true)
 
 func _info(_name: String, _display_name: String, _friendly_team: String, _hostile_team: String):
 	name = _name

@@ -7,21 +7,20 @@ signal debuff_extended(target: Entity)
 @onready var parent_entity: Entity = get_parent().get_parent()
 
 var active_debuffs: Array[Debuff] = []
-var active_affliction: Array[Affliction] = []
+var active_afflictions: Array[Affliction] = []
 
 func add_affliction(affliction: Affliction, owner: Unit):
 	affliction.warer = parent_entity
 	affliction.owner = owner
-	for existing in active_affliction:
+	for existing in active_afflictions:
 		if affliction.stacks > 1:
 			print("Stacking debuff")
 		elif existing.id == affliction.id:
 			existing.duration = affliction.duration
 			debuff_extended.emit(parent_entity)
 			return
-	active_debuffs.append(affliction)
+	active_afflictions.append(affliction)
 	affliction.apply(parent_entity)
-	debuff_applied.emit(parent_entity)
 
 func add_debuff(debuff: Debuff, owner: Unit):
 	debuff.warer = parent_entity
