@@ -23,7 +23,7 @@ var dungeon_team_formation: Array[Dictionary] = [
 	{
 		"unit_name": "zac",
 		"starting_position": Vector2(350.0, 450.0),
-		"weapon_id": ""
+		"weapon_id": "rumble_gloves"
 	},
 	{
 		"unit_name": "walking_hive",

@@ -34,7 +34,7 @@ func set_weapon_energy_bar():
 func _prep_attack(target: Entity):
 	entity_holding_weapon.attack_component.weapon_added_multiplier += added_attack_damage_multiplier
 
-func _finish_attack(targets: Array[Entity]):
+func _finish_attack(targets: Array[Entity], is_crit: bool):
 	adjust_energy(targets)
 	entity_holding_weapon.attack_component.weapon_added_multiplier -= added_attack_damage_multiplier
 

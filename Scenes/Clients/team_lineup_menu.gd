@@ -10,7 +10,7 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 var game_on: bool = false
-var current_room: int = 1
+var current_room: int = 4
 
 func _ready() -> void:
 	LocalData.initialize_data(ui_scene, board)
@@ -50,7 +50,7 @@ func _place_friendly_units():
 		var unit_instance: Unit = unit_scene.instantiate()
 		
 		if weapon_id != "":
-			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_id+".tscn")
+			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_id+"/"+weapon_id+".tscn")
 			var weapon_instance: Entity = weapon_scene.instantiate()
 			var weapon_slot = unit_instance.get_node("Components/WeaponSlotComponent")
 			weapon_slot.add_child(weapon_instance)
