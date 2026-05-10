@@ -1,7 +1,7 @@
 extends Effect
 class_name Blessing
 
-var blessing_buffs: Array[Debuff]
+var buffs: Array[Buff]
 
-func _set_debuffs(set_buffs: Array[Debuff]):
-	blessing_buffs = set_buffs
+func _set_debuffs(set_buffs: Array[Buff]):
+	buffs = set_buffs

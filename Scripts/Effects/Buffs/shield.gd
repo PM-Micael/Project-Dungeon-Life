@@ -3,15 +3,14 @@ class_name Shield
 
 var shield_value = 0
 var flat_modifier = 0
-var percent_modifier = 1.0
+var percent_modifier = 0.0
 
-func set_values(_warer, flat: int, percent: float):
+func _init(flat: int, percent: float) -> void:
 	flat_modifier = flat
 	percent_modifier = percent
-	
-	shield_value = (_warer.health_component.max_health * percent_modifier) + flat_modifier
 
 func apply(_target: Entity) -> void:
+	shield_value = (warer.health_component.max_health * percent_modifier) + flat_modifier
 	warer.health_component.post_calculate_damage.connect(effect)
 
 func effect(_unit, amount, _is_crit):

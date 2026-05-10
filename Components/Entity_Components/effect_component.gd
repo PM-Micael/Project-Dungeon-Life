@@ -22,7 +22,20 @@ func _process(delta: float) -> void:
 			debuff.duration -= delta
 			if debuff.duration <= 0:
 				_remove_debuff(debuff)
-				
+
+func add_blessing(blessing: Blessing, owner: Unit):
+	blessing.warer = parent_entity
+	blessing.owner = owner
+	for existing in active_blessings:
+		if blessing.stacks > 1:
+			print("Stacking debuff")
+		elif existing.id == blessing.id:
+			existing.duration = blessing.duration
+			debuff_extended.emit(parent_entity)
+			return
+	active_blessings.append(blessing)
+	blessing.apply(parent_entity)
+
 func add_affliction(affliction: Affliction, owner: Unit):
 	affliction.warer = parent_entity
 	affliction.owner = owner
