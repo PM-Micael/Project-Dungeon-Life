@@ -2,6 +2,7 @@ extends Node2D
 class_name  HealthComponent
 
 signal pre_damage_taken(attacker: Entity, is_crit: bool)
+signal post_calculate_damage
 signal damage_taken(attacker: Entity, is_crit: bool)
 signal died(this_unit: Unit)
 signal pre_heal(target: Entity, amount: int)
@@ -15,6 +16,7 @@ var base_heal_modifier: float = 1.0
 var final_heal_modifier: float = 1.0
 var base_damage_taken_modifier: float = 1.0
 var final_damage_taken_modifier: float = 1.0
+var final_damage_taken_amount: int = 0
 
 @export var max_health: int
 @export var current_health: int
@@ -32,13 +34,14 @@ func set_stats(set_max_health: int):
 	health_bar.value = current_health
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
-	if is_crit:
-		print(attacker.display_name+" landed a Critical hit!")
 	final_damage_taken_modifier = base_damage_taken_modifier
-	pre_damage_taken.emit(attacker, is_crit)
+	pre_damage_taken.emit(attacker, amount, is_crit)
 	
-	current_health -= (amount * final_damage_taken_modifier)
+	final_damage_taken_amount = (amount * final_damage_taken_modifier)
+	post_calculate_damage.emit(attacker, amount, is_crit)
+	current_health -= final_damage_taken_amount
 	current_health = clamp(current_health, 0, max_health)
+	
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
 	if current_health <= 0:
@@ -52,7 +55,7 @@ func heal(amount: int):
 	health_bar.value = current_health
 	post_heal.emit(parent_entity, amount)
 
-func die(killer: Unit):
+func die(_killer: Unit):
 	if not is_alive:
 		return
 	is_alive = false

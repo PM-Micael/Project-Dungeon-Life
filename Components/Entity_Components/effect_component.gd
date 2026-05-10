@@ -1,10 +1,16 @@
 extends Node2D
 class_name EffectComponent
 
+signal buff_applied(target: Entity)
+signal buff_extended(target: Entity)
+
 signal debuff_applied(target: Entity)
 signal debuff_extended(target: Entity)
 
 @onready var parent_entity: Entity = get_parent().get_parent()
+
+var active_buffs: Array[Buff] = []
+var active_blessings: Array[Blessing] = []
 
 var active_debuffs: Array[Debuff] = []
 var active_afflictions: Array[Affliction] = []
@@ -30,6 +36,20 @@ func add_affliction(affliction: Affliction, owner: Unit):
 	active_afflictions.append(affliction)
 	affliction.apply(parent_entity)
 
+func add_buff(buff: Buff, owner: Unit):
+	buff.warer = parent_entity
+	buff.owner = owner
+	for existing in active_buffs:
+		if buff.stacks > 1:
+			print("Stacking buff")
+		elif existing.id == buff.id:
+			existing.duration = buff.duration
+			buff_extended.emit(parent_entity)
+			return
+	active_buffs.append(buff)
+	buff.apply(parent_entity)
+	buff_applied.emit(parent_entity)
+
 func add_debuff(debuff: Debuff, owner: Unit):
 	debuff.warer = parent_entity
 	debuff.owner = owner
@@ -43,6 +63,10 @@ func add_debuff(debuff: Debuff, owner: Unit):
 	active_debuffs.append(debuff)
 	debuff.apply(parent_entity)
 	debuff_applied.emit(parent_entity)
+
+func remove_buff(buff: Buff):
+	buff.remove(parent_entity)
+	active_buffs.erase(buff)
 
 func _remove_debuff(debuff: Debuff):
 	debuff.remove(parent_entity)

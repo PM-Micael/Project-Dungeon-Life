@@ -41,3 +41,6 @@ Buggs:
 		
 2026-05-07:
 	Maybe change the name of zac to D.O.T.L (Devourer Of The Living) or something similar
+
+2026-05-10:
+	Impliment blessing in preperaion for putrid abomination
