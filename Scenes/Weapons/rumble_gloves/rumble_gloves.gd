@@ -22,7 +22,7 @@ func _calculate_damage() -> int:
 	
 	return total_damage
 
-func _weapon_skill(targets: Array[Entity]):
+func _weapon_skill(_targets: Array[Entity]):
 	# Walk up to the entity holding these gloves
 	var wearer: Entity = weapon_component.entity_holding_weapon
 

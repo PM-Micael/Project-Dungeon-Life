@@ -9,6 +9,14 @@ signal debuff_extended(target: Entity)
 var active_debuffs: Array[Debuff] = []
 var active_afflictions: Array[Affliction] = []
 
+func _process(delta: float) -> void:
+	for debuff in active_debuffs:
+		debuff.tick(parent_entity, delta)
+		if debuff.duration > 0:
+			debuff.duration -= delta
+			if debuff.duration <= 0:
+				_remove_debuff(debuff)
+				
 func add_affliction(affliction: Affliction, owner: Unit):
 	affliction.warer = parent_entity
 	affliction.owner = owner
@@ -35,14 +43,6 @@ func add_debuff(debuff: Debuff, owner: Unit):
 	active_debuffs.append(debuff)
 	debuff.apply(parent_entity)
 	debuff_applied.emit(parent_entity)
-
-func _process(delta: float) -> void:
-	for debuff in active_debuffs:
-		debuff.tick(parent_entity, delta)
-		if debuff.duration > 0:
-			debuff.duration -= delta
-			if debuff.duration <= 0:
-				_remove_debuff(debuff)
 
 func _remove_debuff(debuff: Debuff):
 	debuff.remove(parent_entity)
