@@ -14,8 +14,11 @@ func _ready() -> void:
 
 func _calculate_damage() -> int:
 	var wearer: Entity = weapon_component.entity_holding_weapon
+	var is_crit: bool = false
+	if weapon_component.ability_can_crit:
+		is_crit = wearer.attack_component.roll_crit()
 	
-	var total_damage = wearer.attack_component.get_total_attack_damage(false)
+	var total_damage = wearer.attack_component.get_total_attack_damage(is_crit)
 	
 	return total_damage
 
