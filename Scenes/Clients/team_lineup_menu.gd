@@ -10,7 +10,7 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 var game_on: bool = false
-var current_room: int = 8
+var current_room: int = 10
 
 func _ready() -> void:
 	LocalData.initialize_data(ui_scene, board)
@@ -60,6 +60,7 @@ func _place_friendly_units():
 		entity_container_instance.name = "EntityContainer_" + unit_name
 		entity_container_instance.entity = unit_instance
 		entity_container_instance.position = unit_starting_position
+		entity_container_instance.scale = unit_instance.scale
 		unit_instance.starting_position = entity_container_instance.position
 		
 		board.get_node("Units/FriendlyUnits").add_child(entity_container_instance)
@@ -86,6 +87,7 @@ func _place_enemy_units():
 		entity_container_instance.name = "EntityContainer_" + str(loop_itteration + 1)
 		entity_container_instance.entity = enemy_instance
 		entity_container_instance.position = enemy_position
+		entity_container_instance.scale = enemy_instance.scale
 		enemy_instance.starting_position = entity_container_instance.position
 
 		board.get_node("Units/EnemyUnits").add_child(entity_container_instance)

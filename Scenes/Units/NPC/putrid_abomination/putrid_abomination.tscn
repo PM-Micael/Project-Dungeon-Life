@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dg21ra4a6wb77"]
+
+[ext_resource type="Script" uid="uid://dpcul42l4p58e" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination.gd" id="1_wrc0k"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="2_3knse"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_xjql5"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_3pf4x"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_18om8"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_1poc2"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_h1tn5"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_vbbgu"]
+[ext_resource type="Texture2D" uid="uid://cr6vs1boia03i" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination_sprite.svg" id="10_dqgny"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_2lr1o"]
+
+[node name="PutridAbomination" type="Node2D" unique_id=405116011 groups=["units"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_wrc0k")
+
+[node name="Components" type="Node2D" parent="." unique_id=874187603]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_3knse")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_xjql5")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_3pf4x")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("5_18om8")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("6_1poc2")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_h1tn5")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_vbbgu")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=929049321]
+position = Vector2(0, -100)
+texture = ExtResource("10_dqgny")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_2lr1o")]

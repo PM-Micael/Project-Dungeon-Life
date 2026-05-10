@@ -34,7 +34,7 @@ script = ExtResource("1_a6kgj")
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("7_t1eum")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_svtj0")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636351838]
 texture = ExtResource("10_qat5y")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_svtj0")]

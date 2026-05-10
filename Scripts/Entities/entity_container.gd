@@ -6,13 +6,10 @@ class_name EntityContainer
 		entity = value
 		_set_sprite()
 
-func _ready() -> void:
-	#_set_sprite()
-	return
-
 func _set_sprite():
 	var sprite: Sprite2D = get_child(0)
 	if entity != null:
+		sprite.position = entity.get_node("Sprite2D").position
 		sprite.texture = entity.get_node("Sprite2D").texture
 		return
 	

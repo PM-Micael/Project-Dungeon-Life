@@ -7,7 +7,8 @@ const Zone = {
 const EnemyType = {
 	FLESH_GOUL = "flesh_goul",
 	FLESH_HULK = "flesh_hulk",
-	SKELETON = "skeleton"
+	PUTRID_ABOMINATION = "putrid_abomination",
+	SKELETON = "skeleton",
 }
 
 # Units
@@ -119,6 +120,13 @@ var dungeon_wave_formations: Dictionary = {
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(550, 350) },
+				],
+			}
+		],
+		"room_10":[
+			{
+				"formation_1":[
+					{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 150) },
 				],
 			}
 		],
