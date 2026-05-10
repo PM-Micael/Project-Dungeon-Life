@@ -1,6 +1,8 @@
 extends Buff
 class_name Shield
 
+signal shield_broken
+
 var shield_value = 0
 var flat_modifier = 0
 var percent_modifier = 0.0
@@ -20,7 +22,7 @@ func effect(_unit, amount, _is_crit):
 	if shield_value >= incoming:
 		shield_value -= incoming
 		hc.final_damage_taken_amount = 0
-		print("Shielded against ["+str(int(incoming))+"] damage")
+		print("Shield: "+str(int(shield_value)))
 	else:
 		var overflow = incoming - shield_value
 		hc.final_damage_taken_amount = overflow
@@ -28,4 +30,5 @@ func effect(_unit, amount, _is_crit):
 		print("Shield broke")
 		hc.post_calculate_damage.disconnect(effect)
 		warer.effect_component.remove_buff(self)
+		shield_broken.emit()
 		

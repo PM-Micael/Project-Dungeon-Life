@@ -44,3 +44,7 @@ Buggs:
 
 2026-05-10:
 	Impliment blessing in preperaion for putrid abomination
+	
+2026-05-10:
+	Units that enter the board should all calll to one unified function to handle potential hicups like for example
+	conneecting their died signal to the board. Maybe.
