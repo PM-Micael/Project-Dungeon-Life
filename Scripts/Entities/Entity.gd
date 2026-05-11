@@ -43,11 +43,17 @@ func movment_component_action():
 			
 			movment_component.timer.start()
 
-func attack_component_action(): # perhaps more efficient if statment can be implimented
+func attack_component_action():
 	if attack_component != null:
-		if (attack_component.in_target_attack_range &&
-		attack_component.timer.time_left <= 0.1 &&
-		(targeting_component != null &&
-		targeting_component.target != null)):
-			attack_component.attack_target(targeting_component.target)
-			attack_component.timer.start()
+		if (attack_component.timer.time_left <= 0.1 &&
+		targeting_component != null &&
+		targeting_component.target != null):
+			var in_range: bool
+			if movment_component != null:
+				in_range = attack_component.in_target_attack_range
+			else:
+				var dist = position.distance_to(targeting_component.target.position)
+				in_range = dist <= attack_component.attack_range * sqrt(2)
+			if in_range:
+				attack_component.attack_target(targeting_component.target)
+				attack_component.timer.start()
