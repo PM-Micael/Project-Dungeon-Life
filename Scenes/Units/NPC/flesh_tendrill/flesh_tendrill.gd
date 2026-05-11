@@ -1,19 +1,19 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 10
-@export var attack_damage: int = 1
+@export var max_health: int = 20
+@export var attack_damage: int = 2
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.2
 
 func _init() -> void:
-	id = "flesh_goul"
+	id = "flesh_tendrill"
 
 func _ready() -> void:
 	super._ready()
 	_set_stats()
-	_info("flesh_goul", "Flesh Goul", "Team 2", "Team 1")
+	_info("flesh_tendrill", "Flesh Tendrill", "Team 2", "Team 1")
 
 func _set_stats():
 	health_component.set_stats(max_health)
-	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
+	attack_component.set_stats_absolute(attack_damage, 200, base_critical_percent_chance, base_critical_damage_multiplier)

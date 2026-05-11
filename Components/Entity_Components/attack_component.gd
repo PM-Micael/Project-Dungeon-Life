@@ -17,11 +17,11 @@ var is_crit = false
 
 var in_target_attack_range: bool = false
 
-func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, seet_crit_damage):
+func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range
-	base_critical_damage_multiplier = set_crit_chance
-	base_critical_damage_multiplier = seet_crit_damage
+	base_critical_percent_chance = set_crit_chance
+	base_critical_damage_multiplier = set_crit_damage
 
 func attack_target(target: Entity):
 	pre_attack_target.emit(target)
