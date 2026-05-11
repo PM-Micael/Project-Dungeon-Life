@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_1poc2"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_h1tn5"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_vbbgu"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_wrc0k"]
 [ext_resource type="Texture2D" uid="uid://cr6vs1boia03i" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination_sprite.svg" id="10_dqgny"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_2lr1o"]
 
@@ -30,6 +31,8 @@ script = ExtResource("1_wrc0k")
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_h1tn5")]
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_vbbgu")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("9_wrc0k")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=929049321]
 position = Vector2(0, -100)

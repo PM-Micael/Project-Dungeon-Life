@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 100
+@export var max_health: int = 150
 @export var attack_damage: int = 5
 
 func _init() -> void:
@@ -19,3 +19,4 @@ func _apply_flesh_shield():
 
 func _set_stats():
 	health_component.set_stats(max_health)
+	attack_component.timer.wait_time = 1.6

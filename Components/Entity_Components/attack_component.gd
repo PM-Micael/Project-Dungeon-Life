@@ -43,5 +43,4 @@ func roll_crit() -> bool:
 func get_total_attack_damage(is_crit: bool) -> int:
 	if is_crit:
 		return (attack_damage + weapon_added_multiplier) * base_critical_damage_multiplier
-		print(entity_parent.name+": Crit!")
 	return attack_damage + weapon_added_multiplier

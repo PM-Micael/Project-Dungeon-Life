@@ -18,6 +18,7 @@ func _ready() -> void:
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
 func _weapon_skill(_targets: Array[Entity]):
+	print("Tripple shot Activated")
 	if crit_charges > 0:
 		return
 	
@@ -34,6 +35,7 @@ func _weapon_skill(_targets: Array[Entity]):
 	wearer.attack_component.post_attack_target.connect(_on_attack_fired)
 
 func _on_attack_fired(_targets: Array[Entity], _is_crit: bool):
+	print("Shot "+str(crit_charges))
 	crit_charges -= 1
 	if crit_charges <= 0:
 		_remove_buff()

@@ -3,6 +3,8 @@ class_name WeaponComponent
 
 signal use_weapon_skill
 
+var star_level: int = 1
+
 var max_weapon_energy: int = 100
 var current_weapon_energy: int = 70
 var weapon_energy_gained_on_attack: int = 10

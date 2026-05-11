@@ -32,6 +32,14 @@ var dungeon_team_formation: Array[Dictionary] = [
 	},
 ]
 
+var dungeon_loot: Array[Dictionary] = [
+	{
+		"item_id": "burst_staff",
+		"star_level": 1,
+		"item_type": "weapon"
+	},
+]
+
 func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 	var new_formation: Array[Dictionary] = []
 	
@@ -50,5 +58,11 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 	
 	dungeon_team_formation = new_formation
 
-func get_dungeon_team() -> Array[Unit]:
-	return []
+func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_contents_as_entities) -> void:
+	var new_loot: Array[Dictionary] = []
+	for entity in backpack:
+		new_loot.append({
+			"item_id": entity.id,
+			"star_level": entity.weapon_component.star_level,
+		})
+	dungeon_loot = new_loot

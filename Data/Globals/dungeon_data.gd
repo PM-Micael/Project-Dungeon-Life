@@ -28,62 +28,62 @@ var dungeon_wave_formations: Dictionary = {
 		"room_1": [
 			{
 				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 250) },
 				],
 			}
 		],
 		"room_2":[
 			{
 				"formation_1":[
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 250) },
 					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 250) },
 				],
 			}
 		],
 		"room_3":[
 			{
 				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 250) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
 				],
 			}
 		],
 		"room_4":[
 			{
 				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(650, 250) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(750, 250) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(150, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(250, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
+					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
 				],
 			}
 		],
 		"room_5":[
 			{
 				"formation_1":[
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(250, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(550, 350) },
 				],
 			}
 		],
 		"room_6":[
 			{
 				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(150, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(250, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
 					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
+					{ "type": EnemyType.FLESH_HULK, "position": Vector2(550, 350) },
 				],
 			}
 		],
