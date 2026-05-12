@@ -20,7 +20,7 @@ func _ready() -> void:
 	_connect_to_all_units()
 
 func _set_stats():
-	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
+	health_component.set_stats(base_health)
 	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _connect_to_all_units():

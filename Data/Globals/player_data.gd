@@ -1,16 +1,16 @@
 extends Node
 
 var player_id: String = ""
-var display_name: String = ""
+var display_name: String = "" 
 
 var inner_sanctum: Dictionary = {
-	"life": 1,
-	"power": 1
+	"life": 8,
+	"power": 8,
 }
 
 # Progression data
 var dungeon_tier: int = 1
-var dungeon_wave: int = 1
+var dungeon_room: int = 10
 
 var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]

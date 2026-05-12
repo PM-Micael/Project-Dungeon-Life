@@ -1,6 +1,6 @@
 extends Entity
 
-@export var basic_attack_damage: int = 2
+@export var basic_attack_damage: int = 20
 
 var crit_charges: int = 0
 var bonus_crit_multiplier: float = 0.5

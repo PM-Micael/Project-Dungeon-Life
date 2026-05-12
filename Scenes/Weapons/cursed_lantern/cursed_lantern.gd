@@ -1,6 +1,6 @@
 extends Entity
 
-@export var basic_attack_damage: int = 1
+@export var basic_attack_damage: int = 10
 
 var heal_reduction_modifier: float = 0.4
 var weaken_modifier: float = 0.25

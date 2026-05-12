@@ -1,8 +1,8 @@
 extends Unit
 
 @export_category("Stats")
-@export var base_health: int = 20
-@export var attack_damage: int = 1
+@export var base_health: int = 300
+@export var attack_damage: int = 10
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.2
 
@@ -12,18 +12,18 @@ func _init() -> void:
 	id = "zac"
 	passive_description = "Dealing damage to an enemy marks them.
 		Dealing damage to a marked enemy with 5% or less executes them and grants Zac a stack of Devour.
-		Each stack of devour grants plus 1 max heaelth"
+		Each stack of devour grants plus 1 max health"
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("zac", "Zac", "Team 1", "Team 2")
+	_set_stats()
 	attack_component.post_attack_target.connect(_apply_devour_debuff)
 	# Connect to damage by weapon skill
 
 func _set_stats():
-	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
-	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
+	health_component.set_stats(base_health*PlayerData.inner_sanctum.life)
+	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, 100, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_devour_debuff(targets: Array[Entity], is_crit: bool):
 	for u in targets:

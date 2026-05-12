@@ -1,10 +1,10 @@
 extends Unit
 
 @export_category("Stats")
-@export var base_health: int = 10
-@export var attack_damage: int = 2
+@export var base_health: int = 100
+@export var attack_damage: int = 20
 @export var base_critical_percent_chance: int = 15
-@export var base_critical_damage_multiplier: float = 1.65
+@export var base_critical_damage_multiplier: float = 1.3
 
 func _init() -> void:
 	id = "scratch"
@@ -18,8 +18,8 @@ func _ready() -> void:
 	attack_component.post_attack_target.connect(_apply_chemical_toxin)
 
 func _set_stats():
-	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
-	attack_component.set_stats_absolute(attack_damage, 300, base_critical_percent_chance, base_critical_damage_multiplier)
+	health_component.set_stats(base_health*PlayerData.inner_sanctum.life)
+	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, 300, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_chemical_toxin(targets: Array[Entity], was_crit:bool):
 	if was_crit:

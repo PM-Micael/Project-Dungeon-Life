@@ -10,7 +10,7 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 var game_on: bool = false
-var current_room: int = 4
+@onready var current_room: int = PlayerData.dungeon_room
 
 func _ready() -> void:
 	LocalData.initialize_data(ui_scene, board)

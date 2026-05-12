@@ -1,7 +1,7 @@
 extends Affliction
 class_name BloodFlies
 
-var max_health_heal: float = 0.2
+var max_health_heal: float = 0.15
 
 func _init() -> void:
 	id = "blood_flies"

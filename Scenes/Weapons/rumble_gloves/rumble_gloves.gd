@@ -1,6 +1,6 @@
 extends Entity
 
-@export var basic_attack_damage: int = 1
+@export var basic_attack_damage: int = 10
 
 func _init() -> void:
 	id = "rumble_gloves"
