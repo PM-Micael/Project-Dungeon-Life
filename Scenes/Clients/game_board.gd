@@ -88,7 +88,6 @@ func _on_friendly_unit_died(unit: Unit):
 	friendly_units.erase(unit)
 
 func _on_enemy_unit_died(unit: Unit):
-	print(unit.display_name+" died")
 	collected_essence += unit.essence_value
 	enemy_units.erase(unit)
 
@@ -99,6 +98,7 @@ func place_friendly_units_on_board():
 func place_enemy_units_on_board():
 	for u in enemy_units:
 		enemy_units_node.add_child(u)
+		u.health_component.died.connect(_on_enemy_unit_died)
 
 func _check_units_alive():
 	var enemies: Array = enemy_units_node.get_children()
@@ -107,6 +107,7 @@ func _check_units_alive():
 	if enemies.size() == 0:
 		PlayerData.add_inner_sanctum_essence(collected_essence)
 		print("Collected ["+str(collected_essence)+"] essence")
+		print("Total essence = " + str(PlayerData.current_inner_sanctum_essence)+"/"+str(PlayerData.total_inner_sanctum_essence))
 		collected_essence = 0
 		current_room += 1
 		victory_screen.visible = true
@@ -120,4 +121,3 @@ func _check_units_alive():
 		print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
 		game_on = false
 		round_over.emit(false)
-	

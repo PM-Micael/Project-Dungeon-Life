@@ -210,5 +210,4 @@ offset_right = 1860.0
 offset_bottom = 52.0
 
 [node name="InnerSanctum" parent="." unique_id=1848263234 instance=ExtResource("9_kgsvi")]
-visible = false
 position = Vector2(1120, 280)
