@@ -43,11 +43,19 @@ func _ready() -> void:
 	power_decrease_button.pressed.connect(decrease_power_pressed)
 
 func _commit_pressed():
-	PlayerData.inner_sanctum.life
+	PlayerData.inner_sanctum.life += allocated_life_points
+	allocated_life_points = 0
 	
+	PlayerData.inner_sanctum.power += allocated_power_points
+	allocated_power_points = 0
+	
+	PlayerData.current_inner_sanctum_essence = allocated_essence
+	_ready()
 
 # Life
 func increase_life_pressed():
+	if allocated_essence <= 0:
+		return
 	allocated_life_points += 0.1
 	allocated_essence -= 1
 
@@ -60,6 +68,8 @@ func decrease_life_pressed():
 
 # Power
 func increase_power_pressed():
+	if allocated_essence <= 0:
+		return
 	allocated_power_points += 0.1
 	allocated_essence -= 1
 
