@@ -1,11 +1,13 @@
 extends Node2D
 class_name InnerSanctum
 
+var life_upgrade_cost: float = PlayerData.inner_sanctum.life
 var allocated_life_points: float:
 	set(value):
 		allocated_life_points = value
 		life_value_label.text = str(PlayerData.inner_sanctum.life + allocated_life_points)
 
+var power_upgrade_cost: float = PlayerData.inner_sanctum.power
 var allocated_power_points: float:
 	set(value):
 		allocated_power_points = value
@@ -58,26 +60,48 @@ func _commit_pressed():
 func increase_life_pressed():
 	if allocated_essence <= 0:
 		return
-	allocated_life_points += 0.1
-	allocated_essence -= 1
+	
+	var virtual_essence = allocated_essence
+	virtual_essence -= int(life_upgrade_cost)
+	if virtual_essence < 0:
+		return
+		
+	allocated_life_points += 0.1 
+	allocated_essence = virtual_essence
+	_set_life_upgrade_cost()
 
 func decrease_life_pressed():
 	allocated_life_points -= 0.1
 	if allocated_life_points < 0:
 		allocated_life_points = 0
 		return
-	allocated_essence += 1
+	_set_life_upgrade_cost()
+	allocated_essence += int(life_upgrade_cost)
+
+func _set_life_upgrade_cost():
+	life_upgrade_cost = PlayerData.inner_sanctum.life + allocated_life_points
 
 # Power
 func increase_power_pressed():
 	if allocated_essence <= 0:
 		return
+		
+	var virtual_essence = allocated_essence
+	virtual_essence -= int(power_upgrade_cost)
+	if virtual_essence < 0:
+		return
+		
 	allocated_power_points += 0.1
-	allocated_essence -= 1
+	allocated_essence = virtual_essence
+	_set_power_upgrade_cost()
 
 func decrease_power_pressed():
 	allocated_power_points -= 0.1
 	if allocated_power_points < 0:
 		allocated_power_points = 0
 		return
-	allocated_essence += 1
+	_set_power_upgrade_cost()
+	allocated_essence += int(power_upgrade_cost)
+
+func _set_power_upgrade_cost():
+	power_upgrade_cost = PlayerData.inner_sanctum.power + allocated_power_points
