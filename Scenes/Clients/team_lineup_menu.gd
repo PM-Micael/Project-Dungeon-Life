@@ -10,7 +10,7 @@ class_name TeamLineupMenu
 @onready var currently_selected_unit_entity_container: EntityContainer = null
 
 var game_on: bool = false
-@onready var current_room: int = PlayerData.dungeon_room
+
 
 func _ready() -> void:
 	LocalData.initialize_data(ui_scene, board)
@@ -32,69 +32,9 @@ func _setup_stage():
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
 	board.enemy_units.clear()
-	_place_friendly_units()
-	_place_enemy_units()
+	board._place_friendly_units()
+	board._place_enemy_units()
 	unit_loadout_frame.show_stats = false
-
-# ─── Unit Placement ───────────────────────────────────────────────────────────
-
-func _place_friendly_units():
-	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-	
-	for u in PlayerData.dungeon_team_formation:
-		var unit_name: String = u["unit_name"]
-		var unit_starting_position = u["starting_position"]
-		var weapon_id = u["weapon_id"]
-		
-		var unit_scene: PackedScene = load("res://Scenes/Units/PC/" + unit_name + "/" + unit_name + ".tscn")
-		var unit_instance: Unit = unit_scene.instantiate()
-		
-		if weapon_id != "":
-			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_id+"/"+weapon_id+".tscn")
-			var weapon_instance: Entity = weapon_scene.instantiate()
-			var weapon_slot = unit_instance.get_node("Components/WeaponSlotComponent")
-			weapon_slot.add_child(weapon_instance)
-		
-		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-		
-		entity_container_instance.name = "EntityContainer_" + unit_name
-		entity_container_instance.entity = unit_instance
-		entity_container_instance.position = unit_starting_position
-		entity_container_instance.scale = unit_instance.scale
-		unit_instance.starting_position = entity_container_instance.position
-		
-		board.get_node("Units/FriendlyUnits").add_child(entity_container_instance)
-		board.friendly_units.append(unit_instance)
-
-func _place_enemy_units():
-	var room_key: String = "room_" + str(current_room)
-	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations["putrid_layers"][room_key][0]
-	
-	var formation_count: int = formations_dict.size()
-	var enemy_formation_index: int = randi_range(0, formation_count - 1)
-	
-	var enemy_formation: Array = formations_dict["formation_" + str(enemy_formation_index + 1)]
-	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-
-	var loop_itteration: int = 0
-	for e in enemy_formation:
-		var enemy_type: String = e["type"]
-		var enemy_position: Vector2 = e["position"]
-		var enemy_scene: PackedScene = load("res://Scenes/Units/NPC/" + enemy_type + "/" + enemy_type + ".tscn")
-		var enemy_instance: Unit = enemy_scene.instantiate()
-		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-
-		entity_container_instance.name = "EntityContainer_" + str(loop_itteration + 1)
-		entity_container_instance.entity = enemy_instance
-		entity_container_instance.position = enemy_position
-		entity_container_instance.scale = enemy_instance.scale
-		enemy_instance.starting_position = entity_container_instance.position
-
-		board.get_node("Units/EnemyUnits").add_child(entity_container_instance)
-		board.enemy_units.append(enemy_instance)
-
-		loop_itteration += 1
-
 
 # ─── Game State ───────────────────────────────────────────────────────────────
 
