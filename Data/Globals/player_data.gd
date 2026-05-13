@@ -15,6 +15,9 @@ var inner_sanctum: Dictionary = {
 # Progression data
 var dungeon_tier: int = 1
 var dungeon_room: int = 1
+var dungeon_layer_level: int:
+	get:
+		return ceili(dungeon_room / 10.0)
 
 var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]

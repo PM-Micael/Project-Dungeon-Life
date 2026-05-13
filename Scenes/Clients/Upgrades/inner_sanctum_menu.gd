@@ -33,6 +33,8 @@ var allocated_essence: int:
 @onready var power_increase_button: Button = get_node("InnerSanctumPower/IncreaseButton")
 
 func _ready() -> void:
+	PlayerData.save_player_data()
+	
 	allocated_essence = PlayerData.current_inner_sanctum_essence
 	commit_button.pressed.connect(_commit_pressed)
 	

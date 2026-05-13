@@ -229,3 +229,18 @@ func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entit
 	
 	weapon_slot.add_child(weapon_entity)
 	return old_weapon
+
+# Helpers
+
+func get_room_formations(zone: String, room_number: int) -> Array:
+	var zone_data: Dictionary = dungeon_wave_formations.get(zone, {})
+	if zone_data.is_empty():
+		return []
+	
+	# Map any room number to 1–10 via modulo cycling
+	# room 11 → 1, room 12 → 2, room 20 → 10, room 21 → 1, etc.
+	var cycle_size: int = 10
+	var cycled_room: int = ((room_number - 1) % cycle_size) + 1
+	var room_key: String = "room_" + str(cycled_room)
+	
+	return zone_data.get(room_key, [])

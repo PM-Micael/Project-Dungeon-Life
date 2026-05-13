@@ -56,8 +56,7 @@ func _place_friendly_units():
 		friendly_units.append(unit_instance)
 
 func _place_enemy_units():
-	var room_key: String = "room_" + str(current_room)
-	var formations_dict: Dictionary = DungeonData.dungeon_wave_formations["putrid_layers"][room_key][0]
+	var formations_dict: Dictionary = DungeonData.get_room_formations(DungeonData.Zone.PUTRID_LAYERS, current_room)[0]
 	
 	var formation_count: int = formations_dict.size()
 	var enemy_formation_index: int = randi_range(0, formation_count - 1)
@@ -109,6 +108,7 @@ func _check_units_alive():
 		print("Collected ["+str(collected_essence)+"] essence")
 		print("Total essence = " + str(PlayerData.current_inner_sanctum_essence)+"/"+str(PlayerData.total_inner_sanctum_essence))
 		collected_essence = 0
+		PlayerData.dungeon_room += 1
 		current_room += 1
 		victory_screen.visible = true
 		for node: Unit in friendly_units_node.get_children():

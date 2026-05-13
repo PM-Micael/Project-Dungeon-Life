@@ -65,9 +65,11 @@ func _setup_stage():
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
 	board.enemy_units.clear()
+	board.enemy_units.clear()
 	board._place_friendly_units()
 	board._place_enemy_units()
 	unit_loadout_frame.show_stats = false
+	print("Room = "+str(PlayerData.dungeon_room))
 
 func _exit_dungeon():
 	PlayerData.dungeon_room = 1
