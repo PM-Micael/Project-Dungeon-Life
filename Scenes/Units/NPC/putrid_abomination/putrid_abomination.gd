@@ -22,4 +22,4 @@ func _apply_flesh_shield():
 func _set_stats():
 	health_component.set_stats(max_health)
 	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
-	attack_component.timer.wait_time = 1.6
+	attack_component.attack_speed = 1.6

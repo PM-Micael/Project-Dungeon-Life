@@ -108,7 +108,7 @@ func _check_units_alive():
 		PlayerData.add_inner_sanctum_essence(collected_essence)
 		print("Collected ["+str(collected_essence)+"] essence")
 		collected_essence = 0
-		game_parent.current_room += 1
+		current_room += 1
 		victory_screen.visible = true
 		for node: Unit in friendly_units_node.get_children():
 			node.queue_free_unit()

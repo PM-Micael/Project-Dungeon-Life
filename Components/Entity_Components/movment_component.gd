@@ -12,6 +12,21 @@ func _ready() -> void:
 	timer.wait_time = 1.1
 	# Use the unit's own tile_position instead of the global debug value
 
+func _physics_process(_delta: float) -> void:
+	movment_action()
+
+func movment_action():
+	if (timer.time_left <= 0.1 and
+	parent_entity.targeting_component != null and 
+	parent_entity.targeting_component.target != null
+	):
+		if parent_entity.attack_component != null:
+			parent_entity.attack_component.in_target_attack_range = move_to_target_tile(parent_entity.targeting_component.target)
+		else:
+			move_to_target_tile(parent_entity.targeting_component.target)
+		
+		timer.start()
+
 func move_to_tile(target_tile: Vector2i):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)

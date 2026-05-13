@@ -6,16 +6,33 @@ signal post_attack_target
 
 @export var attack_damage: int = 1
 @export var attack_range: int = 100
+@export var attack_speed: float = 1.1
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.0
 
 var weapon_added_multiplier: int = 0
 var is_crit = false
+var in_target_attack_range: bool = false
 
 @onready var entity_parent: Entity = get_parent().get_parent()
 @onready var timer: Timer = $Timer
 
-var in_target_attack_range: bool = false
+func _ready() -> void:
+	timer.wait_time = attack_speed
+
+func _physics_process(_delta: float) -> void:
+	if (timer.time_left <= 0.1 and
+		entity_parent.targeting_component != null &&
+		entity_parent.targeting_component.target != null):
+			var in_range: bool
+			if entity_parent.movment_component != null:
+				in_range = in_target_attack_range
+			else:
+				var dist = position.distance_to(entity_parent.targeting_component.target.position)
+				in_range = dist <= attack_range * sqrt(2)
+			if in_range:
+				attack_target(entity_parent.targeting_component.target)
+				timer.start()
 
 func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
 	attack_damage = set_attack_damage
