@@ -113,11 +113,13 @@ func _check_units_alive():
 		victory_screen.visible = true
 		for node: Unit in friendly_units_node.get_children():
 			node.queue_free_unit()
-		
 		game_on = false
 		round_over.emit(true)
 	elif friendlies.size() == 0:
 		print("You loose")
 		print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
+		defeat_screen.visible = true
 		game_on = false
-		round_over.emit(false)
+		round_over.emit(true)
+		for node: Unit in enemy_units_node.get_children():
+			node.queue_free_unit()

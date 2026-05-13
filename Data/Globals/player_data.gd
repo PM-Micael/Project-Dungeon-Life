@@ -6,7 +6,7 @@ var display_name: String = ""
 var total_inner_sanctum_essence = 0
 var current_inner_sanctum_essence = 12 
 var inner_sanctum: Dictionary = {
-	"life": 1.5,
+	"life": 0.1,
 	"power": 1.0,
 }
 

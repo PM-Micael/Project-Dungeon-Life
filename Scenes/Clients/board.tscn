@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://kfflhfiy04w"]
+
+[ext_resource type="Script" uid="uid://cab48t3stycys" path="res://Scenes/Clients/game_board.gd" id="1_nmtso"]
+[ext_resource type="PackedScene" uid="uid://djuih4ym5jkn2" path="res://Scenes/Environment/map_tiles.tscn" id="2_2d55c"]
+
+[node name="Board" type="Node2D" unique_id=1051771976]
+script = ExtResource("1_nmtso")
+
+[node name="MapTiles" parent="." unique_id=2113342636 instance=ExtResource("2_2d55c")]
+
+[node name="Units" type="Node2D" parent="." unique_id=1132688327]
+
+[node name="FriendlyUnits" type="Node2D" parent="Units" unique_id=832081044]
+
+[node name="EnemyUnits" type="Node2D" parent="Units" unique_id=717856813]
+
+[node name="RoundOver" type="Node2D" parent="." unique_id=276781697]
+z_index = 2
+
+[node name="DefeatScreen" type="Node2D" parent="RoundOver" unique_id=194628576]
+
+[node name="Style" type="Node2D" parent="RoundOver/DefeatScreen" unique_id=732521616]
+
+[node name="Frame" type="ColorRect" parent="RoundOver/DefeatScreen/Style" unique_id=1087271301]
+offset_left = 70.0
+offset_top = 275.0
+offset_right = 730.0
+offset_bottom = 535.0
+
+[node name="Backround" type="ColorRect" parent="RoundOver/DefeatScreen/Style" unique_id=1173172733]
+offset_left = 75.0
+offset_top = 280.0
+offset_right = 725.0
+offset_bottom = 530.0
+color = Color(0, 0, 0, 1)
+
+[node name="ReplayStageButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1157211427]
+offset_left = -125.0
+offset_top = 100.0
+offset_right = 125.0
+offset_bottom = 200.0
+text = "Replay
+"
+
+[node name="EditTeamButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1038183422]
+offset_left = 185.0
+offset_top = 100.0
+offset_right = 435.0
+offset_bottom = 200.0
+text = "Edit Team"
+
+[node name="ExitDungeonButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1784633707]
+offset_left = 125.0
+offset_top = 398.0
+offset_right = 275.0
+offset_bottom = 468.0
+text = "Exit Dungeon"
+
+[node name="TitleLabel" type="Label" parent="RoundOver/DefeatScreen" unique_id=1444770209]
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -131.0
+theme_override_font_sizes/font_size = 50
+text = "Defeat"
+horizontal_alignment = 1
+
+[node name="VictoryScreen" type="Node2D" parent="RoundOver" unique_id=2065268552]
+visible = false
+
+[node name="Style" type="Node2D" parent="RoundOver/VictoryScreen" unique_id=793989212]
+
+[node name="Frame" type="ColorRect" parent="RoundOver/VictoryScreen/Style" unique_id=1329854633]
+offset_left = 70.0
+offset_top = 275.0
+offset_right = 730.0
+offset_bottom = 535.0
+
+[node name="Backround" type="ColorRect" parent="RoundOver/VictoryScreen/Style" unique_id=1723235597]
+offset_left = 75.0
+offset_top = 280.0
+offset_right = 725.0
+offset_bottom = 530.0
+color = Color(0, 0, 0, 1)
+
+[node name="Loot" type="Node2D" parent="RoundOver/VictoryScreen" unique_id=626045690]
+
+[node name="Label" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=1069346152]
+offset_left = 150.0
+offset_top = 303.0
+offset_right = 204.0
+offset_bottom = 338.0
+theme_override_font_sizes/font_size = 25
+text = "Loot"
+
+[node name="NextStageButton" type="Button" parent="RoundOver/VictoryScreen" unique_id=1327499166]
+offset_left = 531.0
+offset_top = 425.0
+offset_right = 681.0
+offset_bottom = 500.0
+text = "Next Stage"
+
+[node name="TitleLabel" type="Label" parent="RoundOver/VictoryScreen" unique_id=1211960203]
+offset_left = 250.0
+offset_top = 303.0
+offset_right = 550.0
+offset_bottom = 372.0
+theme_override_font_sizes/font_size = 50
+text = "Victory"
+horizontal_alignment = 1

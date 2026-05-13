@@ -1,4 +1,5 @@
 extends Node2D
+class_name InnerSanctum
 
 var allocated_life_points: float:
 	set(value):
@@ -17,6 +18,7 @@ var allocated_essence: int:
 
 @onready var essence_value_label: Label = get_node("EssenceValueLabel")
 @onready var commit_button: Button = get_node("CommitButton")
+@onready var dungeon_button: Button = get_node("DungeonButton")
 
 @onready var life_key_label: Label = get_node("InnerSanctumLife/KeyLabel")
 @onready var life_value_label: Label = get_node("InnerSanctumLife/ValueLabel")

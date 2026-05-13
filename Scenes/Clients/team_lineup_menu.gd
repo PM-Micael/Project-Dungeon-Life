@@ -1,27 +1,58 @@
-# Scenes/Clients/team_lineup_menu.gd
 extends Node2D
 class_name TeamLineupMenu
 
-@onready var board: GameBoard = get_node("Board")
-@onready var map_tiles_scene: MapTiles = get_node_or_null("Board/MapTiles")
+@onready var board_scene = preload("res://Scenes/Clients/board.tscn")
+@onready var inner_sanctum_scene = preload("res://Scenes/Clients/Upgrades/inner_sanctum.tscn")
+
+@onready var board: GameBoard
+@onready var inner_sanctum: InnerSanctum
+@onready var map_tiles_scene: MapTiles
 @onready var ui_scene = get_node_or_null("UI")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
-@onready var next_stage_button: Button = get_node("Board/RoundOver/VictoryScreen/NextStageButton")
-@onready var currently_selected_unit_entity_container: EntityContainer = null
+@onready var next_stage_button: Button
+@onready var exit_dungeon_button: Button
+@onready var currently_selected_unit_entity_container: EntityContainer
 
 var game_on: bool = false
 
-
 func _ready() -> void:
+	add_board_scene()
 	LocalData.initialize_data(ui_scene, board)
 	_window_setup()
 	_connect_events()
 	_setup_stage()
 
+func add_board_scene():
+	var get_inner_sanctum = get_node_or_null("InnerSanctum")
+	if get_inner_sanctum != null:
+		get_inner_sanctum.queue_free()
+		
+	var instance = board_scene.instantiate()
+	add_child(instance)
+	move_child(instance, 0)
+	board = get_node("Board")
+	map_tiles_scene = get_node_or_null("Board/MapTiles")
+	next_stage_button = get_node("Board/RoundOver/VictoryScreen/NextStageButton")
+	exit_dungeon_button = get_node("Board/RoundOver/DefeatScreen/ExitDungeonButton")
+	LocalData.initialize_data(ui_scene, board) # Bandade fix
+
+func add_inner_sanctum_scene():
+	var get_board = get_node_or_null("Board")
+	if get_board != null:
+		get_board.queue_free()
+	
+	var instance = inner_sanctum_scene.instantiate()
+	instance.position = Vector2(1120.0, 280.0)
+	add_child(instance)
+	move_child(instance, 1)
+	inner_sanctum = get_node("InnerSanctum")
+	inner_sanctum.dungeon_button.pressed.connect(_ready)
+
 func _connect_events():
 	map_tiles_scene.tile_clicked.connect(_on_tile_clicked)
 	board.round_over.connect(_on_round_over)
 	next_stage_button.pressed.connect(_setup_stage)
+	exit_dungeon_button.pressed.connect(_exit_dungeon)
 
 func _window_setup():
 	var window = get_window()
@@ -35,6 +66,11 @@ func _setup_stage():
 	board._place_friendly_units()
 	board._place_enemy_units()
 	unit_loadout_frame.show_stats = false
+
+func _exit_dungeon():
+	PlayerData.dungeon_room = 1
+	board.defeat_screen.visible = false
+	add_inner_sanctum_scene()
 
 # ─── Game State ───────────────────────────────────────────────────────────────
 
