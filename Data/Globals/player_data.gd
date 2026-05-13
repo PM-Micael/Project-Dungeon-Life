@@ -1,7 +1,9 @@
 extends Node
 
-var player_id: String = ""
-var display_name: String = "" 
+signal player_data_loaded
+
+var player_id: String = "dare_mane"
+var display_name: String = "DareMane"
 
 var total_inner_sanctum_essence = 0
 var current_inner_sanctum_essence = 0
@@ -72,3 +74,128 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 			"star_level": entity.weapon_component.star_level,
 		})
 	dungeon_loot = new_loot
+
+# Database
+
+func save_player_data():
+	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
+	
+	# Serialize dungeon_team_formation
+	var formation_array = []
+	for unit in dungeon_team_formation:
+		formation_array.append({
+			"mapValue": {
+				"fields": {
+					"unit_name": { "stringValue": unit["unit_name"] },
+					"weapon_id": { "stringValue": unit["weapon_id"] },
+					"pos_x": { "doubleValue": unit["starting_position"].x },
+					"pos_y": { "doubleValue": unit["starting_position"].y },
+				}
+			}
+		})
+	
+	# Serialize dungeon_loot
+	var loot_array = []
+	for item in dungeon_loot:
+		loot_array.append({
+			"mapValue": {
+				"fields": {
+					"item_id": { "stringValue": item["item_id"] },
+					"star_level": { "integerValue": str(item["star_level"]) },
+					"item_type": { "stringValue": item["item_type"] },
+				}
+			}
+		})
+	
+	var data = {
+		"fields": {
+			"display_name": { "stringValue": display_name },
+			"dungeon_tier": { "integerValue": str(dungeon_tier) },
+			"dungeon_room": { "integerValue": str(dungeon_room) },
+			"total_inner_sanctum_essence": { "integerValue": str(total_inner_sanctum_essence) },
+			"current_inner_sanctum_essence": { "integerValue": str(current_inner_sanctum_essence) },
+			"inner_sanctum": {
+				"mapValue": {
+					"fields": {
+						"life": { "doubleValue": inner_sanctum["life"] },
+						"power": { "doubleValue": inner_sanctum["power"] },
+					}
+				}
+			},
+			"dungeon_team_formation": {
+				"arrayValue": { "values": formation_array }
+			},
+			"dungeon_loot": {
+				"arrayValue": { "values": loot_array }
+			},
+		}
+	}
+	
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(func(result, code, headers, body):
+		print("Save result - HTTP code: ", code)
+		print("Body: ", body.get_string_from_utf8())
+	)
+	
+	var headers = ["Content-Type: application/json"]
+	var body = JSON.stringify(data)
+	http.request(url, headers, HTTPClient.METHOD_PATCH, body)
+
+func load_player_data():
+	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
+	
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(func(result, code, headers, body):
+		if code != 200:
+			print("Load failed - HTTP code: ", code)
+			print("Body: ", body.get_string_from_utf8())
+			return
+		
+		var json = JSON.new()
+		json.parse(body.get_string_from_utf8())
+		var fields = json.get_data()["fields"]
+		
+		# Basic fields
+		display_name = fields["display_name"]["stringValue"]
+		dungeon_tier = int(fields["dungeon_tier"]["integerValue"])
+		dungeon_room = int(fields["dungeon_room"]["integerValue"])
+		total_inner_sanctum_essence = int(fields["total_inner_sanctum_essence"]["integerValue"])
+		current_inner_sanctum_essence = int(fields["current_inner_sanctum_essence"]["integerValue"])
+		
+		# Inner sanctum
+		var sanctum_fields = fields["inner_sanctum"]["mapValue"]["fields"]
+		inner_sanctum["life"] = float(sanctum_fields["life"]["doubleValue"])
+		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
+		
+		# Dungeon team formation
+		dungeon_team_formation.clear()
+		var formation_values = fields["dungeon_team_formation"]["arrayValue"].get("values", [])
+		for entry in formation_values:
+			var f = entry["mapValue"]["fields"]
+			dungeon_team_formation.append({
+				"unit_name": f["unit_name"]["stringValue"],
+				"weapon_id": f["weapon_id"]["stringValue"],
+				"starting_position": Vector2(
+					float(f["pos_x"]["doubleValue"]),
+					float(f["pos_y"]["doubleValue"])
+				)
+			})
+		
+		# Dungeon loot
+		dungeon_loot.clear()
+		var loot_values = fields["dungeon_loot"]["arrayValue"].get("values", [])
+		for entry in loot_values:
+			var l = entry["mapValue"]["fields"]
+			dungeon_loot.append({
+				"item_id": l["item_id"]["stringValue"],
+				"star_level": int(l["star_level"]["integerValue"]),
+				"item_type": l["item_type"]["stringValue"],
+			})
+		
+		print("Player data loaded successfully")
+		player_data_loaded.emit()
+	)
+	
+	http.request(url, [], HTTPClient.METHOD_GET, "")

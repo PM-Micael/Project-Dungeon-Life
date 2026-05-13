@@ -16,6 +16,8 @@ class_name TeamLineupMenu
 var game_on: bool = false
 
 func _ready() -> void:
+	PlayerData.load_player_data()
+	await PlayerData.player_data_loaded
 	add_board_scene()
 	LocalData.initialize_data(ui_scene, board)
 	_window_setup()
