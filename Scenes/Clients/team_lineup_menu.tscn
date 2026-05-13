@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
 [ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="5_qn83p"]
 [ext_resource type="Script" uid="uid://bprtdlylcotm7" path="res://Scenes/Clients/board_switch_button.gd" id="8_gdxfq"]
+[ext_resource type="PackedScene" uid="uid://brqcerkuyo18u" path="res://Scenes/Clients/Upgrades/inner_sanctum.tscn" id="9_kgsvi"]
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="9_vprbv"]
 
 [node name="TeamLineupMenu" type="Node2D" unique_id=1893208765]
@@ -207,3 +208,7 @@ offset_left = 1820.0
 offset_top = 12.0
 offset_right = 1860.0
 offset_bottom = 52.0
+
+[node name="InnerSanctum" parent="." unique_id=1848263234 instance=ExtResource("9_kgsvi")]
+visible = false
+position = Vector2(1120, 280)

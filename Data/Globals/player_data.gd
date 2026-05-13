@@ -3,14 +3,16 @@ extends Node
 var player_id: String = ""
 var display_name: String = "" 
 
+var total_inner_sanctum_essence = 0
+var current_inner_sanctum_essence = 0
 var inner_sanctum: Dictionary = {
-	"life": 8,
-	"power": 8,
+	"life": 1.0,
+	"power": 1.0,
 }
 
 # Progression data
 var dungeon_tier: int = 1
-var dungeon_room: int = 10
+var dungeon_room: int = 1
 
 var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]
@@ -39,6 +41,10 @@ var dungeon_loot: Array[Dictionary] = [
 		"item_type": "weapon"
 	},
 ]
+
+func add_inner_sanctum_essence(amount: int):
+	total_inner_sanctum_essence += amount
+	current_inner_sanctum_essence += amount
 
 func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 	var new_formation: Array[Dictionary] = []

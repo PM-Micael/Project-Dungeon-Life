@@ -3,6 +3,8 @@ class_name GameBoard
 
 signal round_over(player_won: bool)
 
+var collected_essence: int = 0
+
 @onready var game_parent: TeamLineupMenu = get_parent()
 @onready var enemy_units_node: Node2D = get_node("Units/EnemyUnits")
 @onready var friendly_units_node: Node2D = get_node("Units/FriendlyUnits")
@@ -27,6 +29,8 @@ func _on_friendly_unit_died(unit: Unit):
 	friendly_units.erase(unit)
 
 func _on_enemy_unit_died(unit: Unit):
+	print(unit.display_name+" died")
+	collected_essence += unit.essence_value
 	enemy_units.erase(unit)
 
 func place_friendly_units_on_board():
@@ -42,6 +46,9 @@ func _check_units_alive():
 	var friendlies: Array = friendly_units_node.get_children()
 
 	if enemies.size() == 0:
+		PlayerData.add_inner_sanctum_essence(collected_essence)
+		print("Collected ["+str(collected_essence)+"] essence")
+		collected_essence = 0
 		game_parent.current_room += 1
 		victory_screen.visible = true
 		for node: Unit in friendly_units_node.get_children():
@@ -51,6 +58,7 @@ func _check_units_alive():
 		round_over.emit(true)
 	elif friendlies.size() == 0:
 		print("You loose")
+		print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
 		game_on = false
 		round_over.emit(false)
 	

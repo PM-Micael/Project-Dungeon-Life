@@ -12,6 +12,9 @@ var starting_position: Vector2
 @export_category("Tags")
 var unity: String
 
+@export_category("enemy_excpusive")
+var essence_value: int
+
 func _ready() -> void:
 	position = starting_position
 	BoardGrid.set_tile_solid(BoardGrid.world_to_tile(position), true)
