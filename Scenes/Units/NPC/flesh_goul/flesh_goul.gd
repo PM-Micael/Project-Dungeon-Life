@@ -13,7 +13,7 @@ func _ready() -> void:
 	super._ready()
 	_set_stats()
 	_info("flesh_goul", "Flesh Goul", "Team 2", "Team 1")
-	essence_value = 1
+	essence_value = [1, 2]
 
 func _set_stats():
 	health_component.set_stats(max_health)

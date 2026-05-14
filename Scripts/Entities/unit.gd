@@ -13,7 +13,7 @@ var starting_position: Vector2
 var unity: String
 
 @export_category("enemy_excpusive")
-var essence_value: int
+var essence_value: Array[int]
 
 func _ready() -> void:
 	position = starting_position

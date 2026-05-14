@@ -88,7 +88,7 @@ func _on_friendly_unit_died(unit: Unit):
 	friendly_units.erase(unit)
 
 func _on_enemy_unit_died(unit: Unit):
-	collected_essence += unit.essence_value
+	collected_essence += randi_range(unit.essence_value[0], unit.essence_value[1])
 	enemy_units.erase(unit)
 
 func place_friendly_units_on_board():
@@ -117,7 +117,7 @@ func _check_units_alive():
 		game_on = false
 		round_over.emit(true)
 		if auto_advance:
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.5).timeout
 			game_parent.next_stage_button.pressed.emit()
 	elif friendlies.size() == 0:
 		print("You loose")

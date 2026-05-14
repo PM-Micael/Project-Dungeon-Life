@@ -25,7 +25,7 @@ func _ready() -> void:
 	_connect_events()
 	_setup_stage()
 	if board.auto_advance:
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.5).timeout
 		start_game()
 
 func add_board_scene():
@@ -78,7 +78,7 @@ func _setup_stage():
 	print("Room = "+str(PlayerData.dungeon_room))
 	
 	if board.auto_advance:
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.5).timeout
 		start_stage_button.pressed.emit()
 
 func _start_stage():
