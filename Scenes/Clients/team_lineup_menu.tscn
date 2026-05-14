@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dbm6d1baf47sx"]
 
 [ext_resource type="Script" uid="uid://nshfreh4c74j" path="res://Scenes/Clients/team_lineup_menu.gd" id="1_gdxfq"]
-[ext_resource type="Script" uid="uid://3go3wxm8mnkg" path="res://Scenes/Clients/Buttons/start_stage_button.gd" id="3_f3h6d"]
 [ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="4_t8u3g"]
 [ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="5_qn83p"]
 [ext_resource type="Script" uid="uid://bprtdlylcotm7" path="res://Scenes/Clients/board_switch_button.gd" id="8_gdxfq"]
@@ -96,4 +95,3 @@ offset_top = 978.0
 offset_right = 1958.0
 offset_bottom = 1142.0
 text = "Start Stage"
-script = ExtResource("3_f3h6d")

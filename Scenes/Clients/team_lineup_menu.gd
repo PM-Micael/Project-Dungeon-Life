@@ -10,6 +10,7 @@ class_name TeamLineupMenu
 @onready var ui_scene = get_node_or_null("UI")
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
 @onready var next_stage_button: Button
+@onready var start_stage_button: Button
 @onready var exit_dungeon_button: Button
 @onready var currently_selected_unit_entity_container: EntityContainer
 
@@ -23,6 +24,9 @@ func _ready() -> void:
 	_window_setup()
 	_connect_events()
 	_setup_stage()
+	if board.auto_advance:
+		await get_tree().create_timer(1.0).timeout
+		start_game()
 
 func add_board_scene():
 	var get_inner_sanctum = get_node_or_null("InnerSanctum")
@@ -36,6 +40,7 @@ func add_board_scene():
 	map_tiles_scene = get_node_or_null("Board/MapTiles")
 	next_stage_button = get_node("Board/RoundOver/VictoryScreen/NextStageButton")
 	exit_dungeon_button = get_node("Board/RoundOver/DefeatScreen/ExitDungeonButton")
+	start_stage_button = get_node("StartStage")
 	LocalData.initialize_data(ui_scene, board) # Bandade fix
 
 func add_inner_sanctum_scene():
@@ -55,6 +60,7 @@ func _connect_events():
 	board.round_over.connect(_on_round_over)
 	next_stage_button.pressed.connect(_setup_stage)
 	exit_dungeon_button.pressed.connect(_exit_dungeon)
+	start_stage_button.pressed.connect(_start_stage)
 
 func _window_setup():
 	var window = get_window()
@@ -70,6 +76,28 @@ func _setup_stage():
 	board._place_enemy_units()
 	unit_loadout_frame.show_stats = false
 	print("Room = "+str(PlayerData.dungeon_room))
+	
+	if board.auto_advance:
+		await get_tree().create_timer(1.0).timeout
+		start_stage_button.pressed.emit()
+
+func _start_stage():
+	PlayerData.save_dungeon_team_as_formation(board.friendly_units)
+	# Update
+	var friendly_container_nodes := get_node("Board/Units/FriendlyUnits").get_children()
+	var enemy_container_nodes := get_node("Board/Units/EnemyUnits").get_children()
+
+	for f in friendly_container_nodes:
+		f.free()
+
+	for e in enemy_container_nodes:
+		e.free()
+
+	if board:
+		board.place_friendly_units_on_board()
+		board.place_enemy_units_on_board()
+
+	start_game()
 
 func _exit_dungeon():
 	PlayerData.dungeon_room = 1

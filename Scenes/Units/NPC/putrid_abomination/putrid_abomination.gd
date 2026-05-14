@@ -1,7 +1,7 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 8000 * PlayerData.dungeon_layer_level
+@export var max_health: int = 5400 * PlayerData.dungeon_layer_level
 @export var attack_damage: int = 150 * PlayerData.dungeon_layer_level
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.2
