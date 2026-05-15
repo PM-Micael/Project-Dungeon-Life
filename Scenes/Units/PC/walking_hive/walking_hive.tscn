@@ -10,11 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="7_44frx"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_psvux"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="9_82kvg"]
-[ext_resource type="Texture2D" uid="uid://dadm3akbxl1fe" path="res://Assets/Units/0_Reaper_Man_Idle_000.png" id="10_5psmv"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_qj47k"]
+[ext_resource type="Texture2D" uid="uid://24ce0yx3b126" path="res://Scenes/Units/PC/walking_hive/walking_hive.png" id="11_vlonv"]
 
 [node name="WalkingHive" type="Node2D" unique_id=1319104232]
-scale = Vector2(0.15, 0.15)
 script = ExtResource("1_vlonv")
 
 [node name="Components" type="Node2D" parent="." unique_id=704127956]
@@ -39,6 +38,7 @@ script = ExtResource("5_q44od")
 [node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("9_82kvg")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721653816]
-texture = ExtResource("10_5psmv")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_vlonv")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_qj47k")]

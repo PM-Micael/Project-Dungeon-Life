@@ -98,6 +98,7 @@ func _check_units_alive():
 	var enemies: Array = enemy_units_node.get_children()
 	var friendlies: Array = friendly_units_node.get_children()
 
+
 	if enemies.size() == 0:
 		PlayerData.add_inner_sanctum_essence(collected_essence)
 		print("Collected ["+str(collected_essence)+"] essence")

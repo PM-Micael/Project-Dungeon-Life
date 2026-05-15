@@ -10,10 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="8_k3suj"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_iys0x"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_svtj0"]
-[ext_resource type="Texture2D" uid="uid://b4qbotx1kujg3" path="res://Assets/Units/0_Zombie_Villager_Idle_000.png" id="10_qat5y"]
+[ext_resource type="Texture2D" uid="uid://cet8mpquip7l5" path="res://Scenes/Units/NPC/flesh_goul/flesh_ghoul.png" id="10_iys0x"]
 
 [node name="FleshGoul" type="Node2D" unique_id=166116170 groups=["units"]]
-scale = Vector2(0.15, 0.15)
 script = ExtResource("1_a6kgj")
 
 [node name="Components" type="Node2D" parent="." unique_id=1254067138]
@@ -35,6 +34,7 @@ script = ExtResource("1_a6kgj")
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("7_t1eum")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636351838]
-texture = ExtResource("10_qat5y")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_iys0x")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_svtj0")]

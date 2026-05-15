@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://bhfbdbtunlhic"]
 
-[ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/Weapons/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="1_2c47f"]
 [ext_resource type="Script" uid="uid://cgwy64qfyxxs6" path="res://Scenes/Weapons/rumble_gloves/rumble_gloves.gd" id="1_nciws"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="2_nciws"]
+[ext_resource type="Texture2D" uid="uid://3wcrygfnx315" path="res://Scenes/Weapons/rumble_gloves/rumble_gloves_sprite.svg" id="2_nkpiu"]
 
 [node name="RumbleGloves" type="Node2D" unique_id=555035498]
 script = ExtResource("1_nciws")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=56448775]
-texture = ExtResource("1_2c47f")
+visible = false
+texture = ExtResource("2_nkpiu")
 
 [node name="Components" type="Node2D" parent="." unique_id=2014975231]
 

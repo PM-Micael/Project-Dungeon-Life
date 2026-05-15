@@ -19,13 +19,13 @@ func _ready() -> void:
 	var unit_container_instance = container_scene.instantiate()
 	unit_container_instance.name = "UnitContainer"
 	unit_container_instance.position = Vector2(425, -225.0)
-	unit_container_instance.scale = Vector2(2, 2)
+	unit_container_instance.scale = Vector2(4, 4)
 	get_node("UnitPreview").add_child(unit_container_instance)
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
 	weapon_container_instance.name = "WeaponContainer"
 	weapon_container_instance.position = Vector2(150, -175)
-	weapon_container_instance.scale = Vector2(1.5, 1.5)
+	weapon_container_instance.scale = Vector2(1, 1)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
@@ -59,7 +59,7 @@ func _on_unit_entity_change():
 			unit_entity.attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
 		unit_entity.attack_component.post_attack_target.connect(_on_selected_unit_attacked)
 
-func _on_selected_unit_health_changed(_attacker: Entity):
+func _on_selected_unit_health_changed(_attacker: Entity, _is_crit: bool):
 	if not is_instance_valid(unit_entity):
 		return
 	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
