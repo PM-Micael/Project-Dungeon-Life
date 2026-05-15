@@ -5,6 +5,10 @@ signal player_data_loaded
 var player_id: String = "dare_mane"
 var display_name: String = "DareMane"
 
+var settings: Dictionary = {
+	"auto_climb": true
+}
+
 var total_inner_sanctum_essence = 0
 var current_inner_sanctum_essence = 0
 var inner_sanctum: Dictionary = {
@@ -18,9 +22,9 @@ var dungeon_room: int = 1
 var dungeon_layer_level: int:
 	get:
 		return ceili(dungeon_room / 10.0)
-var dungeon_enemy_multiplier: float:
+var dungeon_enemy_multiplier: float: # Should be in dungeon  data
 	get:
-		var scaling: float = 1 + (dungeon_room / 10)
+		var scaling: float = 1 + (dungeon_room / 10.0)
 		return scaling
 
 var dungeon_team_max_size = 4

@@ -1,8 +1,8 @@
 extends Unit
 
 @export_category("Stats")
-@export var max_health: int = 5000 * PlayerData.dungeon_difficulty_multiplier
-@export var attack_damage: int = 150 * PlayerData.dungeon_difficulty_multiplier
+@export var max_health: int = 1000
+@export var attack_damage: int = 50
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.2
 
@@ -18,9 +18,10 @@ func _ready() -> void:
 func _apply_flesh_shield():
 	var flesh_shield = FleshShield.new()
 	effect_component.add_blessing(flesh_shield, self)
-	essence_value = [50*PlayerData.dungeon_difficulty_multiplier, 100*PlayerData.dungeon_difficulty_multiplier]
+	essence_value = [5, 10]
 
 func _set_stats():
-	health_component.set_stats(max_health)
-	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
+	var scaling = PlayerData.dungeon_enemy_multiplier
+	health_component.set_stats(max_health * scaling)
+	attack_component.set_stats_absolute(attack_damage * scaling, 100, base_critical_percent_chance, base_critical_damage_multiplier)
 	attack_component.attack_speed = 1.6

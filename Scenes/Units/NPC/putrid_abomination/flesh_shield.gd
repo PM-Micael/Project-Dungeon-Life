@@ -10,7 +10,7 @@ var shield_recharge_timer: float = 7.0
 func _init() -> void:
 	id = "flesh_shield"
 	display_name = "Flesh Shield"
-	duration = 4
+	duration = 6
 	stacks = 1
 	set_buffs()
 
