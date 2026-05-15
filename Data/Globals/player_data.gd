@@ -18,9 +18,10 @@ var dungeon_room: int = 1
 var dungeon_layer_level: int:
 	get:
 		return ceili(dungeon_room / 10.0)
-var dungeon_difficulty_multiplier: float:
+var dungeon_enemy_multiplier: float:
 	get:
-		return pow(3, floor((dungeon_room - 1) / 10.0))
+		var scaling: float = 1 + (dungeon_room / 10)
+		return scaling
 
 var dungeon_team_max_size = 4
 var dungeon_team: Array[Unit]

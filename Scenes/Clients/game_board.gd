@@ -57,12 +57,7 @@ func _place_friendly_units():
 		friendly_units.append(unit_instance)
 
 func _place_enemy_units():
-	var formations_dict: Dictionary = DungeonData.get_room_formations(DungeonData.Zone.PUTRID_LAYERS, current_room)[0]
-	
-	var formation_count: int = formations_dict.size()
-	var enemy_formation_index: int = randi_range(0, formation_count - 1)
-	
-	var enemy_formation: Array = formations_dict["formation_" + str(enemy_formation_index + 1)]
+	var enemy_formation: Array = DungeonData.get_room_formations(DungeonData.Zone.PUTRID_LAYERS, current_room)
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
@@ -81,7 +76,6 @@ func _place_enemy_units():
 
 		get_node("Units/EnemyUnits").add_child(entity_container_instance)
 		enemy_units.append(enemy_instance)
-
 		loop_itteration += 1
 
 func _on_friendly_unit_died(unit: Unit):

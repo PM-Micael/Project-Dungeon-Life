@@ -26,153 +26,27 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	Zone.PUTRID_LAYERS: {
-		"room_1": [
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
-
-				],
-			}
-		],
-		"room_2":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
-				],
-			}
-		],
-		"room_3":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
-				],
-			}
-		],
-		"room_4":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(450, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(750, 350) },
-				],
-			}
-		],
-		"room_5":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(450, 350) },
-				],
-			}
-		],
-		"room_6":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
-				],
-			}
-		],
-		"room_7":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
-
-				],
-			}
-		],
-		"room_8":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_BRUSER, "position": Vector2(450, 350) },
-				],
-			}
-		],
-		"room_9":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(250, 350) },
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(350, 350) },
-					{ "type": EnemyType.FLESH_HULK, "position": Vector2(450, 350) },
-				],
-			}
-		],
-		"room_10":[
-			{
-				"formation_1":[
-					{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 150) },
-				],
-			}
-		],
-	},
-	"room_1": [
+	Zone.PUTRID_LAYERS:[
 		{
+			"boss_1":[
+				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
+			],
 			"formation_1":[
-				{ "type": "skeleton", "position": Vector2(250, 150) },
-				{ "type": "skeleton", "position": Vector2(350, 150) },
-				{ "type": "skeleton", "position": Vector2(450, 150) },
-				{ "type": "skeleton", "position": Vector2(550, 150) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
 			],
 			"formation_2":[
-				{ "type": "skeleton", "position": Vector2(50, 350) },
-				{ "type": "skeleton", "position": Vector2(250, 350) },
-				{ "type": "skeleton", "position": Vector2(550, 350) },
-				{ "type": "skeleton", "position": Vector2(750, 350) },
-			]
-		}
-	],
-	"room_2":[
-		{
-			"formation_1":[
-				{ "type": "skeleton", "position": Vector2(250, 150) },
-				{ "type": "skeleton", "position": Vector2(350, 150) },
-				{ "type": "skeleton", "position": Vector2(450, 150) },
-				{ "type": "skeleton", "position": Vector2(550, 150) },
-				{ "type": "skeleton", "position": Vector2(650, 150) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(750, 350) },
 			],
-			"formation_2":[
-				{ "type": "skeleton", "position": Vector2(50, 350) },
-				{ "type": "skeleton", "position": Vector2(250, 350) },
-				{ "type": "skeleton", "position": Vector2(350, 350) },
-				{ "type": "skeleton", "position": Vector2(550, 350) },
-				{ "type": "skeleton", "position": Vector2(750, 350) },
-			]
-		}
-	],
-	"room_3":[
-		{
-			"formation_1":[
-				{ "type": "skeleton", "position": Vector2(150, 150) },
-				{ "type": "skeleton", "position": Vector2(250, 150) },
-				{ "type": "skeleton", "position": Vector2(350, 150) },
-				{ "type": "skeleton", "position": Vector2(450, 150) },
-				{ "type": "skeleton", "position": Vector2(550, 150) },
-				{ "type": "skeleton", "position": Vector2(650, 150) },
-			],
-			"formation_2":[
-				{ "type": "skeleton", "position": Vector2(50, 350) },
-				{ "type": "skeleton", "position": Vector2(150, 150) },
-				{ "type": "skeleton", "position": Vector2(250, 350) },
-				{ "type": "skeleton", "position": Vector2(550, 350) },
-				{ "type": "skeleton", "position": Vector2(650, 350) },
-				{ "type": "skeleton", "position": Vector2(750, 350) },
-			]
 		}
 	]
 }
+
 
 var dungeon_scaling: Dictionary = {
 	"tier_1":{
@@ -233,14 +107,22 @@ func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entit
 # Helpers
 
 func get_room_formations(zone: String, room_number: int) -> Array:
-	var zone_data: Dictionary = dungeon_wave_formations.get(zone, {})
-	if zone_data.is_empty():
+	var zone_formations: Array = dungeon_wave_formations.get(zone, [])
+	if zone_formations.is_empty():
 		return []
-	
-	# Map any room number to 1–10 via modulo cycling
-	# room 11 → 1, room 12 → 2, room 20 → 10, room 21 → 1, etc.
-	var cycle_size: int = 10
-	var cycled_room: int = ((room_number - 1) % cycle_size) + 1
-	var room_key: String = "room_" + str(cycled_room)
-	
-	return zone_data.get(room_key, [])
+
+	var is_boss_room: bool = room_number % 10 == 0
+
+	# Collect all formations of the right type across every dict in the array
+	var pool: Array = []
+	for formation_dict in zone_formations:
+		for key in formation_dict.keys():
+			if is_boss_room and key.begins_with("boss"):
+				pool.append(formation_dict[key])
+			elif not is_boss_room and key.begins_with("formation"):
+				pool.append(formation_dict[key])
+
+	if pool.is_empty():
+		return []
+
+	return pool[randi() % pool.size()]
