@@ -5,7 +5,6 @@ signal round_over(player_won: bool)
 
 var collected_essence: int = 0
 var game_on: bool = false
-var auto_advance: bool = true
 
 @onready var game_parent: TeamLineupMenu = get_parent()
 @onready var enemy_units_node: Node2D = get_node("Units/EnemyUnits")
@@ -111,7 +110,7 @@ func _check_units_alive():
 			node.queue_free_unit()
 		game_on = false
 		round_over.emit(true)
-		if auto_advance:
+		if PlayerData.settings.auto_advance:
 			await get_tree().create_timer(0.5).timeout
 			game_parent.next_stage_button.pressed.emit()
 	elif friendlies.size() == 0:

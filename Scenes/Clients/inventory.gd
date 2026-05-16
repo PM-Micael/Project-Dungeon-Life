@@ -21,7 +21,6 @@ func _fill_backpack_frame():
 		
 		entity_container_instance.entity = e
 		entity_container_instance.position = Vector2(75+(loop_itterations*100), 125)
-		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.1, 0.1)
 		entity_container_instance.get_node("ClickableObject").get_node("CollisionShape2D").scale = Vector2(0.1, 0.1)
 		entity_container_instance.get_node("ClickableObject").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
 		
@@ -37,8 +36,7 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 		0:
 			print("Not Implimented")
 		1:
-			print("Arrempting to equip item")
-			
+			print("Attempting to equip item")
 			if unit_loadout_frame.unit_entity == null:
 				print("No unit selected")
 				return
@@ -46,11 +44,12 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			entity_container.remove_child(entity_container.entity)
 			
 			var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
-			
 			DungeonData.backpack_contents_as_entities.erase(entity_container.entity)
 			
 			if old_weapon != null:
 				DungeonData.backpack_contents_as_entities.append(old_weapon)
+				
+			PlayerData.save_backpack_as_loot()
 			
 			unit_loadout_frame._on_unit_entity_change()
 			

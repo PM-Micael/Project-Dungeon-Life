@@ -13,6 +13,12 @@ const EnemyType = {
 	SKELETON = "skeleton",
 }
 
+const ITEM_REGISTRY: Dictionary = {
+	"burst_staff": "res://Scenes/Weapons/burst_staff.tscn",
+	"clobber_club": "res://Scenes/Weapons/clobber_club.tscn",
+	"splinter": "res://Scenes/Weapons/splinter/splinter.tscn"
+}
+
 # Units
 var dungeon_team: Array[Entity]
 var available_units_as_entities: Array[Entity]
@@ -70,6 +76,9 @@ var backpack_contents_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Weapons/clobber_club.tscn"),
 ]
 
+func _ready() -> void:
+	initialize_data()
+
 # Initializations
 func initialize_data() -> void:
 		# Add code to fill owned units according to player progression if there are any
@@ -82,11 +91,15 @@ func _initialize_owned_units():
 		available_units_as_entities.append(entity_instance)
 
 func _initialize_backpack_contents():
-	for i in backpack_contents_as_packed_scenes:
-		var entity_instance = i.instantiate()
+	for loot_entry in PlayerData.dungeon_loot:
+		var item_id: String = loot_entry["item_id"]
+		if not ITEM_REGISTRY.has(item_id):
+			push_warning("DungeonData: No scene registered for item_id: " + item_id)
+			continue
+		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
+		var entity_instance: Entity = scene.instantiate()
 		backpack_contents_as_entities.append(entity_instance)
 
-# C.R.U.D
 func update_dungeon_team_entity(updated_entity: Entity):
 	for e in updated_entity:
 		if e.name == updated_entity.name:
@@ -103,8 +116,6 @@ func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entit
 	
 	weapon_slot.add_child(weapon_entity)
 	return old_weapon
-
-# Helpers
 
 func get_room_formations(zone: String, room_number: int) -> Array:
 	var zone_formations: Array = dungeon_wave_formations.get(zone, [])

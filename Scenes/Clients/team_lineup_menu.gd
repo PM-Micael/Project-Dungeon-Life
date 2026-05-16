@@ -24,7 +24,7 @@ func _ready() -> void:
 	_window_setup()
 	_connect_events()
 	_setup_stage()
-	if board.auto_advance:
+	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_game()
 
@@ -77,7 +77,7 @@ func _setup_stage():
 	unit_loadout_frame.show_stats = false
 	print("Room = "+str(PlayerData.dungeon_room))
 	
-	if board.auto_advance:
+	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_stage_button.pressed.emit()
 
@@ -116,7 +116,6 @@ func _on_round_over(player_won: bool) -> void:
 	game_on = false
 	# TODO: show victory/defeat UI inside team_lineup_menu
 
-
 # ─── Input / Tile Clicks ─────────────────────────────────────────────────────
 
 func _on_tile_clicked(tile: Tile) -> void:
@@ -127,7 +126,6 @@ func _on_tile_clicked(tile: Tile) -> void:
 			_try_select_friendly_unit_on_tile(tile)
 		else:
 			_move_selected_unit_to_tile(tile)
-
 
 # ─── Lineup Phase (game_on = false) ──────────────────────────────────────────
 

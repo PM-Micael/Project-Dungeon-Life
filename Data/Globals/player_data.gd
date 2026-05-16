@@ -6,7 +6,7 @@ var player_id: String = "dare_mane"
 var display_name: String = "DareMane"
 
 var settings: Dictionary = {
-	"auto_climb": true
+	"auto_advance": false
 }
 
 var total_inner_sanctum_essence = 0
@@ -49,7 +49,7 @@ var dungeon_team_formation: Array[Dictionary] = [
 
 var dungeon_loot: Array[Dictionary] = [
 	{
-		"item_id": "burst_staff",
+		"item_id": "splinter",
 		"star_level": 1,
 		"item_type": "weapon"
 	},
@@ -83,6 +83,7 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 		new_loot.append({
 			"item_id": entity.id,
 			"star_level": entity.weapon_component.star_level,
+			"item_type": "weapon",  # extend this when other item types exist
 		})
 	dungeon_loot = new_loot
 
