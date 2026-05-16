@@ -39,6 +39,6 @@ scale = Vector2(4.5, 4.5)
 texture = ExtResource("10_wrc0k")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_2lr1o")]
-offset_top = -77.00001
-offset_bottom = -37.000008
+offset_top = -77.0
+offset_bottom = -37.0
 scale = Vector2(0.45, 0.45)

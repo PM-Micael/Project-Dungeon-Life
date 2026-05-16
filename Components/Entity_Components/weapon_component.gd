@@ -28,7 +28,7 @@ func _ready() -> void:
 	entity_holding_weapon.health_component.damage_taken.connect(_on_damage_taken)
 
 func set_stats_absolute(set_added_damage: int):
-	added_attack_damage_multiplier = set_added_damage
+	added_attack_damage_multiplier = set_added_damage * star_level
 
 func set_weapon_energy_bar():
 		weapon_energy_bar = entity_holding_weapon.ui_components_weapon_energy_bar

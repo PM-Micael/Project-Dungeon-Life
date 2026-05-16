@@ -30,7 +30,7 @@ func _weapon_skill(_targets: Array[Entity]):
 	
 	crit_charges = 3
 	wearer.attack_component.base_critical_percent_chance = 100
-	wearer.attack_component.base_critical_damage_multiplier += bonus_crit_multiplier
+	wearer.attack_component.base_critical_damage_multiplier += bonus_crit_multiplier * weapon_component.star_level
 	
 	wearer.attack_component.post_attack_target.connect(_on_attack_fired)
 

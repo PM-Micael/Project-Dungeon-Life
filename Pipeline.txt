@@ -46,11 +46,8 @@ Buggs:
 	Impliment blessing in preperaion for putrid abomination
 	
 2026-05-10:
-	Units that enter the board should all calll to one unified function to handle potential hicups like for example
+	Units that enter the board should all calll to one unified function to handle potential hicups  like for example
 	conneecting their died signal to the board. Maybe.
 
 2026-05-11:
 	Zac devours more than he should when enemy dies
-
- 2026-05-14:
-	After beating the boss for the first time, stages should prop follow a different formation formula
