@@ -1,5 +1,7 @@
 extends Node
 
+signal dungeon_data_loaded
+
 const Zone = {
 	PUTRID_LAYERS = "putrid_layers"
 }
@@ -16,7 +18,8 @@ const EnemyType = {
 const ITEM_REGISTRY: Dictionary = {
 	"burst_staff": "res://Scenes/Weapons/burst_staff.tscn",
 	"clobber_club": "res://Scenes/Weapons/clobber_club.tscn",
-	"splinter": "res://Scenes/Weapons/splinter/splinter.tscn"
+	"splinter": "res://Scenes/Weapons/splinter/splinter.tscn",
+	"cursed_lantern": "res://Scenes/Weapons/cursed_lantern/cursed_lantern.tscn",
 }
 
 # Units
@@ -81,9 +84,9 @@ func _ready() -> void:
 
 # Initializations
 func initialize_data() -> void:
-		# Add code to fill owned units according to player progression if there are any
 	_initialize_owned_units()
 	_initialize_backpack_contents()
+	dungeon_data_loaded.emit()
 
 func _initialize_owned_units():
 	for u in _available_units_as_packed_scenes:

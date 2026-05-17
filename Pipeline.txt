@@ -51,3 +51,6 @@ Buggs:
 
 2026-05-11:
 	Zac devours more than he should when enemy dies
+
+2026-05-18:
+	Make a scene when game opens that loads all the needed data in scripts.

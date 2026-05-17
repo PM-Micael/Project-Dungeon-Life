@@ -47,13 +47,7 @@ var dungeon_team_formation: Array[Dictionary] = [
 	},
 ]
 
-var dungeon_loot: Array[Dictionary] = [
-	{
-		"item_id": "splinter",
-		"star_level": 1,
-		"item_type": "weapon"
-	},
-]
+var dungeon_loot: Array[Dictionary] = []
 
 func add_inner_sanctum_essence(amount: int):
 	total_inner_sanctum_essence += amount
@@ -80,10 +74,13 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_contents_as_entities) -> void:
 	var new_loot: Array[Dictionary] = []
 	for entity in backpack:
+		var star: int = 1
+		if entity.weapon_component != null:
+			star = entity.weapon_component.star_level
 		new_loot.append({
 			"item_id": entity.id,
-			"star_level": entity.weapon_component.star_level,
-			"item_type": "weapon",  # extend this when other item types exist
+			"star_level": star,
+			"item_type": "weapon",
 		})
 	dungeon_loot = new_loot
 
@@ -205,6 +202,9 @@ func load_player_data():
 				"star_level": int(l["star_level"]["integerValue"]),
 				"item_type": l["item_type"]["stringValue"],
 			})
+		
+		for value in dungeon_loot:
+			print(str(value))
 		
 		print("Player data loaded successfully")
 		player_data_loaded.emit()
