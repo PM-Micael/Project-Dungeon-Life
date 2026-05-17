@@ -7,6 +7,7 @@ class_name Inventory
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
 
 func _ready() -> void:
+	await DungeonData.dungeon_data_loaded
 	_fill_backpack_frame()
 
 func _fill_backpack_frame():

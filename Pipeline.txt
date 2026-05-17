@@ -54,3 +54,4 @@ Buggs:
 
 2026-05-18:
 	Make a scene when game opens that loads all the needed data in scripts.
+	Theree are some synchronus issues because of this current implimentatin.

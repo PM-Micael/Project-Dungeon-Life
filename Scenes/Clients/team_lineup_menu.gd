@@ -20,7 +20,6 @@ func _ready() -> void:
 	PlayerData.load_player_data()
 	await PlayerData.player_data_loaded
 	DungeonData.initialize_data()
-	await DungeonData.dungeon_data_loaded
 	add_board_scene()
 	LocalData.initialize_data(ui_scene, board)
 	_window_setup()
