@@ -11,8 +11,6 @@ script = ExtResource("1_aabep")
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_yyryo")]
 
-[node name="Sprite" type="Node2D" parent="." unique_id=1286734757]
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=155332162]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=155332162]
 visible = false
 texture = ExtResource("2_p5y13")

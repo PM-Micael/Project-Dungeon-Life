@@ -11,14 +11,5 @@ script = ExtResource("1_nwt7h")
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_mvh4w")]
 
-[node name="Sprite" type="Node2D" parent="." unique_id=982011029]
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=394093689]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=394093689]
 texture = ExtResource("2_2241d")
-
-[node name="StarLevelLabel" type="Label" parent="Sprite/Sprite2D" unique_id=152776112]
-offset_left = -32.0
-offset_top = -42.0
-offset_right = -18.0
-offset_bottom = -19.0
-text = "★"

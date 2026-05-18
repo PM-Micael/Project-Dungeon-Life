@@ -39,8 +39,6 @@ script = ExtResource("6_im76l")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("12_fu8xi")]
 
-[node name="Sprite" type="Node2D" parent="." unique_id=284510279]
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=1940652966]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940652966]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_rpeeu")

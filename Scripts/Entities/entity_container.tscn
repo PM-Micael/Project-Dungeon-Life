@@ -6,3 +6,10 @@
 script = ExtResource("1_wcgeq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1341516110]
+
+[node name="StarLevelLabel" type="Label" parent="Sprite2D" unique_id=1427792097]
+offset_left = -32.0
+offset_top = -42.0
+offset_right = -18.0
+offset_bottom = -19.0
+text = "★"
