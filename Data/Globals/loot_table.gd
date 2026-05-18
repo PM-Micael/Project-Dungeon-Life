@@ -30,7 +30,8 @@ func roll_loot(zone: String, _room_number: int) -> Array[Dictionary]:
 		var star: int = randi_range(item["min_star"], item["max_star"])
 		results.append({ "item_id": item["item_id"], "star_level": star, "item_type": "weapon" })
 		picked_ids.append(item["item_id"])
-
+	
+	return [{ "item_id": "cursed_lantern", "min_star": 1, "max_star": 1 }]
 	return results
 
 func _roll_rarity() -> String:

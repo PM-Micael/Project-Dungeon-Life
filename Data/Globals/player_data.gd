@@ -75,8 +75,9 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 	var new_loot: Array[Dictionary] = []
 	for entity in backpack:
 		var star: int = 1
-		if entity.weapon_component != null:
-			star = entity.weapon_component.star_level
+		var wc: WeaponComponent = entity.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			star = wc.star_level
 		new_loot.append({
 			"item_id": entity.id,
 			"star_level": star,
