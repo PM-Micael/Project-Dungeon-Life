@@ -7,10 +7,12 @@
 [node name="RumbleGloves" type="Node2D" unique_id=555035498]
 script = ExtResource("1_nciws")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=56448775]
-visible = false
-texture = ExtResource("2_nkpiu")
-
 [node name="Components" type="Node2D" parent="." unique_id=2014975231]
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("2_nciws")]
+
+[node name="Sprite" type="Node2D" parent="." unique_id=79317360]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=56448775]
+visible = false
+texture = ExtResource("2_nkpiu")

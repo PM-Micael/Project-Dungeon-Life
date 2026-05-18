@@ -37,8 +37,10 @@ script = ExtResource("5_q44od")
 
 [node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("9_82kvg")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721653816]
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_qj47k")]
+
+[node name="Sprite" type="Node2D" parent="." unique_id=343439331]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite" unique_id=1721653816]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_vlonv")
-
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("11_qj47k")]

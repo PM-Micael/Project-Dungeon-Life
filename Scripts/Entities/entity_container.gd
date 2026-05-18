@@ -9,8 +9,8 @@ class_name EntityContainer
 func _set_sprite():
 	var sprite: Sprite2D = get_child(0)
 	if entity != null:
-		sprite.position = entity.get_node("Sprite2D").position
-		sprite.texture = entity.get_node("Sprite2D").texture
+		sprite.position = entity.get_node("Sprite/Sprite2D").position
+		sprite.texture = entity.get_node("Sprite/Sprite2D").texture
 		return
 	
 	sprite.texture = null
