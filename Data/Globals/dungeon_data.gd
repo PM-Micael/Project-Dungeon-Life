@@ -102,6 +102,11 @@ func _initialize_backpack_contents():
 			continue
 		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
 		var entity_instance: Entity = scene.instantiate()
+		
+		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc.star_level = loot_entry["star_level"]
+		
 		backpack_contents_as_entities.append(entity_instance)
 
 func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
@@ -112,6 +117,12 @@ func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
 			continue
 		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
 		var entity_instance: Entity = scene.instantiate()
+
+		# Apply star level from loot entry
+		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc.star_level = loot_entry["star_level"]
+
 		backpack_contents_as_entities.append(entity_instance)
 
 func check_and_merge_backpack_items() -> void:
