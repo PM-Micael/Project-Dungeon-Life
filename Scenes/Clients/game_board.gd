@@ -116,10 +116,9 @@ func _on_victory():
 	round_over.emit(true)
 	
 	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room)
-	
 	PlayerData.dungeon_loot.append_array(loot)
+	DungeonData.add_loot_to_backpack(loot)   # <-- sync the entity array
 	PlayerData.save_player_data()
-	
 	game_parent.ui_scene.get_node("Inventory")._fill_backpack_frame()
 	
 	if PlayerData.settings.auto_advance:
