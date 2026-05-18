@@ -97,27 +97,40 @@ func _check_units_alive():
 	var enemies: Array = enemy_units_node.get_children()
 	var friendlies: Array = friendly_units_node.get_children()
 
-
 	if enemies.size() == 0:
-		PlayerData.add_inner_sanctum_essence(collected_essence)
-		print("Collected ["+str(collected_essence)+"] essence")
-		print("Total essence = " + str(PlayerData.current_inner_sanctum_essence)+"/"+str(PlayerData.total_inner_sanctum_essence))
-		collected_essence = 0
-		PlayerData.dungeon_room += 1
-		current_room += 1
-		victory_screen.visible = true
-		for node: Unit in friendly_units_node.get_children():
-			node.queue_free_unit()
-		game_on = false
-		round_over.emit(true)
-		if PlayerData.settings.auto_advance:
-			await get_tree().create_timer(0.5).timeout
-			game_parent.next_stage_button.pressed.emit()
+		_on_victory()
 	elif friendlies.size() == 0:
-		print("You loose")
-		print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
-		defeat_screen.visible = true
-		game_on = false
-		round_over.emit(true)
-		for node: Unit in enemy_units_node.get_children():
-			node.queue_free_unit()
+		_on_defeat()
+
+func _on_victory():
+	PlayerData.add_inner_sanctum_essence(collected_essence)
+	print("Collected ["+str(collected_essence)+"] essence")
+	print("Total essence = " + str(PlayerData.current_inner_sanctum_essence)+"/"+str(PlayerData.total_inner_sanctum_essence))
+	collected_essence = 0
+	PlayerData.dungeon_room += 1
+	current_room += 1
+	victory_screen.visible = true
+	for node: Unit in friendly_units_node.get_children():
+		node.queue_free_unit()
+	game_on = false
+	round_over.emit(true)
+	
+	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room)
+	
+	PlayerData.dungeon_loot.append_array(loot)
+	PlayerData.save_player_data()
+	
+	game_parent.ui_scene.get_node("Inventory")._fill_backpack_frame()
+	
+	if PlayerData.settings.auto_advance:
+		await get_tree().create_timer(0.5).timeout
+		game_parent.next_stage_button.pressed.emit()
+
+func _on_defeat():
+	print("You loose")
+	print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
+	defeat_screen.visible = true
+	game_on = false
+	round_over.emit(true)
+	for node: Unit in enemy_units_node.get_children():
+		node.queue_free_unit()

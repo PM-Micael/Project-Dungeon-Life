@@ -20,6 +20,7 @@ const ITEM_REGISTRY: Dictionary = {
 	"clobber_club": "res://Scenes/Weapons/clobber_club.tscn",
 	"splinter": "res://Scenes/Weapons/splinter/splinter.tscn",
 	"cursed_lantern": "res://Scenes/Weapons/cursed_lantern/cursed_lantern.tscn",
+	"rumble_gloves": "res://Scenes/Weapons/rumble_gloves/rumble_gloves.tscn",
 }
 
 # Units
@@ -94,10 +95,12 @@ func _initialize_owned_units():
 		available_units_as_entities.append(entity_instance)
 
 func _initialize_backpack_contents():
+	print("Contents as entities = "+str(PlayerData.dungeon_loot))
 	for loot_entry in PlayerData.dungeon_loot:
 		var item_id: String = loot_entry["item_id"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)
+			print("DungeonData: No scene registered for item_id: " + item_id)
 			continue
 		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
 		var entity_instance: Entity = scene.instantiate()

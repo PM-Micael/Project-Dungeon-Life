@@ -17,14 +17,12 @@ class_name TeamLineupMenu
 var game_on: bool = false
 
 func _ready() -> void:
-	PlayerData.load_player_data()
-	await PlayerData.player_data_loaded
-	DungeonData.initialize_data()
 	add_board_scene()
 	LocalData.initialize_data(ui_scene, board)
 	_window_setup()
 	_connect_events()
 	_setup_stage()
+	
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_game()

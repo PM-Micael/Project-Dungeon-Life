@@ -144,7 +144,6 @@ func save_player_data():
 	add_child(http)
 	http.request_completed.connect(func(result, code, headers, body):
 		print("Save result - HTTP code: ", code)
-		print("Body: ", body.get_string_from_utf8())
 	)
 	
 	var headers = ["Content-Type: application/json"]
@@ -203,10 +202,11 @@ func load_player_data():
 				"item_type": l["item_type"]["stringValue"],
 			})
 		
+		print("Player data loaded successfully")
+		print("dungeon_loot:")
 		for value in dungeon_loot:
 			print(str(value))
 		
-		print("Player data loaded successfully")
 		player_data_loaded.emit()
 	)
 	

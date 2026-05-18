@@ -1,19 +1,22 @@
 extends Node2D
 class_name Inventory
 
+@onready var game_scene: TeamLineupMenu = get_parent().get_parent()
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
 @onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
 
 func _ready() -> void:
-	await DungeonData.dungeon_data_loaded
 	_fill_backpack_frame()
 
 func _fill_backpack_frame():
+	for child in backpack_frame.get_children():
+		child.queue_free()
+		
 	var loop_itterations: int = 0
 	for e in DungeonData.backpack_contents_as_entities:
-		print(e.display_name)
+		print("DungeonData.backpack_contents_as_entities.item= "+e.name)
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
@@ -55,8 +58,6 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			
 			unit_loadout_frame._on_unit_entity_change()
 			
-			for child in backpack_frame.get_children():
-				child.queue_free()
 			_fill_backpack_frame()
 		2:
 			print("Not Implimented")

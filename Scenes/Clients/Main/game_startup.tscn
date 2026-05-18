@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ds8tpu226qyt6"]
+
+[ext_resource type="Script" uid="uid://q74n74sncc8e" path="res://Scenes/Clients/Main/game_startup.gd" id="1_b0805"]
+
+[node name="GameStartup" type="Node2D" unique_id=1246090489]
+script = ExtResource("1_b0805")
+
+[node name="StartButton" type="Button" parent="." unique_id=1484765602]
+visible = false
+offset_left = 862.0
+offset_top = 497.0
+offset_right = 1125.0
+offset_bottom = 662.0
+theme_override_font_sizes/font_size = 100
+text = "Start"
+
+[node name="LoadingLabel" type="Label" parent="." unique_id=642493602]
+offset_left = 862.0
+offset_top = 348.0
+offset_right = 1125.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 50
+text = "Loading..."

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kbdb5f1mgnro"]
 
 [ext_resource type="Script" uid="uid://58edcrsqdxx3" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern.gd" id="1_aabep"]
-[ext_resource type="Texture2D" uid="uid://dr48hsme2rkg" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern_sprite.svg" id="2_p5y13"]
+[ext_resource type="Texture2D" uid="uid://rtfsax4ol14j" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern.png" id="2_p5y13"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="3_yyryo"]
 
 [node name="CursedLantern" type="Node2D" unique_id=643131765]

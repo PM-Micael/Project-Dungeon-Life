@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Dungeon Life"
-run/main_scene="uid://dbm6d1baf47sx"
+run/main_scene="uid://ds8tpu226qyt6"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ DungeonData="*uid://bcar2mpom4rjn"
 PlayerData="*uid://bgbudg866glv0"
 LocalData="*uid://c1pyjus1lfren"
 BoardGrid="*uid://dq3uan8m2l3k6"
+LootTable="*uid://dynvlo7g5ek6r"
 
 [display]
 
