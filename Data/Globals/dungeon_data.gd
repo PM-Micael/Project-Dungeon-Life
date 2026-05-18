@@ -107,13 +107,46 @@ func _initialize_backpack_contents():
 func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
 	for loot_entry in loot:
 		var item_id: String = loot_entry["item_id"]
-		var star_level: int = loot_entry["star_level"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)
 			continue
 		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
 		var entity_instance: Entity = scene.instantiate()
 		backpack_contents_as_entities.append(entity_instance)
+
+func check_and_merge_backpack_items() -> void:
+	var groups: Dictionary[String, int] = {}
+	for entity in backpack_contents_as_entities:
+		var wc: WeaponComponent = entity.get_node_or_null("Components/WeaponComponent")
+		if wc == null:
+			continue
+
+		var key: String = entity.id + ":" + str(wc.star_level)
+		groups[key] = groups.get(key, 0) + 1
+
+		if groups[key] == 3:
+			print("merging")
+			# Find and remove 2 copies, upgrade the third
+			var removed: int = 0
+			for e in backpack_contents_as_entities.duplicate():
+				if removed == 2:
+					break
+				print("Removed "+str(removed))
+				var ewc: WeaponComponent = e.get_node_or_null("Components/WeaponComponent")
+				if ewc != null and e.id == entity.id and ewc.star_level == wc.star_level:
+					backpack_contents_as_entities.erase(e)
+					e.queue_free()
+					removed += 1
+
+			# Upgrade the keeper (entity is still in the array)
+			wc.star_level += 1
+
+			# Reset count at new star level so chained merges can trigger
+			groups[key] = 0
+			var new_key: String = entity.id + ":" + str(wc.star_level)
+			groups[new_key] = groups.get(new_key, 0) + 1
+
+	PlayerData.save_backpack_as_loot()
 
 func update_dungeon_team_entity(updated_entity: Entity):
 	for e in updated_entity:

@@ -22,6 +22,7 @@ func _ready() -> void:
 	_window_setup()
 	_connect_events()
 	_setup_stage()
+	DungeonData.check_and_merge_backpack_items()
 	
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
