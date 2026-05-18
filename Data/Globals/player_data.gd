@@ -158,7 +158,6 @@ func load_player_data():
 	http.request_completed.connect(func(result, code, headers, body):
 		if code != 200:
 			print("Load failed - HTTP code: ", code)
-			print("Body: ", body.get_string_from_utf8())
 			return
 		
 		var json = JSON.new()
@@ -203,9 +202,6 @@ func load_player_data():
 			})
 		
 		print("Player data loaded successfully")
-		print("dungeon_loot:")
-		for value in dungeon_loot:
-			print(str(value))
 		
 		player_data_loaded.emit()
 	)

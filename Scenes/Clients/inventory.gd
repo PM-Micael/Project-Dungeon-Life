@@ -16,7 +16,6 @@ func _fill_backpack_frame():
 		
 	var loop_itterations: int = 0
 	for e in DungeonData.backpack_contents_as_entities:
-		print("DungeonData.backpack_contents_as_entities.item= "+e.name)
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")

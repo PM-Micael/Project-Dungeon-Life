@@ -95,12 +95,10 @@ func _initialize_owned_units():
 		available_units_as_entities.append(entity_instance)
 
 func _initialize_backpack_contents():
-	print("Contents as entities = "+str(PlayerData.dungeon_loot))
 	for loot_entry in PlayerData.dungeon_loot:
 		var item_id: String = loot_entry["item_id"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)
-			print("DungeonData: No scene registered for item_id: " + item_id)
 			continue
 		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
 		var entity_instance: Entity = scene.instantiate()
@@ -109,6 +107,7 @@ func _initialize_backpack_contents():
 func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
 	for loot_entry in loot:
 		var item_id: String = loot_entry["item_id"]
+		var star_level: int = loot_entry["star_level"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)
 			continue
