@@ -41,6 +41,11 @@ func _place_friendly_units():
 		if weapon_id != "":
 			var weapon_scene: PackedScene = load("res://Scenes/Weapons/"+weapon_id+"/"+weapon_id+".tscn")
 			var weapon_instance: Entity = weapon_scene.instantiate()
+			
+			var wc: WeaponComponent = weapon_instance.get_node_or_null("Components/WeaponComponent")
+			if wc != null:
+				wc.star_level = u.get("weapon_star", 1)
+			
 			var weapon_slot = unit_instance.get_node("Components/WeaponSlotComponent")
 			weapon_slot.add_child(weapon_instance)
 		

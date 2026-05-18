@@ -58,14 +58,20 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 	
 	for unit in team_array:
 		var weapon_id: String = ""
+		var weapon_star: int = 1  # ← add this
 		var weapon_slot = unit.get_node_or_null("Components/WeaponSlotComponent")
 		if weapon_slot != null and weapon_slot.get_child_count() > 0:
-			weapon_id = weapon_slot.get_child(0).id
+			var weapon = weapon_slot.get_child(0)
+			weapon_id = weapon.id
+			var wc: WeaponComponent = weapon.get_node_or_null("Components/WeaponComponent")
+			if wc != null:
+				weapon_star = wc.star_level  # ← add this
 		
 		var dict: Dictionary = {
 			"unit_name": unit.id,
 			"starting_position": unit.starting_position,
-			"weapon_id": weapon_id
+			"weapon_id": weapon_id,
+			"weapon_star": weapon_star,  # ← add this
 		}
 		new_formation.append(dict)
 	
@@ -98,6 +104,7 @@ func save_player_data():
 				"fields": {
 					"unit_name": { "stringValue": unit["unit_name"] },
 					"weapon_id": { "stringValue": unit["weapon_id"] },
+					"weapon_star": { "integerValue": str(unit.get("weapon_star", 1)) },
 					"pos_x": { "doubleValue": unit["starting_position"].x },
 					"pos_y": { "doubleValue": unit["starting_position"].y },
 				}
@@ -185,6 +192,7 @@ func load_player_data():
 			dungeon_team_formation.append({
 				"unit_name": f["unit_name"]["stringValue"],
 				"weapon_id": f["weapon_id"]["stringValue"],
+				"weapon_star": int(f["weapon_star"]["integerValue"]) if f.has("weapon_star") else 1,
 				"starting_position": Vector2(
 					float(f["pos_x"]["doubleValue"]),
 					float(f["pos_y"]["doubleValue"])
