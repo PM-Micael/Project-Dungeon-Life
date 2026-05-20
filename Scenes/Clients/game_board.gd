@@ -55,6 +55,7 @@ func _place_friendly_units():
 		entity_container_instance.entity = unit_instance
 		entity_container_instance.position = unit_starting_position
 		entity_container_instance.scale = unit_instance.scale
+		entity_container_instance.get_node("Sprite2D").scale = Vector2(1.5, 1.5)
 		unit_instance.starting_position = entity_container_instance.position
 		
 		get_node("Units/FriendlyUnits").add_child(entity_container_instance)
@@ -76,6 +77,7 @@ func _place_enemy_units():
 		entity_container_instance.entity = enemy_instance
 		entity_container_instance.position = enemy_position
 		entity_container_instance.scale = enemy_instance.scale
+		entity_container_instance.get_node("Sprite2D").scale = Vector2(1.5, 1.5)
 		enemy_instance.starting_position = entity_container_instance.position
 
 		get_node("Units/EnemyUnits").add_child(entity_container_instance)

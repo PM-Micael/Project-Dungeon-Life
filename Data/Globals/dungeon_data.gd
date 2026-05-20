@@ -128,11 +128,8 @@ func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
 func check_and_merge_backpack_items() -> void:
 	var groups: Dictionary[String, int] = {}
 	
-	print("=== MERGE CHECK ===")
-	print("Backpack count: " + str(backpack_contents_as_entities.size()))
 	for entity in backpack_contents_as_entities:
 		var wc: WeaponComponent = entity.get_node_or_null("Components/WeaponComponent")
-		print("Entity: " + entity.id + " | wc stars: " + str(wc.star_level) + " | instance_id: " + str(entity.get_instance_id()))
 		if wc == null:
 			continue
 
@@ -140,33 +137,25 @@ func check_and_merge_backpack_items() -> void:
 		groups[key] = groups.get(key, 0) + 1
 
 		if groups[key] == 3:
-			print("--- MERGING key: " + key + " ---")
-			print("Keeper instance_id: " + str(entity.get_instance_id()) + " | star before: " + str(wc.star_level))
 			
 			var removed: int = 0
 			for e in backpack_contents_as_entities.duplicate():
 				if removed == 2:
 					break
 				if e == entity:
-					print("Skipping keeper: " + str(e.get_instance_id()))
 					continue
 				var ewc: WeaponComponent = e.get_node_or_null("Components/WeaponComponent")
 				if ewc != null and e.id == entity.id and ewc.star_level == wc.star_level:
-					print("Removing instance_id: " + str(e.get_instance_id()))
 					backpack_contents_as_entities.erase(e)
 					e.queue_free()
 					removed += 1
 			
-			print("Total removed: " + str(removed))
-			print("Keeper star after upgrade: " + str(wc.star_level + 1))
 			wc.star_level += 1
-			print("Keeper wc.star_level confirmed: " + str(wc.star_level))
 
 			groups[key] = 0
 			var new_key: String = entity.id + ":" + str(wc.star_level)
 			groups[new_key] = groups.get(new_key, 0) + 1
 
-	print("=== END MERGE ===")
 	PlayerData.save_backpack_as_loot()
 
 func update_dungeon_team_entity(updated_entity: Entity):

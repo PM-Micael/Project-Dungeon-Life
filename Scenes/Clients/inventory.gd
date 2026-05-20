@@ -53,10 +53,9 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			if old_weapon != null:
 				DungeonData.backpack_contents_as_entities.append(old_weapon)
 				
-			PlayerData.save_backpack_as_loot()
+			DungeonData.check_and_merge_backpack_items()
 			
 			unit_loadout_frame._on_unit_entity_change()
-			
 			_fill_backpack_frame()
 		2:
 			print("Not Implimented")
