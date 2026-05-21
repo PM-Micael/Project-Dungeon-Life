@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_b5ph5"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="5_uhhh1"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_oetp8"]
+[ext_resource type="PackedScene" uid="uid://bhfbdbtunlhic" path="res://Scenes/Weapons/rumble_gloves/rumble_gloves.tscn" id="7_aif21"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_tv1r3"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_nxu0w"]
@@ -28,6 +29,8 @@ script = ExtResource("1_gbevl")
 
 [node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=207148210]
 script = ExtResource("5_uhhh1")
+
+[node name="RumbleGloves" parent="Components/WeaponSlotComponent" unique_id=555035498 instance=ExtResource("7_aif21")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_oetp8")]
 
