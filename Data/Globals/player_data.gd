@@ -102,6 +102,7 @@ func reset_dungeon_run_data(dungeon: String):
 			dungeon_run_ongoing_putrid_layers = false
 			dungeon_team_putrid_layers = []
 			dungeon_loot_putrid_layers = []
+			DungeonData.reset_backpack()
 	
 	save_player_data()
 

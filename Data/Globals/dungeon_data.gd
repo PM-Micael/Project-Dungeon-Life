@@ -106,6 +106,11 @@ func _initialize_backpack_contents():
 		
 		backpack_contents_as_entities.append(entity_instance)
 
+func reset_backpack():
+	for entity in backpack_contents_as_entities:
+		entity.queue_free()
+	backpack_contents_as_entities.clear()
+
 func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
 	for loot_entry in loot:
 		var item_id: String = loot_entry["item_id"]
