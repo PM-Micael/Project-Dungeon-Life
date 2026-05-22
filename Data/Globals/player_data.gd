@@ -190,7 +190,6 @@ func load_player_data():
 		# Basic fields
 		player_display_name = fields["player_display_name"]["stringValue"]
 		dungeon_run_tier_putrid_layers = int(fields["dungeon_run_tier_putrid_layers"]["integerValue"])
-		dungeon_room_putrid_layers = int(fields["dungeon_room_putrid_layers"]["integerValue"])
 		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
 		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
 		
@@ -202,6 +201,7 @@ func load_player_data():
 		# Dungeon team formation
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
 		if dungeon_run_ongoing_putrid_layers:
+			dungeon_room_putrid_layers = int(fields["dungeon_room_putrid_layers"]["integerValue"])
 			dungeon_team_formation_putrid_layers.clear()
 			var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
 			for entry in formation_values:

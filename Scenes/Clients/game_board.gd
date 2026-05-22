@@ -110,6 +110,8 @@ func _check_units_alive():
 		_on_defeat()
 
 func _on_victory():
+	if not PlayerData.dungeon_run_ongoing_putrid_layers:
+		PlayerData.dungeon_run_ongoing_putrid_layers = true
 	PlayerData.add_inner_sanctum_essence(collected_essence)
 	print("Collected ["+str(collected_essence)+"] essence")
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))

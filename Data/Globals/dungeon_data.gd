@@ -75,10 +75,7 @@ var dungeon_scaling: Dictionary = {
 
 # Inventory
 var backpack_contents_as_entities: Array[Entity]
-var backpack_contents_as_packed_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Weapons/burst_staff.tscn"),
-	preload("res://Scenes/Weapons/clobber_club.tscn"),
-]
+var backpack_contents_as_packed_scenes: Array[PackedScene] = []
 
 func _ready() -> void:
 	initialize_data()
@@ -174,6 +171,21 @@ func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entit
 	
 	weapon_slot.add_child(weapon_entity)
 	return old_weapon
+
+func change_unit_weapon(unit_entity: Entity, new_weapon_entity: Entity):
+	print("Changing unit weapon")
+	var unit_weapon_slot_component: Entity = unit_entity.get_node("Components/WeaponSlotComponent")
+	var unit_weapon = unit_weapon_slot_component.get_child(0)
+	if unit_weapon != null:
+		unit_weapon.free()
+	
+	unit_weapon_slot_component.add_child(new_weapon_entity)
+	
+	# Update the selection
+	var unit_selection_container_entities: Array[EntityContainer] = get_parent().unit_selection_frame_entity_containers_node.get_children()
+	for u in unit_selection_container_entities:
+		if u.entity.display_name == unit_entity.display_name:
+			u.entity = unit_entity
 
 func get_room_formations(zone: String, room_number: int) -> Array:
 	var zone_formations: Array = dungeon_wave_formations.get(zone, [])

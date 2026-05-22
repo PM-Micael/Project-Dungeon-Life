@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_rpeeu"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_fu8xi"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_im76l"]
-[ext_resource type="PackedScene" uid="uid://ddv5m438vxeqd" path="res://Scenes/Weapons/splinter/splinter.tscn" id="7_fu8xi"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="7_hhoqs"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="8_7enmy"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_ihlvo"]
@@ -29,8 +28,6 @@ script = ExtResource("1_yavjn")
 
 [node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=235502049]
 script = ExtResource("6_im76l")
-
-[node name="Splinter" parent="Components/WeaponSlotComponent" unique_id=1112050208 instance=ExtResource("7_fu8xi")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("7_hhoqs")]
 

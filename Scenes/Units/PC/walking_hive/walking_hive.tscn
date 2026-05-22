@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="5_q44od"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_8rcd3"]
 [ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="7_44frx"]
-[ext_resource type="PackedScene" uid="uid://kbdb5f1mgnro" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern.tscn" id="7_v3uia"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_psvux"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="9_82kvg"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_qj47k"]
@@ -29,8 +28,6 @@ script = ExtResource("1_vlonv")
 
 [node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=241725634]
 script = ExtResource("5_q44od")
-
-[node name="CursedLantern" parent="Components/WeaponSlotComponent" unique_id=643131765 instance=ExtResource("7_v3uia")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_8rcd3")]
 

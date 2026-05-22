@@ -71,18 +71,7 @@ func _on_selected_unit_attacked(_targets: Array[Entity]):
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")
-	var unit_weapon_slot_component: Entity = unit_entity.get_node("Components/WeaponSlotComponent")
-	var unit_weapon = unit_weapon_slot_component.get_child(0)
-	if unit_weapon != null:
-		unit_weapon.free()
-	
-	unit_weapon_slot_component.add_child(new_weapon_entity)
-	
-	# Update the selection
-	var unit_selection_container_entities: Array[EntityContainer] = get_parent().unit_selection_frame_entity_containers_node.get_children()
-	for u in unit_selection_container_entities:
-		if u.entity.display_name == unit_entity.display_name:
-			u.entity = unit_entity
+	DungeonData.change_unit_weapon(unit_entity, new_weapon_entity)
 
 func _get_display_attack_damage() -> int:
 	var total = unit_entity.attack_component.attack_damage
