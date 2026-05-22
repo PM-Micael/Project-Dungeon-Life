@@ -14,7 +14,7 @@ var game_on: bool = false
 
 @onready var friendly_units: Array[Unit]
 @onready var enemy_units: Array[Unit]
-@onready var current_room: int = PlayerData.dungeon_room
+@onready var current_room: int = PlayerData.dungeon_room_putrid_layers
 
 
 func _ready() -> void:
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	
-	for u in PlayerData.dungeon_team_formation:
+	for u in PlayerData.dungeon_team_formation_putrid_layers:
 		var unit_name: String = u["unit_name"]
 		var unit_starting_position = u["starting_position"]
 		var weapon_id = u["weapon_id"]
@@ -112,9 +112,9 @@ func _check_units_alive():
 func _on_victory():
 	PlayerData.add_inner_sanctum_essence(collected_essence)
 	print("Collected ["+str(collected_essence)+"] essence")
-	print("Total essence = " + str(PlayerData.current_inner_sanctum_essence)+"/"+str(PlayerData.total_inner_sanctum_essence))
+	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
-	PlayerData.dungeon_room += 1
+	PlayerData.dungeon_room_putrid_layers += 1
 	current_room += 1
 	victory_screen.visible = true
 	for node: Unit in friendly_units_node.get_children():
@@ -122,10 +122,10 @@ func _on_victory():
 	game_on = false
 	round_over.emit(true)
 	
-	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room)
+	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room_putrid_layers)
 	print("Loot gained:")
 	print(str(loot))
-	PlayerData.dungeon_loot.append_array(loot)
+	PlayerData.dungeon_loot_putrid_layers.append_array(loot)
 	DungeonData.add_loot_to_backpack(loot)
 	DungeonData.check_and_merge_backpack_items()
 	PlayerData.save_player_data()
@@ -137,7 +137,7 @@ func _on_victory():
 
 func _on_defeat():
 	print("You loose")
-	print("Collected essence = "+str(PlayerData.current_inner_sanctum_essence))
+	print("Collected essence = "+str(PlayerData.inner_sanctum_essence_current))
 	defeat_screen.visible = true
 	game_on = false
 	round_over.emit(true)

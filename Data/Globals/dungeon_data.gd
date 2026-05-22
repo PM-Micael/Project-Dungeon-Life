@@ -95,7 +95,7 @@ func _initialize_owned_units():
 		available_units_as_entities.append(entity_instance)
 
 func _initialize_backpack_contents():
-	for loot_entry in PlayerData.dungeon_loot:
+	for loot_entry in PlayerData.dungeon_loot_putrid_layers:
 		var item_id: String = loot_entry["item_id"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)

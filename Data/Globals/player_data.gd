@@ -3,57 +3,61 @@ extends Node
 signal player_data_loaded
 
 var player_id: String = "dare_mane"
-var display_name: String = "DareMane"
+var player_display_name: String = "DareMane"
 
 var settings: Dictionary = {
 	"auto_advance": false
 }
 
-var total_inner_sanctum_essence = 0
-var current_inner_sanctum_essence = 0
 var inner_sanctum: Dictionary = {
 	"life": 1.0,
 	"power": 1.0,
 }
+var inner_sanctum_essence_current = 0
+var inner_sanctum_essence_total = 0
 
-# Progression data
-var dungeon_tier: int = 1
-var dungeon_room: int = 1
-var dungeon_layer_level: int:
+# Dungeons
+var dungeon_run_tier_putrid_layers: int = 1
+var dungeon_room_putrid_layers: int = 1
+var dungeon_layer_level: int: # Is this being used?
 	get:
-		return ceili(dungeon_room / 10.0)
-var dungeon_enemy_multiplier: float: # Should be in dungeon  data
+		return ceili(dungeon_room_putrid_layers / 10.0)
+var dungeon_enemy_multiplier: float: # Should be in dungeon data
 	get:
-		var scaling: float = 1 + (dungeon_room / 10.0)
+		var scaling: float = 1 + (dungeon_room_putrid_layers / 10.0)
 		return scaling
 
-var dungeon_team_max_size = 4
-var dungeon_team: Array[Unit]
-var dungeon_team_formation: Array[Dictionary] = [
+var dungeon_run_ongoing_putrid_layers: bool = false
+var dungeon_team_max_size_ = 4
+var dungeon_team_putrid_layers: Array[Unit]
+var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
 	{
 		"unit_name": "scratch",
 		"starting_position": Vector2(350.0, 650.0),
-		"weapon_id": "splinter"
+		"weapon_id": "splinter",
+		"weapon_star_level": 1
 	},
 	{
 		"unit_name": "zac",
 		"starting_position": Vector2(350.0, 450.0),
-		"weapon_id": "rumble_gloves"
+		"weapon_id": "rumble_gloves",
+		"weapon_star_level": 1
 	},
 	{
 		"unit_name": "walking_hive",
 		"starting_position": Vector2(350.0, 550.0),
-		"weapon_id": "cursed_lantern"
+		"weapon_id": "cursed_lantern",
+		"weapon_star_level": 1
 	},
 ]
 
-var dungeon_loot: Array[Dictionary] = []
+var dungeon_loot_putrid_layers: Array[Dictionary] = []
 
 func add_inner_sanctum_essence(amount: int):
-	total_inner_sanctum_essence += amount
-	current_inner_sanctum_essence += amount
+	inner_sanctum_essence_total += amount
+	inner_sanctum_essence_current += amount
 
-func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
+func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putrid_layers):
 	var new_formation: Array[Dictionary] = []
 	
 	for unit in team_array:
@@ -71,11 +75,11 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team):
 			"unit_name": unit.id,
 			"starting_position": unit.starting_position,
 			"weapon_id": weapon_id,
-			"weapon_star": weapon_star,  # ← add this
+			"weapon_star_level": weapon_star,  # ← add this
 		}
 		new_formation.append(dict)
 	
-	dungeon_team_formation = new_formation
+	dungeon_team_formation_putrid_layers = new_formation
 
 func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_contents_as_entities) -> void:
 	var new_loot: Array[Dictionary] = []
@@ -89,22 +93,32 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 			"star_level": star,
 			"item_type": "weapon",
 		})
-	dungeon_loot = new_loot
+	dungeon_loot_putrid_layers = new_loot
+
+func reset_dungeon_run_data(dungeon: String):
+	match dungeon:
+		DungeonData.Zone.PUTRID_LAYERS:
+			dungeon_room_putrid_layers = 1
+			dungeon_run_ongoing_putrid_layers = false
+			dungeon_team_putrid_layers = []
+			dungeon_loot_putrid_layers = []
+	
+	save_player_data()
 
 # Database
 
-func save_player_data():
+func save_player_data(): 
 	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
 	
 	# Serialize dungeon_team_formation
-	var formation_array = []
-	for unit in dungeon_team_formation:
-		formation_array.append({
+	var formation_array_putrid_layers = []
+	for unit in dungeon_team_formation_putrid_layers:
+		formation_array_putrid_layers.append({
 			"mapValue": {
 				"fields": {
 					"unit_name": { "stringValue": unit["unit_name"] },
 					"weapon_id": { "stringValue": unit["weapon_id"] },
-					"weapon_star": { "integerValue": str(unit.get("weapon_star", 1)) },
+					"weapon_star_level": { "integerValue": str(unit.get("weapon_star_level", 1)) },
 					"pos_x": { "doubleValue": unit["starting_position"].x },
 					"pos_y": { "doubleValue": unit["starting_position"].y },
 				}
@@ -112,9 +126,9 @@ func save_player_data():
 		})
 	
 	# Serialize dungeon_loot
-	var loot_array = []
-	for item in dungeon_loot:
-		loot_array.append({
+	var loot_array_putrid_layers = []
+	for item in dungeon_loot_putrid_layers:
+		loot_array_putrid_layers.append({
 			"mapValue": {
 				"fields": {
 					"item_id": { "stringValue": item["item_id"] },
@@ -126,11 +140,12 @@ func save_player_data():
 	
 	var data = {
 		"fields": {
-			"display_name": { "stringValue": display_name },
-			"dungeon_tier": { "integerValue": str(dungeon_tier) },
-			"dungeon_room": { "integerValue": str(dungeon_room) },
-			"total_inner_sanctum_essence": { "integerValue": str(total_inner_sanctum_essence) },
-			"current_inner_sanctum_essence": { "integerValue": str(current_inner_sanctum_essence) },
+			"player_display_name": { "stringValue": player_display_name },
+			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers },
+			"dungeon_run_tier_putrid_layers": { "integerValue": str(dungeon_run_tier_putrid_layers) },
+			"dungeon_room_putrid_layers": { "integerValue": str(dungeon_room_putrid_layers) },
+			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },
+			"inner_sanctum_essence_current": { "integerValue": str(inner_sanctum_essence_current) },
 			"inner_sanctum": {
 				"mapValue": {
 					"fields": {
@@ -139,11 +154,11 @@ func save_player_data():
 					}
 				}
 			},
-			"dungeon_team_formation": {
-				"arrayValue": { "values": formation_array }
+			"dungeon_team_formation_putrid_layers": {
+				"arrayValue": { "values": formation_array_putrid_layers }
 			},
-			"dungeon_loot": {
-				"arrayValue": { "values": loot_array }
+			"dungeon_loot_putrid_layers": {
+				"arrayValue": { "values": loot_array_putrid_layers }
 			},
 		}
 	}
@@ -173,11 +188,11 @@ func load_player_data():
 		var fields = json.get_data()["fields"]
 		
 		# Basic fields
-		display_name = fields["display_name"]["stringValue"]
-		dungeon_tier = int(fields["dungeon_tier"]["integerValue"])
-		dungeon_room = int(fields["dungeon_room"]["integerValue"])
-		total_inner_sanctum_essence = int(fields["total_inner_sanctum_essence"]["integerValue"])
-		current_inner_sanctum_essence = int(fields["current_inner_sanctum_essence"]["integerValue"])
+		player_display_name = fields["player_display_name"]["stringValue"]
+		dungeon_run_tier_putrid_layers = int(fields["dungeon_run_tier_putrid_layers"]["integerValue"])
+		dungeon_room_putrid_layers = int(fields["dungeon_room_putrid_layers"]["integerValue"])
+		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
+		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
 		
 		# Inner sanctum
 		var sanctum_fields = fields["inner_sanctum"]["mapValue"]["fields"]
@@ -185,30 +200,31 @@ func load_player_data():
 		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
 		
 		# Dungeon team formation
-		dungeon_team_formation.clear()
-		var formation_values = fields["dungeon_team_formation"]["arrayValue"].get("values", [])
-		for entry in formation_values:
-			var f = entry["mapValue"]["fields"]
-			dungeon_team_formation.append({
-				"unit_name": f["unit_name"]["stringValue"],
-				"weapon_id": f["weapon_id"]["stringValue"],
-				"weapon_star": int(f["weapon_star"]["integerValue"]) if f.has("weapon_star") else 1,
-				"starting_position": Vector2(
-					float(f["pos_x"]["doubleValue"]),
-					float(f["pos_y"]["doubleValue"])
-				)
-			})
-		
-		# Dungeon loot
-		dungeon_loot.clear()
-		var loot_values = fields["dungeon_loot"]["arrayValue"].get("values", [])
-		for entry in loot_values:
-			var l = entry["mapValue"]["fields"]
-			dungeon_loot.append({
-				"item_id": l["item_id"]["stringValue"],
-				"star_level": int(l["star_level"]["integerValue"]),
-				"item_type": l["item_type"]["stringValue"],
-			})
+		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
+		if dungeon_run_ongoing_putrid_layers:
+			dungeon_team_formation_putrid_layers.clear()
+			var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
+			for entry in formation_values:
+				var f = entry["mapValue"]["fields"]
+				dungeon_team_formation_putrid_layers.append({
+					"unit_name": f["unit_name"]["stringValue"],
+					"weapon_id": f["weapon_id"]["stringValue"],
+					"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
+					"starting_position": Vector2(
+						float(f["pos_x"]["doubleValue"]),
+						float(f["pos_y"]["doubleValue"])
+					)
+				})
+			# Dungeon loot
+			dungeon_loot_putrid_layers.clear()
+			var loot_values = fields["dungeon_loot_putrid_layers"]["arrayValue"].get("values", [])
+			for entry in loot_values:
+				var l = entry["mapValue"]["fields"]
+				dungeon_loot_putrid_layers.append({
+					"item_id": l["item_id"]["stringValue"],
+					"star_level": int(l["star_level"]["integerValue"]),
+					"item_type": l["item_type"]["stringValue"],
+				})
 		
 		print("Player data loaded successfully")
 		

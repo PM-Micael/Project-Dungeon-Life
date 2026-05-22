@@ -75,7 +75,7 @@ func _setup_stage():
 	board._place_friendly_units()
 	board._place_enemy_units()
 	unit_loadout_frame.show_stats = false
-	print("Room = "+str(PlayerData.dungeon_room))
+	print("Room = "+str(PlayerData.dungeon_room_putrid_layers))
 	
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
@@ -100,8 +100,8 @@ func _start_stage():
 	start_game()
 
 func _exit_dungeon():
-	PlayerData.dungeon_room = 1
 	board.defeat_screen.visible = false
+	PlayerData.reset_dungeon_run_data(DungeonData.Zone.PUTRID_LAYERS)
 	add_inner_sanctum_scene()
 
 # ─── Game State ───────────────────────────────────────────────────────────────

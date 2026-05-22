@@ -16,7 +16,7 @@ var allocated_power_points: float:
 var allocated_essence: int:
 	set(value):
 		allocated_essence = value
-		essence_value_label.text = "Essence: "+str(allocated_essence) +"/"+ str(PlayerData.current_inner_sanctum_essence)
+		essence_value_label.text = "Essence: "+str(allocated_essence) +"/"+ str(PlayerData.inner_sanctum_essence_current)
 
 @onready var essence_value_label: Label = get_node("EssenceValueLabel")
 @onready var commit_button: Button = get_node("CommitButton")
@@ -35,7 +35,7 @@ var allocated_essence: int:
 func _ready() -> void:
 	PlayerData.save_player_data()
 	
-	allocated_essence = PlayerData.current_inner_sanctum_essence
+	allocated_essence = PlayerData.inner_sanctum_essence_current
 	commit_button.pressed.connect(_commit_pressed)
 	
 	life_key_label.text = "Life"
@@ -55,7 +55,7 @@ func _commit_pressed():
 	PlayerData.inner_sanctum.power += allocated_power_points
 	allocated_power_points = 0
 	
-	PlayerData.current_inner_sanctum_essence = allocated_essence
+	PlayerData.inner_sanctum_essence_current = allocated_essence
 	_ready()
 
 # Life
