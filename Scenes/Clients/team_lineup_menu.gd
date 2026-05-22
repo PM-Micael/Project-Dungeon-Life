@@ -103,8 +103,7 @@ func _exit_dungeon():
 	board.defeat_screen.visible = false
 	DungeonData.reset_backpack()
 	PlayerData.reset_dungeon_run_data(DungeonData.Zone.PUTRID_LAYERS)
-	PlayerData.load_player_data()
-	await PlayerData.player_data_loaded
+	ui_scene.get_node("Inventory")._fill_backpack_frame()
 	add_inner_sanctum_scene()
 
 # ─── Game State ───────────────────────────────────────────────────────────────
