@@ -44,8 +44,9 @@ Buggs:
 2026-05-11:
 	Zac devours more than he should when enemy dies
 
-2026-05-21:
-	On loss:
-		Clear inventory.
-		Rid of the weapons from units
-		Units should start with their signature weapons.
+2026-05-11:
+	Scenes for the ui update:
+		Start screen
+		Board
+		Inventory
+		Inner Sanctum

@@ -18,6 +18,12 @@ func initialize_data(_ui: Node2D, _board: GameBoard = board):
 	current_board_layout_id = 2
 	current_inventory_layout_id = 2
 
+func set_layout_dev(mode: int):
+	var window = get_window()
+	match mode:
+		0:
+			window.mouse_passthrough_polygon = polygon_shape["setups"]["start"]
+
 func _set_layout():
 	var layout_id: String = (str(0) + str(current_inventory_layout_id) + str(current_board_layout_id))
 	
@@ -116,6 +122,7 @@ var polygon_shape: Dictionary = {
 		Vector2(1090.0, 0.1),
 		Vector2(1090.0, 40.0),
 		Vector2(910.0, 40.0),
+		Vector2(910.0, 1.0),
 		],
 	},
 	"position_setup":
