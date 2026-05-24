@@ -260,3 +260,6 @@ func _scale_up_inventory():
 func _scale_down_inventory():
 	var inventory_scale: Vector2 = inventory_window.inventory.scale
 	inventory_window.inventory.set_scale_custom = inventory_scale - Vector2(0.1, 0.1)
+
+func _minimize_inventory():
+	return
