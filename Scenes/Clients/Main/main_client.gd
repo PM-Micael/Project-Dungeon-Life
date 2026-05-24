@@ -1,4 +1,5 @@
 extends Node2D
+class_name MainClient
 
 var game_initialized: bool = false
 
@@ -6,7 +7,7 @@ var window_manager: Window
 var wm_position: Vector2
 var wm_size: Vector2
 
-var board_window: Window
+@onready var board_window: Window = get_node("RunManager/BoardWindow")
 var bw_position: Vector2
 var bw_size: Vector2
 
@@ -20,7 +21,6 @@ func _ready() -> void:
 	await _initialize_game_data()
 	
 	_set_window_manager()
-	_set_board_window()
 
 func _physics_process(_delta: float) -> void:
 	if game_initialized:
@@ -68,9 +68,3 @@ func _set_window_manager():
 	window_manager.name = "WindowManager"
 	window_manager.set_script(load("res://Scenes/Clients/Main/Window_Manager/window_manager.gd"))
 	add_child(window_manager)
-
-func _set_board_window():
-	board_window = Window.new()
-	board_window.name = "BoardWindow"
-	board_window.set_script(load("res://Scenes/Clients/Main/Board_Window/board_window.gd"))
-	run_manager.add_child(board_window)
