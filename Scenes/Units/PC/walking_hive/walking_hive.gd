@@ -26,7 +26,7 @@ func _set_stats():
 	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, 200, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _connect_blood_flies():
-	var enemy_units_node = get_node("/root/TeamLineupMenu/Board/Units/EnemyUnits")
+	var enemy_units_node = get_node("//root/MainClient/RunManager/BoardWindow/Board/Units/EnemyUnits")
 	enemy_units_node.child_entered_tree.connect(_apply_blood_flies)
 
 func _apply_blood_flies(unit: Node):

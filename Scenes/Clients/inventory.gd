@@ -19,14 +19,14 @@ func fill_backpack_frame():
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
-		var clickable_object_instance: ClickableObject = clickable_object_scene.instantiate()
+		var clickable_object_instance: Control = clickable_object_scene.instantiate()
 		
 		entity_container_instance.add_child(clickable_object_instance)
 		
 		entity_container_instance.entity = e
 		entity_container_instance.position = Vector2(75+(loop_itterations*100), 125)
-		entity_container_instance.get_node("ClickableObject").get_node("CollisionShape2D").scale = Vector2(0.1, 0.1)
-		entity_container_instance.get_node("ClickableObject").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
+		entity_container_instance.get_node("ClickableObject").get_node("Clickable").scale = Vector2(0.1, 0.1)
+		entity_container_instance.get_node("ClickableObject").get_node("Clickable").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
 		
 		backpack_frame.add_child(entity_container_instance)
 		loop_itterations += 1

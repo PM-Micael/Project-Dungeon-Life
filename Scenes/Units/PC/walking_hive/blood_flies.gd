@@ -31,7 +31,7 @@ func _on_debuff_applied(target: Unit):
 			debuff.debuff_effect()
 
 func blood_collector(dead_unit: Unit): 
-	var board: GameBoard = dead_unit.get_node("/root/TeamLineupMenu/Board")
+	var board: GameBoard = dead_unit.get_node("/root/MainClient/RunManager/BoardWindow/Board")
 	var lowest_health_unit: Unit
 	var lowest_health: float = -1.0
 	

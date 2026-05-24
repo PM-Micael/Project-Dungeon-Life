@@ -13,22 +13,22 @@ script = ExtResource("1_d5ua6")
 
 [node name="BoardWindow" type="Window" parent="." unique_id=17590501]
 oversampling_override = 1.0
-position = Vector2i(1110, 240)
+position = Vector2i(613, 36)
+size = Vector2i(800, 800)
 script = ExtResource("2_rsedy")
 
 [node name="Board" parent="BoardWindow" unique_id=1051771976 instance=ExtResource("3_svmjg")]
 
-[node name="StartStage" type="Button" parent="." unique_id=1530214977]
+[node name="StartStage" type="Button" parent="BoardWindow" unique_id=1530214977]
 z_index = 10
-offset_left = 1801.0
-offset_top = 978.0
-offset_right = 1958.0
-offset_bottom = 1142.0
+offset_right = 157.0
+offset_bottom = 164.0
 text = "Start Stage"
 
 [node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
 oversampling_override = 1.0
-position = Vector2i(290, 240)
+position = Vector2i(290, 36)
+size = Vector2i(800, 800)
 script = ExtResource("4_ncke1")
 
 [node name="UI" type="Node2D" parent="InventoryWindow" unique_id=1440841288]
