@@ -200,17 +200,28 @@ func _add_board_minimize_button():
 	board_minimize_button.name = "board_minimize_down_button"
 	board_minimize_button.texture_normal = load("res://Assets/Client/icon_minimize.svg")
 	board_minimize_button.scale = Vector2(0.75, 0.75)
-	board_minimize_button.pressed.connect(_on_board_pressed)
+	board_minimize_button.pressed.connect(_minimize_board)
 	board_minimize_button.visible = false
 	add_child(board_minimize_button)
 
 func _scale_down_board():
+	if not board_window.visible:
+		board_window.visible = true
+		return
 	var board_scale: Vector2 = board_window.board.scale
 	board_window.board.set_scale_custom = board_scale - Vector2(0.1, 0.1)
 
 func _scale_up_board():
+	if not board_window.visible:
+		board_window.visible = true
+		return
+	
+	board_window.visible = true
 	var board_scale: Vector2 = board_window.board.scale
 	board_window.board.set_scale_custom = board_scale + Vector2(0.1, 0.1)
+
+func _minimize_board():
+	board_window.visible = not board_window.visible
 
 # Inventory menu button
 func _add_inventory_menu_button():
@@ -249,17 +260,25 @@ func _add_inventory_minimize_button():
 	inventory_minimize_button.name = "inventory_minimize_down_button"
 	inventory_minimize_button.texture_normal = load("res://Assets/Client/icon_minimize.svg")
 	inventory_minimize_button.scale = Vector2(0.75, 0.75)
-	inventory_minimize_button.pressed.connect(_on_board_pressed)
+	inventory_minimize_button.pressed.connect(_minimize_inventory)
 	inventory_minimize_button.visible = false
 	add_child(inventory_minimize_button)
 
 func _scale_up_inventory():
+	if not inventory_window.visible:
+		inventory_window.visible = true
+		return
+	
 	var inventory_scale: Vector2 = inventory_window.inventory.scale
 	inventory_window.inventory.set_scale_custom = inventory_scale + Vector2(0.1, 0.1)
 
 func _scale_down_inventory():
+	if not inventory_window.visible:
+		inventory_window.visible = true
+		return
+	
 	var inventory_scale: Vector2 = inventory_window.inventory.scale
 	inventory_window.inventory.set_scale_custom = inventory_scale - Vector2(0.1, 0.1)
 
 func _minimize_inventory():
-	return
+	inventory_window.visible = not inventory_window.visible
