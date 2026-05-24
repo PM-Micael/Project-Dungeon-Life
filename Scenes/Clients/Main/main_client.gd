@@ -7,9 +7,13 @@ var window_manager: Window
 var wm_position: Vector2
 var wm_size: Vector2
 
-@onready var board_window: Window = get_node("RunManager/BoardWindow")
+@onready var board_window: BoardWindow = get_node("RunManager/BoardWindow")
 var bw_position: Vector2
 var bw_size: Vector2
+
+@onready var inventory_window: Window  = get_node("RunManager/InventoryWindow")
+var iw_position: Vector2
+var iw_size: Vector2
 
 @onready var run_manager: RunManager = get_node("RunManager")
 
@@ -37,9 +41,12 @@ func _check_update_polygon():
 	var new_wm_size = Vector2(window_manager.size) + Vector2(30, 50)
 	var new_bw_pos  = Vector2(board_window.position) - Vector2(20, 40)
 	var new_bw_size = Vector2(board_window.size) + Vector2(30, 50)
+	var new_iw_pos  = Vector2(inventory_window.position) - Vector2(20, 40)
+	var new_iw_size = Vector2(inventory_window.size) + Vector2(30, 50)
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
-		bw_position != new_bw_pos or bw_size != new_bw_size
+		bw_position != new_bw_pos or bw_size != new_bw_size or
+		iw_position != new_iw_pos or iw_size != new_iw_size
 		):
 		print("Transform changed")
 		polygon_window.polygon = PackedVector2Array([
@@ -56,12 +63,20 @@ func _check_update_polygon():
 			new_bw_pos + Vector2(0, new_bw_size.y),
 			new_bw_pos,
 			Vector2(0, 0),
+			new_iw_pos,
+			new_iw_pos + Vector2(new_iw_size.x, 0),
+			new_iw_pos + new_iw_size,
+			new_iw_pos + Vector2(0, new_iw_size.y),
+			new_iw_pos,
+			Vector2(0, 0),
 		])
 		get_window().mouse_passthrough_polygon = polygon_window.polygon
 		wm_position = new_wm_pos
 		wm_size = new_wm_size
 		bw_position = new_bw_pos
 		bw_size = new_bw_size
+		iw_position = new_iw_pos
+		iw_size = new_iw_size
 
 func _set_window_manager():
 	window_manager = Window.new()

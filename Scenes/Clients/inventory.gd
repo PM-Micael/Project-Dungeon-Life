@@ -1,7 +1,7 @@
 extends Node2D
 class_name Inventory
 
-@onready var run_manager: RunManager = get_parent().get_parent()
+@onready var run_manager: RunManager = get_parent().get_parent().get_parent()
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
 @onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")

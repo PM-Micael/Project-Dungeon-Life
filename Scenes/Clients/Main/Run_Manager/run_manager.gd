@@ -8,7 +8,7 @@ class_name RunManager
 @onready var board: GameBoard = get_node("BoardWindow/Board")
 @onready var map_tiles: MapTiles = get_node("BoardWindow/Board/MapTiles")
 @onready var inventory: Inventory = get_node("UI/Inventory")
-@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
+@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("InventoryWindow/UI/Inventory/UnitLoadoutFrame")
 
 @onready var next_stage_button: Button = get_node("BoardWindow/Board/RoundOver/VictoryScreen/NextStageButton")
 @onready var exit_dungeon_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ExitDungeonButton")
