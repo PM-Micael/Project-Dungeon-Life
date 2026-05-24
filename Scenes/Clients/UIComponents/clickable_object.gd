@@ -1,23 +1,20 @@
-extends Area2D
+extends Control
 class_name ClickableObject
 
-@onready var parent = get_parent()
+@onready var parent = get_parent().get_parent()
 @onready var popup_menu: PopupMenu = get_node("PopupMenu")
 
 func _ready() -> void:
-	#_create_popup_menu()
 	return
 
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				parent.on_clicked()
-			
 			MOUSE_BUTTON_RIGHT:
 				if popup_menu == null:
 					return
-					
 				popup_menu.position = get_viewport().get_mouse_position()
 				popup_menu.popup()
 

@@ -166,7 +166,7 @@ func _set_highlight(container: EntityContainer, enabled: bool) -> void:
 		highlight.name = "Highlight"
 		highlight.color = Color(1, 1, 0, 0.4)
 		highlight.size = Vector2(100, 100)
-		highlight.position = Vector2(-40, -40)
+		highlight.position = Vector2(-50, -50)
 		highlight.z_index = 10
 		container.add_child(highlight)
 	elif not enabled and highlight != null:

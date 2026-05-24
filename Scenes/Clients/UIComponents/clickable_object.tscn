@@ -3,17 +3,31 @@
 [ext_resource type="Script" uid="uid://bk0f05xhbmpph" path="res://Scenes/Clients/UIComponents/clickable_object.gd" id="1_kgsiq"]
 [ext_resource type="Script" uid="uid://cs3xnsqqtp32k" path="res://Scenes/Clients/UIComponents/popup_menu.gd" id="2_vvu28"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cg7g"]
-size = Vector2(520, 520)
-
-[node name="ClickableObject" type="Area2D" unique_id=1384005923]
+[node name="ClickableObject" type="Control" unique_id=461253785]
 z_index = 3
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Clickable" type="Control" parent="." unique_id=239332093]
+anchors_preset = 0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 script = ExtResource("1_kgsiq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386152851]
-shape = SubResource("RectangleShape2D_5cg7g")
+[node name="DebugColorRect" type="ColorRect" parent="Clickable" unique_id=1879003602]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8509804, 0, 0.007843138, 0.61960787)
 
-[node name="PopupMenu" type="PopupMenu" parent="." unique_id=2087516693]
+[node name="PopupMenu" type="PopupMenu" parent="Clickable" unique_id=2087516693]
 oversampling_override = 1.0
 visible = true
 script = ExtResource("2_vvu28")
