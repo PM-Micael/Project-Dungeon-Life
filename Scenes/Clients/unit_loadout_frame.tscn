@@ -13,17 +13,17 @@ script = ExtResource("1_terp8")
 
 [node name="Frame" type="ColorRect" parent="UnitPreview/Style" unique_id=41736776]
 offset_left = 275.0
-offset_top = -400.0
+offset_top = 75.0
 offset_right = 550.0
-offset_bottom = -50.0
+offset_bottom = 425.0
 mouse_filter = 2
 color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UnitPreview/Style" unique_id=1874269458]
 offset_left = 287.5
-offset_top = -387.5
+offset_top = 87.5
 offset_right = 537.5
-offset_bottom = -62.5
+offset_bottom = 412.5
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 
@@ -33,17 +33,17 @@ color = Color(0.015686275, 0, 0.15686275, 1)
 
 [node name="Frame" type="ColorRect" parent="WeaponPreviewFrame/Style" unique_id=274905916]
 offset_left = 75.0
-offset_top = -300.0
+offset_top = 175.0
 offset_right = 225.0
-offset_bottom = -50.0
+offset_bottom = 425.0
 mouse_filter = 2
 color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="WeaponPreviewFrame/Style" unique_id=1413085953]
 offset_left = 87.5
-offset_top = -287.5
+offset_top = 187.5
 offset_right = 212.5
-offset_bottom = -62.5
+offset_bottom = 412.5
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 
@@ -53,15 +53,16 @@ color = Color(0.015686275, 0, 0.15686275, 1)
 
 [node name="Frame" type="ColorRect" parent="StatsFrame/Style" unique_id=291619055]
 offset_left = 40.0
+offset_top = 475.0
 offset_right = 390.0
-offset_bottom = 287.0
+offset_bottom = 762.0
 mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="StatsFrame/Style" unique_id=915401141]
 offset_left = 45.0
-offset_top = 5.0
+offset_top = 480.0
 offset_right = 385.0
-offset_bottom = 282.0
+offset_bottom = 757.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
@@ -69,32 +70,32 @@ color = Color(0, 0, 0, 1)
 
 [node name="KeyLabel" type="Label" parent="StatsFrame/Health" unique_id=306027619]
 offset_left = 50.0
-offset_top = 10.0
+offset_top = 480.0
 offset_right = 172.0
-offset_bottom = 33.0
+offset_bottom = 522.0
 theme_override_font_sizes/font_size = 30
 text = "Health:"
 
 [node name="ValueLabel" type="Label" parent="StatsFrame/Health" unique_id=510109698]
 offset_left = 200.0
-offset_top = 10.0
+offset_top = 480.0
 offset_right = 322.0
-offset_bottom = 52.0
+offset_bottom = 522.0
 theme_override_font_sizes/font_size = 30
 
 [node name="Attack" type="Node2D" parent="StatsFrame" unique_id=1155441891]
 
 [node name="KeyLabel" type="Label" parent="StatsFrame/Attack" unique_id=559051840]
 offset_left = 50.0
-offset_top = 50.0
+offset_top = 525.0
 offset_right = 172.0
-offset_bottom = 92.0
+offset_bottom = 567.0
 theme_override_font_sizes/font_size = 30
 text = "Attack:"
 
 [node name="ValueLabel" type="Label" parent="StatsFrame/Attack" unique_id=1498128156]
 offset_left = 200.0
-offset_top = 50.0
+offset_top = 525.0
 offset_right = 322.0
-offset_bottom = 92.0
+offset_bottom = 567.0
 theme_override_font_sizes/font_size = 30

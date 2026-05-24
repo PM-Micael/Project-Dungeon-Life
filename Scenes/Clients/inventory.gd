@@ -35,7 +35,7 @@ func fill_backpack_frame():
 		entity_container_instance.add_child(clickable_object_instance)
 		
 		entity_container_instance.entity = e
-		entity_container_instance.position = Vector2(75+(loop_itterations*100), 125)
+		entity_container_instance.position = Vector2(75+(loop_itterations*100), 600)
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").scale = Vector2(0.1, 0.1)
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
 		

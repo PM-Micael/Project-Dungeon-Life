@@ -13,7 +13,7 @@ script = ExtResource("1_d5ua6")
 
 [node name="BoardWindow" type="Window" parent="." unique_id=17590501]
 oversampling_override = 1.0
-position = Vector2i(1119, 240)
+position = Vector2i(0, 36)
 size = Vector2i(800, 800)
 script = ExtResource("2_rsedy")
 
@@ -27,12 +27,11 @@ text = "Start Stage"
 
 [node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
 oversampling_override = 1.0
-position = Vector2i(311, 240)
+position = Vector2i(0, 36)
 size = Vector2i(800, 800)
 script = ExtResource("4_ncke1")
 
 [node name="UI" type="Node2D" parent="InventoryWindow" unique_id=1440841288]
-position = Vector2(0, 475)
 
 [node name="Inventory" type="Node2D" parent="InventoryWindow/UI" unique_id=1423679871]
 script = ExtResource("3_8dbfp")
@@ -42,16 +41,15 @@ script = ExtResource("3_8dbfp")
 [node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory/MainBackround" unique_id=1433930670]
 
 [node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/MainBackround/Style" unique_id=236167174]
-offset_top = -475.0
 offset_right = 800.0
-offset_bottom = 325.0
+offset_bottom = 800.0
 mouse_filter = 2
 
 [node name="Backround" type="ColorRect" parent="InventoryWindow/UI/Inventory/MainBackround/Style" unique_id=1581728772]
 offset_left = 5.0
-offset_top = -470.0
+offset_top = 5.0
 offset_right = 795.0
-offset_bottom = 320.0
+offset_bottom = 795.0
 mouse_filter = 2
 color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 
