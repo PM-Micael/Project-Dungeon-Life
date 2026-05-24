@@ -46,7 +46,8 @@ Buggs:
 
 2026-05-11:
 	Scenes for the ui update:
-		Start screen
+		Control panel / Window manager
 		Board
 		Inventory
 		Inner Sanctum
+		Game selection

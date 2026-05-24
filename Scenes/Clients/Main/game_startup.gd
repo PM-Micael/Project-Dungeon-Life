@@ -16,4 +16,4 @@ func _window_setup():
 	window.borderless = true
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Clients/team_lineup_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Clients/Main/main_client.tscn")

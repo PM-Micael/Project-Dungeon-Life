@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b8bb0gl5w2ebc"]
+
+[ext_resource type="Script" uid="uid://iere75t3y7yd" path="res://Scenes/Clients/Main/Run_Manager/run_manager.gd" id="1_d5ua6"]
+
+[node name="RunManager" type="Node2D" unique_id=896845944]
+script = ExtResource("1_d5ua6")
