@@ -3,7 +3,7 @@ class_name MainClient
 
 var game_initialized: bool = false
 
-var window_manager: Window
+@onready var window_manager: Window = get_node("WindowManager")
 var wm_position: Vector2
 var wm_size: Vector2
 
@@ -24,8 +24,6 @@ func _ready() -> void:
 	get_window().mouse_passthrough_polygon = polygon_window.polygon
 	await _initialize_game_data()
 	
-	_set_window_manager()
-
 func _physics_process(_delta: float) -> void:
 	if game_initialized:
 		_check_update_polygon()
@@ -39,10 +37,10 @@ func _initialize_game_data():
 func _check_update_polygon():
 	var new_wm_pos  = Vector2(window_manager.position) - Vector2(20, 40)
 	var new_wm_size = Vector2(window_manager.size) + Vector2(30, 50)
-	var new_bw_pos  = Vector2(board_window.position) - Vector2(20, 40)
-	var new_bw_size = Vector2(board_window.size) + Vector2(30, 50)
-	var new_iw_pos  = Vector2(inventory_window.position) - Vector2(20, 40)
-	var new_iw_size = Vector2(inventory_window.size) + Vector2(30, 50)
+	var new_bw_pos  = Vector2(board_window.position)
+	var new_bw_size = Vector2(board_window.size)
+	var new_iw_pos  = Vector2(inventory_window.position)
+	var new_iw_size = Vector2(inventory_window.size)
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
 		bw_position != new_bw_pos or bw_size != new_bw_size or
@@ -77,9 +75,3 @@ func _check_update_polygon():
 		bw_size = new_bw_size
 		iw_position = new_iw_pos
 		iw_size = new_iw_size
-
-func _set_window_manager():
-	window_manager = Window.new()
-	window_manager.name = "WindowManager"
-	window_manager.set_script(load("res://Scenes/Clients/Main/Window_Manager/window_manager.gd"))
-	add_child(window_manager)

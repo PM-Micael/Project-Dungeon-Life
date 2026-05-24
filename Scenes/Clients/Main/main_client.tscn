@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dknjcthb7dn4x" path="res://Scenes/Clients/Main/main_client.gd" id="1_g888i"]
 [ext_resource type="PackedScene" uid="uid://b8bb0gl5w2ebc" path="res://Scenes/Clients/Main/Run_Manager/run_manager.tscn" id="2_g888i"]
+[ext_resource type="Script" uid="uid://dvogv222d75y5" path="res://Scenes/Clients/Main/Window_Manager/window_manager.gd" id="3_gm5dl"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
 
 [node name="RunManager" parent="." unique_id=896845944 instance=ExtResource("2_g888i")]
+
+[node name="WindowManager" type="Window" parent="." unique_id=209614530]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+script = ExtResource("3_gm5dl")

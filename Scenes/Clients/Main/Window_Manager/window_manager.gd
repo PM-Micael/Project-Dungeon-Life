@@ -21,11 +21,13 @@ var home_menu_button: TextureButton
 
 var dungeon_menu_button: TextureButton
 
+@onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
 var board_menu_button: TextureButton
 var board_scale_up_button: TextureButton
 var board_scale_down_button: TextureButton
 var board_minimize_button: TextureButton
 
+@onready var inventory_window: InventoryWindow = get_parent().get_node("RunManager/InventoryWindow")
 var invenetory_menu_button: TextureButton
 var inventory_scale_down_button: TextureButton
 var inventory_scale_up_button: TextureButton
@@ -180,6 +182,7 @@ func _add_board_scale_up_button():
 	board_scale_up_button.name = "board_scale_up_button"
 	board_scale_up_button.texture_normal = load("res://Assets/Client/icon_scale_up.svg")
 	board_scale_up_button.scale = Vector2(0.75, 0.75)
+	board_scale_up_button.pressed.connect(_scale_up_board)
 	board_scale_up_button.visible = false
 	add_child(board_scale_up_button)
 
@@ -188,7 +191,7 @@ func _add_board_scale_down_button():
 	board_scale_down_button.name = "board_scale_down_button"
 	board_scale_down_button.texture_normal = load("res://Assets/Client/icon_scale_down.svg")
 	board_scale_down_button.scale = Vector2(0.75, 0.75)
-	board_scale_down_button.pressed.connect(_on_board_pressed)
+	board_scale_down_button.pressed.connect(_scale_down_board)
 	board_scale_down_button.visible = false
 	add_child(board_scale_down_button)
 
@@ -200,6 +203,14 @@ func _add_board_minimize_button():
 	board_minimize_button.pressed.connect(_on_board_pressed)
 	board_minimize_button.visible = false
 	add_child(board_minimize_button)
+
+func _scale_down_board():
+	var board_scale: Vector2 = board_window.board.scale
+	board_window.board.set_scale_custom = board_scale - Vector2(0.1, 0.1)
+
+func _scale_up_board():
+	var board_scale: Vector2 = board_window.board.scale
+	board_window.board.set_scale_custom = board_scale + Vector2(0.1, 0.1)
 
 # Inventory menu button
 func _add_inventory_menu_button():
@@ -220,6 +231,7 @@ func _add_inventory_scale_up_button():
 	inventory_scale_up_button.name = "inventory_scale_up_button"
 	inventory_scale_up_button.texture_normal = load("res://Assets/Client/icon_scale_up.svg")
 	inventory_scale_up_button.scale = Vector2(0.75, 0.75)
+	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_up_button.visible = false
 	add_child(inventory_scale_up_button)
 
@@ -228,6 +240,7 @@ func _add_inventory_scale_down_button():
 	inventory_scale_down_button.name = "inventory_scale_down_button"
 	inventory_scale_down_button.texture_normal = load("res://Assets/Client/icon_scale_down.svg")
 	inventory_scale_down_button.scale = Vector2(0.75, 0.75)
+	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_scale_down_button.visible = false
 	add_child(inventory_scale_down_button)
 
@@ -239,3 +252,11 @@ func _add_inventory_minimize_button():
 	inventory_minimize_button.pressed.connect(_on_board_pressed)
 	inventory_minimize_button.visible = false
 	add_child(inventory_minimize_button)
+
+func _scale_up_inventory():
+	var inventory_scale: Vector2 = inventory_window.inventory.scale
+	inventory_window.inventory.set_scale_custom = inventory_scale + Vector2(0.1, 0.1)
+
+func _scale_down_inventory():
+	var inventory_scale: Vector2 = inventory_window.inventory.scale
+	inventory_window.inventory.set_scale_custom = inventory_scale - Vector2(0.1, 0.1)

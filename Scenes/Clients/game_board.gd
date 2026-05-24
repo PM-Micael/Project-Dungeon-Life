@@ -2,7 +2,17 @@
 extends Node2D
 class_name GameBoard
 
+signal scale_changed
 signal round_over(player_won: bool)
+
+var set_scale_custom: Vector2:
+	set(value):
+		if value > Vector2(1.0, 1.0) or value < Vector2(0.1, 0.1):
+			return
+		if scale != value:
+			scale = value
+			scale_changed.emit()
+
 
 var collected_essence: int = 0
 var game_on: bool = false

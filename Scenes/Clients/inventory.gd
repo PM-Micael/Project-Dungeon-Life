@@ -1,6 +1,17 @@
 extends Node2D
 class_name Inventory
 
+signal scale_changed()
+
+var set_scale_custom: Vector2:
+	set(value):
+		if value > Vector2(1.0, 1.0) or value < Vector2(0.1, 0.1):
+			return
+		if scale != value:
+			scale = value
+			scale_changed.emit()
+
+
 @onready var run_manager: RunManager = get_parent().get_parent().get_parent()
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
 @onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
