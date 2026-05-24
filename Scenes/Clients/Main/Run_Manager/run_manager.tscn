@@ -1,12 +1,71 @@
 [gd_scene format=3 uid="uid://b8bb0gl5w2ebc"]
 
 [ext_resource type="Script" uid="uid://iere75t3y7yd" path="res://Scenes/Clients/Main/Run_Manager/run_manager.gd" id="1_d5ua6"]
+[ext_resource type="Script" uid="uid://comhurfb2ej2l" path="res://Scenes/Clients/Main/Board_Window/board_window.gd" id="2_rsedy"]
+[ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="3_8dbfp"]
 [ext_resource type="PackedScene" uid="uid://kfflhfiy04w" path="res://Scenes/Clients/board.tscn" id="3_svmjg"]
+[ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="4_rsedy"]
+[ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="5_ncke1"]
 
 [node name="RunManager" type="Node2D" unique_id=896845944]
 script = ExtResource("1_d5ua6")
 
 [node name="BoardWindow" type="Window" parent="." unique_id=17590501]
 oversampling_override = 1.0
+position = Vector2i(0, 36)
+script = ExtResource("2_rsedy")
 
 [node name="Board" parent="BoardWindow" unique_id=1051771976 instance=ExtResource("3_svmjg")]
+
+[node name="StartStage" type="Button" parent="." unique_id=1530214977]
+z_index = 10
+offset_left = 1801.0
+offset_top = 978.0
+offset_right = 1958.0
+offset_bottom = 1142.0
+text = "Start Stage"
+
+[node name="UI" type="Node2D" parent="." unique_id=1440841288]
+position = Vector2(320, 755)
+
+[node name="Inventory" type="Node2D" parent="UI" unique_id=1423679871]
+script = ExtResource("3_8dbfp")
+
+[node name="MainBackround" type="Node2D" parent="UI/Inventory" unique_id=635007836]
+
+[node name="Style" type="Node2D" parent="UI/Inventory/MainBackround" unique_id=1433930670]
+
+[node name="Frame" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=236167174]
+offset_top = -475.0
+offset_right = 800.0
+offset_bottom = 325.0
+mouse_filter = 2
+
+[node name="Backround" type="ColorRect" parent="UI/Inventory/MainBackround/Style" unique_id=1581728772]
+offset_left = 5.0
+offset_top = -470.0
+offset_right = 795.0
+offset_bottom = 320.0
+mouse_filter = 2
+color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
+
+[node name="UnitLoadoutFrame" parent="UI/Inventory" unique_id=599129927 instance=ExtResource("4_rsedy")]
+
+[node name="BackpackFrame" type="Node2D" parent="UI/Inventory" unique_id=1557088162]
+script = ExtResource("5_ncke1")
+
+[node name="Collectables" type="Node2D" parent="UI" unique_id=390464900]
+
+[node name="Style" type="Node2D" parent="UI/Collectables" unique_id=1759719708]
+
+[node name="Frame" type="ColorRect" parent="UI/Collectables/Style" unique_id=1028180024]
+offset_left = -850.0
+offset_top = -480.0
+offset_bottom = -400.0
+
+[node name="Backround" type="ColorRect" parent="UI/Collectables/Style" unique_id=838975458]
+offset_left = -845.0
+offset_top = -475.0
+offset_right = -5.0
+offset_bottom = -405.0
+color = Color(0, 0, 0, 1)
