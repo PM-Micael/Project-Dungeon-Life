@@ -1,3 +1,4 @@
+# Handle the autobatteling portion
 extends Node2D
 class_name GameBoard
 
@@ -6,16 +7,16 @@ signal round_over(player_won: bool)
 var collected_essence: int = 0
 var game_on: bool = false
 
-@onready var game_parent: TeamLineupMenu = get_parent()
+@onready var run_manager: RunManager = get_parent().get_parent()
 @onready var enemy_units_node: Node2D = get_node("Units/EnemyUnits")
 @onready var friendly_units_node: Node2D = get_node("Units/FriendlyUnits")
 @onready var victory_screen: Node2D = get_node("RoundOver/VictoryScreen")
 @onready var defeat_screen: Node2D = get_node("RoundOver/DefeatScreen")
+@onready var next_stage_button = get_node("RoundOver/VictoryScreen/NextStageButton")
 
 @onready var friendly_units: Array[Unit]
 @onready var enemy_units: Array[Unit]
 @onready var current_room: int = PlayerData.dungeon_room_putrid_layers
-
 
 func _ready() -> void:
 	for unit in friendly_units:
@@ -131,11 +132,11 @@ func _on_victory():
 	DungeonData.add_loot_to_backpack(loot)
 	DungeonData.check_and_merge_backpack_items()
 	PlayerData.save_player_data()
-	game_parent.ui_scene.get_node("Inventory")._fill_backpack_frame()
+	run_manager.inventory.fill_backpack_frame()
 	
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
-		game_parent.next_stage_button.pressed.emit()
+		next_stage_button.pressed.emit()
 
 func _on_defeat():
 	print("You loose")

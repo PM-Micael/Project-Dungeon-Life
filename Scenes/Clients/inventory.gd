@@ -8,9 +8,9 @@ class_name Inventory
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
 
 func _ready() -> void:
-	_fill_backpack_frame()
+	fill_backpack_frame()
 
-func _fill_backpack_frame():
+func fill_backpack_frame():
 	for child in backpack_frame.get_children():
 		child.queue_free()
 		
@@ -56,6 +56,6 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			DungeonData.check_and_merge_backpack_items()
 			
 			unit_loadout_frame._on_unit_entity_change()
-			_fill_backpack_frame()
+			fill_backpack_frame()
 		2:
 			print("Not Implimented")

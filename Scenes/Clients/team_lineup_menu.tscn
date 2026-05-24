@@ -54,10 +54,6 @@ offset_right = -5.0
 offset_bottom = -405.0
 color = Color(0, 0, 0, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1260364263]
-visible = false
-polygon = PackedVector2Array(0, 0, 1920, 0, 1920, 1080, 1280, 1080, 1280, 760, 1920, 760, 1919.9, 0.1, 1090, 0.1, 1090, 40, 910, 40, 910, 1)
-
 [node name="LayoutSwitch" type="Node2D" parent="." unique_id=1648626660]
 position = Vector2(910, 0)
 
@@ -81,12 +77,6 @@ offset_right = 70.0
 offset_bottom = 41.0
 text = "Menu"
 script = ExtResource("8_gdxfq")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2006932557]
-offset_left = 1820.0
-offset_top = 12.0
-offset_right = 1860.0
-offset_bottom = 52.0
 
 [node name="StartStage" type="Button" parent="." unique_id=1100139550]
 z_index = 10

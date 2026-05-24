@@ -5,13 +5,9 @@ class_name RunManager
 @onready var inner_sanctum_scene = preload("res://Scenes/Clients/Upgrades/inner_sanctum.tscn")
 
 @onready var board: GameBoard
+@onready var inventory: Inventory
 @onready var inner_sanctum: InnerSanctum
-@onready var map_tiles_scene: MapTiles
-@onready var ui_scene = get_node_or_null("UI")
-@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UI/Inventory/UnitLoadoutFrame")
-@onready var next_stage_button: Button
-@onready var start_stage_button: Button
-@onready var exit_dungeon_button: Button
+@onready var unit_loadout_frame: UnitLoadoutFrame = get_node("Inventory/UnitLoadoutFrame")
 @onready var currently_selected_unit_entity_container: EntityContainer
 
 var game_on: bool = false
@@ -25,21 +21,6 @@ func _ready() -> void:
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_game()
-
-func add_board_scene():
-	var get_inner_sanctum = get_node_or_null("InnerSanctum")
-	if get_inner_sanctum != null:
-		get_inner_sanctum.queue_free()
-		
-	var instance = board_scene.instantiate()
-	add_child(instance)
-	move_child(instance, 0)
-	board = get_node("WindowManager/Board")
-	map_tiles_scene = get_node_or_null("Board/MapTiles")
-	next_stage_button = get_node("Board/RoundOver/VictoryScreen/NextStageButton")
-	exit_dungeon_button = get_node("Board/RoundOver/DefeatScreen/ExitDungeonButton")
-	start_stage_button = get_node("StartStage")
-	LocalData.initialize_data(ui_scene, board) # Bandade fix
 
 func add_inner_sanctum_scene():
 	var get_board = get_node_or_null("Board")
@@ -97,7 +78,7 @@ func _exit_dungeon():
 	board.defeat_screen.visible = false
 	DungeonData.reset_backpack()
 	PlayerData.reset_dungeon_run_data(DungeonData.Zone.PUTRID_LAYERS)
-	ui_scene.get_node("Inventory")._fill_backpack_frame()
+	inventory.fill_backpack_frame()
 	add_inner_sanctum_scene()
 
 # ─── Game State ───────────────────────────────────────────────────────────────
