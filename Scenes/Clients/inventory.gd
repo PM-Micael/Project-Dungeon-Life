@@ -9,7 +9,7 @@ var set_scale_custom: Vector2:
 			return
 		if scale != value:
 			scale = value
-			scale_changed.emit()
+			scale_changed.emit(scale)
 
 
 @onready var run_manager: RunManager = get_parent().get_parent().get_parent()

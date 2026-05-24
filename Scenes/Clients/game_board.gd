@@ -11,7 +11,7 @@ var set_scale_custom: Vector2:
 			return
 		if scale != value:
 			scale = value
-			scale_changed.emit()
+			scale_changed.emit(scale)
 
 
 var collected_essence: int = 0

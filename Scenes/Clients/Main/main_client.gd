@@ -46,7 +46,6 @@ func _check_update_polygon():
 		bw_position != new_bw_pos or bw_size != new_bw_size or
 		iw_position != new_iw_pos or iw_size != new_iw_size
 		):
-		print("Transform changed")
 		polygon_window.polygon = PackedVector2Array([
 			Vector2(0, 0),
 			new_wm_pos,
