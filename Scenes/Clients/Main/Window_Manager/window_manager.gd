@@ -13,25 +13,25 @@ var menu_selected: TextureButton:
 
 var menu_history: Array[TextureButton] = []
 var _navigating_back: bool = false
-var back_button: TextureButton
+@onready var back_button: TextureButton = get_node("BackButton")
 
-var next_page_button: TextureButton
+@onready var next_page_button: TextureButton = get_node("NextPageButton")
 
-var home_menu_button: TextureButton
+@onready var home_menu_button: TextureButton = get_node("HomeMenuButton")
 
-var dungeon_menu_button: TextureButton
+@onready var dungeon_menu_button: TextureButton = get_node("DungeonMenuButton")
 
 @onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
-var board_menu_button: TextureButton
-var board_scale_up_button: TextureButton
-var board_scale_down_button: TextureButton
-var board_minimize_button: TextureButton
+@onready var board_menu_button: TextureButton = get_node("Board/BoardMenuButton")
+@onready var board_scale_up_button: TextureButton = get_node("Board/BoardScaleUpButton")
+@onready var board_scale_down_button: TextureButton = get_node("Board/BoardScaleDownButton")
+@onready var board_minimize_button: TextureButton = get_node("Board/BoardMinimizeButton")
 
 @onready var inventory_window: InventoryWindow = get_parent().get_node("RunManager/InventoryWindow")
-var invenetory_menu_button: TextureButton
-var inventory_scale_down_button: TextureButton
-var inventory_scale_up_button: TextureButton
-var inventory_minimize_button: TextureButton
+@onready var invenetory_menu_button: TextureButton = get_node("Inventory/InventoryMenuButton")
+@onready var inventory_scale_up_button: TextureButton = get_node("Inventory/InventoryScaleUpButton")
+@onready var inventory_scale_down_button: TextureButton = get_node("Inventory/InventoryScaleDownButton")
+@onready var inventory_minimize_button: TextureButton = get_node("Inventory/InventoryMinimizeButton")
 
 var config: Dictionary[TextureButton, Array]
 
@@ -45,29 +45,8 @@ func _ready() -> void:
 	transparent_bg = true
 	transparent = true
 	
-	# Back button
-	_add_back_button()
-	
-	# Next page button
-	_add_next_page_button()
-	
-	# Main menu
-	_add_main_menu_button()
-	
-	# Dungeon menu
-	_add_home_menu_button()
-	
-	# Board
-	_add_board_menu_button()
-	_add_board_scale_up_button()
-	_add_board_scale_down_button()
-	_add_board_minimize_button()
-	
-	_add_inventory_menu_button()
-	_add_inventory_scale_up_button()
-	_add_inventory_scale_down_button()
-	_add_inventory_minimize_button()
-	
+	_connect_events()
+		
 	config = {
 		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_menu_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
@@ -76,6 +55,18 @@ func _ready() -> void:
 	}
 	
 	menu_selected = home_menu_button
+
+func _connect_events():
+	back_button.pressed.connect(_on_back_pressed)
+	next_page_button.pressed.connect(_on_back_pressed)
+	board_menu_button.pressed.connect(_on_board_pressed)
+	board_scale_up_button.pressed.connect(_scale_up_board)
+	board_scale_down_button.pressed.connect(_scale_down_board)
+	board_minimize_button.pressed.connect(_minimize_board)
+	invenetory_menu_button.pressed.connect(_on_inventory_pressed)
+	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
+	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
+	inventory_minimize_button.pressed.connect(_minimize_inventory)
 
 func _on_menu_selected_changed() -> void:
 	if config.is_empty():
@@ -119,16 +110,6 @@ func _on_menu_selected_changed() -> void:
 		loop_itteration += 1
 
 # Back button
-func _add_back_button():
-	back_button = TextureButton.new()
-	back_button.name = "back_button"
-	back_button.texture_normal = load("res://Assets/Client/icon_go_back.svg")
-	back_button.scale = Vector2(0.5, 0.5)
-	back_button.position = Vector2(80, 0)
-	back_button.pressed.connect(_on_back_pressed)
-	back_button.visible = true
-	add_child(back_button)
-
 func _on_back_pressed():
 	if menu_history.is_empty():
 		return
@@ -136,73 +117,10 @@ func _on_back_pressed():
 	menu_selected = menu_history.pop_back()
 	_navigating_back = false
 
-# Next page button
-func _add_next_page_button():
-	next_page_button = TextureButton.new()
-	next_page_button.name = "next_page_button"
-	next_page_button.texture_normal = load("res://Assets/Client/icon_go_forward.svg")
-	next_page_button.scale = Vector2(0.5, 0.5)
-	next_page_button.position = Vector2(225, 0)
-	next_page_button.pressed.connect(_on_back_pressed)
-	next_page_button.visible = false
-	add_child(next_page_button)
-
-# Main menu button
-func _add_main_menu_button():
-	home_menu_button = TextureButton.new()
-	home_menu_button.name = "home_menu_button"
-	home_menu_button.texture_normal = load("res://Assets/Client/icon_main_menu.svg")
-	add_child(home_menu_button)
-
-# Dungeon menu
-func _add_home_menu_button():
-	dungeon_menu_button = TextureButton.new()
-	dungeon_menu_button.name = "dungeon_menu_button"
-	dungeon_menu_button.texture_normal = load("res://Assets/Client/icon_dungeon.svg")
-	dungeon_menu_button.scale = Vector2(0.75, 0.75)
-	dungeon_menu_button.visible = false
-	add_child(dungeon_menu_button)
-
 # Board menu button
-func _add_board_menu_button():
-	board_menu_button = TextureButton.new()
-	board_menu_button.name = "baord_menu_button"
-	board_menu_button.texture_normal = load("res://Assets/Client/icon_board.svg")
-	board_menu_button.scale = Vector2(0.75, 0.75)
-	board_menu_button.pressed.connect(_on_board_pressed)
-	board_menu_button.visible = false
-	add_child(board_menu_button)
-
 func _on_board_pressed():
 	if menu_selected != board_menu_button:
 		menu_selected = board_menu_button
-
-func _add_board_scale_up_button():
-	board_scale_up_button = TextureButton.new()
-	board_scale_up_button.name = "board_scale_up_button"
-	board_scale_up_button.texture_normal = load("res://Assets/Client/icon_scale_up.svg")
-	board_scale_up_button.scale = Vector2(0.75, 0.75)
-	board_scale_up_button.pressed.connect(_scale_up_board)
-	board_scale_up_button.visible = false
-	add_child(board_scale_up_button)
-
-func _add_board_scale_down_button():
-	board_scale_down_button = TextureButton.new()
-	board_scale_down_button.name = "board_scale_down_button"
-	board_scale_down_button.texture_normal = load("res://Assets/Client/icon_scale_down.svg")
-	board_scale_down_button.scale = Vector2(0.75, 0.75)
-	board_scale_down_button.pressed.connect(_scale_down_board)
-	board_scale_down_button.visible = false
-	add_child(board_scale_down_button)
-
-func _add_board_minimize_button():
-	board_minimize_button = TextureButton.new()
-	board_minimize_button.name = "board_minimize_down_button"
-	board_minimize_button.texture_normal = load("res://Assets/Client/icon_minimize.svg")
-	board_minimize_button.scale = Vector2(0.75, 0.75)
-	board_minimize_button.pressed.connect(_minimize_board)
-	board_minimize_button.visible = false
-	add_child(board_minimize_button)
 
 func _scale_down_board():
 	if not board_window.visible:
@@ -224,45 +142,9 @@ func _minimize_board():
 	board_window.visible = not board_window.visible
 
 # Inventory menu button
-func _add_inventory_menu_button():
-	invenetory_menu_button = TextureButton.new()
-	invenetory_menu_button.name = "inventory_menu_button"
-	invenetory_menu_button.texture_normal = load("res://Assets/Client/icon_inventory.svg")
-	invenetory_menu_button.scale = Vector2(0.75, 0.75)
-	invenetory_menu_button.pressed.connect(_on_inventory_pressed)
-	invenetory_menu_button.visible = false
-	add_child(invenetory_menu_button)
-
 func _on_inventory_pressed():
 	if menu_selected != invenetory_menu_button:
 		menu_selected = invenetory_menu_button
-
-func _add_inventory_scale_up_button():
-	inventory_scale_up_button = TextureButton.new()
-	inventory_scale_up_button.name = "inventory_scale_up_button"
-	inventory_scale_up_button.texture_normal = load("res://Assets/Client/icon_scale_up.svg")
-	inventory_scale_up_button.scale = Vector2(0.75, 0.75)
-	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
-	inventory_scale_up_button.visible = false
-	add_child(inventory_scale_up_button)
-
-func _add_inventory_scale_down_button():
-	inventory_scale_down_button = TextureButton.new()
-	inventory_scale_down_button.name = "inventory_scale_down_button"
-	inventory_scale_down_button.texture_normal = load("res://Assets/Client/icon_scale_down.svg")
-	inventory_scale_down_button.scale = Vector2(0.75, 0.75)
-	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
-	inventory_scale_down_button.visible = false
-	add_child(inventory_scale_down_button)
-
-func _add_inventory_minimize_button():
-	inventory_minimize_button = TextureButton.new()
-	inventory_minimize_button.name = "inventory_minimize_down_button"
-	inventory_minimize_button.texture_normal = load("res://Assets/Client/icon_minimize.svg")
-	inventory_minimize_button.scale = Vector2(0.75, 0.75)
-	inventory_minimize_button.pressed.connect(_minimize_inventory)
-	inventory_minimize_button.visible = false
-	add_child(inventory_minimize_button)
 
 func _scale_up_inventory():
 	if not inventory_window.visible:

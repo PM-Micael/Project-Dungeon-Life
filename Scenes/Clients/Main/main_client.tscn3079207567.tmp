@@ -8,10 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c6bdndtcicaxr" path="res://Assets/Client/icon_main_menu.svg" id="6_vblgr"]
 [ext_resource type="Texture2D" uid="uid://c3k370ykr5d0q" path="res://Assets/Client/icon_dungeon.svg" id="7_kqnoi"]
 [ext_resource type="Texture2D" uid="uid://cabwn7u7v8c25" path="res://Assets/Client/icon_board.svg" id="8_wnapl"]
-[ext_resource type="Texture2D" uid="uid://cqifai823yr1v" path="res://Assets/Client/icon_scale_up.svg" id="9_0pumd"]
-[ext_resource type="Texture2D" uid="uid://pdclehaplpg2" path="res://Assets/Client/icon_scale_down.svg" id="10_7302y"]
-[ext_resource type="Texture2D" uid="uid://s0b0710u7mob" path="res://Assets/Client/icon_minimize.svg" id="11_uljfg"]
-[ext_resource type="Texture2D" uid="uid://bb031d843swea" path="res://Assets/Client/icon_inventory.svg" id="12_ufw4t"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
@@ -50,63 +46,11 @@ offset_bottom = 40.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("7_kqnoi")
 
-[node name="Board" type="Node2D" parent="WindowManager" unique_id=988288792]
-
-[node name="BoardMenuButton" type="TextureButton" parent="WindowManager/Board" unique_id=626043638]
-offset_right = 88.0
-offset_bottom = 88.0
+[node name="BoardMenuButton" type="TextureButton" parent="WindowManager" unique_id=626043638]
+offset_right = 40.0
+offset_bottom = 40.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("8_wnapl")
-
-[node name="BoardScaleUpButton" type="TextureButton" parent="WindowManager/Board" unique_id=944768245]
-visible = false
-offset_right = 88.0
-offset_bottom = 88.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("9_0pumd")
-
-[node name="BoardScaleDownButton" type="TextureButton" parent="WindowManager/Board" unique_id=1320244573]
-visible = false
-offset_right = 88.0
-offset_bottom = 88.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("10_7302y")
-
-[node name="BoardMinimizeButton" type="TextureButton" parent="WindowManager/Board" unique_id=1379001390]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("11_uljfg")
-
-[node name="Inventory" type="Node2D" parent="WindowManager" unique_id=967122005]
-
-[node name="InventoryMenuButton" type="TextureButton" parent="WindowManager/Inventory" unique_id=1105367622]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("12_ufw4t")
-
-[node name="InventoryScaleUpButton" type="TextureButton" parent="WindowManager/Inventory" unique_id=1080328650]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("9_0pumd")
-
-[node name="InventoryScaleDownButton" type="TextureButton" parent="WindowManager/Inventory" unique_id=1193796110]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("10_7302y")
-
-[node name="InventoryMinimizeButton" type="TextureButton" parent="WindowManager/Inventory" unique_id=604974727]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("11_uljfg")
 
 [node name="InnerSanctumWindow" type="Window" parent="." unique_id=969489278]
 oversampling_override = 1.0
