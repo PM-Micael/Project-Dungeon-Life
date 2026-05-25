@@ -8,10 +8,12 @@ var wm_position: Vector2
 var wm_size: Vector2
 
 @onready var board_window: BoardWindow = get_node("RunManager/BoardWindow")
+var bw_visible: bool = false
 var bw_position: Vector2
 var bw_size: Vector2
 
 @onready var inventory_window: Window  = get_node("RunManager/InventoryWindow")
+var iw_visible: bool = false
 var iw_position: Vector2
 var iw_size: Vector2
 
@@ -37,37 +39,58 @@ func _initialize_game_data():
 func _check_update_polygon():
 	var new_wm_pos  = Vector2(window_manager.position) - Vector2(20, 40)
 	var new_wm_size = Vector2(window_manager.size) + Vector2(30, 50)
+	
+	var new_bw_visible = board_window.visible
 	var new_bw_pos  = Vector2(board_window.position)
 	var new_bw_size = Vector2(board_window.size)
+	
+	var new_iw_visible = inventory_window.visible
 	var new_iw_pos  = Vector2(inventory_window.position)
 	var new_iw_size = Vector2(inventory_window.size)
+
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
-		bw_position != new_bw_pos or bw_size != new_bw_size or
-		iw_position != new_iw_pos or iw_size != new_iw_size
+		bw_position != new_bw_pos or bw_size != new_bw_size or new_bw_visible != bw_visible or
+		iw_position != new_iw_pos or iw_size != new_iw_size or new_iw_visible != iw_visible
 		):
-		polygon_window.polygon = PackedVector2Array([
-			Vector2(0, 0),
+
+		var poly: Array[Vector2] = [Vector2(0, 0)]
+
+		# Always include window manager
+		poly.append_array([
 			new_wm_pos,
 			new_wm_pos + Vector2(new_wm_size.x, 0),
 			new_wm_pos + new_wm_size,
 			new_wm_pos + Vector2(0, new_wm_size.y),
 			new_wm_pos,
 			Vector2(0, 0),
-			new_bw_pos,
-			new_bw_pos + Vector2(new_bw_size.x, 0),
-			new_bw_pos + new_bw_size,
-			new_bw_pos + Vector2(0, new_bw_size.y),
-			new_bw_pos,
-			Vector2(0, 0),
-			new_iw_pos,
-			new_iw_pos + Vector2(new_iw_size.x, 0),
-			new_iw_pos + new_iw_size,
-			new_iw_pos + Vector2(0, new_iw_size.y),
-			new_iw_pos,
-			Vector2(0, 0),
 		])
+
+		# Only include board window if visible (not minimized)
+		if board_window.visible:
+			poly.append_array([
+				new_bw_pos,
+				new_bw_pos + Vector2(new_bw_size.x, 0),
+				new_bw_pos + new_bw_size,
+				new_bw_pos + Vector2(0, new_bw_size.y),
+				new_bw_pos,
+				Vector2(0, 0),
+			])
+
+		# Only include inventory window if visible (not minimized)
+		if inventory_window.visible:
+			poly.append_array([
+				new_iw_pos,
+				new_iw_pos + Vector2(new_iw_size.x, 0),
+				new_iw_pos + new_iw_size,
+				new_iw_pos + Vector2(0, new_iw_size.y),
+				new_iw_pos,
+				Vector2(0, 0),
+			])
+
+		polygon_window.polygon = PackedVector2Array(poly)
 		get_window().mouse_passthrough_polygon = polygon_window.polygon
+
 		wm_position = new_wm_pos
 		wm_size = new_wm_size
 		bw_position = new_bw_pos
