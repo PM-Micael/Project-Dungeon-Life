@@ -23,10 +23,10 @@ var layout_config: Dictionary[String, int] = {
 }
 
 func _ready() -> void:
-	title = "Window Manager"
-	position = Vector2(310, 240)
+	title = "Inveentory"
+	position = Vector2(320, 240)
 	unresizable = true
-	#borderless = true
+	borderless = true
 	always_on_top = true
 	transparent_bg = true
 	transparent = true

@@ -3,7 +3,7 @@ class_name MainClient
 
 var game_initialized: bool = false
 
-@onready var window_manager: Window = get_node("WindowManager")
+@onready var window_manager: WindowManager = get_node("WindowManager")
 var wm_position: Vector2
 var wm_size: Vector2
 
@@ -12,10 +12,15 @@ var bw_visible: bool = false
 var bw_position: Vector2
 var bw_size: Vector2
 
-@onready var inventory_window: Window  = get_node("RunManager/InventoryWindow")
+@onready var inventory_window: InventoryWindow = get_node("RunManager/InventoryWindow")
 var iw_visible: bool = false
 var iw_position: Vector2
 var iw_size: Vector2
+
+@onready var inner_sanctum_window: InnerSanctumWindow = get_node("InnerSanctumWindow")
+var isw_visible: bool = false
+var isw_position: Vector2
+var isw_size: Vector2
 
 @onready var run_manager: RunManager = get_node("RunManager")
 
@@ -47,11 +52,16 @@ func _check_update_polygon():
 	var new_iw_visible = inventory_window.visible
 	var new_iw_pos  = Vector2(inventory_window.position)
 	var new_iw_size = Vector2(inventory_window.size)
+	
+	var new_isw_visible = inner_sanctum_window.visible
+	var new_isw_pos = Vector2(inner_sanctum_window.position)
+	var new_isw_size = Vector2(inner_sanctum_window.size)
 
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
 		bw_position != new_bw_pos or bw_size != new_bw_size or new_bw_visible != bw_visible or
-		iw_position != new_iw_pos or iw_size != new_iw_size or new_iw_visible != iw_visible
+		iw_position != new_iw_pos or iw_size != new_iw_size or new_iw_visible != iw_visible or
+		isw_position != new_isw_pos or isw_size != new_isw_size or new_isw_visible != isw_visible
 		):
 
 		var poly: Array[Vector2] = [Vector2(0, 0)]
@@ -65,7 +75,17 @@ func _check_update_polygon():
 			new_wm_pos,
 			Vector2(0, 0),
 		])
-
+		
+		if inner_sanctum_window.visible:
+			poly.append_array([
+				new_isw_pos,
+				new_isw_pos + Vector2(new_isw_size.x, 0),
+				new_isw_pos + new_isw_size,
+				new_isw_pos + Vector2(0, new_isw_size.y),
+				new_isw_pos,
+				Vector2(0, 0),
+			])
+		
 		# Only include board window if visible (not minimized)
 		if board_window.visible:
 			poly.append_array([
@@ -90,7 +110,9 @@ func _check_update_polygon():
 
 		polygon_window.polygon = PackedVector2Array(poly)
 		get_window().mouse_passthrough_polygon = polygon_window.polygon
-
+		
+		isw_position = new_isw_pos
+		isw_size = new_isw_size
 		wm_position = new_wm_pos
 		wm_size = new_wm_size
 		bw_position = new_bw_pos

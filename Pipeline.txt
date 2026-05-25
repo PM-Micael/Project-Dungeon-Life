@@ -51,3 +51,6 @@ Buggs:
 		Inventory
 		Inner Sanctum
 		Game selection
+
+2026-05-25:
+	Windows such as inner sanctum should force board and inventory into smaller scales

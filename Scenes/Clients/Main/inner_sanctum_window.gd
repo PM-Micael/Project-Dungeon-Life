@@ -1,10 +1,10 @@
 # Handle user interaction
 extends Window
-class_name BoardWindow
+class_name InnerSanctumWindow
 
-@onready var board: GameBoard = get_node("Board")
+@onready var inner_sanctum: InnerSanctum = get_node("InnerSanctum")
 
-var default_size: Vector2 = Vector2(800, 800)
+var default_size: Vector2 = Vector2(600, 600)
 
 # Key = board scale, Value = Window position
 var layout_config: Dictionary[String, Vector2] = {
@@ -21,17 +21,17 @@ var layout_config: Dictionary[String, Vector2] = {
 }
 
 func _ready() -> void:
-	title = "Board"
-	position = Vector2(1119, 240)
+	title = "Window Manager"
+	position = Vector2(900, 219)
 	unresizable = true
 	borderless = true
 	always_on_top = true
 	transparent_bg = true
 	transparent = true
 	
-	board.scale_changed.connect(_on_board_scale_changed)
+	#inner_sanctum.scale_changed.connect(_on_inner_sanctum_scale_changed)
 
-func _on_board_scale_changed(board_scale: Vector2):
-	size = default_size * board_scale
-	var key: String = "%.1f" % snappedf(board_scale.x, 0.1)
+func _on_inner_sanctum_scale_changed(inner_sanctum_scale: Vector2):
+	size = default_size * inner_sanctum_scale
+	var key: String = "%.1f" % snappedf(inner_sanctum_scale.x, 0.1)
 	position = layout_config[key]

@@ -12,11 +12,22 @@
 [ext_resource type="Texture2D" uid="uid://pdclehaplpg2" path="res://Assets/Client/icon_scale_down.svg" id="10_7302y"]
 [ext_resource type="Texture2D" uid="uid://s0b0710u7mob" path="res://Assets/Client/icon_minimize.svg" id="11_uljfg"]
 [ext_resource type="Texture2D" uid="uid://bb031d843swea" path="res://Assets/Client/icon_inventory.svg" id="12_ufw4t"]
+[ext_resource type="PackedScene" uid="uid://brqcerkuyo18u" path="res://Scenes/Clients/Upgrades/inner_sanctum.tscn" id="13_couco"]
+[ext_resource type="Script" uid="uid://b5vnq7lillori" path="res://Scenes/Clients/Main/inner_sanctum_window.gd" id="13_g3ocy"]
+[ext_resource type="Texture2D" uid="uid://dp5oa1cocmnxm" path="res://Assets/Client/icon_inner_sanctum.svg" id="13_sbugd"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
 
 [node name="RunManager" parent="." unique_id=896845944 instance=ExtResource("2_g888i")]
+
+[node name="InnerSanctumWindow" type="Window" parent="." unique_id=969489278]
+oversampling_override = 1.0
+position = Vector2i(635, 210)
+size = Vector2i(500, 500)
+script = ExtResource("13_g3ocy")
+
+[node name="InnerSanctum" parent="InnerSanctumWindow" unique_id=1848263234 instance=ExtResource("13_couco")]
 
 [node name="WindowManager" type="Window" parent="." unique_id=209614530]
 oversampling_override = 1.0
@@ -108,6 +119,10 @@ offset_bottom = 40.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("11_uljfg")
 
-[node name="InnerSanctumWindow" type="Window" parent="." unique_id=969489278]
-oversampling_override = 1.0
-position = Vector2i(0, 36)
+[node name="InnerSanctum" type="Node2D" parent="WindowManager" unique_id=2086222182]
+
+[node name="InnerSanctumMenuButton" type="TextureButton" parent="WindowManager/InnerSanctum" unique_id=983897485]
+offset_left = 0.75
+offset_right = 88.75
+offset_bottom = 88.0
+texture_normal = ExtResource("13_sbugd")

@@ -33,6 +33,10 @@ var _navigating_back: bool = false
 @onready var inventory_scale_down_button: TextureButton = get_node("Inventory/InventoryScaleDownButton")
 @onready var inventory_minimize_button: TextureButton = get_node("Inventory/InventoryMinimizeButton")
 
+@onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
+@onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
+var inner_sanctum_showing: bool = false
+
 var config: Dictionary[TextureButton, Array]
 
 func _ready() -> void:
@@ -51,7 +55,8 @@ func _ready() -> void:
 		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_menu_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
 		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
-		dungeon_menu_button: []
+		dungeon_menu_button: [],
+		inner_sanctum_menu_button: []
 	}
 	
 	menu_selected = home_menu_button
