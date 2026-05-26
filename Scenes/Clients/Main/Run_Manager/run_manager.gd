@@ -19,6 +19,7 @@ var currently_selected_unit_entity_container: EntityContainer
 var game_on: bool = false
 
 func _ready() -> void:
+	await PlayerData.player_data_loaded
 	_connect_events()
 	_setup_stage()
 	DungeonData.check_and_merge_backpack_items()

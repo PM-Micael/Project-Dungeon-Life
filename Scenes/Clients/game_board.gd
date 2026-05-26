@@ -26,9 +26,12 @@ var game_on: bool = false
 
 @onready var friendly_units: Array[Unit]
 @onready var enemy_units: Array[Unit]
-@onready var current_room: int = PlayerData.dungeon_room_putrid_layers
+var current_room: int
 
 func _ready() -> void:
+	await PlayerData.player_data_loaded
+	current_room = PlayerData.dungeon_room_putrid_layers
+	
 	for unit in friendly_units:
 		unit.health_component.died.connect(_on_friendly_unit_died)
 	for unit in enemy_units:
@@ -128,7 +131,7 @@ func _on_victory():
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
 	PlayerData.dungeon_room_putrid_layers += 1
-	current_room += 1
+	current_room = PlayerData.dungeon_room_putrid_layers
 	victory_screen.visible = true
 	for node: Unit in friendly_units_node.get_children():
 		node.queue_free_unit()
