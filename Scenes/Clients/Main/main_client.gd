@@ -37,6 +37,7 @@ func _physics_process(_delta: float) -> void:
 
 func _initialize_game_data():
 	PlayerData.load_player_data()
+	print("Here")
 	await PlayerData.player_data_loaded
 	DungeonData.initialize_data()
 	game_initialized = true
