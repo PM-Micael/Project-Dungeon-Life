@@ -11,6 +11,12 @@ var menu_selected: TextureButton:
 		menu_selected = value
 		_on_menu_selected_changed()
 
+var center_menu_showing: bool:
+	set(value):
+		center_menu_showing = value
+		inventory_scale_locked = center_menu_showing
+		board_scale_locked = center_menu_showing
+
 var menu_history: Array[TextureButton] = []
 var _navigating_back: bool = false
 @onready var back_button: TextureButton = get_node("BackButton")
@@ -26,16 +32,27 @@ var _navigating_back: bool = false
 @onready var board_scale_up_button: TextureButton = get_node("Board/BoardScaleUpButton")
 @onready var board_scale_down_button: TextureButton = get_node("Board/BoardScaleDownButton")
 @onready var board_minimize_button: TextureButton = get_node("Board/BoardMinimizeButton")
+var board_scale_locked: bool:
+	set(value):
+		if value:
+			while board_window.board.scale > Vector2(0.4, 0.4):
+				_scale_down_board()
+		board_scale_locked = value
 
 @onready var inventory_window: InventoryWindow = get_parent().get_node("RunManager/InventoryWindow")
 @onready var invenetory_menu_button: TextureButton = get_node("Inventory/InventoryMenuButton")
 @onready var inventory_scale_up_button: TextureButton = get_node("Inventory/InventoryScaleUpButton")
 @onready var inventory_scale_down_button: TextureButton = get_node("Inventory/InventoryScaleDownButton")
 @onready var inventory_minimize_button: TextureButton = get_node("Inventory/InventoryMinimizeButton")
+var inventory_scale_locked: bool:
+	set(value):
+		if value:
+			while inventory_window.inventory.scale > Vector2(0.4, 0.4):
+				_scale_down_inventory()
+		inventory_scale_locked = value
 
 @onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
 @onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
-var inner_sanctum_showing: bool = false
 
 var config: Dictionary[TextureButton, Array]
 
@@ -72,6 +89,11 @@ func _connect_events():
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
+	
+	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
+
+func _on_window_visibility_changed(window: Window):
+	center_menu_showing = window.visible
 
 func _on_menu_selected_changed() -> void:
 	if config.is_empty():
@@ -128,20 +150,22 @@ func _on_board_pressed():
 		menu_selected = board_menu_button
 
 func _scale_down_board():
-	if not board_window.visible:
-		board_window.visible = true
-		return
-	var board_scale: Vector2 = board_window.board.scale
-	board_window.board.set_scale_custom = board_scale - Vector2(0.1, 0.1)
+	if not board_scale_locked:
+		if not board_window.visible:
+			board_window.visible = true
+			return
+		var board_scale: Vector2 = board_window.board.scale
+		board_window.board.set_scale_custom = board_scale - Vector2(0.1, 0.1)
 
 func _scale_up_board():
-	if not board_window.visible:
+	if not board_scale_locked:
+		if not board_window.visible:
+			board_window.visible = true
+			return
+		
 		board_window.visible = true
-		return
-	
-	board_window.visible = true
-	var board_scale: Vector2 = board_window.board.scale
-	board_window.board.set_scale_custom = board_scale + Vector2(0.1, 0.1)
+		var board_scale: Vector2 = board_window.board.scale
+		board_window.board.set_scale_custom = board_scale + Vector2(0.1, 0.1)
 
 func _minimize_board():
 	board_window.visible = not board_window.visible
@@ -152,20 +176,22 @@ func _on_inventory_pressed():
 		menu_selected = invenetory_menu_button
 
 func _scale_up_inventory():
-	if not inventory_window.visible:
-		inventory_window.visible = true
-		return
-	
-	var inventory_scale: Vector2 = inventory_window.inventory.scale
-	inventory_window.inventory.set_scale_custom = inventory_scale + Vector2(0.1, 0.1)
+	if not inventory_scale_locked:
+		if not inventory_window.visible:
+			inventory_window.visible = true
+			return
+		
+		var inventory_scale: Vector2 = inventory_window.inventory.scale
+		inventory_window.inventory.set_scale_custom = inventory_scale + Vector2(0.1, 0.1)
 
 func _scale_down_inventory():
-	if not inventory_window.visible:
-		inventory_window.visible = true
-		return
-	
-	var inventory_scale: Vector2 = inventory_window.inventory.scale
-	inventory_window.inventory.set_scale_custom = inventory_scale - Vector2(0.1, 0.1)
+	if not inventory_scale_locked:
+		if not inventory_window.visible:
+			inventory_window.visible = true
+			return
+		
+		var inventory_scale: Vector2 = inventory_window.inventory.scale
+		inventory_window.inventory.set_scale_custom = inventory_scale - Vector2(0.1, 0.1)
 
 func _minimize_inventory():
 	inventory_window.visible = not inventory_window.visible

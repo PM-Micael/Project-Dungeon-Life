@@ -23,8 +23,9 @@ script = ExtResource("1_g888i")
 
 [node name="InnerSanctumWindow" type="Window" parent="." unique_id=969489278]
 oversampling_override = 1.0
-position = Vector2i(635, 210)
+position = Vector2i(635, 123)
 size = Vector2i(500, 500)
+visible = false
 script = ExtResource("13_g3ocy")
 
 [node name="InnerSanctum" parent="InnerSanctumWindow" unique_id=1848263234 instance=ExtResource("13_couco")]

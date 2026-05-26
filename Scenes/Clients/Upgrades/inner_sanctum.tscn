@@ -9,25 +9,25 @@ script = ExtResource("1_xi5mb")
 [node name="Style" type="Node2D" parent="." unique_id=1670736169]
 
 [node name="Frame" type="ColorRect" parent="Style" unique_id=2015190705]
-offset_right = 800.0
-offset_bottom = 800.0
+offset_right = 500.0
+offset_bottom = 500.0
 
 [node name="Background" type="ColorRect" parent="Style" unique_id=1249630652]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 790.0
-offset_bottom = 790.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
 
 [node name="InnerSanctumLife" parent="." unique_id=1133670572 instance=ExtResource("1_vjqfk")]
-position = Vector2(200, 100)
+position = Vector2(125, 80)
 
 [node name="InnerSanctumPower" parent="." unique_id=518375834 instance=ExtResource("1_vjqfk")]
-position = Vector2(200, 300)
+position = Vector2(125, 200)
 
 [node name="EssenceValueLabel" type="Label" parent="." unique_id=1912782659]
-offset_left = 300.0
-offset_right = 414.0
+offset_left = 175.0
+offset_right = 298.0
 offset_bottom = 42.0
 theme_override_font_sizes/font_size = 30
 text = "Essence:"
@@ -40,8 +40,25 @@ offset_bottom = 52.0
 text = "Commit"
 
 [node name="DungeonButton" type="Button" parent="." unique_id=503001321]
-offset_left = 709.0
+offset_left = 380.0
 offset_top = 10.0
-offset_right = 788.0
+offset_right = 459.0
 offset_bottom = 41.0
 text = "Dungeon"
+
+[node name="UnavailableScreen" type="Node2D" parent="." unique_id=1901183702]
+
+[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=326693087]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 495.0
+color = Color(0.17043066, 0.21276477, 0.15453213, 1)
+
+[node name="Label" type="Label" parent="UnavailableScreen" unique_id=1981695969]
+offset_left = 5.0
+offset_top = 225.0
+offset_right = 495.0
+offset_bottom = 248.0
+text = "Unavailable"
+horizontal_alignment = 1

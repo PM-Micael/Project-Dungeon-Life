@@ -1,6 +1,7 @@
 extends Node
 
 signal player_data_loaded
+signal dungeon_run_ongoing_changed
 
 var player_id: String = "dare_mane"
 var player_display_name: String = "DareMane"
@@ -27,7 +28,16 @@ var dungeon_enemy_multiplier: float: # Should be in dungeon data
 		var scaling: float = 1 + (dungeon_room_putrid_layers / 10.0)
 		return scaling
 
-var dungeon_run_ongoing_putrid_layers: bool = false
+var dungeon_run_ongoing: bool:
+	set(value):
+		dungeon_run_ongoing = value
+		dungeon_run_ongoing_changed.emit(value)
+
+var dungeon_run_ongoing_putrid_layers: bool:
+	set(value):
+		dungeon_run_ongoing_putrid_layers = value
+		dungeon_run_ongoing = value
+
 var dungeon_team_max_size_ = 4
 var dungeon_team_putrid_layers: Array[Unit]
 var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
@@ -142,6 +152,7 @@ func save_player_data():
 	var data = {
 		"fields": {
 			"player_display_name": { "stringValue": player_display_name },
+			"dungeon_run_ongoing": {"booleanValue": dungeon_run_ongoing},
 			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers },
 			"dungeon_run_tier_putrid_layers": { "integerValue": str(dungeon_run_tier_putrid_layers) },
 			"dungeon_room_putrid_layers": { "integerValue": str(dungeon_room_putrid_layers) },
@@ -200,6 +211,7 @@ func load_player_data():
 		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
 		
 		# Dungeon team formation
+		dungeon_run_ongoing = fields["dungeon_run_ongoing"]["booleanValue"]
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
 		if dungeon_run_ongoing_putrid_layers:
 			dungeon_room_putrid_layers = int(fields["dungeon_room_putrid_layers"]["integerValue"])
