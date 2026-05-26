@@ -4,11 +4,11 @@ class_name InnerSanctumWindow
 
 @onready var inner_sanctum: InnerSanctum = get_node("InnerSanctum")
 
-var default_size: Vector2 = Vector2(900, 219)
+var default_size: Vector2 = Vector2(640, 219)
 
 func _ready() -> void:
 	title = "Window Manager"
-	position = Vector2(900, 219)
+	position = Vector2(640, 219)
 	unresizable = true
 	borderless = true
 	always_on_top = true

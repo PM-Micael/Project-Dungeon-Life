@@ -69,11 +69,10 @@ func _ready() -> void:
 	_connect_events()
 		
 	config = {
-		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_menu_button],
+		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_menu_button, inner_sanctum_menu_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
 		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
 		dungeon_menu_button: [],
-		inner_sanctum_menu_button: []
 	}
 	
 	menu_selected = home_menu_button
@@ -89,15 +88,18 @@ func _connect_events():
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
+	inner_sanctum_menu_button.pressed.connect(_on_inner_sanctum_pressed)
 	
 	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
 
 func _on_window_visibility_changed(window: Window):
 	center_menu_showing = window.visible
 
-func _on_menu_selected_changed() -> void:
+func _on_menu_selected_changed() -> void: #Potential for adding a check to minimize unececary loop itterations.
 	if config.is_empty():
 		return
+	
+	# Potential check
 	
 	for button in config.keys():
 		button.visible = false
@@ -126,13 +128,13 @@ func _on_menu_selected_changed() -> void:
 		child.visible = true
 		match loop_itteration:
 			0:
-				child.position = Vector2(280, 25)
+				child.position = Vector2(265, 25)
 			1:
-				child.position = Vector2(270, 100)
+				child.position = Vector2(265, 105)
 			2:
-				child.position = Vector2(195, 130)
+				child.position = Vector2(185, 130)
 			3:
-				child.position = Vector2(195, 130)
+				child.position = Vector2(105, 130)
 		
 		loop_itteration += 1
 
@@ -195,3 +197,7 @@ func _scale_down_inventory():
 
 func _minimize_inventory():
 	inventory_window.visible = not inventory_window.visible
+
+# Inner Sanctum
+func _on_inner_sanctum_pressed():
+	inner_sanctum_window.visible = not inner_sanctum_window.visible

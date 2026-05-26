@@ -33,6 +33,7 @@ script = ExtResource("13_g3ocy")
 [node name="WindowManager" type="Window" parent="." unique_id=209614530]
 oversampling_override = 1.0
 position = Vector2i(0, 36)
+size = Vector2i(350, 200)
 script = ExtResource("3_gm5dl")
 
 [node name="BackButton" type="TextureButton" parent="WindowManager" unique_id=684513443]
@@ -123,7 +124,7 @@ texture_normal = ExtResource("11_uljfg")
 [node name="InnerSanctum" type="Node2D" parent="WindowManager" unique_id=2086222182]
 
 [node name="InnerSanctumMenuButton" type="TextureButton" parent="WindowManager/InnerSanctum" unique_id=983897485]
-offset_left = 0.75
-offset_right = 88.75
+offset_right = 88.0
 offset_bottom = 88.0
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("13_sbugd")
