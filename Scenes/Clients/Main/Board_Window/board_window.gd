@@ -35,3 +35,8 @@ func _on_board_scale_changed(board_scale: Vector2):
 	size = default_size * board_scale
 	var key: String = "%.1f" % snappedf(board_scale.x, 0.1)
 	position = layout_config[key]
+
+func _on_dungeon_run_selected(state: bool):
+	var unavailable_screen: Node2D = board.get_node("UnavailableScreen")
+	unavailable_screen.get_node("Label").text = "No Dungeon chosen"
+	unavailable_screen.visible = state

@@ -25,7 +25,6 @@ var _navigating_back: bool = false
 
 @onready var home_menu_button: TextureButton = get_node("HomeMenuButton")
 
-@onready var dungeon_menu_button: TextureButton = get_node("DungeonMenuButton")
 
 @onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
 @onready var board_menu_button: TextureButton = get_node("Board/BoardMenuButton")
@@ -51,6 +50,9 @@ var inventory_scale_locked: bool:
 				_scale_down_inventory()
 		inventory_scale_locked = value
 
+@onready var dungeon_selection_window: DungeonSelectionWindow = get_parent().get_node("DungeonSelectionWindow")
+@onready var dungeon_selection_button: TextureButton = get_node("DungeonMenuButton")
+
 @onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
 @onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
 
@@ -69,10 +71,9 @@ func _ready() -> void:
 	_connect_events()
 		
 	config = {
-		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_menu_button, inner_sanctum_menu_button],
+		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_selection_button, inner_sanctum_menu_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
 		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
-		dungeon_menu_button: [],
 	}
 	
 	menu_selected = home_menu_button
@@ -89,8 +90,10 @@ func _connect_events():
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
 	inner_sanctum_menu_button.pressed.connect(_on_inner_sanctum_pressed)
+	dungeon_selection_button.pressed.connect(_on_dungeon_selection_pressed)
 	
 	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
+	dungeon_selection_window.visibility_changed.connect(func(): _on_window_visibility_changed(dungeon_selection_window))
 
 func _on_window_visibility_changed(window: Window):
 	center_menu_showing = window.visible
@@ -201,3 +204,7 @@ func _minimize_inventory():
 # Inner Sanctum
 func _on_inner_sanctum_pressed():
 	inner_sanctum_window.visible = not inner_sanctum_window.visible
+
+# Dungeon selection
+func _on_dungeon_selection_pressed():
+	dungeon_selection_window.visible = not dungeon_selection_window.visible

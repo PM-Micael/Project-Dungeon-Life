@@ -18,6 +18,7 @@ script = ExtResource("1_nmtso")
 z_index = 2
 
 [node name="DefeatScreen" type="Node2D" parent="RoundOver" unique_id=194628576]
+visible = false
 
 [node name="Style" type="Node2D" parent="RoundOver/DefeatScreen" unique_id=732521616]
 
@@ -107,4 +108,20 @@ offset_right = 550.0
 offset_bottom = 372.0
 theme_override_font_sizes/font_size = 50
 text = "Victory"
+horizontal_alignment = 1
+
+[node name="Unavailable" type="Node2D" parent="." unique_id=1845769318]
+
+[node name="ColorRect" type="ColorRect" parent="Unavailable" unique_id=1575324374]
+offset_left = -2.0
+offset_right = 798.0
+offset_bottom = 798.0
+color = Color(0.16862746, 0.21176471, 0.15294118, 1)
+
+[node name="Label" type="Label" parent="Unavailable" unique_id=85960735]
+offset_top = 372.0
+offset_right = 795.0
+offset_bottom = 414.0
+theme_override_font_sizes/font_size = 35
+text = "Unavailable"
 horizontal_alignment = 1

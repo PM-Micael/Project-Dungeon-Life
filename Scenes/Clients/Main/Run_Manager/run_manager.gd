@@ -2,8 +2,6 @@
 extends Node2D
 class_name RunManager
 
-@onready var inner_sanctum_scene = preload("res://Scenes/Clients/Upgrades/inner_sanctum.tscn")
-
 @onready var board_window: Window = get_node("BoardWindow")
 @onready var board: GameBoard = get_node("BoardWindow/Board")
 @onready var map_tiles: MapTiles = get_node("BoardWindow/Board/MapTiles")
@@ -14,9 +12,11 @@ class_name RunManager
 @onready var exit_dungeon_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ExitDungeonButton")
 @onready var start_stage_button: Button = get_node("BoardWindow/StartStage")
 
-var inner_sanctum: InnerSanctum
-var currently_selected_unit_entity_container: EntityContainer
+var selected_dungeon_zone: String
+var selected_dungeon_tier: int
 var game_on: bool = false
+
+var currently_selected_unit_entity_container: EntityContainer
 
 func _ready() -> void:
 	await PlayerData.player_data_loaded
@@ -68,7 +68,6 @@ func _exit_dungeon():
 	DungeonData.reset_backpack()
 	PlayerData.reset_dungeon_run_data(DungeonData.Zone.PUTRID_LAYERS)
 	inventory.fill_backpack_frame()
-	add_inner_sanctum_scene()
 
 # ─── Game State ───────────────────────────────────────────────────────────────
 
@@ -185,14 +184,3 @@ func _set_highlight_node(unit: Node2D, enabled: bool) -> void:
 		unit.add_child(highlight)
 	elif not enabled and highlight != null:
 		highlight.queue_free()
-
-# ─── Inner Sanctum ────────────────────────────────────────────────────────────
-
-func add_inner_sanctum_scene():
-	var existing_board = get_node_or_null("BoardWindow/Board")
-	if existing_board != null:
-		existing_board.queue_free()
-	var instance = inner_sanctum_scene.instantiate()
-	board_window.add_child(instance)
-	inner_sanctum = get_node("BoardWindow/InnerSanctum")
-	inner_sanctum.dungeon_button.pressed.connect(_ready)

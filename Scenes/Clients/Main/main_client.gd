@@ -22,6 +22,11 @@ var isw_visible: bool = false
 var isw_position: Vector2
 var isw_size: Vector2
 
+@onready var dungeon_selection_window: DungeonSelectionWindow = get_node("DungeonSelectionWindow")
+var dsw_visible: bool = false
+var dsw_position: Vector2
+var dsw_size: Vector2
+
 @onready var run_manager: RunManager = get_node("RunManager")
 
 var polygon_window: CollisionPolygon2D 
@@ -37,7 +42,6 @@ func _physics_process(_delta: float) -> void:
 
 func _initialize_game_data():
 	PlayerData.load_player_data()
-	print("Here")
 	await PlayerData.player_data_loaded
 	DungeonData.initialize_data()
 	game_initialized = true
@@ -57,12 +61,17 @@ func _check_update_polygon():
 	var new_isw_visible = inner_sanctum_window.visible
 	var new_isw_pos = Vector2(inner_sanctum_window.position)
 	var new_isw_size = Vector2(inner_sanctum_window.size)
+	
+	var new_dsw_visible = dungeon_selection_window.visible
+	var new_dsw_pos = Vector2(dungeon_selection_window.position)
+	var new_dsw_size = Vector2(dungeon_selection_window.size)
 
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
 		bw_position != new_bw_pos or bw_size != new_bw_size or new_bw_visible != bw_visible or
 		iw_position != new_iw_pos or iw_size != new_iw_size or new_iw_visible != iw_visible or
-		isw_position != new_isw_pos or isw_size != new_isw_size or new_isw_visible != isw_visible
+		isw_position != new_isw_pos or isw_size != new_isw_size or new_isw_visible != isw_visible or
+		dsw_position != new_dsw_pos or dsw_size != new_dsw_size or new_dsw_visible != dsw_visible
 		):
 
 		var poly: Array[Vector2] = [Vector2(0, 0)]
@@ -76,6 +85,16 @@ func _check_update_polygon():
 			new_wm_pos,
 			Vector2(0, 0),
 		])
+		
+		if dungeon_selection_window.visible:
+			poly.append_array([
+				new_dsw_pos,
+				new_dsw_pos + Vector2(new_dsw_size.x, 0),
+				new_dsw_pos + new_dsw_size,
+				new_dsw_pos + Vector2(0, new_dsw_size.y),
+				new_dsw_pos,
+				Vector2(0, 0),
+			])
 		
 		if inner_sanctum_window.visible:
 			poly.append_array([
@@ -112,11 +131,17 @@ func _check_update_polygon():
 		polygon_window.polygon = PackedVector2Array(poly)
 		get_window().mouse_passthrough_polygon = polygon_window.polygon
 		
+		dsw_position = new_dsw_pos
+		dsw_size = new_dsw_size
+		
 		isw_position = new_isw_pos
 		isw_size = new_isw_size
+		
 		wm_position = new_wm_pos
 		wm_size = new_wm_size
+		
 		bw_position = new_bw_pos
 		bw_size = new_bw_size
+		
 		iw_position = new_iw_pos
 		iw_size = new_iw_size

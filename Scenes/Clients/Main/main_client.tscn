@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b8bb0gl5w2ebc" path="res://Scenes/Clients/Main/Run_Manager/run_manager.tscn" id="2_g888i"]
 [ext_resource type="Script" uid="uid://dvogv222d75y5" path="res://Scenes/Clients/Main/Window_Manager/window_manager.gd" id="3_gm5dl"]
 [ext_resource type="Texture2D" uid="uid://cm18qjfpjb23m" path="res://Assets/Client/icon_go_back.svg" id="4_kfqkr"]
+[ext_resource type="PackedScene" uid="uid://f3qe7dyrm23h" path="res://Scenes/Clients/Main/DungeonSelection/dungeon_selection.tscn" id="5_b4scl"]
 [ext_resource type="Texture2D" uid="uid://g0mxfww63dkn" path="res://Assets/Client/icon_go_forward.svg" id="5_hap2d"]
+[ext_resource type="Script" uid="uid://cgelusuegwrqb" path="res://Scenes/Clients/Main/dungeon_selection_window.gd" id="5_qllb2"]
 [ext_resource type="Texture2D" uid="uid://c6bdndtcicaxr" path="res://Assets/Client/icon_main_menu.svg" id="6_vblgr"]
 [ext_resource type="Texture2D" uid="uid://c3k370ykr5d0q" path="res://Assets/Client/icon_dungeon.svg" id="7_kqnoi"]
 [ext_resource type="Texture2D" uid="uid://cabwn7u7v8c25" path="res://Assets/Client/icon_board.svg" id="8_wnapl"]
@@ -29,6 +31,15 @@ visible = false
 script = ExtResource("13_g3ocy")
 
 [node name="InnerSanctum" parent="InnerSanctumWindow" unique_id=1848263234 instance=ExtResource("13_couco")]
+
+[node name="DungeonSelectionWindow" type="Window" parent="." unique_id=512085171]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(500, 500)
+visible = false
+script = ExtResource("5_qllb2")
+
+[node name="DungeonSelection" parent="DungeonSelectionWindow" unique_id=2059361181 instance=ExtResource("5_b4scl")]
 
 [node name="WindowManager" type="Window" parent="." unique_id=209614530]
 oversampling_override = 1.0

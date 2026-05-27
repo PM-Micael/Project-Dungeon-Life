@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://f3qe7dyrm23h"]
+
+[ext_resource type="Script" uid="uid://br2605g5m5cfb" path="res://Scenes/Clients/Main/DungeonSelection/dungeon_selection.gd" id="1_d8yku"]
+
+[node name="DungeonSelection" type="Node2D" unique_id=2059361181]
+script = ExtResource("1_d8yku")
+
+[node name="Style" type="Node2D" parent="." unique_id=652525395]
+
+[node name="Frame" type="ColorRect" parent="Style" unique_id=818144013]
+offset_right = 500.0
+offset_bottom = 500.0
+
+[node name="Background" type="ColorRect" parent="Style" unique_id=779424470]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 495.0
+color = Color(0, 0, 0, 1)
+
+[node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
+
+[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=325566441]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 495.0
+color = Color(0.17043066, 0.21276477, 0.15453213, 1)
+
+[node name="Label" type="Label" parent="UnavailableScreen" unique_id=874084258]
+offset_left = 5.0
+offset_top = 225.0
+offset_right = 495.0
+offset_bottom = 248.0
+text = "Unavailable"
+horizontal_alignment = 1

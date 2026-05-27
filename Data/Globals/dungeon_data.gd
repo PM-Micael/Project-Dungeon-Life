@@ -3,7 +3,8 @@ extends Node
 signal dungeon_data_loaded
 
 const Zone = {
-	PUTRID_LAYERS = "putrid_layers"
+	PUTRID_LAYERS = "putrid_layers",
+	SCORCHED_GROUNDS = "scorched_grounds"
 }
 
 const EnemyType = {
