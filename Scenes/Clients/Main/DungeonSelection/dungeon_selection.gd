@@ -1,17 +1,49 @@
 extends Node2D
 
-var dungeons: Array[String]
+var dungeons: Array
+var selected_dungeon_name: String
+var selected_dungeon_index: int = 0:
+	set(value):
+		if (selected_dungeon_index + value) > dungeons.size():
+			selected_dungeon_index = 0
+		elif (selected_dungeon_index + value) < 0:
+			selected_dungeon_index = dungeons.size() -1
+			
+		_update_label()
+
+@onready var dungeon_label: Label = get_node("Dungeon/DungeonLabel")
+@onready var previous_button: Button = get_node("Dungeon/PreviousButton")
+@onready var next_button: Button = get_node("Dungeon/NextButton")
+
+@onready var continue_button: Button = get_node("ContinueButton")
 
 func _ready() -> void:
-	for zone in DungeonData.Zone.keys():
-		dungeons.append(zone)
+	dungeons = DungeonData.Zone.values()
+	
+	_connect_events()
+	_update_label()
 
-func display_dungeons():
-	var loop_itterations: int = 0
-	for i in dungeons:
-		var button = Button.new()
-		button.name = i
-		button.scale = Vector2(2, 2)
-		button.text = i
-		button.position = Vector2(100 + (200*loop_itterations), 100)
-		add_child(button)
+func _connect_events():
+	previous_button.pressed.connect(_on_previous_button_pressed)
+	next_button.pressed.connect(_on_next_button_pressed)
+	continue_button.pressed.connect(_continue_button_pressed)
+
+func _on_previous_button_pressed():
+	selected_dungeon_index += 1
+
+func _on_next_button_pressed():
+	selected_dungeon_index -= 1
+
+func _update_label():
+	selected_dungeon_name = dungeons[selected_dungeon_index]
+	dungeon_label.text = selected_dungeon_name
+
+func _continue_button_pressed():
+	print(selected_dungeon_name)
+	match selected_dungeon_name:
+		DungeonData.Zone.PUTRID_LAYERS:
+			PlayerData.dungeon_run_ongoing_putrid_layers = true
+			return
+		DungeonData.Zone.SCORCHED_GROUNDS:
+			PlayerData.dungeon_run_ongoing_scorched_grounds = true
+			return

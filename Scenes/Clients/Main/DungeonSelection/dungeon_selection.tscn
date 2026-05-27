@@ -18,7 +18,62 @@ offset_right = 495.0
 offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
 
+[node name="Dungeon" type="Node2D" parent="." unique_id=1112559041]
+position = Vector2(0, 100)
+
+[node name="DungeonLabel" type="Label" parent="Dungeon" unique_id=1121035045]
+offset_left = 152.0
+offset_right = 345.0
+offset_bottom = 31.0
+text = "Dungeon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PreviousButton" type="Button" parent="Dungeon" unique_id=836719416]
+offset_left = 100.0
+offset_right = 152.0
+offset_bottom = 31.0
+text = "<Prev"
+
+[node name="NextButton" type="Button" parent="Dungeon" unique_id=488363320]
+offset_left = 345.0
+offset_right = 400.0
+offset_bottom = 31.0
+text = "Next>"
+
+[node name="Tier" type="Node2D" parent="." unique_id=1723047992]
+visible = false
+position = Vector2(0, 100)
+
+[node name="TierLabel" type="Label" parent="Tier" unique_id=1891758345]
+offset_left = 152.0
+offset_right = 345.0
+offset_bottom = 31.0
+text = "Dungeon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PreviousButton" type="Button" parent="Tier" unique_id=1917216500]
+offset_left = 100.0
+offset_right = 152.0
+offset_bottom = 31.0
+text = "<Prev"
+
+[node name="NextButton" type="Button" parent="Tier" unique_id=211764936]
+offset_left = 345.0
+offset_right = 400.0
+offset_bottom = 31.0
+text = "Next>"
+
+[node name="ContinueButton" type="Button" parent="." unique_id=501134566]
+offset_left = 395.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 55.0
+text = "Continue"
+
 [node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=325566441]
 offset_left = 5.0

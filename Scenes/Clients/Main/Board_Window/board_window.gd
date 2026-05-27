@@ -30,6 +30,7 @@ func _ready() -> void:
 	transparent = true
 	
 	board.scale_changed.connect(_on_board_scale_changed)
+	PlayerData.dungeon_run_ongoing_changed.connect(_on_dungeon_run_selected)
 
 func _on_board_scale_changed(board_scale: Vector2):
 	size = default_size * board_scale
@@ -37,6 +38,6 @@ func _on_board_scale_changed(board_scale: Vector2):
 	position = layout_config[key]
 
 func _on_dungeon_run_selected(state: bool):
-	var unavailable_screen: Node2D = board.get_node("UnavailableScreen")
+	var unavailable_screen: Node2D = board.get_node("Unavailable")
 	unavailable_screen.get_node("Label").text = "No Dungeon chosen"
-	unavailable_screen.visible = state
+	unavailable_screen.visible = not state

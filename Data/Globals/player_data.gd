@@ -38,6 +38,11 @@ var dungeon_run_ongoing_putrid_layers: bool:
 		dungeon_run_ongoing_putrid_layers = value
 		dungeon_run_ongoing = value
 
+var dungeon_run_ongoing_scorched_grounds: bool:
+	set(value):
+		dungeon_run_ongoing_scorched_grounds = value
+		dungeon_run_ongoing = value
+
 var dungeon_team_max_size_ = 4
 var dungeon_team_putrid_layers: Array[Unit]
 var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
