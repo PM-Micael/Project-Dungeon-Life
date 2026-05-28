@@ -47,6 +47,7 @@ offset_bottom = 41.0
 text = "Dungeon"
 
 [node name="UnavailableScreen" type="Node2D" parent="." unique_id=1901183702]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=326693087]
 offset_left = 5.0
