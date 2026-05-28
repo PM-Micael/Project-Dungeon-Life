@@ -180,6 +180,7 @@ func save_player_data():
 			"player_display_name": { "stringValue": player_display_name },
 			"dungeon_run_ongoing": {"booleanValue": dungeon_run_ongoing},
 			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers },
+			"dungeon_run_ongoing_scorched_grounds": {"booleanValue": dungeon_run_ongoing_scorched_grounds},
 			"dungeon_run_tier": { "integerValue": str(dungeon_run_tier) },
 			"dungeon_room": { "integerValue": str(dungeon_room) },
 			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },

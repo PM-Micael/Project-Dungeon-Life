@@ -47,15 +47,17 @@ func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
 			dungeon = DungeonData.Zone.PUTRID_LAYERS
 		elif PlayerData.dungeon_run_ongoing_scorched_grounds:
 			dungeon = DungeonData.Zone.SCORCHED_GROUNDS
-		_setup_stage(dungeon)
+		
+		selected_dungeon_zone = dungeon
+		_setup_stage()
 
-func _setup_stage(dungeon: String):
+func _setup_stage():
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
 	board.enemy_units.clear()
 	board._place_friendly_units()
-	board.place_enemy_units(dungeon)
+	board.place_enemy_units(selected_dungeon_zone)
 	unit_loadout_frame.show_stats = false
 	print("Room = " + str(PlayerData.dungeon_room))
 
