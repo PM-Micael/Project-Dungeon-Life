@@ -11,6 +11,7 @@ var menu_selected: TextureButton:
 		menu_selected = value
 		_on_menu_selected_changed()
 
+var center_windows: Array[Window]
 var center_menu_showing: bool:
 	set(value):
 		center_menu_showing = value
@@ -69,7 +70,11 @@ func _ready() -> void:
 	transparent = true
 	
 	_connect_events()
-		
+	
+	center_windows = [
+		inner_sanctum_window,
+		dungeon_selection_window
+	]
 	config = {
 		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_selection_button, inner_sanctum_menu_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
@@ -203,8 +208,16 @@ func _minimize_inventory():
 
 # Inner Sanctum
 func _on_inner_sanctum_pressed():
+	for window in center_windows:
+		if window == inner_sanctum_window:
+			continue
+		window.visible = false
 	inner_sanctum_window.visible = not inner_sanctum_window.visible
 
 # Dungeon selection
 func _on_dungeon_selection_pressed():
+	for window in center_windows:
+		if window == dungeon_selection_window:
+			continue
+		window.visible = false
 	dungeon_selection_window.visible = not dungeon_selection_window.visible
