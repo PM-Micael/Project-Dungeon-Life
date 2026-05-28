@@ -30,7 +30,6 @@ var current_room: int
 func _ready() -> void:
 	set_up_board()
 
-
 func set_up_board():
 	await PlayerData.player_data_loaded
 	current_room = PlayerData.dungeon_room

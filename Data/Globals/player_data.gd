@@ -3,6 +3,8 @@ extends Node
 signal player_data_loaded
 signal dungeon_run_ongoing_changed
 
+var player_data_has_loaded: bool = false
+
 var player_id: String = "dare_mane"
 var player_display_name: String = "DareMane"
 
@@ -31,7 +33,6 @@ var dungeon_enemy_multiplier: float: # Should be in dungeon data
 var dungeon_run_ongoing: bool:
 	set(value):
 		dungeon_run_ongoing = value
-		
 		if dungeon_run_ongoing_putrid_layers:
 			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.PUTRID_LAYERS)
 		elif dungeon_run_ongoing_scorched_grounds:
@@ -40,12 +41,14 @@ var dungeon_run_ongoing: bool:
 var dungeon_run_ongoing_putrid_layers: bool:
 	set(value):
 		dungeon_run_ongoing_putrid_layers = value
-		dungeon_run_ongoing = value
+		if player_data_has_loaded:
+			dungeon_run_ongoing = value
 
 var dungeon_run_ongoing_scorched_grounds: bool:
 	set(value):
 		dungeon_run_ongoing_scorched_grounds = value
-		dungeon_run_ongoing = value
+		if player_data_has_loaded:
+			dungeon_run_ongoing = value
 
 var dungeon_team_max_size_ = 4
 var dungeon_team_putrid_layers: Array[Unit]
@@ -234,9 +237,9 @@ func load_player_data():
 		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
 		
 		# Dungeon team formation
-		dungeon_run_ongoing = fields["dungeon_run_ongoing"]["booleanValue"]
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
 		dungeon_run_ongoing_scorched_grounds = fields["dungeon_run_ongoing_scorched_grounds"]["booleanValue"]
+		dungeon_run_ongoing = fields["dungeon_run_ongoing"]["booleanValue"]
 		if dungeon_run_ongoing:
 			dungeon_room = int(fields["dungeon_room"]["integerValue"])
 			if dungeon_run_ongoing_putrid_layers:
@@ -279,7 +282,7 @@ func load_player_data():
 				})
 		
 		print("Player data loaded successfully")
-		
+		player_data_has_loaded = true
 		player_data_loaded.emit()
 	)
 	
