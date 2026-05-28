@@ -37,6 +37,19 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
+	Zone.SCORCHED_GROUNDS:[
+		{
+			"boss_1":[
+				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
+			],
+			"formation_1":[
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+			],
+			"formation_2":[
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
+			],
+		}
+	],
 	Zone.PUTRID_LAYERS:[
 		{
 			"boss_1":[
@@ -93,7 +106,7 @@ func _initialize_owned_units():
 		available_units_as_entities.append(entity_instance)
 
 func _initialize_backpack_contents():
-	for loot_entry in PlayerData.dungeon_loot_putrid_layers:
+	for loot_entry in PlayerData.dungeon_loot:
 		var item_id: String = loot_entry["item_id"]
 		if not ITEM_REGISTRY.has(item_id):
 			push_warning("DungeonData: No scene registered for item_id: " + item_id)

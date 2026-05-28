@@ -43,7 +43,5 @@ func _continue_button_pressed():
 	match selected_dungeon_name:
 		DungeonData.Zone.PUTRID_LAYERS:
 			PlayerData.dungeon_run_ongoing_putrid_layers = true
-			return
 		DungeonData.Zone.SCORCHED_GROUNDS:
 			PlayerData.dungeon_run_ongoing_scorched_grounds = true
-			return

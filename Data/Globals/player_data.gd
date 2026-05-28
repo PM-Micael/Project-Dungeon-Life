@@ -18,20 +18,24 @@ var inner_sanctum_essence_current = 0
 var inner_sanctum_essence_total = 0
 
 # Dungeons
-var dungeon_run_tier_putrid_layers: int = 1
-var dungeon_room_putrid_layers: int = 1
+var dungeon_run_tier: int = 1
+var dungeon_room: int = 1
 var dungeon_layer_level: int: # Is this being used?
 	get:
-		return ceili(dungeon_room_putrid_layers / 10.0)
+		return ceili(dungeon_layer_level / 10.0)
 var dungeon_enemy_multiplier: float: # Should be in dungeon data
 	get:
-		var scaling: float = 1 + (dungeon_room_putrid_layers / 10.0)
+		var scaling: float = 1 + (dungeon_layer_level / 10.0)
 		return scaling
 
 var dungeon_run_ongoing: bool:
 	set(value):
 		dungeon_run_ongoing = value
-		dungeon_run_ongoing_changed.emit(value)
+		
+		if dungeon_run_ongoing_putrid_layers:
+			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.PUTRID_LAYERS)
+		elif dungeon_run_ongoing_scorched_grounds:
+			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.SCORCHED_GROUNDS)
 
 var dungeon_run_ongoing_putrid_layers: bool:
 	set(value):
@@ -65,8 +69,22 @@ var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
 		"weapon_star_level": 1
 	},
 ]
+var dungeon_team_formation_scorched_grounds: Array[Dictionary] = [
+	{
+		"unit_name": "scratch",
+		"starting_position": Vector2(350.0, 650.0),
+		"weapon_id": "splinter",
+		"weapon_star_level": 1
+	},
+	{
+		"unit_name": "zac",
+		"starting_position": Vector2(350.0, 450.0),
+		"weapon_id": "rumble_gloves",
+		"weapon_star_level": 1
+	},
+]
 
-var dungeon_loot_putrid_layers: Array[Dictionary] = []
+var dungeon_loot: Array[Dictionary] = []
 
 func add_inner_sanctum_essence(amount: int):
 	inner_sanctum_essence_total += amount
@@ -108,15 +126,15 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 			"star_level": star,
 			"item_type": "weapon",
 		})
-	dungeon_loot_putrid_layers = new_loot
+	dungeon_loot = new_loot
 
 func reset_dungeon_run_data(dungeon: String):
 	match dungeon:
 		DungeonData.Zone.PUTRID_LAYERS:
-			dungeon_room_putrid_layers = 1
+			dungeon_room = 1
 			dungeon_run_ongoing_putrid_layers = false
 			dungeon_team_putrid_layers = []
-			dungeon_loot_putrid_layers = []
+			dungeon_loot = []
 			DungeonData.reset_backpack()
 	
 	save_player_data()
@@ -143,7 +161,7 @@ func save_player_data():
 	
 	# Serialize dungeon_loot
 	var loot_array_putrid_layers = []
-	for item in dungeon_loot_putrid_layers:
+	for item in dungeon_loot:
 		loot_array_putrid_layers.append({
 			"mapValue": {
 				"fields": {
@@ -159,8 +177,8 @@ func save_player_data():
 			"player_display_name": { "stringValue": player_display_name },
 			"dungeon_run_ongoing": {"booleanValue": dungeon_run_ongoing},
 			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers },
-			"dungeon_run_tier_putrid_layers": { "integerValue": str(dungeon_run_tier_putrid_layers) },
-			"dungeon_room_putrid_layers": { "integerValue": str(dungeon_room_putrid_layers) },
+			"dungeon_run_tier": { "integerValue": str(dungeon_run_tier) },
+			"dungeon_room": { "integerValue": str(dungeon_room) },
 			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },
 			"inner_sanctum_essence_current": { "integerValue": str(inner_sanctum_essence_current) },
 			"inner_sanctum": {
@@ -174,7 +192,7 @@ func save_player_data():
 			"dungeon_team_formation_putrid_layers": {
 				"arrayValue": { "values": formation_array_putrid_layers }
 			},
-			"dungeon_loot_putrid_layers": {
+			"dungeon_loot": {
 				"arrayValue": { "values": loot_array_putrid_layers }
 			},
 		}
@@ -206,7 +224,7 @@ func load_player_data():
 		
 		# Basic fields
 		player_display_name = fields["player_display_name"]["stringValue"]
-		dungeon_run_tier_putrid_layers = int(fields["dungeon_run_tier_putrid_layers"]["integerValue"])
+		dungeon_run_tier = int(fields["dungeon_run_tier"]["integerValue"])
 		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
 		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
 		
@@ -218,27 +236,43 @@ func load_player_data():
 		# Dungeon team formation
 		dungeon_run_ongoing = fields["dungeon_run_ongoing"]["booleanValue"]
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
-		if dungeon_run_ongoing_putrid_layers:
-			dungeon_room_putrid_layers = int(fields["dungeon_room_putrid_layers"]["integerValue"])
-			dungeon_team_formation_putrid_layers.clear()
-			var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
-			for entry in formation_values:
-				var f = entry["mapValue"]["fields"]
-				dungeon_team_formation_putrid_layers.append({
-					"unit_name": f["unit_name"]["stringValue"],
-					"weapon_id": f["weapon_id"]["stringValue"],
-					"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
-					"starting_position": Vector2(
-						float(f["pos_x"]["doubleValue"]),
-						float(f["pos_y"]["doubleValue"])
-					)
-				})
+		dungeon_run_ongoing_scorched_grounds = fields["dungeon_run_ongoing_scorched_grounds"]["booleanValue"]
+		if dungeon_run_ongoing:
+			dungeon_room = int(fields["dungeon_room"]["integerValue"])
+			if dungeon_run_ongoing_putrid_layers:
+				dungeon_team_formation_putrid_layers.clear()
+				var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
+				for entry in formation_values:
+					var f = entry["mapValue"]["fields"]
+					dungeon_team_formation_putrid_layers.append({
+						"unit_name": f["unit_name"]["stringValue"],
+						"weapon_id": f["weapon_id"]["stringValue"],
+						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
+						"starting_position": Vector2(
+							float(f["pos_x"]["doubleValue"]),
+							float(f["pos_y"]["doubleValue"])
+						)
+					})
+			elif dungeon_run_ongoing_scorched_grounds:
+				dungeon_team_formation_scorched_grounds.clear()
+				var formation_values = fields["dungeon_team_formation_scorched_grounds"]["arrayValue"].get("values", [])
+				for entry in formation_values:
+					var f = entry["mapValue"]["fields"]
+					dungeon_team_formation_scorched_grounds.append({
+						"unit_name": f["unit_name"]["stringValue"],
+						"weapon_id": f["weapon_id"]["stringValue"],
+						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
+						"starting_position": Vector2(
+							float(f["pos_x"]["doubleValue"]),
+							float(f["pos_y"]["doubleValue"])
+						)
+					})
 			# Dungeon loot
-			dungeon_loot_putrid_layers.clear()
-			var loot_values = fields["dungeon_loot_putrid_layers"]["arrayValue"].get("values", [])
+			dungeon_loot.clear()
+			var loot_values = fields["dungeon_loot"]["arrayValue"].get("values", [])
 			for entry in loot_values:
 				var l = entry["mapValue"]["fields"]
-				dungeon_loot_putrid_layers.append({
+				dungeon_loot.append({
 					"item_id": l["item_id"]["stringValue"],
 					"star_level": int(l["star_level"]["integerValue"]),
 					"item_type": l["item_type"]["stringValue"],

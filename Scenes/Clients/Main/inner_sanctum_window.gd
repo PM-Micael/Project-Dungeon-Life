@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	PlayerData.dungeon_run_ongoing_changed.connect(_on_dungeon_run_ongoing_changed)
 
-func _on_dungeon_run_ongoing_changed(state: bool):
+func _on_dungeon_run_ongoing_changed(state: bool, _dungeon: String):
 	var unavailable_screen: Node2D = inner_sanctum.get_node("UnavailableScreen")
 	unavailable_screen.get_node("Label").text = "Dungeon run in progreess"
 	unavailable_screen.visible = state

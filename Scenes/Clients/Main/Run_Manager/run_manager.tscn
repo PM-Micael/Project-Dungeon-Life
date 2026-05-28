@@ -19,12 +19,6 @@ script = ExtResource("2_rsedy")
 
 [node name="Board" parent="BoardWindow" unique_id=1051771976 instance=ExtResource("3_svmjg")]
 
-[node name="StartStage" type="Button" parent="BoardWindow" unique_id=1530214977]
-z_index = 10
-offset_right = 157.0
-offset_bottom = 164.0
-text = "Start Stage"
-
 [node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
 oversampling_override = 1.0
 position = Vector2i(310, 36)

@@ -13,7 +13,6 @@ var set_scale_custom: Vector2:
 			scale = value
 			scale_changed.emit(scale)
 
-
 var collected_essence: int = 0
 var game_on: bool = false
 
@@ -29,22 +28,31 @@ var game_on: bool = false
 var current_room: int
 
 func _ready() -> void:
+	set_up_board()
+
+
+func set_up_board():
 	await PlayerData.player_data_loaded
-	current_room = PlayerData.dungeon_room_putrid_layers
+	current_room = PlayerData.dungeon_room
 	
 	for unit in friendly_units:
 		unit.health_component.died.connect(_on_friendly_unit_died)
 	for unit in enemy_units:
 		unit.health_component.died.connect(_on_enemy_unit_died)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if game_on:
 		_check_units_alive()
 
 func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
+	var team_formation: Array[Dictionary]
+	if PlayerData.dungeon_run_ongoing_putrid_layers:
+		team_formation = PlayerData.dungeon_team_formation_putrid_layers
+	elif PlayerData.dungeon_run_ongoing_scorched_grounds:
+		team_formation = PlayerData.dungeon_team_formation_scorched_grounds
 	
-	for u in PlayerData.dungeon_team_formation_putrid_layers:
+	for u in team_formation:
 		var unit_name: String = u["unit_name"]
 		var unit_starting_position = u["starting_position"]
 		var weapon_id = u["weapon_id"]
@@ -75,8 +83,8 @@ func _place_friendly_units():
 		get_node("Units/FriendlyUnits").add_child(entity_container_instance)
 		friendly_units.append(unit_instance)
 
-func _place_enemy_units():
-	var enemy_formation: Array = DungeonData.get_room_formations(DungeonData.Zone.PUTRID_LAYERS, current_room)
+func place_enemy_units(dungeon: String): ## Wait for dungeon chosen
+	var enemy_formation: Array = DungeonData.get_room_formations(dungeon, current_room)
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
@@ -130,18 +138,18 @@ func _on_victory():
 	print("Collected ["+str(collected_essence)+"] essence")
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
-	PlayerData.dungeon_room_putrid_layers += 1
-	current_room = PlayerData.dungeon_room_putrid_layers
+	PlayerData.dungeon_room += 1
+	current_room = PlayerData.dungeon_room
 	victory_screen.visible = true
 	for node: Unit in friendly_units_node.get_children():
 		node.queue_free_unit()
 	game_on = false
 	round_over.emit(true)
 	
-	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room_putrid_layers)
+	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.Zone.PUTRID_LAYERS, PlayerData.dungeon_room)
 	print("Loot gained:")
 	print(str(loot))
-	PlayerData.dungeon_loot_putrid_layers.append_array(loot)
+	PlayerData.dungeon_loot.append_array(loot)
 	DungeonData.add_loot_to_backpack(loot)
 	DungeonData.check_and_merge_backpack_items()
 	PlayerData.save_player_data()

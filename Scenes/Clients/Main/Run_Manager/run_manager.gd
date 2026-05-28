@@ -10,7 +10,7 @@ class_name RunManager
 
 @onready var next_stage_button: Button = get_node("BoardWindow/Board/RoundOver/VictoryScreen/NextStageButton")
 @onready var exit_dungeon_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ExitDungeonButton")
-@onready var start_stage_button: Button = get_node("BoardWindow/StartStage")
+@onready var start_stage_button: Button = get_node("BoardWindow/Board/StartStage")
 
 var selected_dungeon_zone: String
 var selected_dungeon_tier: int
@@ -19,15 +19,16 @@ var game_on: bool = false
 var currently_selected_unit_entity_container: EntityContainer
 
 func _ready() -> void:
+	set_up_run()
+
+func set_up_run():
 	await PlayerData.player_data_loaded
 	_connect_events()
-	_setup_stage()
+	_check_dungeon_run_ongoing(PlayerData.dungeon_run_ongoing)
 	DungeonData.check_and_merge_backpack_items()
-
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_game()
-
 # ─── Connect Events ───────────────────────────────────────────────────────────
 
 func _connect_events():
@@ -36,18 +37,27 @@ func _connect_events():
 	next_stage_button.pressed.connect(_setup_stage)
 	exit_dungeon_button.pressed.connect(_exit_dungeon)
 	start_stage_button.pressed.connect(_start_stage)
+	PlayerData.dungeon_run_ongoing_changed.connect(_check_dungeon_run_ongoing)
 
 # ─── Stage Setup ─────────────────────────────────────────────────────────────
 
-func _setup_stage():
+func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
+	if value:
+		if PlayerData.dungeon_run_ongoing_putrid_layers:
+			dungeon = DungeonData.Zone.PUTRID_LAYERS
+		elif PlayerData.dungeon_run_ongoing_scorched_grounds:
+			dungeon = DungeonData.Zone.SCORCHED_GROUNDS
+		_setup_stage(dungeon)
+
+func _setup_stage(dungeon: String):
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
 	board.enemy_units.clear()
 	board._place_friendly_units()
-	board._place_enemy_units()
+	board.place_enemy_units(dungeon)
 	unit_loadout_frame.show_stats = false
-	print("Room = " + str(PlayerData.dungeon_room_putrid_layers))
+	print("Room = " + str(PlayerData.dungeon_room))
 
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout

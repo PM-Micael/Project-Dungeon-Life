@@ -110,6 +110,11 @@ theme_override_font_sizes/font_size = 50
 text = "Victory"
 horizontal_alignment = 1
 
+[node name="StartStage" type="Button" parent="." unique_id=1095032839]
+offset_right = 157.0
+offset_bottom = 164.0
+text = "Start Stage"
+
 [node name="Unavailable" type="Node2D" parent="." unique_id=1845769318]
 
 [node name="ColorRect" type="ColorRect" parent="Unavailable" unique_id=1575324374]
