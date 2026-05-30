@@ -8,42 +8,38 @@ script = ExtResource("1_terp8")
 [node name="Style" type="Node2D" parent="." unique_id=2055618436]
 
 [node name="UnitPreview" type="Node2D" parent="." unique_id=800899328]
+position = Vector2(301, 80)
 
 [node name="Style" type="Node2D" parent="UnitPreview" unique_id=796632760]
 
 [node name="Frame" type="ColorRect" parent="UnitPreview/Style" unique_id=41736776]
-offset_left = 275.0
-offset_top = 75.0
-offset_right = 550.0
-offset_bottom = 425.0
+offset_right = 275.0
+offset_bottom = 350.0
 mouse_filter = 2
-color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="UnitPreview/Style" unique_id=1874269458]
-offset_left = 287.5
-offset_top = 87.5
-offset_right = 537.5
-offset_bottom = 412.5
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 270.0
+offset_bottom = 345.0
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 
 [node name="WeaponPreviewFrame" type="Node2D" parent="." unique_id=2105905004]
+position = Vector2(80, 180)
 
 [node name="Style" type="Node2D" parent="WeaponPreviewFrame" unique_id=1603490709]
 
 [node name="Frame" type="ColorRect" parent="WeaponPreviewFrame/Style" unique_id=274905916]
-offset_left = 75.0
-offset_top = 175.0
-offset_right = 225.0
-offset_bottom = 425.0
+offset_right = 150.0
+offset_bottom = 250.0
 mouse_filter = 2
-color = Color(0.30588236, 0.16078432, 0, 1)
 
 [node name="Backround" type="ColorRect" parent="WeaponPreviewFrame/Style" unique_id=1413085953]
-offset_left = 87.5
-offset_top = 187.5
-offset_right = 212.5
-offset_bottom = 412.5
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 145.0
+offset_bottom = 245.0
 mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 

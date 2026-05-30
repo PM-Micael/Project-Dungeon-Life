@@ -50,4 +50,21 @@ color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
 [node name="UnitLoadoutFrame" parent="InventoryWindow/UI/Inventory" unique_id=599129927 instance=ExtResource("4_rsedy")]
 
 [node name="BackpackFrame" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=1557088162]
+position = Vector2(453, 480)
 script = ExtResource("5_ncke1")
+
+[node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1630188580]
+position = Vector2(-25, -5)
+
+[node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/BackpackFrame/Style" unique_id=48483342]
+offset_right = 350.0
+offset_bottom = 300.0
+
+[node name="Background" type="ColorRect" parent="InventoryWindow/UI/Inventory/BackpackFrame/Style" unique_id=152295278]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 345.0
+offset_bottom = 295.0
+color = Color(0, 0, 0, 1)
+
+[node name="Items" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1031920431]

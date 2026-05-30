@@ -43,14 +43,3 @@ Buggs:
 
 2026-05-11:
 	Zac devours more than he should when enemy dies
-
-2026-05-11:
-	Scenes for the ui update:
-		Control panel / Window manager
-		Board
-		Inventory
-		Inner Sanctum
-		Game selection
-
-2026-05-25:
-	Windows such as inner sanctum should force board and inventory into smaller scales

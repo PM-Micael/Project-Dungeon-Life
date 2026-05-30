@@ -18,13 +18,13 @@ func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var unit_container_instance = container_scene.instantiate()
 	unit_container_instance.name = "UnitContainer"
-	unit_container_instance.position = Vector2(425, 250.0)
+	unit_container_instance.position = Vector2(135, 170)
 	unit_container_instance.scale = Vector2(4, 4)
 	get_node("UnitPreview").add_child(unit_container_instance)
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
 	weapon_container_instance.name = "WeaponContainer"
-	weapon_container_instance.position = Vector2(150, 300)
+	weapon_container_instance.position = Vector2(75, 120)
 	weapon_container_instance.scale = Vector2(1, 1)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
