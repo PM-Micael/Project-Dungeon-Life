@@ -30,8 +30,9 @@ func get_health_percent() -> float:
 func set_stats(set_max_health: int):
 	max_health = set_max_health
 	current_health = max_health
-	health_bar.max_value = max_health
-	health_bar.value = current_health
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = current_health
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	final_damage_taken_modifier = base_damage_taken_modifier

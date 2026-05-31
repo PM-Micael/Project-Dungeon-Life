@@ -1,11 +1,5 @@
 extends Unit
 
-@export_category("Stats")
-@export var base_health: int = 100
-@export var attack_damage: int = 2
-@export var base_critical_percent_chance: int = 15
-@export var base_critical_damage_multiplier: float = 1.6
-
 func _init() -> void:
 	id = "unit_petamer"
 	passive_description = "Placing a debuff on an enemy sneds Wrath out to attack the target.

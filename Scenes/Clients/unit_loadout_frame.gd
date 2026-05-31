@@ -1,7 +1,7 @@
 extends Node2D
 class_name UnitLoadoutFrame
 
-@onready var unit_entity: Entity:
+@onready var unit_entity: Unit:
 	set(value):
 		unit_entity = value
 		_on_unit_entity_change()
@@ -39,7 +39,13 @@ func _on_unit_entity_change():
 
 	# Update StatsFrame
 	var health_component: HealthComponent = unit_entity.get_node("Components/HealthComponent")
+	health_component.set_stats(unit_entity.get_total_health())
 	var attack_component: AttackComponent = unit_entity.get_node("Components/AttackComponent")
+	attack_component.set_stats_absolute(
+		unit_entity.get_total_attack_damage(),
+		unit_entity.attack_range,
+		unit_entity.base_critical_percent_chance,
+		unit_entity.base_critical_damage_multiplier)
 	get_node("StatsFrame/Health/ValueLabel").text = str(health_component.current_health) + " / " + str(health_component.max_health)
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 

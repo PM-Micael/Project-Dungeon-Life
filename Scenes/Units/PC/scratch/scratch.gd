@@ -1,15 +1,15 @@
 extends Unit
 
-@export_category("Stats")
-@export var base_health: int = 100
-@export var attack_damage: int = 20
-@export var base_critical_percent_chance: int = 15
-@export var base_critical_damage_multiplier: float = 1.3
-
 func _init() -> void:
 	id = "scratch"
 	passive_description = "Dealing critical damage applies chmical toxin to target hit.
 		Chemical toxin deals damage every second to the target."
+	base_health = 100
+	attack_damage = 20
+	attack_range = 300
+	base_critical_percent_chance = 15
+	base_critical_damage_multiplier = 1.3
+	is_player_unit = true
 
 func _ready() -> void:
 	super._ready()
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _set_stats():
 	health_component.set_stats(base_health*PlayerData.inner_sanctum.life)
-	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, 300, base_critical_percent_chance, base_critical_damage_multiplier)
+	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_chemical_toxin(targets: Array[Entity], was_crit:bool):
 	if was_crit:
