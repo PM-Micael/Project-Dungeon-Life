@@ -86,9 +86,6 @@ var dungeon_scaling: Dictionary = {
 	}
 }
 
-# Inventory
-var backpack_contents_as_packed_scenes: Array[PackedScene] = []
-
 func _ready() -> void:
 	initialize_data()
 

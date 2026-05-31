@@ -58,7 +58,6 @@ func _setup_stage():
 	board.enemy_units.clear()
 	board._place_friendly_units()
 	board.place_enemy_units(selected_dungeon_zone)
-	unit_loadout_frame.show_stats = false
 	print("Room = " + str(PlayerData.dungeon_room))
 
 	if PlayerData.settings.auto_advance:
@@ -86,7 +85,6 @@ func _exit_dungeon():
 func start_game() -> void:
 	game_on = true
 	board.game_on = true
-	unit_loadout_frame.show_stats = true
 	_deselect_current_unit()
 
 func _on_round_over(player_won: bool) -> void:
