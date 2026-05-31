@@ -25,7 +25,6 @@ const ITEM_REGISTRY: Dictionary = {
 }
 
 # Units
-var dungeon_team: Array[Entity]
 var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
 	preload("res://Scenes/Units/goblin.tscn"),

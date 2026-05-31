@@ -57,9 +57,7 @@ func _load_character_selection_menu():
 		loop_itteration += 1
 
 func _on_character_chosen(new_entity: Entity):
-	if (new_entity in DungeonData.dungeon_team):
-		print("No dupes allowed.")
-		return
+	print("No dupes allowed.")
 	
 	PlayerData.dungeon_team.append(new_entity)
 	PlayerData.dungeon_team.erase(currently_selected_team_slot.currently_selected_entity)

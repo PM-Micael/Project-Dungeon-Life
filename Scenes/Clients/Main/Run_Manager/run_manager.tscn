@@ -68,3 +68,11 @@ offset_bottom = 295.0
 color = Color(0, 0, 0, 1)
 
 [node name="Items" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1031920431]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1294170850]
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 282.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame/ScrollContainer" unique_id=1278164257]
+layout_mode = 2

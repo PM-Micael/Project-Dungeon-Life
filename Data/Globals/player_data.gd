@@ -88,6 +88,7 @@ var dungeon_team_formation_scorched_grounds: Array[Dictionary] = [
 ]
 
 var dungeon_loot: Array[Dictionary] = []
+var dungeon_loot_as_entities: Array[Entity] = []
 
 func add_inner_sanctum_essence(amount: int):
 	inner_sanctum_essence_total += amount
@@ -138,6 +139,7 @@ func reset_dungeon_run_data(dungeon: String):
 			dungeon_run_ongoing_putrid_layers = false
 			dungeon_team_putrid_layers = []
 			dungeon_loot = []
+			dungeon_loot_as_entities = []
 			DungeonData.reset_backpack()
 	
 	save_player_data()

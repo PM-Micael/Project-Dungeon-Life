@@ -22,8 +22,14 @@ func _ready() -> void:
 	fill_backpack_frame()
 
 func fill_backpack_frame():
-	for child in backpack_frame.get_node("Items").get_children():
+	
+	var item_container = backpack_frame.get_node("ScrollContainer/VBoxContainer")
+	
+	for child in item_container.get_children():
 		child.queue_free()
+	
+	#for child in backpack_frame.get_node("Items").get_children():
+		#child.queue_free()
 		
 	var loop_count: int = 0
 	for e in DungeonData.backpack_contents_as_entities:
@@ -33,13 +39,13 @@ func fill_backpack_frame():
 		var clickable_object_instance: Control = clickable_object_scene.instantiate()
 		
 		entity_container_instance.add_child(clickable_object_instance)
-		
 		entity_container_instance.entity = e
 		entity_container_instance.position = Vector2(25+(loop_count*100), 50)
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").scale = Vector2(0.1, 0.1)
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
 		
-		backpack_frame.get_node("Items").add_child(entity_container_instance)
+		#backpack_frame.get_node("Items").add_child(entity_container_instance)
+		item_container.add_child(entity_container_instance)
 		loop_count += 1
 
 # On click events
