@@ -87,7 +87,6 @@ var dungeon_scaling: Dictionary = {
 }
 
 # Inventory
-var backpack_contents_as_entities: Array[Entity]
 var backpack_contents_as_packed_scenes: Array[PackedScene] = []
 
 func _ready() -> void:
@@ -96,7 +95,6 @@ func _ready() -> void:
 # Initializations
 func initialize_data() -> void:
 	_initialize_owned_units()
-	_initialize_backpack_contents()
 	dungeon_data_loaded.emit()
 
 func _initialize_owned_units():
@@ -104,46 +102,10 @@ func _initialize_owned_units():
 		var entity_instance: Entity = u.instantiate()
 		available_units_as_entities.append(entity_instance)
 
-func _initialize_backpack_contents():
-	for loot_entry in PlayerData.dungeon_loot:
-		var item_id: String = loot_entry["item_id"]
-		if not ITEM_REGISTRY.has(item_id):
-			push_warning("DungeonData: No scene registered for item_id: " + item_id)
-			continue
-		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
-		var entity_instance: Entity = scene.instantiate()
-		
-		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
-		if wc != null:
-			wc.star_level = loot_entry["star_level"]
-		
-		backpack_contents_as_entities.append(entity_instance)
-
-func reset_backpack():
-	for entity in backpack_contents_as_entities:
-		entity.queue_free()
-	backpack_contents_as_entities.clear()
-
-func add_loot_to_backpack(loot: Array[Dictionary]) -> void:
-	for loot_entry in loot:
-		var item_id: String = loot_entry["item_id"]
-		if not ITEM_REGISTRY.has(item_id):
-			push_warning("DungeonData: No scene registered for item_id: " + item_id)
-			continue
-		var scene: PackedScene = load(ITEM_REGISTRY[item_id])
-		var entity_instance: Entity = scene.instantiate()
-
-		# Apply star level from loot entry
-		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
-		if wc != null:
-			wc.star_level = loot_entry["star_level"]
-
-		backpack_contents_as_entities.append(entity_instance)
-
 func check_and_merge_backpack_items() -> void:
 	var groups: Dictionary[String, int] = {}
 	
-	for entity in backpack_contents_as_entities:
+	for entity in PlayerData.dungeon_loot_as_entities:
 		var wc: WeaponComponent = entity.get_node_or_null("Components/WeaponComponent")
 		if wc == null:
 			continue
@@ -154,14 +116,14 @@ func check_and_merge_backpack_items() -> void:
 		if groups[key] == 3:
 			
 			var removed: int = 0
-			for e in backpack_contents_as_entities.duplicate():
+			for e in PlayerData.dungeon_loot_as_entities.duplicate():
 				if removed == 2:
 					break
 				if e == entity:
 					continue
 				var ewc: WeaponComponent = e.get_node_or_null("Components/WeaponComponent")
 				if ewc != null and e.id == entity.id and ewc.star_level == wc.star_level:
-					backpack_contents_as_entities.erase(e)
+					PlayerData.dungeon_loot_as_entities.erase(e)
 					e.queue_free()
 					removed += 1
 			

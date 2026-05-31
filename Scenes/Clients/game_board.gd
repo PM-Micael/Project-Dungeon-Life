@@ -149,7 +149,7 @@ func _on_victory():
 	print("Loot gained:")
 	print(str(loot))
 	PlayerData.dungeon_loot.append_array(loot)
-	DungeonData.add_loot_to_backpack(loot)
+	PlayerData.add_loot_to_inventory(loot)
 	DungeonData.check_and_merge_backpack_items()
 	PlayerData.save_player_data()
 	run_manager.inventory.fill_backpack_frame()

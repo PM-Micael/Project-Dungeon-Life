@@ -118,7 +118,35 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putri
 	
 	dungeon_team_formation_putrid_layers = new_formation
 
-func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_contents_as_entities) -> void:
+func reset_dungeon_run_data(dungeon: String):
+	match dungeon:
+		DungeonData.Zone.PUTRID_LAYERS:
+			dungeon_room = 1
+			dungeon_run_ongoing_putrid_layers = false
+			dungeon_team_putrid_layers = []
+			dungeon_loot = []
+			for entity in dungeon_loot_as_entities: # Why twice?
+				entity.queue_free()
+			dungeon_loot_as_entities = []
+	save_player_data()
+
+# Invenetory / Loot / Backback
+
+func _initialize_loot_as_entities() -> void:
+	dungeon_loot_as_entities.clear()
+	for loot_entry in dungeon_loot:
+		var item_id: String = loot_entry["item_id"]
+		if not DungeonData.ITEM_REGISTRY.has(item_id):
+			push_warning("PlayerData: No scene registered for item_id: " + item_id)
+			continue
+		var scene: PackedScene = load(DungeonData.ITEM_REGISTRY[item_id])
+		var entity_instance: Entity = scene.instantiate()
+		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc.star_level = loot_entry["star_level"]
+		dungeon_loot_as_entities.append(entity_instance)
+
+func save_backpack_as_loot(backpack: Array[Entity] = dungeon_loot_as_entities):
 	var new_loot: Array[Dictionary] = []
 	for entity in backpack:
 		var star: int = 1
@@ -132,17 +160,20 @@ func save_backpack_as_loot(backpack: Array[Entity] = DungeonData.backpack_conten
 		})
 	dungeon_loot = new_loot
 
-func reset_dungeon_run_data(dungeon: String):
-	match dungeon:
-		DungeonData.Zone.PUTRID_LAYERS:
-			dungeon_room = 1
-			dungeon_run_ongoing_putrid_layers = false
-			dungeon_team_putrid_layers = []
-			dungeon_loot = []
-			dungeon_loot_as_entities = []
-			DungeonData.reset_backpack()
-	
-	save_player_data()
+func add_loot_to_inventory(loot: Array[Dictionary]) -> void:
+	for loot_entry in loot:
+		var item_id: String = loot_entry["item_id"]
+		if not DungeonData.ITEM_REGISTRY.has(item_id):
+			push_warning("DungeonData: No scene registered for item_id: " + item_id)
+			continue
+		var scene: PackedScene = load(DungeonData.ITEM_REGISTRY[item_id])
+		var entity_instance: Entity = scene.instantiate()
+
+		var wc: WeaponComponent = entity_instance.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc.star_level = loot_entry["star_level"]
+
+		PlayerData.dungeon_loot_as_entities.append(entity_instance)
 
 # Database
 
@@ -285,6 +316,7 @@ func load_player_data():
 				})
 		
 		print("Player data loaded successfully")
+		_initialize_loot_as_entities()
 		player_data_has_loaded = true
 		player_data_loaded.emit()
 	)

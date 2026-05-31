@@ -32,7 +32,7 @@ func fill_backpack_frame():
 		#child.queue_free()
 		
 	var loop_count: int = 0
-	for e in DungeonData.backpack_contents_as_entities:
+	for e in PlayerData.dungeon_loot_as_entities:
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
