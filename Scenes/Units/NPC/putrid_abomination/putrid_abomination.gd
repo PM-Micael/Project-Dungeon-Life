@@ -1,13 +1,12 @@
 extends Unit
 
-@export_category("Stats")
-@export var max_health: int = 1000
-@export var attack_damage: int = 50
-@export var base_critical_percent_chance: int = 0
-@export var base_critical_damage_multiplier: float = 1.2
-
 func _init() -> void:
 	id = "putrid_abomination"
+	base_health = 1000
+	attack_damage = 50
+	attack_range = 100
+	base_critical_percent_chance = 0
+	base_critical_damage_multiplier = 1.2
 
 func _ready() -> void:
 	super._ready()
@@ -22,6 +21,6 @@ func _apply_flesh_shield():
 
 func _set_stats():
 	var scaling = PlayerData.dungeon_enemy_multiplier
-	health_component.set_stats(max_health * scaling)
-	attack_component.set_stats_absolute(attack_damage * scaling, 100, base_critical_percent_chance, base_critical_damage_multiplier)
+	health_component.set_stats(get_total_health())
+	attack_component.set_stats_absolute(get_total_attack_damage(), 100, base_critical_percent_chance, base_critical_damage_multiplier)
 	attack_component.attack_speed = 1.6

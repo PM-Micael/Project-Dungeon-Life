@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhfjyiqbq5u31" path="res://Scenes/Clients/Main/Run_Manager/inventory_window.gd" id="4_ncke1"]
 [ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="4_rsedy"]
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="5_ncke1"]
+[ext_resource type="Script" uid="uid://haveicp28q6u" path="res://Scenes/Clients/Main/Run_Manager/auto_advance_button.gd" id="8_b08fb"]
 
 [node name="RunManager" type="Node2D" unique_id=896845944]
 script = ExtResource("1_d5ua6")
@@ -76,3 +77,22 @@ offset_bottom = 290.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame/ScrollContainer" unique_id=1278164257]
 layout_mode = 2
+
+[node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI" unique_id=142719757]
+
+[node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/AutoAdvance" unique_id=2061859412]
+offset_left = 395.0
+offset_top = 5.0
+offset_right = 471.0
+offset_bottom = 36.0
+text = "Off"
+script = ExtResource("8_b08fb")
+
+[node name="Label" type="Label" parent="InventoryWindow/UI/AutoAdvance" unique_id=160100725]
+offset_left = 353.0
+offset_top = 5.0
+offset_right = 393.0
+offset_bottom = 36.0
+text = "Auto:"
+horizontal_alignment = 1
+vertical_alignment = 1
