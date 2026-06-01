@@ -106,13 +106,13 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putri
 			weapon_id = weapon.id
 			var wc: WeaponComponent = weapon.get_node_or_null("Components/WeaponComponent")
 			if wc != null:
-				weapon_star = wc.star_level  # ← add this
+				weapon_star = wc.star_level
 		
 		var dict: Dictionary = {
 			"unit_name": unit.id,
 			"starting_position": unit.starting_position,
 			"weapon_id": weapon_id,
-			"weapon_star_level": weapon_star,  # ← add this
+			"weapon_star_level": weapon_star,
 		}
 		new_formation.append(dict)
 	
