@@ -37,22 +37,40 @@ func fill_backpack_frame():
 			current_hbox = HBoxContainer.new()
 			current_hbox.add_theme_constant_override("separation", 0)
 			item_container.add_child(current_hbox)
-			
+		
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
 		var clickable_object_instance: Control = clickable_object_scene.instantiate()
 		
+		
+		
 		entity_container_instance.add_child(clickable_object_instance)
 		entity_container_instance.entity = e
-		entity_container_instance.get_node("ClickableObject").get_node("Clickable").scale = Vector2(0.1, 0.1)
-		entity_container_instance.get_node("ClickableObject").get_node("Clickable").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
-		
+
+		var clickable: Control = clickable_object_instance.get_node("Clickable")
+		clickable.get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
+
 		var wrapper := Control.new()
 		wrapper.custom_minimum_size = Vector2(85, 100)
 		wrapper.add_child(entity_container_instance)
-		entity_container_instance.position = Vector2(42, 50)
 		current_hbox.add_child(wrapper)
+
+		# Wait for the wrapper to be in the tree so size is known, then size the clickable
+		await get_tree().process_frame
+		entity_container_instance.position = Vector2(42, 50)
+		entity_container_instance.size = wrapper.size
+
+		clickable_object_instance.set_anchors_preset(Control.PRESET_FULL_RECT)
+		clickable_object_instance.size = entity_container_instance.size
+
+		clickable.set_anchors_preset(Control.PRESET_FULL_RECT)
+		clickable.offset_left = -39
+		clickable.offset_top = -40
+		clickable.offset_right = entity_container_instance.size.x
+		clickable.offset_bottom = entity_container_instance.size.y
+		clickable.mouse_filter = Control.MOUSE_FILTER_STOP
+		clickable.scale = Vector2(0.35, 0.35)
 
 		if column_count >= 3:
 			column_count = 0

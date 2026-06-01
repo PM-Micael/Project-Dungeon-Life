@@ -11,6 +11,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
+				print("Clicked")
 				parent.on_clicked()
 			MOUSE_BUTTON_RIGHT:
 				if popup_menu == null:

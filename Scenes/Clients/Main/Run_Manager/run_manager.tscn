@@ -74,9 +74,11 @@ color = Color(0, 0, 0, 1)
 offset_left = -20.0
 offset_right = 320.0
 offset_bottom = 290.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame/ScrollContainer" unique_id=1278164257]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI" unique_id=142719757]
 
