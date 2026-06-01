@@ -16,7 +16,7 @@ var selected_dungeon_zone: String
 var selected_dungeon_tier: int
 var game_on: bool = false
 
-var currently_selected_unit_entity_container: EntityContainer
+var currently_selected_unit_entity_container: Control
 
 func _ready() -> void:
 	set_up_run()
@@ -149,8 +149,9 @@ func _try_select_any_unit_on_tile(tile: Tile) -> void:
 
 func _handle_in_game_unit_selected(unit: Node2D) -> void:
 	var entity: Entity = unit as Entity
-	if entity == null and unit is EntityContainer:
-		entity = (unit as EntityContainer).entity
+	if entity == null:
+		# Check if it's an EntityContainer by looking for the entity property
+		entity = unit.get("entity") as Entity
 	if entity == null:
 		return
 	_set_highlight_node(unit, true)
@@ -169,7 +170,7 @@ func _deselect_current_unit() -> void:
 		var h = unit.get_node_or_null("Highlight")
 		if h: h.queue_free()
 
-func _set_highlight(container: EntityContainer, enabled: bool) -> void:
+func _set_highlight(container: Control, enabled: bool) -> void:
 	var highlight: ColorRect = container.get_node_or_null("Highlight")
 	if enabled and highlight == null:
 		highlight = ColorRect.new()

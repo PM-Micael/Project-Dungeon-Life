@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name EntityContainer
 
 @onready var star_level_label: Label

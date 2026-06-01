@@ -24,18 +24,20 @@ func _ready() -> void:
 	fill_backpack_frame()
 
 func fill_backpack_frame():
-	
 	var item_container = backpack_frame.get_node("ScrollContainer/VBoxContainer")
 	
 	for child in item_container.get_children():
 		child.queue_free()
 	
-	#for child in backpack_frame.get_node("Items").get_children():
-		#child.queue_free()
-		
+	var current_hbox: HBoxContainer = null
 	var column_count: int = 0
-	var row_count: int = 0
+	
 	for e in PlayerData.dungeon_loot_as_entities:
+		if column_count == 0:
+			current_hbox = HBoxContainer.new()
+			current_hbox.add_theme_constant_override("separation", 0)
+			item_container.add_child(current_hbox)
+			
 		var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
@@ -43,17 +45,20 @@ func fill_backpack_frame():
 		
 		entity_container_instance.add_child(clickable_object_instance)
 		entity_container_instance.entity = e
-		entity_container_instance.position = Vector2(45+(column_count*85), 50+(100*row_count))
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").scale = Vector2(0.1, 0.1)
 		entity_container_instance.get_node("ClickableObject").get_node("Clickable").get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
 		
-		#backpack_frame.get_node("Items").add_child(entity_container_instance)
-		item_container.add_child(entity_container_instance)
+		var wrapper := Control.new()
+		wrapper.custom_minimum_size = Vector2(85, 100)
+		wrapper.add_child(entity_container_instance)
+		entity_container_instance.position = Vector2(42, 50)
+		current_hbox.add_child(wrapper)
+
 		if column_count >= 3:
 			column_count = 0
-			row_count += 1
 		else:
 			column_count += 1
+
 # On click events
 func entity_unit_selection_container_clicked(entity_container: EntityContainer):
 	unit_loadout_frame.unit_entity = entity_container.entity
