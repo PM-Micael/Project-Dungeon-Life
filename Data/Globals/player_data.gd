@@ -27,7 +27,7 @@ var dungeon_layer_level: int: # Is this being used?
 		return ceili(dungeon_layer_level / 10.0)
 var dungeon_enemy_multiplier: float: # Should be in dungeon data
 	get:
-		var scaling: float = 1 + (dungeon_layer_level / 10.0)
+		var scaling: float = 1 + (dungeon_room / 10.0)
 		return scaling
 
 var dungeon_run_ongoing: bool:
