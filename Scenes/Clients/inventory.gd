@@ -43,14 +43,12 @@ func fill_backpack_frame():
 		var clickable_object_scene: PackedScene = load("res://Scenes/Clients/UIComponents/clickable_object.tscn")
 		var clickable_object_instance: Control = clickable_object_scene.instantiate()
 		
-		
-		
 		entity_container_instance.add_child(clickable_object_instance)
 		entity_container_instance.entity = e
 
-		var clickable: Control = clickable_object_instance.get_node("Clickable")
-		clickable.get_node("PopupMenu").menu_type = PopupMenuType.Type.BACKPACK_ITEM
-
+		var clickable: ClickableObject = clickable_object_instance.get_node("Clickable")
+		clickable.left_clicked.connect(_on_inventory_item_left_clicked)
+		
 		var wrapper := Control.new()
 		wrapper.custom_minimum_size = Vector2(85, 100)
 		wrapper.add_child(entity_container_instance)
@@ -105,3 +103,24 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			fill_backpack_frame()
 		2:
 			print("Not Implimented")
+
+func _on_inventory_item_left_clicked(item_container: EntityContainer):
+	var is_weapon: bool = item_container.entity.has_node("Components/WeaponComponent")
+	if is_weapon:
+		print("Attempting to equip item")
+		if unit_loadout_frame.unit_entity == null:
+			print("No unit selected")
+			return
+		
+		item_container.remove_child(item_container.entity)
+			
+		var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, item_container.entity)
+		PlayerData.dungeon_loot_as_entities.erase(item_container.entity)
+		
+		if old_weapon != null:
+			PlayerData.dungeon_loot_as_entities.append(old_weapon)
+			
+			DungeonData.check_and_merge_backpack_items()
+			
+			unit_loadout_frame._on_unit_entity_change()
+			fill_backpack_frame()
