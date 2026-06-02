@@ -73,7 +73,8 @@ func change_unit_weapon(new_weapon_entity: Entity):
 	DungeonData.change_unit_weapon(unit_entity, new_weapon_entity)
 
 func _get_display_attack_damage() -> int:
-	var total = unit_entity.get_node("Components/AttackComponent").attack_damage
+	var total = unit_entity.get_node("Components/AttackComponent").get_total_attack_damage()
+	return total
 	var weapon_slot = unit_entity.weapon_slot_component
 	if weapon_slot != null:
 		var weapon = weapon_slot.get_child(0)

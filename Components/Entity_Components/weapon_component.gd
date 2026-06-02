@@ -22,7 +22,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 	set_weapon_energy_bar()
-	
+	_connect_events()
+
+func _connect_events():
 	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
 	entity_holding_weapon.attack_component.post_attack_target.connect(_finish_attack)
 	entity_holding_weapon.health_component.damage_taken.connect(_on_damage_taken)
@@ -53,3 +55,6 @@ func adjust_energy(targets: Array[Entity]):
 		current_weapon_energy = 0
 		
 	weapon_energy_bar.value = current_weapon_energy
+
+func get_total_damage() -> int:
+	return (added_attack_damage_multiplier*star_level)
