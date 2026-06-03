@@ -32,10 +32,7 @@ func _on_unit_entity_change():
 	var weapon_slot_component = unit_entity.get_node("Components/WeaponSlotComponent")
 	if weapon_slot_component != null:
 		var weapon = weapon_slot_component.get_child(0)
-		if weapon == null:
-			weapon_entity_container.entity = null
-		else:
-			weapon_entity_container.entity = weapon
+		weapon_entity_container.entity = weapon if weapon != null else null
 
 	# Update StatsFrame
 	var health_component: HealthComponent = unit_entity.get_node("Components/HealthComponent")
@@ -73,11 +70,4 @@ func change_unit_weapon(new_weapon_entity: Entity):
 	DungeonData.change_unit_weapon(unit_entity, new_weapon_entity)
 
 func _get_display_attack_damage() -> int:
-	var total = unit_entity.get_node("Components/AttackComponent").get_total_attack_damage()
-	return total
-	var weapon_slot = unit_entity.weapon_slot_component
-	if weapon_slot != null:
-		var weapon = weapon_slot.get_child(0)
-		if weapon != null:
-			total += weapon.weapon_component.added_attack_damage_multiplier
-	return total
+	return unit_entity.get_node("Components/AttackComponent").get_total_attack_damage()

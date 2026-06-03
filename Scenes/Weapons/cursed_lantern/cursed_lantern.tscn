@@ -10,6 +10,7 @@ script = ExtResource("1_aabep")
 [node name="Components" type="Node2D" parent="." unique_id=5906358]
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_yyryo")]
+added_attack_damage_multiplier = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=155332162]
 visible = false

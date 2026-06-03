@@ -11,7 +11,7 @@ var weapon_energy_gained_on_attack: int = 10
 var weapon_energy_gained_on_damage_taken: int = 0
 var ability_can_crit: bool = false
 
-var added_attack_damage_multiplier: int
+@export var added_attack_damage_multiplier: int
 var weapon_energy_bar: ProgressBar
 
 # Character -> Components -> WeaponSlotComponent -> Weapon -> Components -> WeaponComponent

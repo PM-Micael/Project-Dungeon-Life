@@ -10,6 +10,7 @@ script = ExtResource("1_nwt7h")
 [node name="Components" type="Node2D" parent="." unique_id=1568524634]
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_mvh4w")]
+added_attack_damage_multiplier = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=394093689]
 texture = ExtResource("2_2241d")
