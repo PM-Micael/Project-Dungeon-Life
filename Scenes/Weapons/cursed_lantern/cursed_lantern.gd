@@ -1,7 +1,5 @@
 extends Entity
 
-@export var basic_attack_damage: int = 10
-
 var heal_reduction_modifier: float = 0.4
 var weaken_modifier: float = 0.25
 
@@ -11,7 +9,6 @@ func _init() -> void:
 func _ready() -> void:
 	name = "cursed_lantern"
 	display_name = "Cursed Lantern"
-	weapon_component.set_stats_absolute(basic_attack_damage)
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
 func _weapon_skill(targets: Array[Entity]):

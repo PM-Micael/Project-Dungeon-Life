@@ -23,13 +23,14 @@ func _ready() -> void:
 	
 	set_weapon_energy_bar()
 	_connect_events()
+	set_stats_absolute()
 
 func _connect_events():
 	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
 	entity_holding_weapon.attack_component.post_attack_target.connect(_finish_attack)
 	entity_holding_weapon.health_component.damage_taken.connect(_on_damage_taken)
 
-func set_stats_absolute(set_added_damage: int):
+func set_stats_absolute(set_added_damage: int = added_attack_damage_multiplier):
 	added_attack_damage_multiplier = set_added_damage * star_level
 
 func set_weapon_energy_bar():
