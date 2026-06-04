@@ -43,3 +43,7 @@ Buggs:
 
 2026-05-11:
 	Zac devours more than he should when enemy dies
+	
+2026-06-04:
+	impliment simplee damage numbers for visual clarity and so that I can properly know that they are
+	dealing the right amount of damage.

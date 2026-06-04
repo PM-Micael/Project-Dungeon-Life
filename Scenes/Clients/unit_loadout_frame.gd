@@ -45,7 +45,7 @@ func _on_unit_entity_change():
 		unit_entity.base_critical_damage_multiplier)
 	get_node("StatsFrame/Health/ValueLabel").text = str(health_component.current_health) + " / " + str(health_component.max_health)
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
-
+	
 	# Connect signals for real-time updates (disconnect first to avoid duplicates)
 	if health_component.damage_taken.is_connected(_on_selected_unit_health_changed):
 		health_component.damage_taken.disconnect(_on_selected_unit_health_changed)
