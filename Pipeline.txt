@@ -47,3 +47,8 @@ Buggs:
 2026-06-04:
 	impliment simplee damage numbers for visual clarity and so that I can properly know that they are
 	dealing the right amount of damage.
+	
+20026-06-05:
+	Base dungeon
+	More enemies
+	More playeer units

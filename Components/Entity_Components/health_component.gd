@@ -46,7 +46,8 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
 	if current_health <= 0:
-		die(attacker)
+		if is_instance_valid(self):
+			die(attacker)
 
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier
@@ -63,4 +64,4 @@ func die(_killer: Unit):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
 	died.emit(parent_entity)
-	parent_entity.queue_free()
+	parent_entity.free()
