@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bgk2hqrs2fole"]
+
+[ext_resource type="Script" uid="uid://cd3kriu3t2v5k" path="res://Scenes/Units/NPC/scorched_wanderer/scorched_wanderer.gd" id="1_cpasj"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="2_k4epl"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_k0d33"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_s8ahx"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_isdrr"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_4qv31"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_kfvoa"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="8_00yoe"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_xak4e"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="10_k0d33"]
+[ext_resource type="Texture2D" uid="uid://cj3gywsybidxr" path="res://Scenes/Units/NPC/scorched_wanderer/scorched_wanderer.png" id="11_k0d33"]
+
+[node name="ScorchedWanderer" type="Node2D" unique_id=1199860186]
+script = ExtResource("1_cpasj")
+
+[node name="Components" type="Node2D" parent="." unique_id=2140059710]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_k4epl")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_k0d33")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_s8ahx")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("5_isdrr")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("6_4qv31")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_kfvoa")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("8_00yoe")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_xak4e")]
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_k0d33")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1245414585]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_k0d33")
