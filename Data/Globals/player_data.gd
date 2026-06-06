@@ -33,10 +33,18 @@ var dungeon_enemy_multiplier: float: # Should be in dungeon data
 var dungeon_run_ongoing: bool:
 	set(value):
 		dungeon_run_ongoing = value
-		if dungeon_run_ongoing_putrid_layers:
+		if dungeon_run_ongoing_the_dungeon:
+			dungeon_run_ongoing_changed.emit(value, DungeonData.DUNGEONS.THE_DUNGEON)
+		elif dungeon_run_ongoing_putrid_layers:
 			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.PUTRID_LAYERS)
 		elif dungeon_run_ongoing_scorched_grounds:
 			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.SCORCHED_GROUNDS)
+
+var dungeon_run_ongoing_the_dungeon: bool:
+	set(value):
+		dungeon_run_ongoing_the_dungeon = value
+		if player_data_has_loaded:
+			dungeon_run_ongoing = value
 
 var dungeon_run_ongoing_putrid_layers: bool:
 	set(value):

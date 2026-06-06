@@ -2,12 +2,16 @@ extends Node
 
 signal dungeon_data_loaded
 
-const Zone = {
+const DUNGEONS: Dictionary = {
+	THE_DUNGEON = "The Dungeon"
+}
+
+const Zone: Dictionary = {
 	PUTRID_LAYERS = "putrid_layers",
 	SCORCHED_GROUNDS = "scorched_grounds"
 }
 
-const EnemyType = {
+const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
 	FLESH_HULK = "flesh_hulk",
 	FLESH_TENDRILl = "flesh_tendrill",
@@ -69,7 +73,6 @@ var dungeon_wave_formations: Dictionary = {
 		}
 	]
 }
-
 
 var dungeon_scaling: Dictionary = {
 	"tier_1":{

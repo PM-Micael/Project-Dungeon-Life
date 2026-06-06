@@ -18,7 +18,7 @@ var selected_dungeon_index: int = 0:
 @onready var continue_button: Button = get_node("ContinueButton")
 
 func _ready() -> void:
-	dungeons = DungeonData.Zone.values()
+	dungeons = DungeonData.DUNGEONS.values()
 	
 	_connect_events()
 	_update_label()
@@ -41,6 +41,8 @@ func _update_label():
 func _continue_button_pressed():
 	print(selected_dungeon_name)
 	match selected_dungeon_name:
+		DungeonData.DUNGEONS.THE_DUNGEON:
+			PlayerData.dungeon_run_ongoing_the_dungeon = true
 		DungeonData.Zone.PUTRID_LAYERS:
 			PlayerData.dungeon_run_ongoing_putrid_layers = true
 		DungeonData.Zone.SCORCHED_GROUNDS:
