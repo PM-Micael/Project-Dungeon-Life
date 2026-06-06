@@ -46,7 +46,9 @@ func _physics_process(_delta: float) -> void:
 func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var team_formation: Array[Dictionary]
-	if PlayerData.dungeon_run_ongoing_putrid_layers:
+	if PlayerData.dungeon_run_ongoing_the_dungeon:
+		team_formation = PlayerData.dungeon_team_formation_putrid_layers
+	elif PlayerData.dungeon_run_ongoing_putrid_layers:
 		team_formation = PlayerData.dungeon_team_formation_putrid_layers
 	elif PlayerData.dungeon_run_ongoing_scorched_grounds:
 		team_formation = PlayerData.dungeon_team_formation_scorched_grounds
@@ -131,8 +133,6 @@ func _check_units_alive():
 		_on_defeat()
 
 func _on_victory():
-	if not PlayerData.dungeon_run_ongoing_putrid_layers:
-		PlayerData.dungeon_run_ongoing_putrid_layers = true
 	PlayerData.add_inner_sanctum_essence(collected_essence)
 	print("Collected ["+str(collected_essence)+"] essence")
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
@@ -140,7 +140,7 @@ func _on_victory():
 	PlayerData.dungeon_room += 1
 	current_room = PlayerData.dungeon_room
 	victory_screen.visible = true
-	for node: Unit in friendly_units_node.get_children():
+	for node in friendly_units_node.get_children():
 		node.queue_free_unit()
 	game_on = false
 	round_over.emit(true)

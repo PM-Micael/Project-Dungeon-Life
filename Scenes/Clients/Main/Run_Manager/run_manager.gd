@@ -42,6 +42,7 @@ func _connect_events():
 
 func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
 	if value:
+		PlayerData.dungeon_run_ongoing_changed.disconnect(_check_dungeon_run_ongoing)
 		if PlayerData.dungeon_run_ongoing_the_dungeon:
 			selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
 		elif PlayerData.dungeon_run_ongoing_putrid_layers:

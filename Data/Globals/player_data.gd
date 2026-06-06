@@ -62,6 +62,26 @@ var dungeon_run_ongoing_scorched_grounds: bool:
 
 var dungeon_team_max_size_ = 4
 var dungeon_team_putrid_layers: Array[Unit]
+var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
+	{
+		"unit_name": "scratch",
+		"starting_position": Vector2(350.0, 650.0),
+		"weapon_id": "splinter",
+		"weapon_star_level": 1
+	},
+	{
+		"unit_name": "zac",
+		"starting_position": Vector2(350.0, 450.0),
+		"weapon_id": "rumble_gloves",
+		"weapon_star_level": 1
+	},
+	{
+		"unit_name": "walking_hive",
+		"starting_position": Vector2(350.0, 550.0),
+		"weapon_id": "cursed_lantern",
+		"weapon_star_level": 1
+	},
+]
 var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
 	{
 		"unit_name": "scratch",
@@ -191,9 +211,9 @@ func save_player_data():
 	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
 	
 	# Serialize dungeon_team_formation
-	var formation_array_putrid_layers = []
-	for unit in dungeon_team_formation_putrid_layers:
-		formation_array_putrid_layers.append({
+	var formation_array = []
+	for unit in dungeon_team_formation_the_dungeon:
+		formation_array.append({
 			"mapValue": {
 				"fields": {
 					"unit_name": { "stringValue": unit["unit_name"] },
@@ -206,9 +226,9 @@ func save_player_data():
 		})
 	
 	# Serialize dungeon_loot
-	var loot_array_putrid_layers = []
+	var loot_array = []
 	for item in dungeon_loot:
-		loot_array_putrid_layers.append({
+		loot_array.append({
 			"mapValue": {
 				"fields": {
 					"item_id": { "stringValue": item["item_id"] },
@@ -222,7 +242,8 @@ func save_player_data():
 		"fields": {
 			"player_display_name": { "stringValue": player_display_name },
 			"dungeon_run_ongoing": {"booleanValue": dungeon_run_ongoing},
-			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers },
+			"dungeon_run_ongoing_the_dungeon": {"booleanValue": dungeon_run_ongoing_the_dungeon},
+			"dungeon_run_ongoing_putrid_layers": {"booleanValue": dungeon_run_ongoing_putrid_layers},
 			"dungeon_run_ongoing_scorched_grounds": {"booleanValue": dungeon_run_ongoing_scorched_grounds},
 			"dungeon_run_tier": { "integerValue": str(dungeon_run_tier) },
 			"dungeon_room": { "integerValue": str(dungeon_room) },
@@ -236,11 +257,11 @@ func save_player_data():
 					}
 				}
 			},
-			"dungeon_team_formation_putrid_layers": {
-				"arrayValue": { "values": formation_array_putrid_layers }
+			"dungeon_team_formation_the_dungeon": {
+				"arrayValue": { "values": formation_array }
 			},
 			"dungeon_loot": {
-				"arrayValue": { "values": loot_array_putrid_layers }
+				"arrayValue": { "values": loot_array }
 			},
 		}
 	}
@@ -281,12 +302,27 @@ func load_player_data():
 		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
 		
 		# Dungeon team formation
+		dungeon_run_ongoing_the_dungeon = fields["dungeon_run_ongoing_the_dungeon"]["booleanValue"]
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
 		dungeon_run_ongoing_scorched_grounds = fields["dungeon_run_ongoing_scorched_grounds"]["booleanValue"]
 		dungeon_run_ongoing = fields["dungeon_run_ongoing"]["booleanValue"]
 		if dungeon_run_ongoing:
 			dungeon_room = int(fields["dungeon_room"]["integerValue"])
-			if dungeon_run_ongoing_putrid_layers:
+			if dungeon_run_ongoing_the_dungeon:
+				dungeon_team_formation_the_dungeon.clear()
+				var formation_values = fields["dungeon_team_formation_the_dungeon"]["arrayValue"].get("values", [])
+				for entry in formation_values:
+					var f = entry["mapValue"]["fields"]
+					dungeon_team_formation_the_dungeon.append({
+						"unit_name": f["unit_name"]["stringValue"],
+						"weapon_id": f["weapon_id"]["stringValue"],
+						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
+						"starting_position": Vector2(
+							float(f["pos_x"]["doubleValue"]),
+							float(f["pos_y"]["doubleValue"])
+						)
+					})
+			elif dungeon_run_ongoing_putrid_layers:
 				dungeon_team_formation_putrid_layers.clear()
 				var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
 				for entry in formation_values:

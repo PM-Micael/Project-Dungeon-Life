@@ -32,6 +32,7 @@ func _connect_blood_flies():
 
 func _apply_blood_flies(unit: Node):
 	await unit.ready
-	unit.effect_component.add_affliction(BloodFlies.new(), self)
-	return
-	
+	if not unit.has_method("get") or not "effect_component" in unit:
+		return
+	if unit.effect_component != null:
+		unit.effect_component.add_affliction(BloodFlies.new(), self)

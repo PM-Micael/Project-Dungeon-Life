@@ -14,7 +14,7 @@ const ZONE: Dictionary = {
 const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
 	FLESH_HULK = "flesh_hulk",
-	FLESH_TENDRILl = "flesh_tendrill",
+	SCORCHED_WANDERER = "scorched_wanderer",
 	FLESH_BRUSER = "flesh_bruser",
 	PUTRID_ABOMINATION = "putrid_abomination",
 	SKELETON = "skeleton",
@@ -46,11 +46,17 @@ var dungeon_wave_formations: Dictionary = {
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
 			],
 			"formation_1":[
-				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(350, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(450, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(550, 350) },
 			],
 			"formation_2":[
-				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
-			],
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(50, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(550, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(750, 350) },
+			]
 		}
 	],
 	ZONE.PUTRID_LAYERS:[
