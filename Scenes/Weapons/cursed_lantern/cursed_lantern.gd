@@ -20,6 +20,9 @@ func _weapon_skill(targets: Array[Entity]):
 
 	var target: Entity = targets[0]
 
+	if target == null:
+		return
+
 	if target.effect_component == null:
 		return
 

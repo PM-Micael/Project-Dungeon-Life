@@ -21,7 +21,7 @@ func _set_stats():
 	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _on_post_attack(_targets: Array[Entity], was_crit:bool):
-	_consume_feral_instinct_stack()
+	_consume_weak_point_opportunist_stack()
 	if was_crit:
 		_apply_weak_point_opportunist()
 
@@ -34,7 +34,7 @@ func _apply_weak_point_opportunist():
 	var blessing = WeakPointOpportunist.new()
 	effect_component.add_blessing(blessing, self)
 
-func _consume_feral_instinct_stack():
+func _consume_weak_point_opportunist_stack():
 	for blessing in effect_component.active_blessings:
 		if blessing.id == "feral_instinct":
 			blessing.consume_stack()

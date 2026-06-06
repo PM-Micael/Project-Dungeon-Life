@@ -20,6 +20,8 @@ script = ExtResource("1_yavjn")
 [node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("2_bodeh")]
 
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("3_0a3eh")]
+attack_damage = 20
+attack_range = 300
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("4_rpeeu")]
 

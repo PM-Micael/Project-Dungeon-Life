@@ -47,7 +47,7 @@ func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var team_formation: Array[Dictionary]
 	if PlayerData.dungeon_run_ongoing_the_dungeon:
-		team_formation = PlayerData.dungeon_team_formation_putrid_layers
+		team_formation = PlayerData.dungeon_team_formation_the_dungeon
 	elif PlayerData.dungeon_run_ongoing_putrid_layers:
 		team_formation = PlayerData.dungeon_team_formation_putrid_layers
 	elif PlayerData.dungeon_run_ongoing_scorched_grounds:

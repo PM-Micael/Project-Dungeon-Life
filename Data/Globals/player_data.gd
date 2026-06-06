@@ -70,7 +70,7 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 		"weapon_star_level": 1
 	},
 	{
-		"unit_name": "zac",
+		"unit_name": "magma_golem",
 		"starting_position": Vector2(350.0, 450.0),
 		"weapon_id": "rumble_gloves",
 		"weapon_star_level": 1
@@ -146,7 +146,7 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putri
 		}
 		new_formation.append(dict)
 	
-	dungeon_team_formation_putrid_layers = new_formation
+	dungeon_team_formation_the_dungeon = new_formation
 
 func reset_dungeon_run_data(dungeon: String):
 	match dungeon:
