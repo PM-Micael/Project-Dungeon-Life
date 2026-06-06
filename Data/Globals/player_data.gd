@@ -30,6 +30,8 @@ var dungeon_enemy_multiplier: float: # Should be in dungeon data
 		var scaling: float = 1 + (dungeon_room / 10.0)
 		return scaling
 
+var dungeon_current_zone: String = ""
+var dungeon_zone_rolled_at_room: int = 1
 var dungeon_run_ongoing: bool:
 	set(value):
 		dungeon_run_ongoing = value

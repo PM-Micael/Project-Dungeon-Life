@@ -102,6 +102,15 @@ func _initialize_owned_units():
 		var entity_instance: Entity = u.instantiate()
 		available_units_as_entities.append(entity_instance)
 
+func get_or_roll_dungeon_zone() -> String:
+	var needs_reroll = PlayerData.dungeon_current_zone.is_empty() \
+		or (PlayerData.dungeon_room - PlayerData.dungeon_zone_rolled_at_room) >= 10
+	if needs_reroll:
+		var zone_keys = Zone.keys()
+		PlayerData.dungeon_current_zone = Zone[zone_keys[randi() % zone_keys.size()]]
+		PlayerData.dungeon_zone_rolled_at_room = PlayerData.dungeon_room
+	return PlayerData.dungeon_current_zone
+
 func check_and_merge_backpack_items() -> void:
 	var groups: Dictionary[String, int] = {}
 	

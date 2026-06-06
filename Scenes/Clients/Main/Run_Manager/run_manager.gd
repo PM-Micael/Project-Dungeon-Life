@@ -29,7 +29,6 @@ func set_up_run():
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
 		start_game()
-# ─── Connect Events ───────────────────────────────────────────────────────────
 
 func _connect_events():
 	map_tiles.tile_clicked.connect(_on_tile_clicked)
@@ -43,7 +42,9 @@ func _connect_events():
 
 func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
 	if value:
-		if PlayerData.dungeon_run_ongoing_putrid_layers:
+		if PlayerData.dungeon_run_ongoing_the_dungeon:
+			selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
+		elif PlayerData.dungeon_run_ongoing_putrid_layers:
 			dungeon = DungeonData.Zone.PUTRID_LAYERS
 		elif PlayerData.dungeon_run_ongoing_scorched_grounds:
 			dungeon = DungeonData.Zone.SCORCHED_GROUNDS
@@ -52,6 +53,9 @@ func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
 		_setup_stage()
 
 func _setup_stage():
+	if PlayerData.dungeon_run_ongoing_the_dungeon:
+		selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
+	
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
@@ -59,6 +63,7 @@ func _setup_stage():
 	board._place_friendly_units()
 	board.place_enemy_units(selected_dungeon_zone)
 	print("Room = " + str(PlayerData.dungeon_room))
+	print("Zone = " + selected_dungeon_zone)
 
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
