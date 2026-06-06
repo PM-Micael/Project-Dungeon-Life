@@ -36,9 +36,8 @@ func _apply_weak_point_opportunist():
 
 func _consume_weak_point_opportunist_stack():
 	for blessing in effect_component.active_blessings:
-		if blessing.id == "feral_instinct":
+		if blessing.id == "weak_point_opportunist":
 			blessing.consume_stack()
-			# Remove blessing entirely if no stacks remain
-			if blessing.buffs.size() == 0:
+			if blessing.stacks <= 0:
 				effect_component.active_blessings.erase(blessing)
 			return
