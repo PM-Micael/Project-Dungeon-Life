@@ -38,9 +38,9 @@ var dungeon_run_ongoing: bool:
 		if dungeon_run_ongoing_the_dungeon:
 			dungeon_run_ongoing_changed.emit(value, DungeonData.DUNGEONS.THE_DUNGEON)
 		elif dungeon_run_ongoing_putrid_layers:
-			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.PUTRID_LAYERS)
+			dungeon_run_ongoing_changed.emit(value, DungeonData.ZONE.PUTRID_LAYERS)
 		elif dungeon_run_ongoing_scorched_grounds:
-			dungeon_run_ongoing_changed.emit(value, DungeonData.Zone.SCORCHED_GROUNDS)
+			dungeon_run_ongoing_changed.emit(value, DungeonData.ZONE.SCORCHED_GROUNDS)
 
 var dungeon_run_ongoing_the_dungeon: bool:
 	set(value):
@@ -130,7 +130,7 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putri
 
 func reset_dungeon_run_data(dungeon: String):
 	match dungeon:
-		DungeonData.Zone.PUTRID_LAYERS:
+		DungeonData.ZONE.PUTRID_LAYERS:
 			dungeon_room = 1
 			dungeon_run_ongoing_putrid_layers = false
 			dungeon_team_putrid_layers = []

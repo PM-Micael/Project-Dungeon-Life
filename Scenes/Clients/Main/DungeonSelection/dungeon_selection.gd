@@ -43,7 +43,7 @@ func _continue_button_pressed():
 	match selected_dungeon_name:
 		DungeonData.DUNGEONS.THE_DUNGEON:
 			PlayerData.dungeon_run_ongoing_the_dungeon = true
-		DungeonData.Zone.PUTRID_LAYERS:
+		DungeonData.ZONE.PUTRID_LAYERS:
 			PlayerData.dungeon_run_ongoing_putrid_layers = true
-		DungeonData.Zone.SCORCHED_GROUNDS:
+		DungeonData.ZONE.SCORCHED_GROUNDS:
 			PlayerData.dungeon_run_ongoing_scorched_grounds = true

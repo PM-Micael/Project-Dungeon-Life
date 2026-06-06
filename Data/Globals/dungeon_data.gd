@@ -6,7 +6,7 @@ const DUNGEONS: Dictionary = {
 	THE_DUNGEON = "The Dungeon"
 }
 
-const Zone: Dictionary = {
+const ZONE: Dictionary = {
 	PUTRID_LAYERS = "putrid_layers",
 	SCORCHED_GROUNDS = "scorched_grounds"
 }
@@ -40,7 +40,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	Zone.SCORCHED_GROUNDS:[
+	ZONE.SCORCHED_GROUNDS:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
@@ -53,7 +53,7 @@ var dungeon_wave_formations: Dictionary = {
 			],
 		}
 	],
-	Zone.PUTRID_LAYERS:[
+	ZONE.PUTRID_LAYERS:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
@@ -106,8 +106,8 @@ func get_or_roll_dungeon_zone() -> String:
 	var needs_reroll = PlayerData.dungeon_current_zone.is_empty() \
 		or (PlayerData.dungeon_room - PlayerData.dungeon_zone_rolled_at_room) >= 10
 	if needs_reroll:
-		var zone_keys = Zone.keys()
-		PlayerData.dungeon_current_zone = Zone[zone_keys[randi() % zone_keys.size()]]
+		var zone_keys = ZONE.keys()
+		PlayerData.dungeon_current_zone = ZONE[zone_keys[randi() % zone_keys.size()]]
 		PlayerData.dungeon_zone_rolled_at_room = PlayerData.dungeon_room
 	return PlayerData.dungeon_current_zone
 
