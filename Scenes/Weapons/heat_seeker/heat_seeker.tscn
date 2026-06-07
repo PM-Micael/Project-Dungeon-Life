@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://5lnyppfkmov3"]
+
+[ext_resource type="Script" uid="uid://clkp3jgc0kk2a" path="res://Scenes/Weapons/heat_seeker/heat_seeker.gd" id="1_lrasn"]
+[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="1_pe7nk"]
+[ext_resource type="Texture2D" uid="uid://csxaya2k8d4wc" path="res://Scenes/Weapons/splinter/splinter.png" id="2_lrasn"]
+
+[node name="HeatSeeker" type="Node2D" unique_id=1825346716]
+script = ExtResource("1_lrasn")
+
+[node name="Components" type="Node2D" parent="." unique_id=1207313522]
+
+[node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("1_pe7nk")]
+added_attack_damage_multiplier = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=432377343]
+texture = ExtResource("2_lrasn")

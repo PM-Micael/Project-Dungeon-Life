@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dv1ib7opjksbb"]
+
+[ext_resource type="Script" uid="uid://lvf7og6salyn" path="res://Scenes/Units/PC/paramandeer/paramander.gd" id="1_1eukt"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_fy1l5"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_a0s72"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_gajwt"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_mlhct"]
+[ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_hueyw"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="7_8rm01"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="8_4qtod"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_8xp27"]
+
+[node name="Paramander" type="Node2D" unique_id=476637343]
+script = ExtResource("1_1eukt")
+
+[node name="Components" type="Node2D" parent="." unique_id=1719082486]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("2_fy1l5")]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("3_a0s72")]
+attack_damage = 20
+attack_range = 300
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("4_gajwt")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("5_mlhct")]
+
+[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=1274949664]
+script = ExtResource("6_hueyw")
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("7_8rm01")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("8_4qtod")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_8xp27")]
