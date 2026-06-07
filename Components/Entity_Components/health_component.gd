@@ -2,6 +2,7 @@ extends Node2D
 class_name  HealthComponent
 
 signal pre_damage_taken(attacker: Entity, is_crit: bool)
+signal pre_calculate_damage
 signal post_calculate_damage
 signal damage_taken(attacker: Entity, is_crit: bool)
 signal died(this_unit: Unit)
@@ -35,6 +36,7 @@ func set_stats(set_max_health: int):
 		health_bar.value = current_health
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
+	pre_calculate_damage.emit(attacker, amount, is_crit)
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)
 	

@@ -23,7 +23,7 @@ func _ready() -> void:
 	timer.wait_time = attack_speed
 
 func _physics_process(_delta: float) -> void:
-	if (timer.time_left <= 0.1 and
+	if (timer.time_left <= 0.1 and not entity_parent.is_stunned and
 		entity_parent.targeting_component != null &&
 		entity_parent.targeting_component.target != null):
 			var in_range: bool

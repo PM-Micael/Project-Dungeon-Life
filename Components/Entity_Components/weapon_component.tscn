@@ -4,3 +4,6 @@
 
 [node name="WeaponComponent" type="Node2D" unique_id=47458186]
 script = ExtResource("1_h1k5y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=362102472]
+volume_db = -16.0

@@ -17,11 +17,9 @@ func apply(_target: Entity) -> void:
 	shield.apply(owner)
 	shield.shield_broken.connect(_on_shield_broken)
 	buffs.append(shield)
-	print("Molten Layer applied to " + owner.display_name)
 
 func _on_shield_broken() -> void:
 	AudioManager.play_sfx_once(owner, "res://Scenes/Units/PC/magma_golem/gamesound-broken-454907.mp3")
 
-	print("Molten Layer shattered — Magma Golem ignites!")
 	if owner.has_method("_on_molten_layer_broken"):
 		owner._on_molten_layer_broken()

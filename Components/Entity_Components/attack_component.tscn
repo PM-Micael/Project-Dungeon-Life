@@ -10,3 +10,6 @@ wait_time = 1.1
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=88329044]
 volume_db = -16.0
+
+[node name="AttackCritSound" type="AudioStreamPlayer" parent="." unique_id=2030778084]
+volume_db = -16.0

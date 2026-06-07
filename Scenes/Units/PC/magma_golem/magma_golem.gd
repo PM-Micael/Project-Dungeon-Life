@@ -8,7 +8,7 @@ func _init() -> void:
 		When the shield is broken, his molten core is exposed —
 		any attacker who strikes him will be set Burning."
 	base_health = 400
-	attack_damage = 25
+	attack_damage = 10
 	attack_range = 100
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.0
@@ -32,7 +32,6 @@ func _apply_molten_layer() -> void:
 # Called by MoltenLayer when the shield breaks
 func _on_molten_layer_broken() -> void:
 	molten_core_active = true
-	print("Magma Golem: Molten Core exposed!")
 
 func _on_damage_taken(attacker: Entity, _is_crit: bool) -> void:
 	if molten_core_active:

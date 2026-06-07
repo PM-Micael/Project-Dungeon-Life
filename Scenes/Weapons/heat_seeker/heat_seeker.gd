@@ -13,6 +13,8 @@ func _ready() -> void:
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
 func _weapon_skill(_targets: Array[Entity]):
+	weapon_component.weapon_skill_sound.play()
+	
 	var wearer: Entity = weapon_component.entity_holding_weapon
 
 	# Collect every Burning debuff present on ALL entities on the board
@@ -30,10 +32,8 @@ func _weapon_skill(_targets: Array[Entity]):
 			for debuff in to_remove:
 				entity.effect_component._remove_debuff(debuff)
 				burn_count += 1
-				print("Heat Seeker: absorbed Burning from " + entity.display_name)
 
 	if burn_count == 0:
-		print("Heat Seeker: no Burning debuffs found.")
 		return
 
 	# Grant one Attack Up buff per Burning absorbed (each carries a 10% boost)
@@ -46,7 +46,3 @@ func _weapon_skill(_targets: Array[Entity]):
 		atk_up.duration = ATTACK_UP_DURATION
 		# Force separate instances so each ticks down independently
 		wearer.effect_component.add_buff(atk_up, wearer)
-
-	print("Heat Seeker: granted " + str(burn_count) + " x Attack Up (" \
-		+ str(int(ATTACK_UP_PER_BURN * 100)) + "% each) for " \
-		+ str(ATTACK_UP_DURATION) + "s")

@@ -16,6 +16,7 @@ var weapon_energy_bar: ProgressBar
 
 # Character -> Components -> WeaponSlotComponent -> Weapon -> Components -> WeaponComponent
 @onready var entity_holding_weapon: Entity = get_parent().get_parent().get_parent().get_parent().get_parent()
+@onready var weapon_skill_sound: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	# This might not be needed when I start spawning in nodes from config files and database

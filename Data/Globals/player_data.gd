@@ -78,7 +78,7 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 	{
 		"unit_name": "paramander",
 		"starting_position": Vector2(350.0, 550.0),
-		"weapon_id": "cursed_lantern",
+		"weapon_id": "heat_seeker",
 		"weapon_star_level": 1
 	},
 ]

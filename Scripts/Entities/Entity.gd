@@ -4,6 +4,7 @@ class_name Entity
 var id: String
 var display_name: String
 var hostile_team: String
+var is_stunned: bool = false
 
 @onready var attack_component: AttackComponent = get_node_or_null("Components/AttackComponent")
 @onready var effect_component: EffectComponent = get_node_or_null("Components/EffectComponent")

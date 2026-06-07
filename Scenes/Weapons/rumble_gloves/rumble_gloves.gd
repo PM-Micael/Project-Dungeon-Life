@@ -1,7 +1,5 @@
 extends Entity
 
-const skill_sound: String = "res://Scenes/Weapons/rumble_gloves/dragon-studio-heavy-rock-rolling-515254.mp3"
-
 func _init() -> void:
 	id = "rumble_gloves"
 
@@ -22,7 +20,7 @@ func _calculate_damage() -> int:
 	return total_damage
 
 func _weapon_skill(_targets: Array[Entity]):
-	AudioManager.play_sfx_once(self, skill_sound)
+	weapon_component.weapon_skill_sound.play()
 	
 	# Walk up to the entity holding these gloves
 	var wearer: Entity = weapon_component.entity_holding_weapon

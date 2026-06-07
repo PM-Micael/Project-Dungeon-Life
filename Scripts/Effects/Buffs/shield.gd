@@ -22,12 +22,10 @@ func effect(_unit, amount, _is_crit):
 	if shield_value >= incoming:
 		shield_value -= incoming
 		hc.final_damage_taken_amount = 0
-		print("Shield: "+str(int(shield_value)))
 	else:
 		var overflow = incoming - shield_value
 		hc.final_damage_taken_amount = overflow
 		shield_value = 0
-		print("Shield broke")
 		hc.post_calculate_damage.disconnect(effect)
 		warer.effect_component.remove_buff(self)
 		shield_broken.emit()
