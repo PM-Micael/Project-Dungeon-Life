@@ -276,12 +276,32 @@ func save_player_data():
 	var body = JSON.stringify(data)
 	http.request(url, headers, HTTPClient.METHOD_PATCH, body)
 
-func load_player_data():
+func load_player_data():	
+	var id_file_path = "res://player_id.txt"
+	var file = FileAccess.open(id_file_path, FileAccess.READ)
+	if file:
+		var stored_id = file.get_as_text().strip_edges()
+		file.close()
+		if stored_id != "":
+			player_id = stored_id
+		else:
+			player_id = _generate_guid()
+			_write_player_id(player_id)
+	else:
+		player_id = _generate_guid()
+		_write_player_id(player_id)
+	# ---------------------------
+	
 	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
 	
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(func(result, code, headers, body):
+		if code == 404:
+			save_player_data()
+			await get_tree().create_timer(0.5).timeout
+			load_player_data()
+			return
 		if code != 200:
 			print("Load failed - HTTP code: ", code)
 			return
@@ -368,3 +388,23 @@ func load_player_data():
 	)
 	
 	http.request(url, [], HTTPClient.METHOD_GET, "")
+
+func _generate_guid() -> String:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var b = func(n): return "%02x" % (rng.randi() % 256)
+	return (
+		b.call(0)+b.call(1)+b.call(2)+b.call(3) + "-" +
+		b.call(4)+b.call(5) + "-" +
+		b.call(6)+b.call(7) + "-" +
+		b.call(8)+b.call(9) + "-" +
+		b.call(10)+b.call(11)+b.call(12)+b.call(13)+b.call(14)+b.call(15)
+	)
+
+func _write_player_id(id: String) -> void:
+	var file = FileAccess.open("res://player_id.txt", FileAccess.WRITE)
+	if file:
+		file.store_string(id)
+		file.close()
+	else:
+		push_warning("PlayerData: Could not write player_id.txt")
