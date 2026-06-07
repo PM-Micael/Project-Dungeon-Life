@@ -1,5 +1,7 @@
 extends Entity
 
+const skill_sound: String = "res://Scenes/Weapons/splinter/freesound_community-pistol-cock-6014.mp3"
+
 var crit_charges: int = 0
 var bonus_crit_multiplier: float = 0.5
 
@@ -15,7 +17,8 @@ func _ready() -> void:
 	weapon_component.use_weapon_skill.connect(_weapon_skill)
 
 func _weapon_skill(_targets: Array[Entity]):
-	print("Tripple shot Activated")
+	AudioManager.play_sfx_once(self, skill_sound)
+	
 	if crit_charges > 0:
 		return
 	

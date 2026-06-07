@@ -50,6 +50,7 @@ func _on_weapon_skill_used(_targets: Array[Entity]):
 
 # ── Cone logic ────────────────────────────────────────────────────────────────
 func _fire_cone():
+	AudioManager.play_sfx_once(self, "res://Scenes/Units/PC/paramander/floraphonic-fireball-whoosh-5-179129.mp3")
 	var my_tile: Vector2i = BoardGrid.world_to_tile(position)
 
 	# Determine the facing direction toward Paramander's current target

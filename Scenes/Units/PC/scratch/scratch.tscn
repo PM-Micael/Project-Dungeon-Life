@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://cdnonh8lqgx65" path="res://Scenes/Units/PC/scratch/scratch.gd" id="1_yavjn"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="2_bodeh"]
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="3_0a3eh"]
+[ext_resource type="AudioStream" uid="uid://bshvd1dtfga5s" path="res://Scenes/Units/PC/scratch/attack.mp3" id="4_fu8xi"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="4_rpeeu"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="5_fu8xi"]
+[ext_resource type="AudioStream" uid="uid://dhnfsu7q4v837" path="res://Scenes/Units/PC/scratch/crit.mp3" id="5_im76l"]
 [ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="6_im76l"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="7_hhoqs"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_ihlvo"]
@@ -22,6 +24,15 @@ script = ExtResource("1_yavjn")
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("3_0a3eh")]
 attack_damage = 20
 attack_range = 300
+base_critical_percent_chance = 15
+base_critical_damage_multiplier = 1.3
+
+[node name="AttackSound" parent="Components/AttackComponent" index="1" unique_id=88329044]
+stream = ExtResource("4_fu8xi")
+
+[node name="AttackCritSound" type="AudioStreamPlayer" parent="Components/AttackComponent" unique_id=1377464783]
+stream = ExtResource("5_im76l")
+volume_db = -25.0
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("4_rpeeu")]
 
@@ -41,3 +52,5 @@ script = ExtResource("6_im76l")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1940652966]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_rpeeu")
+
+[editable path="Components/AttackComponent"]

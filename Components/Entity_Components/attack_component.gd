@@ -16,6 +16,8 @@ var in_target_attack_range: bool = false
 
 @onready var entity_parent: Entity = get_parent().get_parent()
 @onready var timer: Timer = $Timer
+@onready var attack_sound: AudioStreamPlayer = $AttackSound
+@onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
@@ -43,6 +45,10 @@ func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_
 func attack_target(target: Entity):
 	pre_attack_target.emit(target)
 	is_crit = roll_crit()
+	if is_crit:
+		attack_crit_sound.play()
+	else:
+		attack_sound.play()
 	
 	var target_health_bar: HealthComponent = target.health_component
 	if target_health_bar != null:

@@ -41,3 +41,5 @@ script = ExtResource("6_hueyw")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577642782]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_mlhct")
+
+[editable path="Components/AttackComponent"]
