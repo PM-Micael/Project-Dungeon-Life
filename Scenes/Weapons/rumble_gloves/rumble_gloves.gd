@@ -1,4 +1,5 @@
 extends Entity
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _init() -> void:
 	id = "rumble_gloves"
@@ -20,6 +21,8 @@ func _calculate_damage() -> int:
 	return total_damage
 
 func _weapon_skill(_targets: Array[Entity]):
+	audio_stream_player.play()
+	
 	# Walk up to the entity holding these gloves
 	var wearer: Entity = weapon_component.entity_holding_weapon
 
