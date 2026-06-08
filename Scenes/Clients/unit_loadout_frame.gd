@@ -9,6 +9,8 @@ class_name UnitLoadoutFrame
 var unit_entity_container: EntityContainer
 var weapon_entity_container: EntityContainer
 
+@onready var h_box_container: HBoxContainer = $BuffFrame/Buffs/ScrollContainer/HBoxContainer
+
 func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var unit_container_instance = container_scene.instantiate()
@@ -25,6 +27,26 @@ func _ready() -> void:
 	
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
+
+func fill_buffs():
+	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent") #unit_entity.effect_component.active_buffs
+	var buffs: Array[Buff] = effect_component.active_buffs
+	for buff in buffs:
+		var sprite: Sprite2D = Sprite2D.new()
+		sprite.scale = Vector2(0.8, 0.8)
+		sprite.position = Vector2(30, 30)
+		print("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+		sprite.texture = load("res://Scripts/Effects/Buffs/attack_up/attack_up.svg")
+		sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+		h_box_container.add_child(sprite)
+	
+	#var i = 0
+	#while i < 10:
+		#var label: Label = Label.new()
+		#label.text = "Yo"
+		#label.add_theme_font_size_override("font_size", 40)
+		#h_box_container.add_child(label)
+		#i += 1
 
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
@@ -54,6 +76,8 @@ func _on_unit_entity_change():
 	if attack_component.post_attack_target.is_connected(_on_selected_unit_attacked):
 		attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
 	attack_component.post_attack_target.connect(_on_selected_unit_attacked)
+	
+	fill_buffs()
 
 func _on_selected_unit_health_changed(_attacker: Entity, _is_crit: bool):
 	if not is_instance_valid(unit_entity):

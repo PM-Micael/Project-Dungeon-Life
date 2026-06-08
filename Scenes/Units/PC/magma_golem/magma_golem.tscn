@@ -24,7 +24,7 @@ script = ExtResource("1_kaoh6")
 attack_speed = 1.6
 
 [node name="Timer" parent="Components/AttackComponent" index="0" unique_id=1830321497]
-wait_time = 1.5999999999999999
+wait_time = 1.6
 
 [node name="AttackSound" parent="Components/AttackComponent" index="1" unique_id=88329044]
 stream = ExtResource("4_48w7k")

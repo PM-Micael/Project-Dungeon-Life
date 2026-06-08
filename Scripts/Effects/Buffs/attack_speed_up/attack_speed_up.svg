@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Attack Speed Up</title>
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#100a20" stroke="#7733cc" stroke-width="1.5"/>
+  <!-- double lightning bolt for speed -->
+  <path d="M30 10 L18 33 L27 33 L20 58 L42 27 L31 27 Z" fill="#7722dd" stroke="#bb66ff" stroke-width="1"/>
+  <path d="M42 10 L34 27 L40 27 L36 42 L52 24 L44 24 Z" fill="#9944ff" stroke="#cc88ff" stroke-width="1" opacity="0.75"/>
+</svg>

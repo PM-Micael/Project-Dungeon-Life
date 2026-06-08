@@ -5,10 +5,8 @@
 [node name="UnitLoadoutFrame" type="Node2D" unique_id=599129927]
 script = ExtResource("1_terp8")
 
-[node name="Style" type="Node2D" parent="." unique_id=2055618436]
-
 [node name="UnitPreview" type="Node2D" parent="." unique_id=800899328]
-position = Vector2(301, 80)
+position = Vector2(300, 40)
 
 [node name="Style" type="Node2D" parent="UnitPreview" unique_id=796632760]
 
@@ -26,7 +24,7 @@ mouse_filter = 2
 color = Color(0.015686275, 0, 0.15686275, 1)
 
 [node name="WeaponPreviewFrame" type="Node2D" parent="." unique_id=2105905004]
-position = Vector2(80, 180)
+position = Vector2(80, 140)
 
 [node name="Style" type="Node2D" parent="WeaponPreviewFrame" unique_id=1603490709]
 
@@ -95,3 +93,34 @@ offset_top = 525.0
 offset_right = 322.0
 offset_bottom = 567.0
 theme_override_font_sizes/font_size = 30
+
+[node name="BuffFrame" type="Node2D" parent="." unique_id=1968155865]
+position = Vector2(40, 400)
+
+[node name="Style" type="Node2D" parent="BuffFrame" unique_id=572218248]
+
+[node name="Frame" type="ColorRect" parent="BuffFrame/Style" unique_id=1375290456]
+offset_right = 350.0
+offset_bottom = 65.0
+
+[node name="Background" type="ColorRect" parent="BuffFrame/Style" unique_id=673294947]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 348.0
+offset_bottom = 63.0
+color = Color(0, 0, 0, 1)
+
+[node name="Buffs" type="Node2D" parent="BuffFrame" unique_id=1503021857]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BuffFrame/Buffs" unique_id=499344091]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 348.0
+offset_bottom = 63.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuffFrame/Buffs/ScrollContainer" unique_id=1049901639]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=1247768451]
+offset_right = 40.0
+offset_bottom = 23.0
