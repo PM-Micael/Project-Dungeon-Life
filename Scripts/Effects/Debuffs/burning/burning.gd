@@ -12,6 +12,9 @@ func _init() -> void:
 	duration = 4
 	stacks = 1
 
+func apply(target: Entity) -> void:
+	pass
+
 func tick(target: Entity, delta: float) -> void:
 	tick_timer += delta
 	if tick_timer >= tick_interval:
@@ -19,4 +22,3 @@ func tick(target: Entity, delta: float) -> void:
 		if is_instance_valid(target) and target.health_component != null:
 			var attacker = owner if is_instance_valid(owner) else null
 			target.health_component.take_damage_flat(attacker, damage_per_tick, false)
-			print(target.display_name + " is Burning! (" + str(damage_per_tick) + " dmg)")

@@ -9,7 +9,8 @@ class_name UnitLoadoutFrame
 var unit_entity_container: EntityContainer
 var weapon_entity_container: EntityContainer
 
-@onready var h_box_container: HBoxContainer = $BuffFrame/Buffs/ScrollContainer/HBoxContainer
+@onready var buffs_h_box_container: HBoxContainer = $BuffFrame/Buffs/ScrollContainer/HBoxContainer
+@onready var debuffs_h_box_container: HBoxContainer = $DebuffFrame/Debuffs/ScrollContainer/HBoxContainer
 
 func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
@@ -29,24 +30,37 @@ func _ready() -> void:
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
 
 func fill_buffs():
+	for child in buffs_h_box_container.get_children():
+		child.queue_free()
+	
 	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent") #unit_entity.effect_component.active_buffs
 	var buffs: Array[Buff] = effect_component.active_buffs
+	
+	var loop_count: int = 0
 	for buff in buffs:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.scale = Vector2(0.8, 0.8)
-		sprite.position = Vector2(30, 30)
-		print("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
-		sprite.texture = load("res://Scripts/Effects/Buffs/attack_up/attack_up.svg")
+		sprite.position = Vector2(30 + (50*loop_count), 30)
 		sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
-		h_box_container.add_child(sprite)
+		buffs_h_box_container.add_child(sprite)
+		loop_count += 1
+
+func fill_debuffs():
+	for child in debuffs_h_box_container.get_children():
+		child.queue_free()
 	
-	#var i = 0
-	#while i < 10:
-		#var label: Label = Label.new()
-		#label.text = "Yo"
-		#label.add_theme_font_size_override("font_size", 40)
-		#h_box_container.add_child(label)
-		#i += 1
+	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
+	var debuffs: Array[Debuff] = effect_component.active_debuffs
+	
+	var loop_count: int = 0
+	for debuff in debuffs:
+		var sprite: Sprite2D = Sprite2D.new()
+		sprite.scale = Vector2(0.8, 0.8)
+		sprite.position = Vector2(30 + (50*loop_count), 30)
+		sprite.texture = load("res://Scripts/Effects/Debuffs/"+debuff.id+"/"+debuff.id+".svg")
+		sprite.texture = load("res://Scripts/Effects/Buffs/shield/shield.svg")
+		debuffs_h_box_container.add_child(sprite)
+		loop_count += 1
 
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
