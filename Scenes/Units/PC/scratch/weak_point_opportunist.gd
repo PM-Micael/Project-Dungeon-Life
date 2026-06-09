@@ -11,11 +11,11 @@ func apply(_target: Entity) -> void:
 	stacks += 1
 	# Only apply the attack speed buff once (on first stack)
 	if buffs.size() == 0:
-		var speed_buff = AttackSpeedUp.new()
-		speed_buff.warer = warer
-		speed_buff.owner = owner
-		speed_buff.apply(warer)
-		buffs.append(speed_buff)
+		var attack_speed_up = AttackSpeedUp.new()
+		attack_speed_up.warer = warer
+		attack_speed_up.owner = owner
+		attack_speed_up.apply(warer)
+		buffs.append(attack_speed_up)
 
 func consume_stack() -> void:
 	if stacks > 1:

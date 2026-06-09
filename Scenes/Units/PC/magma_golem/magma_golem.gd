@@ -26,8 +26,8 @@ func _set_stats() -> void:
 	attack_component.set_stats_absolute(attack_damage * PlayerData.inner_sanctum.power, attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_molten_layer() -> void:
-	var blessing = MoltenLayer.new()
-	effect_component.add_blessing(blessing, self)
+	var molten_layer = MoltenLayer.new()
+	effect_component.add_blessing(molten_layer, self)
 
 # Called by MoltenLayer when the shield breaks
 func _on_molten_layer_broken() -> void:

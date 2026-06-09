@@ -33,10 +33,22 @@ func fill_buffs():
 	for child in buffs_h_box_container.get_children():
 		child.queue_free()
 	
-	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent") #unit_entity.effect_component.active_buffs
+	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
+	var blessings: Array[Blessing] = effect_component.active_blessings
 	var buffs: Array[Buff] = effect_component.active_buffs
 	
 	var loop_count: int = 0
+	for blessing in blessings:
+		for buff in blessing.buffs:
+			var sprite: Sprite2D = Sprite2D.new()
+			sprite.scale = Vector2(0.8, 0.8)
+			sprite.position = Vector2(30 + (50*loop_count), 30)
+			sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+			print("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+			buffs_h_box_container.add_child(sprite)
+			loop_count += 1
+	
+	loop_count = 0
 	for buff in buffs:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.scale = Vector2(0.8, 0.8)

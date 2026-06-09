@@ -8,6 +8,8 @@ var flat_modifier = 0
 var percent_modifier = 0.0
 
 func _init(flat: int, percent: float) -> void:
+	id = "shield"
+	display_name = "Shield"
 	flat_modifier = flat
 	percent_modifier = percent
 
