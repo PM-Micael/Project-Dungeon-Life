@@ -10,6 +10,10 @@ signal post_attack_target
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.0
 
+# --- Shake settings ---
+@export var shake_strength: float = 6.0   # pixels offset at peak
+@export var shake_duration: float = 0.15  # total shake time in seconds
+
 var weapon_added_multiplier: int = 0
 var is_crit = false
 var in_target_attack_range: bool = false
@@ -49,13 +53,30 @@ func attack_target(target: Entity):
 		attack_crit_sound.play()
 	else:
 		attack_sound.play()
-	
+
+	_play_shake()
+
 	var target_health_bar: HealthComponent = target.health_component
 	if target_health_bar != null:
 		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit), is_crit)
-	
+
 	var targets: Array[Entity] = [target]
 	post_attack_target.emit(targets, is_crit)
+
+# Shakes the entity's Sprite2D by tweening its position offset.
+func _play_shake() -> void:
+	var sprite: Sprite2D = entity_parent.get_node_or_null("Sprite2D")
+	if sprite == null:
+		return
+
+	var origin: Vector2 = sprite.position
+	var step: float = shake_duration / 4.0
+
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite, "position", origin + Vector2(shake_strength, 0), step)
+	tween.tween_property(sprite, "position", origin + Vector2(-shake_strength, 0), step)
+	tween.tween_property(sprite, "position", origin + Vector2(shake_strength * 0.5, 0), step)
+	tween.tween_property(sprite, "position", origin, step)
 
 func roll_crit() -> bool:
 	var crit_roll = randi_range(0, 100)
@@ -70,7 +91,7 @@ func get_total_attack_damage(is_crit: bool = false) -> int:
 	if wsc != null:
 		wc = wsc.get_child(0).get_node("Components/WeaponComponent")
 		wc_damage = wc.get_total_damage()
-		
+
 	if is_crit:
 		return ((attack_damage*PlayerData.inner_sanctum.power) + wc_damage) * base_critical_damage_multiplier
 	return ((attack_damage*PlayerData.inner_sanctum.power) + wc_damage)
