@@ -58,7 +58,6 @@ func fill_debuffs():
 		sprite.scale = Vector2(0.8, 0.8)
 		sprite.position = Vector2(30 + (50*loop_count), 30)
 		sprite.texture = load("res://Scripts/Effects/Debuffs/"+debuff.id+"/"+debuff.id+".svg")
-		sprite.texture = load("res://Scripts/Effects/Buffs/shield/shield.svg")
 		debuffs_h_box_container.add_child(sprite)
 		loop_count += 1
 
@@ -79,6 +78,7 @@ func _on_unit_entity_change():
 		unit_entity.attack_range,
 		unit_entity.base_critical_percent_chance,
 		unit_entity.base_critical_damage_multiplier)
+	var effect_component: EffectComponent = unit_entity.get_node("Components/EffectComponent")
 	get_node("StatsFrame/Health/ValueLabel").text = str(health_component.current_health) + " / " + str(health_component.max_health)
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 	
@@ -91,7 +91,16 @@ func _on_unit_entity_change():
 		attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
 	attack_component.post_attack_target.connect(_on_selected_unit_attacked)
 	
+	if effect_component.buff_applied.is_connected(_on_buff_changed):
+		effect_component.buff_applied.disconnect(_on_buff_changed)
+	effect_component.buff_applied.connect(_on_buff_changed)
+	
+	if effect_component.debuff_applied.is_connected(_on_debuff_changed):
+		effect_component.debuff_applied.disconnect(_on_debuff_changed)
+	effect_component.debuff_applied.connect(_on_debuff_changed)
+	
 	fill_buffs()
+	fill_debuffs()
 
 func _on_selected_unit_health_changed(_attacker: Entity, _is_crit: bool):
 	if not is_instance_valid(unit_entity):
@@ -102,6 +111,12 @@ func _on_selected_unit_attacked(_targets: Array[Entity]):
 	if not is_instance_valid(unit_entity):
 		return
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
+
+func _on_buff_changed(_target: Entity):
+	fill_buffs()
+
+func _on_debuff_changed(_target: Entity):
+	fill_debuffs()
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")

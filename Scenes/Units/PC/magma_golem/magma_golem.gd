@@ -1,6 +1,6 @@
 extends Unit
 
-var molten_core_active: bool = false  # Flips true when Molten Layer shield breaks
+var molten_core_active: bool = false
 
 func _init() -> void:
 	id = "magma_golem"
@@ -35,12 +35,8 @@ func _on_molten_layer_broken() -> void:
 
 func _on_damage_taken(attacker: Entity, _is_crit: bool) -> void:
 	if molten_core_active:
-		if not is_instance_valid(attacker):
-			return
-		if attacker.effect_component == null:
-			return
-
-	attacker.effect_component.add_debuff(_construct_burning(), self)
+		if is_instance_valid(attacker) and not attacker.effect_component == null:
+			attacker.effect_component.add_debuff(_construct_burning(), self)
 
 func _construct_burning() -> Burning:
 	return Burning.new()
