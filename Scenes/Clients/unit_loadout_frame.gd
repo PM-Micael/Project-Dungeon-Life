@@ -44,7 +44,6 @@ func fill_buffs():
 			sprite.scale = Vector2(0.8, 0.8)
 			sprite.position = Vector2(30 + (50*loop_count), 30)
 			sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
-			print("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
 			buffs_h_box_container.add_child(sprite)
 			loop_count += 1
 	
@@ -62,9 +61,20 @@ func fill_debuffs():
 		child.queue_free()
 	
 	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
+	var afflictions: Array[Affliction] = effect_component.active_afflictions
 	var debuffs: Array[Debuff] = effect_component.active_debuffs
 	
 	var loop_count: int = 0
+	for affliction in afflictions:
+		for debuff in affliction.buffs:
+			var sprite: Sprite2D = Sprite2D.new()
+			sprite.scale = Vector2(0.8, 0.8)
+			sprite.position = Vector2(30 + (50*loop_count), 30)
+			sprite.texture = load("res://Scripts/Effects/Buffs/"+debuff.id+"/"+debuff.id+".svg")
+			buffs_h_box_container.add_child(sprite)
+			loop_count += 1
+	
+	loop_count = 0
 	for debuff in debuffs:
 		var sprite: Sprite2D = Sprite2D.new()
 		sprite.scale = Vector2(0.8, 0.8)
