@@ -33,6 +33,9 @@ func fill_buffs():
 	for child in buffs_h_box_container.get_children():
 		child.queue_free()
 	
+	if not is_instance_valid(unit_entity_container.entity):
+		return
+	
 	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
 	var blessings: Array[Blessing] = effect_component.active_blessings
 	var buffs: Array[Buff] = effect_component.active_buffs
