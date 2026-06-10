@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://clkp3jgc0kk2a" path="res://Scenes/Weapons/heat_seeker/heat_seeker.gd" id="1_lrasn"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="1_pe7nk"]
-[ext_resource type="Texture2D" uid="uid://csxaya2k8d4wc" path="res://Scenes/Weapons/splinter/splinter.png" id="2_lrasn"]
 [ext_resource type="AudioStream" uid="uid://o0rm5a7mqou2" path="res://Scenes/Weapons/heat_seeker/u_tezwjb9izb-inhale-362952.mp3" id="3_hlnia"]
+[ext_resource type="Texture2D" uid="uid://bkmh2u52o3ugk" path="res://Scenes/Weapons/heat_seeker/heat_seeker.png" id="4_hlnia"]
 
 [node name="HeatSeeker" type="Node2D" unique_id=1825346716]
 script = ExtResource("1_lrasn")
@@ -18,6 +18,6 @@ stream = ExtResource("3_hlnia")
 volume_db = -10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=432377343]
-texture = ExtResource("2_lrasn")
+texture = ExtResource("4_hlnia")
 
 [editable path="Components/WeaponComponent"]

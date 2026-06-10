@@ -54,6 +54,7 @@ func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
 		_setup_stage()
 
 func _setup_stage():
+	start_stage_button.visible = true
 	if PlayerData.dungeon_run_ongoing_the_dungeon:
 		selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
 	
@@ -82,13 +83,14 @@ func _start_stage():
 
 func _exit_dungeon():
 	board.defeat_screen.visible = false
-	DungeonData.reset_backpack()
+	#DungeonData.reset_backpack()
 	PlayerData.reset_dungeon_run_data(DungeonData.ZONE.PUTRID_LAYERS)
 	inventory.fill_backpack_frame()
 
 # ─── Game State ───────────────────────────────────────────────────────────────
 
 func start_game() -> void:
+	start_stage_button.visible = false
 	game_on = true
 	board.game_on = true
 	_deselect_current_unit()

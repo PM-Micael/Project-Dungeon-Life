@@ -22,6 +22,7 @@ var game_on: bool = false
 @onready var victory_screen: Node2D = get_node("RoundOver/VictoryScreen")
 @onready var defeat_screen: Node2D = get_node("RoundOver/DefeatScreen")
 @onready var next_stage_button = get_node("RoundOver/VictoryScreen/NextStageButton")
+@onready var start_stage: Button = $StartStage
 
 @onready var friendly_units: Array[Unit]
 @onready var enemy_units: Array[Unit]

@@ -55,6 +55,7 @@ func _commit_pressed():
 	allocated_power_points = 0
 	
 	PlayerData.inner_sanctum_essence_current = allocated_essence
+	PlayerData.save_player_data()
 	_ready()
 
 # Life

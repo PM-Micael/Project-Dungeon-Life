@@ -61,22 +61,22 @@ func _fire_cone():
 	
 	# ── DEBUG: highlight cone tiles ──────────────────────────────────────────
 	
-	var debug_parent: Node = get_parent().get_parent()  # walks up to Board node
-	var debug_rects: Array[ColorRect] = []
-	for tile in cone_tiles:
-		var world_pos: Vector2 = BoardGrid.tile_to_world(tile) - Vector2(50, 50)
-		var rect := ColorRect.new()
-		rect.color = Color(1, 0.4, 0, 0.45)
-		rect.size = Vector2(100, 100)
-		rect.position = world_pos
-		rect.z_index = 10
-		debug_parent.add_child(rect)
-		debug_rects.append(rect)	
-	await get_tree().create_timer(1.5).timeout
-	
-	for rect in debug_rects:
-		if is_instance_valid(rect):
-			rect.queue_free()
+	#var debug_parent: Node = get_parent().get_parent()  # walks up to Board node
+	#var debug_rects: Array[ColorRect] = []
+	#for tile in cone_tiles:
+		#var world_pos: Vector2 = BoardGrid.tile_to_world(tile) - Vector2(50, 50)
+		#var rect := ColorRect.new()
+		#rect.color = Color(1, 0.4, 0, 0.45)
+		#rect.size = Vector2(100, 100)
+		#rect.position = world_pos
+		#rect.z_index = 10
+		#debug_parent.add_child(rect)
+		#debug_rects.append(rect)	
+	#await get_tree().create_timer(1.5).timeout
+	#
+	#for rect in debug_rects:
+		#if is_instance_valid(rect):
+			#rect.queue_free()
 	
 	# ── END DEBUG ────────────────────────────────────────────────────────────
 	
@@ -88,7 +88,6 @@ func _fire_cone():
 			var entity_tile: Vector2i = BoardGrid.world_to_tile(entity.position)
 			if entity_tile in cone_tiles:
 				entity.health_component.take_damage_flat(self, damage, false)
-				print("Paramander cone hit: " + entity.display_name + " for " + str(damage))
 
 func _get_facing_direction() -> Vector2i:
 	if targeting_component != null and targeting_component.target != null:

@@ -47,9 +47,19 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
+	_flash_damage()
 	if current_health <= 0:
 		if is_instance_valid(self):
 			die(attacker)
+
+func _flash_damage() -> void:
+	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
+	if sprite == null:
+		return
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.15).timeout
+	if is_instance_valid(sprite):
+		sprite.modulate = Color.WHITE
 
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier

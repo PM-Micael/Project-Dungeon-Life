@@ -150,12 +150,6 @@ func check_and_merge_backpack_items() -> void:
 
 	PlayerData.save_backpack_as_loot()
 
-func update_dungeon_team_entity(updated_entity: Entity):
-	for e in updated_entity:
-		if e.name == updated_entity.name:
-			e = updated_entity
-			break
-
 func set_unit_entity_weapon(unit_entity: Entity, weapon_entity: Entity) -> Entity:
 	var weapon_slot: Node = unit_entity.get_node("Components/WeaponSlotComponent")
 	

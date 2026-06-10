@@ -6,6 +6,8 @@ const LOOT_POOLS: Dictionary = {
 			{ "item_id": "splinter", "min_star": 1, "max_star": 1 },
 			{ "item_id": "rumble_gloves", "min_star": 1, "max_star": 1 },
 			{ "item_id": "cursed_lantern", "min_star": 1, "max_star": 1 },
+			{ "item_id": "crag_chunk", "min_star": 1, "max_star": 1 },
+			{ "item_id": "heat_seeker", "min_star": 1, "max_star": 1 },
 		],
 	}
 }
