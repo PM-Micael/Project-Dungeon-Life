@@ -79,7 +79,6 @@ func _start_stage():
 
 func _exit_dungeon():
 	board.defeat_screen.visible = false
-	#DungeonData.reset_backpack()
 	PlayerData.reset_dungeon_run_data(DungeonData.DUNGEONS.THE_DUNGEON)
 	inventory.fill_backpack_frame()
 

@@ -26,14 +26,12 @@ var game_on: bool = false
 
 @onready var friendly_units: Array[Unit]
 @onready var enemy_units: Array[Unit]
-var current_room: int
 
 func _ready() -> void:
 	set_up_board()
 
 func set_up_board():
 	await PlayerData.player_data_loaded
-	current_room = PlayerData.dungeon_room
 	
 	for unit in friendly_units:
 		unit.health_component.died.connect(_on_friendly_unit_died)
@@ -86,7 +84,7 @@ func _place_friendly_units():
 		friendly_units.append(unit_instance)
 
 func place_enemy_units(dungeon: String): ## Wait for dungeon chosen
-	var enemy_formation: Array = DungeonData.get_room_formations(dungeon, current_room)
+	var enemy_formation: Array = DungeonData.get_room_formations(dungeon, PlayerData.dungeon_room)
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
@@ -139,7 +137,6 @@ func _on_victory():
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
 	PlayerData.dungeon_room += 1
-	current_room = PlayerData.dungeon_room
 	victory_screen.visible = true
 	for node in friendly_units_node.get_children():
 		node.queue_free_unit()
