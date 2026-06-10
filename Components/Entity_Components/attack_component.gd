@@ -61,8 +61,9 @@ func attack_target(target: Entity):
 		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit), is_crit)
 
 	var targets: Array[Entity] = [target]
-	if is_instance_valid(self):
-		post_attack_target.emit([target] if is_instance_valid(target) else [], is_crit)
+	
+	post_attack_target.emit(targets if is_instance_valid(target) else [],
+	is_crit)
 
 # Shakes the entity's Sprite2D by tweening its position offset.
 func _play_shake() -> void:

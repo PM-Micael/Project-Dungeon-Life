@@ -33,16 +33,14 @@ func _weapon_skill(_targets: Array[Entity]):
 				entity.effect_component._remove_debuff(debuff)
 				burn_count += 1
 
-	if burn_count == 0:
-		return
-
 	# Grant one Attack Up buff per Burning absorbed (each carries a 10% boost)
 	if wearer.effect_component == null:
 		return
 
+	var atk_up := AttackUp.new()
+	atk_up.attack_multiplier = 0.1
 	for i in range(burn_count):
-		var atk_up := AttackUp.new()
-		atk_up.attack_multiplier = ATTACK_UP_PER_BURN
+		atk_up.attack_multiplier +=ATTACK_UP_PER_BURN
 		atk_up.duration = ATTACK_UP_DURATION
 		# Force separate instances so each ticks down independently
-		wearer.effect_component.add_buff(atk_up, wearer)
+	wearer.effect_component.add_buff(atk_up, wearer)
