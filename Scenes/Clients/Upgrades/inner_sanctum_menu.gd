@@ -20,7 +20,6 @@ var allocated_essence: int:
 
 @onready var essence_value_label: Label = get_node("EssenceValueLabel")
 @onready var commit_button: Button = get_node("CommitButton")
-@onready var dungeon_button: Button = get_node("DungeonButton")
 
 @onready var life_key_label: Label = get_node("InnerSanctumLife/KeyLabel")
 @onready var life_value_label: Label = get_node("InnerSanctumLife/ValueLabel")
@@ -38,6 +37,7 @@ func _ready() -> void:
 	_setup()
 
 func _setup(_state: bool = false, _dungeon: String = ""):
+	life_upgrade_cost = PlayerData.inner_sanctum.life
 	allocated_essence = PlayerData.inner_sanctum_essence_current
 	commit_button.pressed.connect(_commit_pressed)
 	
