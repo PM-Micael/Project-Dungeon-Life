@@ -88,9 +88,9 @@ offset_bottom = 52.0
 theme_override_font_sizes/font_size = 34
 text = "Room: "
 
-[node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI" unique_id=142719757]
+[node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=142719757]
 
-[node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/AutoAdvance" unique_id=2061859412]
+[node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=2061859412]
 offset_left = 395.0
 offset_top = 5.0
 offset_right = 471.0
@@ -98,7 +98,7 @@ offset_bottom = 36.0
 text = "Off"
 script = ExtResource("8_b08fb")
 
-[node name="Label" type="Label" parent="InventoryWindow/UI/AutoAdvance" unique_id=160100725]
+[node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=160100725]
 offset_left = 353.0
 offset_top = 5.0
 offset_right = 393.0

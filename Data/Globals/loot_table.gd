@@ -1,7 +1,7 @@
 extends Node
 
 const LOOT_POOLS: Dictionary = {
-	"putrid_layers": {
+	"the_dungeon": {
 		"common": [
 			{ "item_id": "splinter", "min_star": 1, "max_star": 1 },
 			{ "item_id": "rumble_gloves", "min_star": 1, "max_star": 1 },
@@ -13,7 +13,7 @@ const LOOT_POOLS: Dictionary = {
 }
 
 const RARITY_WEIGHTS: Dictionary = {
-	"common":   60,
+	"common":   80,
 	"uncommon": 0,
 	"rare":     0,
 }

@@ -34,6 +34,10 @@ var allocated_essence: int:
 
 func _ready() -> void:
 	await PlayerData.player_data_loaded
+	PlayerData.dungeon_run_ongoing_changed.connect(_setup)
+	_setup()
+
+func _setup(_state: bool = false, _dungeon: String = ""):
 	allocated_essence = PlayerData.inner_sanctum_essence_current
 	commit_button.pressed.connect(_commit_pressed)
 	
@@ -56,7 +60,7 @@ func _commit_pressed():
 	
 	PlayerData.inner_sanctum_essence_current = allocated_essence
 	PlayerData.save_player_data()
-	_ready()
+	_setup()
 
 # Life
 func increase_life_pressed():

@@ -135,7 +135,7 @@ func _check_units_alive():
 
 func _on_victory():
 	PlayerData.add_inner_sanctum_essence(collected_essence)
-	print("Collected ["+str(collected_essence)+"] essence")
+	print("Collected "+str(collected_essence)+" essence")
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
 	PlayerData.dungeon_room += 1
