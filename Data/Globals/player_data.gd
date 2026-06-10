@@ -35,12 +35,7 @@ var dungeon_zone_rolled_at_room: int = 1
 var dungeon_run_ongoing: bool:
 	set(value):
 		dungeon_run_ongoing = value
-		if dungeon_run_ongoing_the_dungeon:
-			dungeon_run_ongoing_changed.emit(value, DungeonData.DUNGEONS.THE_DUNGEON)
-		elif dungeon_run_ongoing_putrid_layers:
-			dungeon_run_ongoing_changed.emit(value, DungeonData.ZONE.PUTRID_LAYERS)
-		elif dungeon_run_ongoing_scorched_grounds:
-			dungeon_run_ongoing_changed.emit(value, DungeonData.ZONE.SCORCHED_GROUNDS)
+		dungeon_run_ongoing_changed.emit(value, DungeonData.DUNGEONS.THE_DUNGEON)
 
 var dungeon_run_ongoing_the_dungeon: bool:
 	set(value):
@@ -61,7 +56,7 @@ var dungeon_run_ongoing_scorched_grounds: bool:
 			dungeon_run_ongoing = value
 
 var dungeon_team_max_size_ = 4
-var dungeon_team_putrid_layers: Array[Unit]
+var dungeon_team_the_dungeon: Array[Unit]
 var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 	{
 		"unit_name": "scratch",
@@ -124,7 +119,7 @@ func add_inner_sanctum_essence(amount: int):
 	inner_sanctum_essence_total += amount
 	inner_sanctum_essence_current += amount
 
-func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putrid_layers):
+func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_the_dungeon):
 	var new_formation: Array[Dictionary] = []
 	
 	for unit in team_array:
@@ -150,10 +145,10 @@ func save_dungeon_team_as_formation(team_array: Array[Unit] = dungeon_team_putri
 
 func reset_dungeon_run_data(dungeon: String):
 	match dungeon:
-		DungeonData.ZONE.PUTRID_LAYERS:
+		DungeonData.DUNGEONS.THE_DUNGEON:
 			dungeon_room = 1
-			dungeon_run_ongoing_putrid_layers = false
-			dungeon_team_putrid_layers = []
+			dungeon_run_ongoing_the_dungeon = false
+			dungeon_team_the_dungeon = []
 			dungeon_loot = []
 			for entity in dungeon_loot_as_entities: # Why twice?
 				entity.queue_free()

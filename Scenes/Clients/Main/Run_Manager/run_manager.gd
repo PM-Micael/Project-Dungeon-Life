@@ -12,6 +12,8 @@ class_name RunManager
 @onready var exit_dungeon_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ExitDungeonButton")
 @onready var start_stage_button: Button = get_node("BoardWindow/Board/StartStage")
 
+@onready var room_label: Label = $InventoryWindow/UI/Inventory/OtherInfo/Label
+
 var selected_dungeon_zone: String
 var selected_dungeon_tier: int
 var game_on: bool = false
@@ -64,7 +66,7 @@ func _setup_stage():
 	board.enemy_units.clear()
 	board._place_friendly_units()
 	board.place_enemy_units(selected_dungeon_zone)
-	print("Room = " + str(PlayerData.dungeon_room))
+	room_label.text = "Room: "+str(PlayerData.dungeon_room)
 	print("ZONE = " + selected_dungeon_zone)
 
 	if PlayerData.settings.auto_advance:
@@ -84,7 +86,7 @@ func _start_stage():
 func _exit_dungeon():
 	board.defeat_screen.visible = false
 	#DungeonData.reset_backpack()
-	PlayerData.reset_dungeon_run_data(DungeonData.ZONE.PUTRID_LAYERS)
+	PlayerData.reset_dungeon_run_data(DungeonData.DUNGEONS.THE_DUNGEON)
 	inventory.fill_backpack_frame()
 
 # ─── Game State ───────────────────────────────────────────────────────────────

@@ -31,16 +31,14 @@ script = ExtResource("4_ncke1")
 [node name="Inventory" type="Node2D" parent="InventoryWindow/UI" unique_id=1423679871]
 script = ExtResource("3_8dbfp")
 
-[node name="MainBackround" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=635007836]
+[node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=1433930670]
 
-[node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory/MainBackround" unique_id=1433930670]
-
-[node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/MainBackround/Style" unique_id=236167174]
+[node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/Style" unique_id=236167174]
 offset_right = 800.0
 offset_bottom = 800.0
 mouse_filter = 2
 
-[node name="Backround" type="ColorRect" parent="InventoryWindow/UI/Inventory/MainBackround/Style" unique_id=1581728772]
+[node name="Backround" type="ColorRect" parent="InventoryWindow/UI/Inventory/Style" unique_id=1581728772]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 795.0
@@ -79,6 +77,16 @@ mouse_filter = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame/ScrollContainer" unique_id=1278164257]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="OtherInfo" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=606502295]
+
+[node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/OtherInfo" unique_id=825724812]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 119.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 34
+text = "Room: "
 
 [node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI" unique_id=142719757]
 

@@ -123,7 +123,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nmtso")
 text = "Start Stage"
 
 [node name="Unavailable" type="Node2D" parent="." unique_id=1845769318]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Unavailable" unique_id=1575324374]
 offset_left = -2.0
