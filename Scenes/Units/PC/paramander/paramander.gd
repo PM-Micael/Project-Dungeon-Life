@@ -4,7 +4,7 @@ extends Unit
 # How many tiles deep the cone reaches in front of Paramander
 const CONE_DEPTH: int = 4
 # Damage dealt to each enemy inside the cone (flat, scales with attack damage)
-const CONE_DAMAGE_MULTIPLIER: float = 100.5
+const CONE_DAMAGE_MULTIPLIER: float = 1.5
 
 # ── Debug rects stored on this node so they vanish when Paramander dies ───────
 var _debug_rects: Array[ColorRect] = []
