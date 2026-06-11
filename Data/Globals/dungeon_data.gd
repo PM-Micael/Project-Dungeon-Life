@@ -21,8 +21,8 @@ const EnemyType: Dictionary = {
 }
 
 const ITEM_REGISTRY: Dictionary = {
-	"burst_staff": "res://Scenes/Weapons/burst_staff.tscn",
-	"clobber_club": "res://Scenes/Weapons/clobber_club.tscn",
+	"crag_chunk": "res://Scenes/Weapons/crag_chunk/crag_chunk.tscn",
+	"heat_seeker": "res://Scenes/Weapons/heat_seeker/heat_seeker.tscn",
 	"splinter": "res://Scenes/Weapons/splinter/splinter.tscn",
 	"cursed_lantern": "res://Scenes/Weapons/cursed_lantern/cursed_lantern.tscn",
 	"rumble_gloves": "res://Scenes/Weapons/rumble_gloves/rumble_gloves.tscn",
