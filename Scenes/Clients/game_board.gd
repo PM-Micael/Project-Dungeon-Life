@@ -24,6 +24,7 @@ var game_on: bool = false
 @onready var next_stage_button = get_node("RoundOver/VictoryScreen/NextStageButton")
 @onready var gained_essence_label: Label = $RoundOver/VictoryScreen/Loot/GainedEssenceLabel
 @onready var total_essence_label: Label = $RoundOver/VictoryScreen/Loot/TotalEssenceLabel
+@onready var total_collected_essence_label: Label = $RoundOver/DefeatScreen/TotalCollectedEssenceLabel
 @onready var start_stage: Button = $StartStage
 
 @onready var friendly_units: Array[Unit]
@@ -137,8 +138,6 @@ func _on_victory():
 	PlayerData.add_inner_sanctum_essence(collected_essence)
 	gained_essence_label.text = "Gained essence: " + str(collected_essence)
 	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
-	print("Collected "+str(collected_essence)+" essence")
-	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0
 	PlayerData.dungeon_room += 1
 	victory_screen.visible = true
@@ -161,8 +160,8 @@ func _on_victory():
 		next_stage_button.pressed.emit()
 
 func _on_defeat():
-	print("You loose")
-	print("Collected essence = "+str(PlayerData.inner_sanctum_essence_current))
+	total_collected_essence_label.text = "Total essence = "+str(PlayerData.inner_sanctum_essence_current)
+	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
 	defeat_screen.visible = true
 	game_on = false
 	round_over.emit(true)

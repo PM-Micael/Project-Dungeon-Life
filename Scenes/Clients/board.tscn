@@ -21,7 +21,6 @@ script = ExtResource("1_nmtso")
 z_index = 2
 
 [node name="DefeatScreen" type="Node2D" parent="RoundOver" unique_id=194628576]
-visible = false
 
 [node name="Style" type="Node2D" parent="RoundOver/DefeatScreen" unique_id=732521616]
 
@@ -70,6 +69,14 @@ offset_bottom = -131.0
 theme_override_font_sizes/font_size = 50
 text = "Defeat"
 horizontal_alignment = 1
+
+[node name="TotalCollectedEssenceLabel" type="Label" parent="RoundOver/DefeatScreen" unique_id=1944694629]
+offset_left = 275.0
+offset_top = 303.0
+offset_right = 466.0
+offset_bottom = 338.0
+theme_override_font_sizes/font_size = 25
+text = "Total Essence = "
 
 [node name="VictoryScreen" type="Node2D" parent="RoundOver" unique_id=2065268552]
 visible = false
@@ -140,6 +147,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nmtso")
 text = "Start Stage"
 
 [node name="Unavailable" type="Node2D" parent="." unique_id=1845769318]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Unavailable" unique_id=1575324374]
 offset_left = -2.0
