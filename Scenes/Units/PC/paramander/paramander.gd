@@ -4,7 +4,10 @@ extends Unit
 # How many tiles deep the cone reaches in front of Paramander
 const CONE_DEPTH: int = 4
 # Damage dealt to each enemy inside the cone (flat, scales with attack damage)
-const CONE_DAMAGE_MULTIPLIER: float = 1.5
+const CONE_DAMAGE_MULTIPLIER: float = 100.5
+
+# ── Debug rects stored on this node so they vanish when Paramander dies ───────
+var _debug_rects: Array[ColorRect] = []
 
 func _init() -> void:
 	id = "paramander"
@@ -53,41 +56,37 @@ func _fire_cone():
 	AudioManager.play_sfx_once(self, "res://Scenes/Units/PC/paramander/floraphonic-fireball-whoosh-5-179129.mp3")
 	var my_tile: Vector2i = BoardGrid.world_to_tile(position)
 	var facing: Vector2i = _get_facing_direction()
-	
-	# Build the set of tiles inside the cone in front of Paramander.
-	# For a forward-facing cone we include tiles that are ahead (positive dot
-	# product with facing) within CONE_DEPTH range, excluding the wearer's tile.
+
 	var cone_tiles: Array[Vector2i] = _get_cone_tiles(my_tile, facing)
-	
-	# ── DEBUG: highlight cone tiles ──────────────────────────────────────────
-	
-	var debug_parent: Node = get_parent().get_parent()  # walks up to Board node
-	var debug_rects: Array[ColorRect] = []
-	for tile in cone_tiles:
-		var world_pos: Vector2 = BoardGrid.tile_to_world(tile) - Vector2(50, 50)
-		var rect := ColorRect.new()
-		rect.color = Color(1, 0.4, 0, 0.45)
-		rect.size = Vector2(100, 100)
-		rect.position = world_pos
-		rect.z_index = 10
-		debug_parent.add_child(rect)
-		debug_rects.append(rect)	
-	await get_tree().create_timer(1.5).timeout
-	
-	for rect in debug_rects:
-		if is_instance_valid(rect):
-			rect.queue_free()
-	
-	# ── END DEBUG ────────────────────────────────────────────────────────────
-	
+
 	var damage: int = int(attack_component.get_total_attack_damage() * CONE_DAMAGE_MULTIPLIER)
 	var enemies: Array[Node] = get_tree().get_nodes_in_group(hostile_team)
-	
+
 	for entity in enemies:
 		if entity is Entity and entity.health_component != null:
 			var entity_tile: Vector2i = BoardGrid.world_to_tile(entity.position)
 			if entity_tile in cone_tiles:
 				entity.health_component.take_damage_flat(self, damage, false)
+				
+	# ── DEBUG: highlight cone tiles ──────────────────────────────────────────
+	# Rects are children of Paramander so they disappear automatically when he dies.
+	for tile in cone_tiles:
+		var world_pos: Vector2 = BoardGrid.tile_to_world(tile) - Vector2(50, 50)
+		var rect := ColorRect.new()
+		rect.color = Color(1, 0.4, 0, 0.45)
+		rect.size = Vector2(100, 100)
+		rect.position = world_pos - position  # local to Paramander node
+		rect.z_index = 10
+		add_child(rect)
+		_debug_rects.append(rect)
+
+	await get_tree().create_timer(1.5).timeout
+
+	for rect in _debug_rects:
+		if is_instance_valid(rect):
+			rect.queue_free()
+	_debug_rects.clear()
+	# ── END DEBUG ────────────────────────────────────────────────────────────
 
 func _get_facing_direction() -> Vector2i:
 	if targeting_component != null and targeting_component.target != null:
@@ -101,22 +100,22 @@ func _get_facing_direction() -> Vector2i:
 	return Vector2i(1, 0)
 
 func _get_cone_tiles(origin: Vector2i, forward: Vector2i) -> Array[Vector2i]:
-	var tiles: Array[Vector2i] = []	
-	var fwd_f: Vector2 = Vector2(forward).normalized()	
+	var tiles: Array[Vector2i] = []
+	var fwd_f: Vector2 = Vector2(forward).normalized()
 	var is_diagonal: bool = forward.x != 0 and forward.y != 0
-	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)	
+	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)
 	for dx in range(-CONE_DEPTH, CONE_DEPTH + 1):
 		for dy in range(-CONE_DEPTH, CONE_DEPTH + 1):
-			var tile: Vector2i = origin + Vector2i(dx, dy)	
+			var tile: Vector2i = origin + Vector2i(dx, dy)
 			if not BoardGrid.astar.region.has_point(tile):
-				continue	
+				continue
 			var offset: Vector2 = Vector2(tile - origin)
 			if offset == Vector2.ZERO:
-				continue	
+				continue
 			if max(abs(dx), abs(dy)) > CONE_DEPTH:
-				continue	
-			var dot: float = offset.normalized().dot(fwd_f)	
-			var angle: float = acos(clamp(dot, -1.0, 1.0))	
+				continue
+			var dot: float = offset.normalized().dot(fwd_f)
+			var angle: float = acos(clamp(dot, -1.0, 1.0))
 			if angle <= half_angle:
-				tiles.append(tile)	
-	return tiles	
+				tiles.append(tile)
+	return tiles
