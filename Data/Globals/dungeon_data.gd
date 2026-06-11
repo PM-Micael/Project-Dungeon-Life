@@ -13,11 +13,8 @@ const ZONE: Dictionary = {
 
 const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
-	FLESH_HULK = "flesh_hulk",
 	SCORCHED_WANDERER = "scorched_wanderer",
-	FLESH_BRUSER = "flesh_bruser",
 	PUTRID_ABOMINATION = "putrid_abomination",
-	SKELETON = "skeleton",
 }
 
 const ITEM_REGISTRY: Dictionary = {
@@ -31,11 +28,6 @@ const ITEM_REGISTRY: Dictionary = {
 # Units
 var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Units/goblin.tscn"),
-	preload("res://Scenes/Units/golem.tscn"),
-	preload("res://Scenes/Units/PC/petamer/petamer.tscn"),
-	preload("res://Scenes/Units/PC/soulbound/soulbound.tscn"),
-	preload("res://Scenes/Units/PC/orbath/orbath.tscn"),
 	preload("res://Scenes/Units/PC/zac/zac.tscn"),
 ]
 

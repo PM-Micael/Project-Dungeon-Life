@@ -1,6 +1,7 @@
 extends Unit
 
 func _init() -> void:
+
 	id = "unit_petamer"
 	passive_description = "Placing a debuff on an enemy sneds Wrath out to attack the target.
 		Damage is based on the amount of debuffs on the target.
@@ -9,6 +10,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
+	_set_stats()
 	_set_stats()
 	_info("petamer", "Petamer", "Team 1", "Team 2")
 	_connect_to_all_units()
