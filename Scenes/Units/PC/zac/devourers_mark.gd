@@ -19,4 +19,4 @@ func _on_warer_took_damage(attacker: Entity, _is_crit: bool):
 	if warer.health_component.current_health <= warer.health_component.max_health * 0.05:
 		print(owner.display_name + " Devourered")
 		owner.devour_stacks += 1
-		warer.health_component.die(attacker)
+		warer.health_component.die(attacker, true)

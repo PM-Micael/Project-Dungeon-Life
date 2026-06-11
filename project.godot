@@ -40,6 +40,7 @@ window/defaults/default_environment=""
 
 folder_colors={
 "res://Assets/": "green",
+"res://Builds/": "purple",
 "res://Components/": "blue",
 "res://Data/": "orange",
 "res://Scripts/": "red"

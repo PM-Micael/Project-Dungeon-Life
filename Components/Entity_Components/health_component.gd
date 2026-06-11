@@ -69,11 +69,13 @@ func heal(amount: int):
 	health_bar.value = current_health
 	post_heal.emit(parent_entity, amount)
 
-func die(_killer: Unit):
-	if not is_alive:
-		return
-	is_alive = false
-	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
-	BoardGrid.set_tile_solid(parent_entity_tile, false)
-	died.emit(parent_entity)
-	parent_entity.free()
+func die(_killer: Unit, execute: bool = false):
+	if is_alive:
+		is_alive = false
+		var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
+		BoardGrid.set_tile_solid(parent_entity_tile, false)
+		died.emit(parent_entity)
+		if execute:
+			parent_entity.free()
+		else:
+			parent_entity.queue_free()
