@@ -13,7 +13,7 @@ const LOOT_POOLS: Dictionary = {
 }
 
 const RARITY_WEIGHTS: Dictionary = {
-	"common":   80,
+	"common":   100,
 	"uncommon": 0,
 	"rare":     0,
 }

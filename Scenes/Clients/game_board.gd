@@ -143,7 +143,7 @@ func _on_victory():
 	game_on = false
 	round_over.emit(true)
 	
-	var loot: Array[Dictionary] = LootTable.roll_loot(DungeonData.ZONE.PUTRID_LAYERS, PlayerData.dungeon_room)
+	var loot: Array[Dictionary] = LootTable.roll_loot("the_dungeon", PlayerData.dungeon_room)
 	print("Loot gained:")
 	print(str(loot))
 	PlayerData.dungeon_loot.append_array(loot)

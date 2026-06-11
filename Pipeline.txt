@@ -57,3 +57,9 @@ Buggs:
 	A lot of bugs are happening because of the die function being a free and not a queue free.
 	Potentially chnage to queue freee and refactor code.
 	Search for ALL code that uses is_instance_valid
+	
+2023-06-11:
+	Push to main on git hub.
+	Hotfix should contain:
+		Execute bool on die function to stop "random crashes"
+		new icon

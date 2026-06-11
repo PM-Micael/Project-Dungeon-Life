@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Project Dungeon Life"
+config/name="Dungeon Life"
 run/main_scene="uid://cs1d6obtt2nva"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 0)
+boot_splash/image="res://Assets/dungeon-life-icon.ico"
+config/icon="res://Assets/dungeon-life-icon.ico"
+config/windows_native_icon="res://Assets/dungeon-life-icon.ico"
 
 [autoload]
 

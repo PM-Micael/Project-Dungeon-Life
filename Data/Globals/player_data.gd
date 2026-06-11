@@ -67,7 +67,7 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 	{
 		"unit_name": "magma_golem",
 		"starting_position": Vector2(350.0, 450.0),
-		"weapon_id": "rumble_gloves",
+		"weapon_id": "crag_chunk",
 		"weapon_star_level": 1
 	},
 	{
