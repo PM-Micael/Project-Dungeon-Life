@@ -22,6 +22,8 @@ var game_on: bool = false
 @onready var victory_screen: Node2D = get_node("RoundOver/VictoryScreen")
 @onready var defeat_screen: Node2D = get_node("RoundOver/DefeatScreen")
 @onready var next_stage_button = get_node("RoundOver/VictoryScreen/NextStageButton")
+@onready var gained_essence_label: Label = $RoundOver/VictoryScreen/Loot/GainedEssenceLabel
+@onready var total_essence_label: Label = $RoundOver/VictoryScreen/Loot/TotalEssenceLabel
 @onready var start_stage: Button = $StartStage
 
 @onready var friendly_units: Array[Unit]
@@ -133,6 +135,8 @@ func _check_units_alive():
 
 func _on_victory():
 	PlayerData.add_inner_sanctum_essence(collected_essence)
+	gained_essence_label.text = "Gained essence: " + str(collected_essence)
+	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
 	print("Collected "+str(collected_essence)+" essence")
 	print("Total essence = " + str(PlayerData.inner_sanctum_essence_current)+"/"+str(PlayerData.inner_sanctum_essence_total))
 	collected_essence = 0

@@ -91,13 +91,30 @@ color = Color(0, 0, 0, 1)
 
 [node name="Loot" type="Node2D" parent="RoundOver/VictoryScreen" unique_id=626045690]
 
-[node name="Label" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=1069346152]
+[node name="LootLabel" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=1069346152]
+visible = false
 offset_left = 150.0
 offset_top = 303.0
 offset_right = 204.0
 offset_bottom = 338.0
 theme_override_font_sizes/font_size = 25
 text = "Loot"
+
+[node name="GainedEssenceLabel" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=802422742]
+offset_left = 96.0
+offset_top = 421.0
+offset_right = 308.0
+offset_bottom = 456.0
+theme_override_font_sizes/font_size = 25
+text = "Eessence gained: "
+
+[node name="TotalEssenceLabel" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=1038293792]
+offset_left = 96.0
+offset_top = 468.0
+offset_right = 293.0
+offset_bottom = 503.0
+theme_override_font_sizes/font_size = 25
+text = "Total Essence: "
 
 [node name="NextStageButton" type="Button" parent="RoundOver/VictoryScreen" unique_id=1327499166]
 offset_left = 531.0
