@@ -5,7 +5,7 @@ func _init() -> void:
 	passive_description = "Weak point oppertunist: Crits grant a stack of"
 	base_health = 100
 	attack_damage = 20
-	attack_range = 300
+	attack_range = 250
 	base_critical_percent_chance = 15
 	base_critical_damage_multiplier = 1.3
 	is_player_unit = true
