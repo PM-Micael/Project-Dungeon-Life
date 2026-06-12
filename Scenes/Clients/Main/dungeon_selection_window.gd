@@ -2,13 +2,13 @@
 extends Window
 class_name DungeonSelectionWindow
 
-@onready var dungeon_selection: Node = get_node("DungeonSelection")
+const default_size: Vector2 = Vector2(640, 219)
 
-var default_size: Vector2 = Vector2(640, 219)
+@onready var dungeon_selection: Node = get_node("DungeonSelection")
 
 func _ready() -> void:
 	title = "Window Manager"
-	position = Vector2(640, 219)
+	position = Vector2(490, 219)
 	unresizable = true
 	borderless = true
 	always_on_top = true

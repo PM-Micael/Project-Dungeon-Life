@@ -8,20 +8,23 @@ script = ExtResource("1_d8yku")
 [node name="Style" type="Node2D" parent="." unique_id=652525395]
 
 [node name="Frame" type="ColorRect" parent="Style" unique_id=818144013]
-offset_right = 500.0
+offset_right = 800.0
 offset_bottom = 500.0
 
 [node name="Background" type="ColorRect" parent="Style" unique_id=779424470]
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 495.0
+offset_right = 795.0
 offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
 
-[node name="Dungeon" type="Node2D" parent="." unique_id=1112559041]
-position = Vector2(0, 100)
+[node name="DungeonSelect" type="Node2D" parent="." unique_id=337219700]
+visible = false
 
-[node name="DungeonLabel" type="Label" parent="Dungeon" unique_id=1121035045]
+[node name="Dungeon" type="Node2D" parent="DungeonSelect" unique_id=1112559041]
+position = Vector2(150, 100)
+
+[node name="DungeonLabel" type="Label" parent="DungeonSelect/Dungeon" unique_id=1121035045]
 offset_left = 152.0
 offset_right = 345.0
 offset_bottom = 31.0
@@ -29,23 +32,23 @@ text = "Dungeon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PreviousButton" type="Button" parent="Dungeon" unique_id=836719416]
+[node name="PreviousButton" type="Button" parent="DungeonSelect/Dungeon" unique_id=836719416]
 offset_left = 100.0
 offset_right = 152.0
 offset_bottom = 31.0
 text = "<Prev"
 
-[node name="NextButton" type="Button" parent="Dungeon" unique_id=488363320]
+[node name="NextButton" type="Button" parent="DungeonSelect/Dungeon" unique_id=488363320]
 offset_left = 345.0
 offset_right = 400.0
 offset_bottom = 31.0
 text = "Next>"
 
-[node name="Tier" type="Node2D" parent="." unique_id=1723047992]
+[node name="Tier" type="Node2D" parent="DungeonSelect" unique_id=1723047992]
 visible = false
 position = Vector2(0, 100)
 
-[node name="TierLabel" type="Label" parent="Tier" unique_id=1891758345]
+[node name="TierLabel" type="Label" parent="DungeonSelect/Tier" unique_id=1891758345]
 offset_left = 152.0
 offset_right = 345.0
 offset_bottom = 31.0
@@ -53,23 +56,23 @@ text = "Dungeon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PreviousButton" type="Button" parent="Tier" unique_id=1917216500]
+[node name="PreviousButton" type="Button" parent="DungeonSelect/Tier" unique_id=1917216500]
 offset_left = 100.0
 offset_right = 152.0
 offset_bottom = 31.0
 text = "<Prev"
 
-[node name="NextButton" type="Button" parent="Tier" unique_id=211764936]
+[node name="NextButton" type="Button" parent="DungeonSelect/Tier" unique_id=211764936]
 offset_left = 345.0
 offset_right = 400.0
 offset_bottom = 31.0
 text = "Next>"
 
-[node name="ContinueButton" type="Button" parent="." unique_id=501134566]
-offset_left = 395.0
-offset_top = 5.0
-offset_right = 495.0
-offset_bottom = 55.0
+[node name="ContinueButton" type="Button" parent="DungeonSelect" unique_id=501134566]
+offset_left = 650.0
+offset_top = 400.0
+offset_right = 750.0
+offset_bottom = 450.0
 text = "Continue"
 
 [node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
@@ -89,3 +92,12 @@ offset_right = 495.0
 offset_bottom = 248.0
 text = "Unavailable"
 horizontal_alignment = 1
+
+[node name="UnitSelect" type="Node2D" parent="." unique_id=1361954407]
+
+[node name="StartButton" type="Button" parent="UnitSelect" unique_id=1384709067]
+offset_left = 650.0
+offset_top = 400.0
+offset_right = 750.0
+offset_bottom = 450.0
+text = "Start"
