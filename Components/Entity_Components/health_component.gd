@@ -47,9 +47,9 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
-	_flash_damage()
-	if current_health <= 0:
-		if is_instance_valid(self):
+	if is_instance_valid(self):
+		_flash_damage()
+		if current_health <= 0:
 			die(attacker)
 
 func _flash_damage() -> void:

@@ -131,11 +131,21 @@ func _display_unit(index: int, units_container: Node2D, button_on: bool):
 		node_container.add_child(reroll_button)
 
 func _start_button_pressed():
+	var formation: Array[Dictionary] = []
+	var loop_count: int = 0
+	for unit_container in team_units:
+		var unit_id: String = unit_container.entity.id
+		var weapon_id: String = GameData.UNIT.PLAYER[unit_id][GameData.KEY.SIGNATURE_WEAPON]
+		formation.append({
+			"unit_name": unit_id,
+			"weapon_id": weapon_id,
+			"weapon_star_level": 1,
+			"starting_position": Vector2(250 + (100*loop_count), 450)
+		})
+		loop_count += 1
+	
 	print(selected_dungeon_name)
 	match selected_dungeon_name:
 		DungeonData.DUNGEONS.THE_DUNGEON:
+			PlayerData.dungeon_team_formation_the_dungeon = formation
 			PlayerData.dungeon_run_ongoing_the_dungeon = true
-		DungeonData.ZONE.PUTRID_LAYERS:
-			PlayerData.dungeon_run_ongoing_putrid_layers = true
-		DungeonData.ZONE.SCORCHED_GROUNDS:
-			PlayerData.dungeon_run_ongoing_scorched_grounds = true
