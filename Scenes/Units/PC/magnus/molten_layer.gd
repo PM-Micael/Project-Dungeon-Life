@@ -19,7 +19,7 @@ func apply(_target: Entity) -> void:
 	buffs.append(shield)
 
 func _on_shield_broken() -> void:
-	AudioManager.play_sfx_once(owner, "res://Scenes/Units/PC/magma_golem/gamesound-broken-454907.mp3")
+	AudioManager.play_sfx_once(owner, "res://Scenes/Units/PC/magnus/gamesound-broken-454907.mp3")
 
 	if owner.has_method("_on_molten_layer_broken"):
 		owner._on_molten_layer_broken()

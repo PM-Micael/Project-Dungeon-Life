@@ -28,7 +28,7 @@ const ITEM_REGISTRY: Dictionary = {
 # Units
 var available_units_as_entities: Array[Entity]
 var _available_units_as_packed_scenes: Array[PackedScene] = [
-	preload("res://Scenes/Units/PC/zac/zac.tscn"),
+	preload("res://Scenes/Units/PC/devourer_of_ghouls/devourer_of_ghouls.tscn"),
 ]
 
 var dungeon_wave_formations: Dictionary = {

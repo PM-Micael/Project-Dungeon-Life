@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6u1ge0dlp073"
-path="res://.godot/imported/d_o_g.png-5ede905725dd0459edc796458ee7e03c.ctex"
+uid="uid://d4iuup32r0fi2"
+path="res://.godot/imported/magnus.png-3d7c3054c305db441d8149ff2928b45f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/PC/zac/d_o_g.png"
-dest_files=["res://.godot/imported/d_o_g.png-5ede905725dd0459edc796458ee7e03c.ctex"]
+source_file="res://Scenes/Units/PC/magnus/magnus.png"
+dest_files=["res://.godot/imported/magnus.png-3d7c3054c305db441d8149ff2928b45f.ctex"]
 
 [params]
 

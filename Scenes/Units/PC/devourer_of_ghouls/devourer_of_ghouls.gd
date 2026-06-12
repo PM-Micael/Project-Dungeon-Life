@@ -3,9 +3,9 @@ extends Unit
 var devour_stacks: int = 0
 
 func _init() -> void:
-	id = "zac"
+	id = "devourer_of_ghouls"
 	passive_description = "Dealing damage to an enemy marks them.
-		Dealing damage to a marked enemy with 5% or less executes them and grants Zac a stack of Devour.
+		Dealing damage to a marked enemy with 5% or less executes them and grants Devourer Of Ghouls a stack of Devour.
 		Each stack of devour grants plus 1 max health"
 	base_health = 300
 	attack_damage = 10
@@ -16,7 +16,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_info("zac", "Zac", "Team 1", "Team 2")
+	_info("devourer_of_ghouls", "Devourer Of Ghouls", "Team 1", "Team 2")
 	_set_stats()
 	attack_component.post_attack_target.connect(_apply_devour_debuff)
 	# Connect to damage by weapon skill

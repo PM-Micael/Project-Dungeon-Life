@@ -75,24 +75,6 @@ offset_right = 750.0
 offset_bottom = 450.0
 text = "Continue"
 
-[node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=325566441]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 495.0
-offset_bottom = 495.0
-color = Color(0.17043066, 0.21276477, 0.15453213, 1)
-
-[node name="Label" type="Label" parent="UnavailableScreen" unique_id=874084258]
-offset_left = 5.0
-offset_top = 225.0
-offset_right = 495.0
-offset_bottom = 248.0
-text = "Unavailable"
-horizontal_alignment = 1
-
 [node name="UnitSelect" type="Node2D" parent="." unique_id=1361954407]
 
 [node name="StartButton" type="Button" parent="UnitSelect" unique_id=1384709067]
@@ -101,3 +83,22 @@ offset_top = 400.0
 offset_right = 750.0
 offset_bottom = 450.0
 text = "Start"
+
+[node name="UnitsContainer" type="Node2D" parent="UnitSelect" unique_id=1556809165]
+
+[node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
+
+[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=325566441]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 795.0
+offset_bottom = 495.0
+color = Color(0.17043066, 0.21276477, 0.15453213, 1)
+
+[node name="Label" type="Label" parent="UnavailableScreen" unique_id=874084258]
+offset_left = 5.0
+offset_top = 225.0
+offset_right = 795.0
+offset_bottom = 248.0
+text = "Unavailable"
+horizontal_alignment = 1

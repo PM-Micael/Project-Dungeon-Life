@@ -3,8 +3,8 @@ extends Unit
 var molten_core_active: bool = false
 
 func _init() -> void:
-	id = "magma_golem"
-	passive_description = "Magma Golem starts the battle shielded by Molten Layer.
+	id = "magnus"
+	passive_description = "Magnus starts the battle shielded by Molten Layer.
 		When the shield is broken, his molten core is exposed —
 		any attacker who strikes him will be set Burning."
 	base_health = 400
@@ -17,7 +17,7 @@ func _init() -> void:
 func _ready() -> void:
 	super._ready()
 	_set_stats()
-	_info("magma_golem", "Magma Golem", "Team 1", "Team 2")
+	_info("magnus", "Magnus", "Team 1", "Team 2")
 	_apply_molten_layer()
 	health_component.damage_taken.connect(_on_damage_taken)
 

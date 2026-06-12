@@ -22,6 +22,12 @@ var selected_dungeon_index: int = 0:
 @onready var unit_select: Node2D = $UnitSelect
 @onready var start_button: Button = $UnitSelect/StartButton
 
+var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
+var team_units: Array[EntityContainer] = []
+var taken_unit_indexes: Array[int] = []
+var slot_indexes: Array[int] = []
+
+# BASE SETUP
 func _ready() -> void:
 	dungeon_select.visible = true
 	unit_select.visible = false
@@ -52,37 +58,77 @@ func _update_label():
 func _continue_button_pressed():
 	dungeon_select.visible = false
 	unit_select.visible = true
-	_roll_units()
+	team_units.append(_roll_unit())
+	team_units.append(_roll_unit())
+	team_units.append(_roll_unit())
+	_display_units()
 
 # ROLL UNITS LOGIC
 
-func _roll_units():
+func _roll_unit() -> EntityContainer:
 	var unit_keys = GameData.UNIT.PLAYER.keys()
-	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
-	var units: Array = []
-	var taken_index: Array[int] = []
-	var r_index: int
-	
-	var unit_count = 0
-	while unit_count < 3:
+	var r_index: int = randi_range(0, unit_keys.size() - 1)
+	while taken_unit_indexes.has(r_index):
 		r_index = randi_range(0, unit_keys.size() - 1)
-		while taken_index.has(r_index):
-			r_index = randi_range(0, unit_keys.size() - 1)
-		
-		taken_index.append(r_index)
-		
-		var unit_id: String = unit_keys[r_index]
-		var unit_scene: PackedScene = load("res://Scenes/Units/PC/" + unit_id + "/" + unit_id + ".tscn")
-		var unit_instance: Unit = unit_scene.instantiate()
-		
-		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
-		entity_container_instance.name = "EntityContainer_" + unit_id
-		entity_container_instance.entity = unit_instance
-		
-		units.append(entity_container_instance)
-		unit_count += 1
 	
-	return units
+	taken_unit_indexes.append(r_index)
+	slot_indexes.append(r_index)
+	
+	var unit_id: String = unit_keys[r_index]
+	var unit_scene: PackedScene = load("res://Scenes/Units/PC/" + unit_id + "/" + unit_id + ".tscn")
+	var unit_instance: Unit = unit_scene.instantiate()
+	
+	var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
+	entity_container_instance.name = "EntityContainer_" + unit_id
+	entity_container_instance.entity = unit_instance
+	
+	return entity_container_instance
+
+func _reroll_unit(index: int):
+	var old_index = slot_indexes[index]
+	slot_indexes.remove_at(index)
+	team_units[index] = _roll_unit()
+	slot_indexes.insert(index, slot_indexes.pop_back())
+	taken_unit_indexes.erase(old_index)  # erase AFTER rolling so it can't be picked
+	
+	var units_container = $UnitSelect/UnitsContainer
+	units_container.get_node("NodeContainer_" + str(index)).queue_free()
+	_display_unit(index, units_container, false)
+
+func _display_units():
+	var units_container = $UnitSelect/UnitsContainer
+	for child in units_container.get_children():
+		child.queue_free()
+	for i in team_units.size():
+		_display_unit(i, units_container, true)
+
+func _display_unit(index: int, units_container: Node2D, button_on: bool):
+	var unit_container = team_units[index]
+	
+	var node_container = Node2D.new()
+	node_container.name = "NodeContainer_" + str(index)
+	node_container.position = Vector2(125 + (275 * index), 150)
+	units_container.add_child(node_container)
+	
+	unit_container.scale = Vector2(2, 2)
+	node_container.add_child(unit_container)
+	
+	var unit_id: String = unit_container.entity.id
+	var weapon_id: String = GameData.UNIT.PLAYER[unit_id][GameData.KEY.SIGNATURE_WEAPON]
+	var weapon_scene: PackedScene = load(GameData.ITEM.WEAPON[weapon_id]["scene"])
+	var weapon_instance: Entity = weapon_scene.instantiate()
+	
+	var weapon_container: EntityContainer = entity_container_scene.instantiate()
+	weapon_container.entity = weapon_instance
+	weapon_container.position = Vector2(0, 125)
+	node_container.add_child(weapon_container)
+	
+	if button_on:
+		var reroll_button = Button.new()
+		reroll_button.text = "Reroll"
+		reroll_button.position = Vector2(-25, 200)
+		reroll_button.pressed.connect(_reroll_unit.bind(index))
+		node_container.add_child(reroll_button)
 
 func _start_button_pressed():
 	print(selected_dungeon_name)

@@ -18,15 +18,15 @@ const UNIT: Dictionary = {
 	PLAYER = {
 		"paramander": {
 			KEY.DISPLAY_NAME: "Paramander",
-			KEY.SIGNATURE_WEAPON: "Heat Seeker"
+			KEY.SIGNATURE_WEAPON: "heat_seeker"
 		},
 		"scratch": {
 			KEY.DISPLAY_NAME: "Scratch",
-			KEY.SIGNATURE_WEAPON: "Splinter"
+			KEY.SIGNATURE_WEAPON: "splinter"
 		},
 		"walking_hive": {
 			KEY.DISPLAY_NAME: "Walking Hive",
-			KEY.SIGNATURE_WEAPON: "Soul Lantern"
+			KEY.SIGNATURE_WEAPON: "cursed_lantern"
 		},
 		"devourer_of_ghouls": {
 			KEY.DISPLAY_NAME: "Devourer Of Gouls",

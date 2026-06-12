@@ -65,7 +65,7 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 		"weapon_star_level": 1
 	},
 	{
-		"unit_name": "magma_golem",
+		"unit_name": "magnus",
 		"starting_position": Vector2(350.0, 450.0),
 		"weapon_id": "crag_chunk",
 		"weapon_star_level": 1
@@ -85,7 +85,7 @@ var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
 		"weapon_star_level": 1
 	},
 	{
-		"unit_name": "zac",
+		"unit_name": "devourer_of_ghouls",
 		"starting_position": Vector2(350.0, 450.0),
 		"weapon_id": "rumble_gloves",
 		"weapon_star_level": 1
@@ -105,7 +105,7 @@ var dungeon_team_formation_scorched_grounds: Array[Dictionary] = [
 		"weapon_star_level": 1
 	},
 	{
-		"unit_name": "zac",
+		"unit_name": "devourer_of_ghouls",
 		"starting_position": Vector2(350.0, 450.0),
 		"weapon_id": "rumble_gloves",
 		"weapon_star_level": 1
