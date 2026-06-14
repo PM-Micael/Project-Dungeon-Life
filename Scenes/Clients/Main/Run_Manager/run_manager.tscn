@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhfjyiqbq5u31" path="res://Scenes/Clients/Main/Run_Manager/inventory_window.gd" id="4_ncke1"]
 [ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="4_rsedy"]
 [ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="5_ncke1"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="6_ddveh"]
 [ext_resource type="Script" uid="uid://haveicp28q6u" path="res://Scenes/Clients/Main/Run_Manager/auto_advance_button.gd" id="8_b08fb"]
 
 [node name="RunManager" type="Node2D" unique_id=896845944]
@@ -14,7 +15,7 @@ script = ExtResource("1_d5ua6")
 
 [node name="BoardWindow" type="Window" parent="." unique_id=17590501]
 oversampling_override = 1.0
-position = Vector2i(561, 36)
+position = Vector2i(0, 36)
 size = Vector2i(800, 800)
 script = ExtResource("2_rsedy")
 
@@ -22,7 +23,7 @@ script = ExtResource("2_rsedy")
 
 [node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
 oversampling_override = 1.0
-position = Vector2i(310, 36)
+position = Vector2i(0, 36)
 size = Vector2i(800, 800)
 script = ExtResource("4_ncke1")
 
@@ -39,12 +40,17 @@ offset_bottom = 800.0
 mouse_filter = 2
 
 [node name="Backround" type="ColorRect" parent="InventoryWindow/UI/Inventory/Style" unique_id=1581728772]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 795.0
-offset_bottom = 795.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 798.0
+offset_bottom = 798.0
 mouse_filter = 2
-color = Color(0.014592471, 4.7529116e-07, 0.15754548, 1)
+color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="InventoryWindow/UI/Inventory/Style" unique_id=1031077245]
+position = Vector2(399.99997, 399.99997)
+scale = Vector2(0.995, 0.995)
+texture = ExtResource("6_ddveh")
 
 [node name="UnitLoadoutFrame" parent="InventoryWindow/UI/Inventory" unique_id=599129927 instance=ExtResource("4_rsedy")]
 
@@ -60,10 +66,10 @@ offset_right = 350.0
 offset_bottom = 300.0
 
 [node name="Background" type="ColorRect" parent="InventoryWindow/UI/Inventory/BackpackFrame/Style" unique_id=152295278]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 345.0
-offset_bottom = 295.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 299.0
 color = Color(0, 0, 0, 1)
 
 [node name="Items" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1031920431]
@@ -79,16 +85,16 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="OtherInfo" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=606502295]
+visible = false
 
 [node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/OtherInfo" unique_id=825724812]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 119.0
-offset_bottom = 52.0
+offset_right = 114.0
+offset_bottom = 47.0
 theme_override_font_sizes/font_size = 34
 text = "Room: "
 
 [node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=142719757]
+visible = false
 
 [node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=2061859412]
 offset_left = 395.0

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bfi8yb8mqq7ob"]
 
 [ext_resource type="Script" uid="uid://br3l6ovn64fqg" path="res://Scenes/Clients/unit_loadout_frame.gd" id="1_terp8"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="2_rewvx"]
 
 [node name="UnitLoadoutFrame" type="Node2D" unique_id=599129927]
 script = ExtResource("1_terp8")
@@ -16,12 +17,18 @@ offset_bottom = 350.0
 mouse_filter = 2
 
 [node name="Backround" type="ColorRect" parent="UnitPreview/Style" unique_id=1874269458]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 270.0
-offset_bottom = 345.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 274.0
+offset_bottom = 349.0
 mouse_filter = 2
-color = Color(0.015686275, 0, 0.15686275, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="UnitPreview/Style" unique_id=2097807566]
+visible = false
+position = Vector2(137.50002, 174.75)
+scale = Vector2(0.34375003, 0.43812504)
+texture = ExtResource("2_rewvx")
 
 [node name="WeaponPreviewFrame" type="Node2D" parent="." unique_id=2105905004]
 position = Vector2(80, 140)
@@ -34,12 +41,18 @@ offset_bottom = 250.0
 mouse_filter = 2
 
 [node name="Backround" type="ColorRect" parent="WeaponPreviewFrame/Style" unique_id=1413085953]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 145.0
-offset_bottom = 245.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 149.0
+offset_bottom = 249.0
 mouse_filter = 2
-color = Color(0.015686275, 0, 0.15686275, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponPreviewFrame/Style" unique_id=603652026]
+visible = false
+position = Vector2(74.99999, 125)
+scale = Vector2(0.18749999, 0.31249997)
+texture = ExtResource("2_rewvx")
 
 [node name="StatsFrame" type="Node2D" parent="." unique_id=1537041036]
 
@@ -49,16 +62,22 @@ color = Color(0.015686275, 0, 0.15686275, 1)
 offset_left = 40.0
 offset_top = 475.0
 offset_right = 390.0
-offset_bottom = 762.0
+offset_bottom = 775.0
 mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="StatsFrame/Style" unique_id=915401141]
-offset_left = 45.0
-offset_top = 480.0
-offset_right = 385.0
-offset_bottom = 757.0
+offset_left = 41.0
+offset_top = 476.0
+offset_right = 389.0
+offset_bottom = 774.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="StatsFrame/Style" unique_id=1535424260]
+visible = false
+position = Vector2(214.99998, 625)
+scale = Vector2(0.43749997, 0.37499997)
+texture = ExtResource("2_rewvx")
 
 [node name="Health" type="Node2D" parent="StatsFrame" unique_id=903937688]
 
@@ -104,11 +123,17 @@ offset_right = 350.0
 offset_bottom = 65.0
 
 [node name="Background" type="ColorRect" parent="BuffFrame/Style" unique_id=673294947]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 348.0
-offset_bottom = 63.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 64.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="BuffFrame/Style" unique_id=2082520604]
+visible = false
+position = Vector2(175, 32.499996)
+scale = Vector2(0.43750003, 0.081250004)
+texture = ExtResource("2_rewvx")
 
 [node name="Buffs" type="Node2D" parent="BuffFrame" unique_id=1503021857]
 
@@ -135,11 +160,17 @@ offset_right = 350.0
 offset_bottom = 65.0
 
 [node name="Background" type="ColorRect" parent="DebuffFrame/Style" unique_id=463711167]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 348.0
-offset_bottom = 63.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 64.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="DebuffFrame/Style" unique_id=1254625571]
+visible = false
+position = Vector2(175, 32.499996)
+scale = Vector2(0.43750003, 0.081250004)
+texture = ExtResource("2_rewvx")
 
 [node name="Debuffs" type="Node2D" parent="DebuffFrame" unique_id=404010338]
 

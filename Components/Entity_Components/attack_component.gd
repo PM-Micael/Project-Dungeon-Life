@@ -60,6 +60,8 @@ func attack_target(target: Entity):
 	if target_health_bar != null:
 		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit), is_crit)
 
+	if not is_instance_valid(self):
+		return
 	var targets: Array[Entity] = [target]
 	post_attack_target.emit(targets if is_instance_valid(target) else [],
 	is_crit)

@@ -51,7 +51,7 @@ Buggs:
 20026-06-05:
 	Base dungeon
 	More enemies
-	More playeer units
+	More player units
 
 2026-06-10:
 	A lot of bugs are happening because of the die function being a free and not a queue free.
@@ -63,3 +63,6 @@ Buggs:
 	Hotfix should contain:
 		Execute bool on die function to stop "random crashes"
 		new icon
+ 
+2026-06-13:
+	Bug: Pressing commit on inner sanctum alway saves even if 0 essense was spent
