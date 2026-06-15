@@ -1,4 +1,5 @@
 extends Node2D
+class_name DungeonSelection
 
 # DUNGEON SELECT VARIABLES
 var dungeons: Array
@@ -29,6 +30,9 @@ var slot_indexes: Array[int] = []
 
 # BASE SETUP
 func _ready() -> void:
+	initialize_data()
+
+func initialize_data():
 	dungeon_select.visible = true
 	unit_select.visible = false
 	

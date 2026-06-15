@@ -15,10 +15,10 @@ func _construct_debuffs():
 	var leech = Leech.new()
 	leech.duration = duration
 	leech.damage_to_health = 1.0
-	affliction_debuffs.append(leech)
+	debuffs.append(leech)
 
 func _apply_debuffs():
-	for debuff in affliction_debuffs:
+	for debuff in debuffs:
 		debuff.debuff_effect()
 
 func apply(_target: Entity) -> void:
@@ -27,7 +27,7 @@ func apply(_target: Entity) -> void:
 
 func _on_debuff_applied(target: Unit):
 	if target.effect_component != null:
-		for debuff in affliction_debuffs:
+		for debuff in debuffs:
 			debuff.debuff_effect()
 
 func blood_collector(dead_unit: Unit): 

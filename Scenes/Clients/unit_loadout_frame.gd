@@ -69,7 +69,7 @@ func fill_debuffs():
 	
 	var loop_count: int = 0
 	for affliction in afflictions:
-		for debuff in affliction.buffs:
+		for debuff in affliction.debuffs:
 			var sprite: Sprite2D = Sprite2D.new()
 			sprite.scale = Vector2(0.8, 0.8)
 			sprite.position = Vector2(30 + (50*loop_count), 30)

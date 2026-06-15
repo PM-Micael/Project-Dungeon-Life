@@ -3,7 +3,6 @@ class_name MainClient
 
 var game_initialized: bool = false
 
-
 @onready var window_manager: WindowManager = get_node("WindowManager")
 var wm_position: Vector2
 var wm_size: Vector2

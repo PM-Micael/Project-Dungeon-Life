@@ -4,7 +4,7 @@ class_name DungeonSelectionWindow
 
 const default_size: Vector2 = Vector2(640, 219)
 
-@onready var dungeon_selection: Node = get_node("DungeonSelection")
+@onready var dungeon_selection: DungeonSelection = get_node("DungeonSelection")
 
 func _ready() -> void:
 	title = "Window Manager"
@@ -22,3 +22,5 @@ func _on_dungeon_run_ongoing_changed(state: bool, _dungeon: String):
 	unavailable_screen.get_node("TitleLabel").text = "Dungeon Selection is unavailale."
 	unavailable_screen.get_node("DescriptionLabel").text = "Cannot select dungeon. Dungeon run is already in progress."
 	unavailable_screen.visible = state
+	dungeon_selection.initialize_data()
+	
