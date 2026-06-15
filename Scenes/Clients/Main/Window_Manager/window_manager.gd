@@ -26,6 +26,14 @@ var _navigating_back: bool = false
 
 @onready var home_menu_button: TextureButton = get_node("HomeMenuButton")
 
+@onready var profile_window: ProfileWindow = get_parent().get_node("ProfileWindow")
+@onready var profile_button: TextureButton = get_node("Profile/ProfileButton")
+
+@onready var dungeon_selection_window: DungeonSelectionWindow = get_parent().get_node("DungeonSelectionWindow")
+@onready var dungeon_selection_button: TextureButton = get_node("DungeonMenuButton")
+
+@onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
+@onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
 
 @onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
 @onready var board_menu_button: TextureButton = get_node("Board/BoardMenuButton")
@@ -51,12 +59,6 @@ var inventory_scale_locked: bool:
 				_scale_down_inventory()
 		inventory_scale_locked = value
 
-@onready var dungeon_selection_window: DungeonSelectionWindow = get_parent().get_node("DungeonSelectionWindow")
-@onready var dungeon_selection_button: TextureButton = get_node("DungeonMenuButton")
-
-@onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
-@onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
-
 var config: Dictionary[TextureButton, Array]
 
 func _ready() -> void:
@@ -73,10 +75,15 @@ func _ready() -> void:
 	
 	center_windows = [
 		inner_sanctum_window,
-		dungeon_selection_window
+		dungeon_selection_window,
 	]
 	config = {
-		home_menu_button: [board_menu_button, invenetory_menu_button, dungeon_selection_button, inner_sanctum_menu_button],
+		home_menu_button: [
+			board_menu_button,
+			invenetory_menu_button,
+			dungeon_selection_button,
+			inner_sanctum_menu_button,
+			profile_button],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
 		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
 	}
@@ -86,19 +93,25 @@ func _ready() -> void:
 func _connect_events():
 	back_button.pressed.connect(_on_back_pressed)
 	next_page_button.pressed.connect(_on_back_pressed)
+	
+	profile_button.pressed.connect(_on_profile_pressed)
+	
+	dungeon_selection_button.pressed.connect(_on_dungeon_selection_pressed)
+	dungeon_selection_window.visibility_changed.connect(func(): _on_window_visibility_changed(dungeon_selection_window))
+	
+	inner_sanctum_menu_button.pressed.connect(_on_inner_sanctum_pressed)
+	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
+	
 	board_menu_button.pressed.connect(_on_board_pressed)
 	board_scale_up_button.pressed.connect(_scale_up_board)
 	board_scale_down_button.pressed.connect(_scale_down_board)
 	board_minimize_button.pressed.connect(_minimize_board)
+	
 	invenetory_menu_button.pressed.connect(_on_inventory_pressed)
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
-	inner_sanctum_menu_button.pressed.connect(_on_inner_sanctum_pressed)
-	dungeon_selection_button.pressed.connect(_on_dungeon_selection_pressed)
 	
-	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
-	dungeon_selection_window.visibility_changed.connect(func(): _on_window_visibility_changed(dungeon_selection_window))
 
 func _on_window_visibility_changed(window: Window):
 	center_menu_showing = window.visible
@@ -143,8 +156,17 @@ func _on_menu_selected_changed() -> void: #Potential for adding a check to minim
 				child.position = Vector2(185, 130)
 			3:
 				child.position = Vector2(105, 130)
+			4:
+				child.position = Vector2(25, 105)
 		
 		loop_itteration += 1
+
+func _check_center_window(window: Window):
+	for w in center_windows:
+		if w == window:
+			continue
+		w.visible = false
+	window.visible = not window.visible
 
 # Back button
 func _on_back_pressed():
@@ -208,16 +230,12 @@ func _minimize_inventory():
 
 # Inner Sanctum
 func _on_inner_sanctum_pressed():
-	for window in center_windows:
-		if window == inner_sanctum_window:
-			continue
-		window.visible = false
-	inner_sanctum_window.visible = not inner_sanctum_window.visible
+	_check_center_window(inner_sanctum_window)
 
 # Dungeon selection
 func _on_dungeon_selection_pressed():
-	for window in center_windows:
-		if window == dungeon_selection_window:
-			continue
-		window.visible = false
-	dungeon_selection_window.visible = not dungeon_selection_window.visible
+	_check_center_window(dungeon_selection_window)
+
+# Profile
+func _on_profile_pressed():
+	profile_window.visible = not profile_window.visible

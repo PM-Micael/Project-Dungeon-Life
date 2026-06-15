@@ -17,9 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://brqcerkuyo18u" path="res://Scenes/Clients/Upgrades/inner_sanctum.tscn" id="13_couco"]
 [ext_resource type="Script" uid="uid://b5vnq7lillori" path="res://Scenes/Clients/Main/inner_sanctum_window.gd" id="13_g3ocy"]
 [ext_resource type="Texture2D" uid="uid://dp5oa1cocmnxm" path="res://Assets/Client/icon_inner_sanctum.svg" id="13_sbugd"]
-[ext_resource type="Texture2D" uid="uid://cimfa342h2ier" path="res://Assets/Client/icon_profile.svg" id="18_2c5lf"]
-[ext_resource type="Script" uid="uid://dgq5qn4h1hapn" path="res://Scenes/Clients/Main/Profile/profile_window.gd" id="18_fbmiu"]
-[ext_resource type="PackedScene" uid="uid://dksr8nsejihd8" path="res://Scenes/Clients/Main/Profile/profile.tscn" id="18_qbbx0"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
@@ -145,18 +142,8 @@ texture_normal = ExtResource("13_sbugd")
 
 [node name="Profile" type="Node2D" parent="WindowManager" unique_id=1278977734]
 
-[node name="ProfileButton" type="TextureButton" parent="WindowManager/Profile" unique_id=1312140273]
-offset_left = 25.0
-offset_top = 105.0
-offset_right = 113.0
-offset_bottom = 193.0
+[node name="ProfleMenuButton" type="TextureButton" parent="WindowManager/Profile" unique_id=1312140273]
+offset_right = 88.0
+offset_bottom = 88.0
 scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("18_2c5lf")
-
-[node name="ProfileWindow" type="Window" parent="." unique_id=509221237]
-oversampling_override = 1.0
-size = Vector2i(320, 500)
-visible = false
-script = ExtResource("18_fbmiu")
-
-[node name="Profile" parent="ProfileWindow" unique_id=65702442 instance=ExtResource("18_qbbx0")]
+texture_normal = ExtResource("6_vblgr")

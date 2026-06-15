@@ -64,5 +64,5 @@ Buggs:
 		Execute bool on die function to stop "random crashes"
 		new icon
  
-2026-06-13:
-	Bug: Pressing commit on inner sanctum alway saves even if 0 essense was spent
+2026-06-15:
+	Give units sound effects

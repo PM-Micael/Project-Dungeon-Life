@@ -3,9 +3,15 @@ class_name MainClient
 
 var game_initialized: bool = false
 
+
 @onready var window_manager: WindowManager = get_node("WindowManager")
 var wm_position: Vector2
 var wm_size: Vector2
+
+@onready var profile_window: ProfileWindow = $ProfileWindow
+var pw_visible: bool = false
+var pw_position: Vector2
+var pw_size: Vector2
 
 @onready var board_window: BoardWindow = get_node("RunManager/BoardWindow")
 var bw_visible: bool = false
@@ -46,9 +52,13 @@ func _initialize_game_data():
 	DungeonData.initialize_data()
 	game_initialized = true
 
-func _check_update_polygon():
-	var new_wm_pos  = Vector2(window_manager.position) - Vector2(20, 40)
+func _check_update_polygon(): # Dont initialize them every time
+	var new_wm_pos = Vector2(window_manager.position) - Vector2(20, 40)
 	var new_wm_size = Vector2(window_manager.size) + Vector2(30, 50)
+	
+	var new_pw_visible: bool = profile_window.visible
+	var new_pw_pos = Vector2(profile_window.position)
+	var new_pw_size = Vector2(profile_window.size)
 	
 	var new_bw_visible = board_window.visible
 	var new_bw_pos  = Vector2(board_window.position)
@@ -68,10 +78,11 @@ func _check_update_polygon():
 
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
-		bw_position != new_bw_pos or bw_size != new_bw_size or new_bw_visible != bw_visible or
-		iw_position != new_iw_pos or iw_size != new_iw_size or new_iw_visible != iw_visible or
-		isw_position != new_isw_pos or isw_size != new_isw_size or new_isw_visible != isw_visible or
-		dsw_position != new_dsw_pos or dsw_size != new_dsw_size or new_dsw_visible != dsw_visible
+		bw_position != new_bw_pos or bw_size != new_bw_size or bw_visible != new_bw_visible or
+		iw_position != new_iw_pos or iw_size != new_iw_size or iw_visible != new_iw_visible or
+		isw_position != new_isw_pos or isw_size != new_isw_size or isw_visible != new_isw_visible or
+		dsw_position != new_dsw_pos or dsw_size != new_dsw_size or dsw_visible != new_dsw_visible or
+		pw_position != new_pw_pos or pw_size != new_pw_size or pw_visible != new_pw_visible
 		):
 
 		var poly: Array[Vector2] = [Vector2(0, 0)]
@@ -85,6 +96,16 @@ func _check_update_polygon():
 			new_wm_pos,
 			Vector2(0, 0),
 		])
+		
+		if profile_window.visible:
+			poly.append_array([
+				new_pw_pos,
+				new_pw_pos + Vector2(new_pw_size.x, 0),
+				new_pw_pos + new_pw_size,
+				new_pw_pos + Vector2(0, new_pw_size.y),
+				new_pw_pos,
+				Vector2(0, 0),
+			])
 		
 		if dungeon_selection_window.visible:
 			poly.append_array([
@@ -130,6 +151,9 @@ func _check_update_polygon():
 
 		polygon_window.polygon = PackedVector2Array(poly)
 		get_window().mouse_passthrough_polygon = polygon_window.polygon
+		
+		pw_position = new_pw_pos
+		pw_size = new_pw_size
 		
 		dsw_position = new_dsw_pos
 		dsw_size = new_dsw_size

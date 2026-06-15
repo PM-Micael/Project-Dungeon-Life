@@ -1,12 +1,13 @@
 extends Node
 
 signal player_data_loaded
+signal player_data_saved
 signal dungeon_run_ongoing_changed
 
 var player_data_has_loaded: bool = false
 
-var player_id: String = "dare_mane"
-var player_display_name: String = "DareMane"
+var player_id: String
+var player_display_name: String = ""
 
 var settings: Dictionary = {
 	"auto_advance": false
@@ -22,6 +23,14 @@ var inner_sanctum_essence_total = 0
 # Dungeons
 var dungeon_run_tier: int = 1
 var dungeon_room: int = 1
+var dungeon_high_score: Dictionary = {
+	"the_dungeon": {
+		"tier_1":{
+			"room": 1
+		}
+	},
+}
+
 var dungeon_layer_level: int: # Is this being used?
 	get:
 		return ceili(dungeon_room / 10.0)
@@ -74,40 +83,6 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 		"unit_name": "paramander",
 		"starting_position": Vector2(350.0, 550.0),
 		"weapon_id": "heat_seeker",
-		"weapon_star_level": 1
-	},
-]
-var dungeon_team_formation_putrid_layers: Array[Dictionary] = [
-	{
-		"unit_name": "scratch",
-		"starting_position": Vector2(350.0, 650.0),
-		"weapon_id": "splinter",
-		"weapon_star_level": 1
-	},
-	{
-		"unit_name": "devourer_of_ghouls",
-		"starting_position": Vector2(350.0, 450.0),
-		"weapon_id": "rumble_gloves",
-		"weapon_star_level": 1
-	},
-	{
-		"unit_name": "walking_hive",
-		"starting_position": Vector2(350.0, 550.0),
-		"weapon_id": "cursed_lantern",
-		"weapon_star_level": 1
-	},
-]
-var dungeon_team_formation_scorched_grounds: Array[Dictionary] = [
-	{
-		"unit_name": "scratch",
-		"starting_position": Vector2(350.0, 650.0),
-		"weapon_id": "splinter",
-		"weapon_star_level": 1
-	},
-	{
-		"unit_name": "devourer_of_ghouls",
-		"starting_position": Vector2(350.0, 450.0),
-		"weapon_id": "rumble_gloves",
 		"weapon_star_level": 1
 	},
 ]
@@ -242,6 +217,19 @@ func save_player_data():
 			"dungeon_run_ongoing_scorched_grounds": {"booleanValue": dungeon_run_ongoing_scorched_grounds},
 			"dungeon_run_tier": { "integerValue": str(dungeon_run_tier) },
 			"dungeon_room": { "integerValue": str(dungeon_room) },
+"dungeon_high_score": {
+	"mapValue": { "fields": {
+		"the_dungeon": {
+			"mapValue": { "fields": {
+				"tier_1": {
+					"mapValue": { "fields": {
+						"room": { "integerValue": str(dungeon_high_score["the_dungeon"]["tier_1"]["room"])}
+					}}
+				}
+			}}
+		}
+	}}
+},
 			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },
 			"inner_sanctum_essence_current": { "integerValue": str(inner_sanctum_essence_current) },
 			"inner_sanctum": {
@@ -270,6 +258,7 @@ func save_player_data():
 	var headers = ["Content-Type: application/json"]
 	var body = JSON.stringify(data)
 	http.request(url, headers, HTTPClient.METHOD_PATCH, body)
+	player_data_saved.emit()
 
 func load_player_data():	
 	var id_file_path = "res://player_id.txt"
@@ -317,6 +306,15 @@ func load_player_data():
 		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
 		
 		# Dungeon team formation
+		if fields.has("dungeon_high_score"):
+			var high_score = fields["dungeon_high_score"]["mapValue"]["fields"]
+			dungeon_high_score["the_dungeon"]["tier_1"]["room"] = int(
+			high_score["the_dungeon"]["mapValue"]["fields"]
+				["tier_1"]["mapValue"]["fields"]
+				["room"]["integerValue"]
+			)
+		else:
+			print("Fields [dungeon_high_score] doesn't exist")
 		dungeon_run_ongoing_the_dungeon = fields["dungeon_run_ongoing_the_dungeon"]["booleanValue"]
 		dungeon_run_ongoing_putrid_layers = fields["dungeon_run_ongoing_putrid_layers"]["booleanValue"]
 		dungeon_run_ongoing_scorched_grounds = fields["dungeon_run_ongoing_scorched_grounds"]["booleanValue"]
@@ -329,34 +327,6 @@ func load_player_data():
 				for entry in formation_values:
 					var f = entry["mapValue"]["fields"]
 					dungeon_team_formation_the_dungeon.append({
-						"unit_name": f["unit_name"]["stringValue"],
-						"weapon_id": f["weapon_id"]["stringValue"],
-						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
-						"starting_position": Vector2(
-							float(f["pos_x"]["doubleValue"]),
-							float(f["pos_y"]["doubleValue"])
-						)
-					})
-			elif dungeon_run_ongoing_putrid_layers:
-				dungeon_team_formation_putrid_layers.clear()
-				var formation_values = fields["dungeon_team_formation_putrid_layers"]["arrayValue"].get("values", [])
-				for entry in formation_values:
-					var f = entry["mapValue"]["fields"]
-					dungeon_team_formation_putrid_layers.append({
-						"unit_name": f["unit_name"]["stringValue"],
-						"weapon_id": f["weapon_id"]["stringValue"],
-						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
-						"starting_position": Vector2(
-							float(f["pos_x"]["doubleValue"]),
-							float(f["pos_y"]["doubleValue"])
-						)
-					})
-			elif dungeon_run_ongoing_scorched_grounds:
-				dungeon_team_formation_scorched_grounds.clear()
-				var formation_values = fields["dungeon_team_formation_scorched_grounds"]["arrayValue"].get("values", [])
-				for entry in formation_values:
-					var f = entry["mapValue"]["fields"]
-					dungeon_team_formation_scorched_grounds.append({
 						"unit_name": f["unit_name"]["stringValue"],
 						"weapon_id": f["weapon_id"]["stringValue"],
 						"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),

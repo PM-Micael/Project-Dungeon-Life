@@ -141,6 +141,11 @@ func _on_victory():
 	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
 	collected_essence = 0
 	PlayerData.dungeon_room += 1
+	match PlayerData.dungeon_run_tier:
+		1:
+			if PlayerData.dungeon_room > PlayerData.dungeon_high_score["the_dungeon"]["tier_1"]["room"]:
+				PlayerData.dungeon_high_score["the_dungeon"]["tier_1"]["room"] = PlayerData.dungeon_room
+
 	victory_screen.visible = true
 	for node in friendly_units_node.get_children():
 		node.queue_free_unit()
