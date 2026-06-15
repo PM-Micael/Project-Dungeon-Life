@@ -52,6 +52,8 @@ func _setup(_state: bool = false, _dungeon: String = ""):
 	power_decrease_button.pressed.connect(decrease_power_pressed)
 
 func _commit_pressed():
+	if allocated_essence == PlayerData.inner_sanctum_essence_current:
+		return
 	PlayerData.inner_sanctum.life += allocated_life_points
 	allocated_life_points = 0
 	
