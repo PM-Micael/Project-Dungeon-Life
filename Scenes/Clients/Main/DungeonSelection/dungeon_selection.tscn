@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://f3qe7dyrm23h"]
 
 [ext_resource type="Script" uid="uid://br2605g5m5cfb" path="res://Scenes/Clients/Main/DungeonSelection/dungeon_selection.gd" id="1_d8yku"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="2_nplmg"]
 
 [node name="DungeonSelection" type="Node2D" unique_id=2059361181]
 script = ExtResource("1_d8yku")
@@ -18,8 +19,12 @@ offset_right = 795.0
 offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="Style" unique_id=312082785]
+position = Vector2(400.00003, 250)
+scale = Vector2(1, 0.62499994)
+texture = ExtResource("2_nplmg")
+
 [node name="DungeonSelect" type="Node2D" parent="." unique_id=337219700]
-visible = false
 
 [node name="Dungeon" type="Node2D" parent="DungeonSelect" unique_id=1112559041]
 position = Vector2(150, 100)
@@ -76,6 +81,7 @@ offset_bottom = 450.0
 text = "Continue"
 
 [node name="UnitSelect" type="Node2D" parent="." unique_id=1361954407]
+visible = false
 
 [node name="StartButton" type="Button" parent="UnitSelect" unique_id=1384709067]
 offset_left = 650.0
@@ -87,18 +93,26 @@ text = "Start"
 [node name="UnitsContainer" type="Node2D" parent="UnitSelect" unique_id=1556809165]
 
 [node name="UnavailableScreen" type="Node2D" parent="." unique_id=1394083028]
+visible = false
 
-[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=325566441]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 795.0
-offset_bottom = 495.0
-color = Color(0.17043066, 0.21276477, 0.15453213, 1)
+[node name="Sprite2D" type="Sprite2D" parent="UnavailableScreen" unique_id=1155995978]
+position = Vector2(400.00003, 250)
+scale = Vector2(1, 0.62499994)
+texture = ExtResource("2_nplmg")
 
-[node name="Label" type="Label" parent="UnavailableScreen" unique_id=874084258]
+[node name="TitleLabel" type="Label" parent="UnavailableScreen" unique_id=874084258]
 offset_left = 5.0
 offset_top = 225.0
 offset_right = 795.0
 offset_bottom = 248.0
+theme_override_font_sizes/font_size = 30
 text = "Unavailable"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="UnavailableScreen" unique_id=1778771651]
+offset_left = 5.0
+offset_top = 267.0
+offset_right = 795.0
+offset_bottom = 290.0
+text = "Cannot select dungeon. Dungeon run already in progress"
 horizontal_alignment = 1

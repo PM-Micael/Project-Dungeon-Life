@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bxsvoce7ty51b" path="res://Scenes/Clients/Upgrades/inner_sanctum_stat.tscn" id="1_vjqfk"]
 [ext_resource type="Script" uid="uid://c5u7n8asjym4y" path="res://Scenes/Clients/Upgrades/inner_sanctum_menu.gd" id="1_xi5mb"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="3_hdcup"]
 
 [node name="InnerSanctum" type="Node2D" unique_id=1848263234]
 script = ExtResource("1_xi5mb")
@@ -18,6 +19,11 @@ offset_top = 5.0
 offset_right = 495.0
 offset_bottom = 495.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Style" unique_id=699732833]
+position = Vector2(250, 250)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("3_hdcup")
 
 [node name="InnerSanctumLife" parent="." unique_id=1133670572 instance=ExtResource("1_vjqfk")]
 position = Vector2(125, 80)
@@ -42,17 +48,24 @@ text = "Commit"
 [node name="UnavailableScreen" type="Node2D" parent="." unique_id=1901183702]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="UnavailableScreen" unique_id=326693087]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 495.0
-offset_bottom = 495.0
-color = Color(0.17043066, 0.21276477, 0.15453213, 1)
+[node name="Sprite2D" type="Sprite2D" parent="UnavailableScreen" unique_id=1891514018]
+position = Vector2(250, 250)
+scale = Vector2(0.625, 0.62499994)
+texture = ExtResource("3_hdcup")
 
-[node name="Label" type="Label" parent="UnavailableScreen" unique_id=1981695969]
+[node name="TitleLabel" type="Label" parent="UnavailableScreen" unique_id=1981695969]
 offset_left = 5.0
 offset_top = 225.0
 offset_right = 495.0
 offset_bottom = 248.0
+theme_override_font_sizes/font_size = 30
+text = "Unavailable"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="UnavailableScreen" unique_id=105620369]
+offset_left = 5.0
+offset_top = 267.0
+offset_right = 495.0
+offset_bottom = 290.0
 text = "Unavailable"
 horizontal_alignment = 1

@@ -39,5 +39,6 @@ func _on_board_scale_changed(board_scale: Vector2):
 
 func _on_dungeon_run_selected(state: bool, _dungeon: String):
 	var unavailable_screen: Node2D = board.get_node("Unavailable")
-	unavailable_screen.get_node("Label").text = "No Dungeon chosen"
+	unavailable_screen.get_node("TitleLabel").text = "Bord Unavailable"
+	unavailable_screen.get_node("DescriptionLabel").text = "You need to choose a dungeon."
 	unavailable_screen.visible = not state

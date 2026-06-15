@@ -19,5 +19,6 @@ func _ready() -> void:
 
 func _on_dungeon_run_ongoing_changed(state: bool, _dungeon: String):
 	var unavailable_screen: Node2D = dungeon_selection.get_node("UnavailableScreen")
-	unavailable_screen.get_node("Label").text = "Dungeon run in progreess"
+	unavailable_screen.get_node("TitleLabel").text = "Dungeon Selection is unavailale."
+	unavailable_screen.get_node("DescriptionLabel").text = "Cannot select dungeon. Dungeon run is already in progress."
 	unavailable_screen.visible = state

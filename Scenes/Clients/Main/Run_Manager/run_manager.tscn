@@ -94,7 +94,6 @@ theme_override_font_sizes/font_size = 34
 text = "Room: "
 
 [node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=142719757]
-visible = false
 
 [node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=2061859412]
 offset_left = 395.0
