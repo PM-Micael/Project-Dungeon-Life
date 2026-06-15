@@ -13,4 +13,5 @@ func apply(_target: Entity) -> void:
 	warer.health_component.pre_heal.connect(effect)
 
 func effect(target: Entity, _amount: int):
-	target.health_component.final_heal_modifier -= reduced_healing
+	if is_instance_valid(target):
+		target.health_component.final_heal_modifier -= reduced_healing

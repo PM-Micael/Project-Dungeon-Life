@@ -13,4 +13,5 @@ func apply(_target: Entity) -> void:
 	warer.health_component.pre_damage_taken.connect(effect)
 
 func effect(target: Entity, _amount: int, _is_crit: bool):
-	target.health_component.final_damage_taken_modifier += damage_modifier
+	if is_instance_valid(target):
+		target.health_component.final_damage_taken_modifier += damage_modifier
