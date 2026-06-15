@@ -1,13 +1,13 @@
 extends Node2D
 class_name InnerSanctum
 
-var life_upgrade_cost: float = PlayerData.inner_sanctum.life
+var life_upgrade_cost: float
 var allocated_life_points: float:
 	set(value):
 		allocated_life_points = value
 		life_value_label.text = str(PlayerData.inner_sanctum.life + allocated_life_points)
 
-var power_upgrade_cost: float = PlayerData.inner_sanctum.power
+var power_upgrade_cost: float
 var allocated_power_points: float:
 	set(value):
 		allocated_power_points = value
@@ -37,17 +37,18 @@ func _ready() -> void:
 	_setup()
 
 func _setup(_state: bool = false, _dungeon: String = ""):
-	life_upgrade_cost = PlayerData.inner_sanctum.life
 	allocated_essence = PlayerData.inner_sanctum_essence_current
 	commit_button.pressed.connect(_commit_pressed)
 	
 	life_key_label.text = "Life"
 	allocated_life_points = 0
+	life_upgrade_cost = PlayerData.inner_sanctum.life
 	life_increase_button.pressed.connect(increase_life_pressed)
 	life_decrease_button.pressed.connect(decrease_life_pressed)
 	
 	power_key_label.text = "Power"
 	allocated_power_points = 0
+	power_upgrade_cost = PlayerData.inner_sanctum.power
 	power_increase_button.pressed.connect(increase_power_pressed)
 	power_decrease_button.pressed.connect(decrease_power_pressed)
 
