@@ -85,7 +85,6 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="OtherInfo" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=606502295]
-visible = false
 
 [node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/OtherInfo" unique_id=825724812]
 offset_right = 114.0

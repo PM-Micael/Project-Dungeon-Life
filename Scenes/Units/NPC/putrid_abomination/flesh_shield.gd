@@ -36,11 +36,12 @@ func _on_shield_broken():
 	
 	var offsets = [Vector2(100, 0), Vector2(-100, 0)]
 	for offset in offsets:
-		var goul: Unit = flesh_goul_scene.instantiate()
-		spawn_parent.add_child(goul)
-		goul.global_position = owner.global_position + offset
-		board.enemy_units.append(goul)
-		goul.health_component.died.connect(board._on_enemy_unit_died)
+		var ghoul: Unit = flesh_goul_scene.instantiate()
+		spawn_parent.add_child(ghoul)
+		ghoul.global_position = owner.global_position + offset
+		ghoul.is_summon = true
+		board.enemy_units.append(ghoul)
+		ghoul.health_component.died.connect(board._on_enemy_unit_died)
 		
 	_start_shield_recharge_timer()
 	

@@ -21,6 +21,7 @@ var unity: String
 
 @export_category("enemy_exclusive")
 var is_player_unit: bool
+var is_summon: bool = false
 var essence_value: Array[float]
 
 func _ready() -> void:

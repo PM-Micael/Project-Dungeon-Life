@@ -113,7 +113,8 @@ func _on_friendly_unit_died(unit: Unit):
 	friendly_units.erase(unit)
 
 func _on_enemy_unit_died(unit: Unit):
-	collected_essence += randi_range(unit.essence_value[0], unit.essence_value[1])
+	if not unit.is_summon:
+		collected_essence += randi_range(unit.essence_value[0], unit.essence_value[1])
 	enemy_units.erase(unit)
 
 func place_friendly_units_on_board():
