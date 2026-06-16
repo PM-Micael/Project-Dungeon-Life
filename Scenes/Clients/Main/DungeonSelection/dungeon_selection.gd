@@ -13,6 +13,8 @@ var selected_dungeon_index: int = 0:
 			
 		_update_label()
 
+@onready var run_manager: RunManager = get_parent().get_parent().get_node("RunManager")
+
 @onready var dungeon_select: Node2D = $DungeonSelect
 @onready var dungeon_label: Label = $DungeonSelect/Dungeon/DungeonLabel
 @onready var previous_button: Button = $DungeonSelect/Dungeon/PreviousButton
@@ -148,9 +150,12 @@ func _start_button_pressed():
 		})
 		loop_count += 1
 	
+	DungeonData.roll_dungeon_zone()
+	
 	print(selected_dungeon_name)
 	match selected_dungeon_name:
 		DungeonData.DUNGEONS.THE_DUNGEON:
 			PlayerData.dungeon_team_formation_the_dungeon = formation
 			PlayerData.dungeon_run_ongoing_the_dungeon = true
+	
 	

@@ -274,6 +274,7 @@ func load_player_data():
 		# Basic fields
 		player_display_name = fields["player_data"]["mapValue"]["fields"]["display_name"]["stringValue"]
 		dungeon_run_tier = int(fields["dungeon_data"]["mapValue"]["fields"]["tier"]["integerValue"])
+		current_zone = fields["dungeon_data"]["mapValue"]["fields"]["current_zone"]["stringValue"]
 		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
 		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
 		
@@ -318,10 +319,7 @@ func load_player_data():
 					"star_level": int(l["star_level"]["integerValue"]),
 					"item_type": l["item_type"]["stringValue"],
 				})
-			if fields.has("dungeon_run_collected_esseence"):
-				dungeon_run_collected_esseence = int(fields["dungeon_run_collected_esseence"]["integerValue"])
-			else:
-				print("Fields [dungeon_run_collected_esseence] doesn't exist")
+			dungeon_run_collected_esseence = int(fields["dungeon_data"]["mapValue"]["fields"]["collected_essence"]["integerValue"])
 		
 		print("Player data loaded successfully")
 		_initialize_loot_as_entities()

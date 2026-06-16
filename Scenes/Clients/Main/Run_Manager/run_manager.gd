@@ -16,7 +16,6 @@ class_name RunManager
 
 @onready var room_label: Label = $InventoryWindow/UI/Inventory/OtherInfo/Label
 
-var selected_dungeon_zone: String
 var selected_dungeon_tier: int
 var game_on: bool = false
 
@@ -53,17 +52,14 @@ func _check_dungeon_run_ongoing(value: bool, _dungeon: String = ""):
 
 func _setup_stage():
 	start_stage_button.visible = true
-	selected_dungeon_zone = DungeonData.roll_dungeon_zone()
-
 	
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
 	board.enemy_units.clear()
 	board._place_friendly_units()
-	board.place_enemy_units(selected_dungeon_zone)
+	board.place_enemy_units(PlayerData.current_zone)
 	room_label.text = "Room: "+str(PlayerData.dungeon_room)
-	print("ZONE = " + selected_dungeon_zone)
 
 	if PlayerData.settings.auto_advance:
 		await get_tree().create_timer(0.5).timeout
