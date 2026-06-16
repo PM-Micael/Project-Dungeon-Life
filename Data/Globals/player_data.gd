@@ -22,6 +22,7 @@ var inner_sanctum_essence_total = 0
 
 # Dungeons
 var dungeon_run_tier: int = 1
+var dungeon_run_collected_esseence: int = 0
 var dungeon_room: int = 1
 var dungeon_high_score: Dictionary = {
 	"the_dungeon": {
@@ -128,6 +129,7 @@ func reset_dungeon_run_data(dungeon: String):
 			for entity in dungeon_loot_as_entities: # Why twice?
 				entity.queue_free()
 			dungeon_loot_as_entities = []
+			dungeon_run_collected_esseence = 0
 	save_player_data()
 
 # Invenetory / Loot / Backback
@@ -217,19 +219,20 @@ func save_player_data():
 			"dungeon_run_ongoing_scorched_grounds": {"booleanValue": dungeon_run_ongoing_scorched_grounds},
 			"dungeon_run_tier": { "integerValue": str(dungeon_run_tier) },
 			"dungeon_room": { "integerValue": str(dungeon_room) },
-"dungeon_high_score": {
-	"mapValue": { "fields": {
-		"the_dungeon": {
-			"mapValue": { "fields": {
-				"tier_1": {
-					"mapValue": { "fields": {
-						"room": { "integerValue": str(dungeon_high_score["the_dungeon"]["tier_1"]["room"])}
-					}}
-				}
-			}}
-		}
-	}}
-},
+			"dungeon_run_collected_esseence": {"integerValue": str(dungeon_run_collected_esseence)},
+			"dungeon_high_score": {
+				"mapValue": { "fields": {
+					"the_dungeon": {
+						"mapValue": { "fields": {
+							"tier_1": {
+								"mapValue": { "fields": {
+									"room": { "integerValue": str(dungeon_high_score["the_dungeon"]["tier_1"]["room"])}
+								}}
+							}
+						}}
+					}
+				}}
+			},
 			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },
 			"inner_sanctum_essence_current": { "integerValue": str(inner_sanctum_essence_current) },
 			"inner_sanctum": {
@@ -345,6 +348,10 @@ func load_player_data():
 					"star_level": int(l["star_level"]["integerValue"]),
 					"item_type": l["item_type"]["stringValue"],
 				})
+			if fields.has("dungeon_run_collected_esseence"):
+				dungeon_run_collected_esseence = int(fields["dungeon_run_collected_esseence"]["integerValue"])
+			else:
+				print("Fields [dungeon_run_collected_esseence] doesn't exist")
 		
 		print("Player data loaded successfully")
 		_initialize_loot_as_entities()

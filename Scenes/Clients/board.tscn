@@ -22,7 +22,6 @@ script = ExtResource("1_nmtso")
 z_index = 2
 
 [node name="DefeatScreen" type="Node2D" parent="RoundOver" unique_id=194628576]
-visible = false
 
 [node name="Style" type="Node2D" parent="RoundOver/DefeatScreen" unique_id=732521616]
 
@@ -40,21 +39,12 @@ offset_bottom = 530.0
 color = Color(0, 0, 0, 1)
 
 [node name="ReplayStageButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1157211427]
-visible = false
-offset_left = -125.0
-offset_top = 100.0
-offset_right = 125.0
-offset_bottom = 200.0
+offset_left = 517.0
+offset_top = 398.0
+offset_right = 667.0
+offset_bottom = 468.0
 text = "Replay
 "
-
-[node name="EditTeamButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1038183422]
-visible = false
-offset_left = 185.0
-offset_top = 100.0
-offset_right = 435.0
-offset_bottom = 200.0
-text = "Edit Team"
 
 [node name="ExitDungeonButton" type="Button" parent="RoundOver/DefeatScreen" unique_id=1784633707]
 offset_left = 125.0
@@ -73,12 +63,13 @@ text = "Defeat"
 horizontal_alignment = 1
 
 [node name="TotalCollectedEssenceLabel" type="Label" parent="RoundOver/DefeatScreen" unique_id=1944694629]
-offset_left = 275.0
+offset_left = 75.0
 offset_top = 303.0
-offset_right = 466.0
+offset_right = 725.0
 offset_bottom = 338.0
 theme_override_font_sizes/font_size = 25
 text = "Total Essence = "
+horizontal_alignment = 1
 
 [node name="VictoryScreen" type="Node2D" parent="RoundOver" unique_id=2065268552]
 visible = false
@@ -115,15 +106,7 @@ offset_top = 421.0
 offset_right = 308.0
 offset_bottom = 456.0
 theme_override_font_sizes/font_size = 25
-text = "Eessence gained: "
-
-[node name="TotalEssenceLabel" type="Label" parent="RoundOver/VictoryScreen/Loot" unique_id=1038293792]
-offset_left = 96.0
-offset_top = 468.0
-offset_right = 293.0
-offset_bottom = 503.0
-theme_override_font_sizes/font_size = 25
-text = "Total Essence: "
+text = "Essence gained: "
 
 [node name="NextStageButton" type="Button" parent="RoundOver/VictoryScreen" unique_id=1327499166]
 offset_left = 531.0
@@ -149,6 +132,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nmtso")
 text = "Start Stage"
 
 [node name="Unavailable" type="Node2D" parent="." unique_id=1845769318]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Unavailable" unique_id=656789225]
 position = Vector2(398, 398)

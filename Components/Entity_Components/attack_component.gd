@@ -38,7 +38,8 @@ func _physics_process(_delta: float) -> void:
 				in_range = dist <= attack_range * sqrt(2)
 			if in_range:
 				attack_target(entity_parent.targeting_component.target)
-				timer.start()
+				if is_instance_valid(timer):
+					timer.start()
 
 func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
 	attack_damage = set_attack_damage

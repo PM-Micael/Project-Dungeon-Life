@@ -23,7 +23,6 @@ var game_on: bool = false
 @onready var defeat_screen: Node2D = get_node("RoundOver/DefeatScreen")
 @onready var next_stage_button = get_node("RoundOver/VictoryScreen/NextStageButton")
 @onready var gained_essence_label: Label = $RoundOver/VictoryScreen/Loot/GainedEssenceLabel
-@onready var total_essence_label: Label = $RoundOver/VictoryScreen/Loot/TotalEssenceLabel
 @onready var total_collected_essence_label: Label = $RoundOver/DefeatScreen/TotalCollectedEssenceLabel
 @onready var start_stage: Button = $StartStage
 
@@ -34,7 +33,11 @@ func _ready() -> void:
 	set_up_board()
 
 func set_up_board():
-	await PlayerData.player_data_loaded
+	victory_screen.visible = false
+	defeat_screen.visible = false
+	
+	if not PlayerData.player_data_has_loaded:
+		await PlayerData.player_data_loaded
 	
 	for unit in friendly_units:
 		unit.health_component.died.connect(_on_friendly_unit_died)
@@ -137,8 +140,8 @@ func _check_units_alive():
 
 func _on_victory():
 	PlayerData.add_inner_sanctum_essence(collected_essence)
+	PlayerData.dungeon_run_collected_esseence += collected_essence
 	gained_essence_label.text = "Gained essence: " + str(collected_essence)
-	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
 	collected_essence = 0
 	PlayerData.dungeon_room += 1
 	match PlayerData.dungeon_run_tier:
@@ -166,8 +169,7 @@ func _on_victory():
 		next_stage_button.pressed.emit()
 
 func _on_defeat():
-	total_collected_essence_label.text = "Total essence = "+str(PlayerData.inner_sanctum_essence_current)
-	total_essence_label.text = "Total essence: " + str(PlayerData.inner_sanctum_essence_current)
+	total_collected_essence_label.text = "Total essence collected = "+str(PlayerData.dungeon_run_collected_esseence)
 	defeat_screen.visible = true
 	game_on = false
 	round_over.emit(true)

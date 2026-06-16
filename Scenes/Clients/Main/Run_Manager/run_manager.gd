@@ -12,6 +12,8 @@ class_name RunManager
 @onready var exit_dungeon_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ExitDungeonButton")
 @onready var start_stage_button: Button = get_node("BoardWindow/Board/StartStage")
 
+@onready var replay_stage_button: Button = get_node("BoardWindow/Board/RoundOver/DefeatScreen/ReplayStageButton")
+
 @onready var room_label: Label = $InventoryWindow/UI/Inventory/OtherInfo/Label
 
 var selected_dungeon_zone: String
@@ -35,9 +37,12 @@ func set_up_run():
 func _connect_events():
 	map_tiles.tile_clicked.connect(_on_tile_clicked)
 	board.round_over.connect(_on_round_over)
+	
 	next_stage_button.pressed.connect(_setup_stage)
 	exit_dungeon_button.pressed.connect(_exit_dungeon)
 	start_stage_button.pressed.connect(_start_stage)
+	replay_stage_button.pressed.connect(_replay_stage)
+	
 	PlayerData.dungeon_run_ongoing_changed.connect(_check_dungeon_run_ongoing)
 
 # ─── Stage Setup ─────────────────────────────────────────────────────────────
@@ -82,6 +87,8 @@ func _exit_dungeon():
 	PlayerData.reset_dungeon_run_data(DungeonData.DUNGEONS.THE_DUNGEON)
 	inventory.fill_backpack_frame()
 
+func _replay_stage():
+	_setup_stage()
 # ─── Game State ───────────────────────────────────────────────────────────────
 
 func start_game() -> void:
