@@ -26,10 +26,10 @@ scale = Vector2(0.625, 0.625)
 texture = ExtResource("3_hdcup")
 
 [node name="InnerSanctumLife" parent="." unique_id=1133670572 instance=ExtResource("1_vjqfk")]
-position = Vector2(125, 80)
+position = Vector2(75, 80)
 
 [node name="InnerSanctumPower" parent="." unique_id=518375834 instance=ExtResource("1_vjqfk")]
-position = Vector2(125, 200)
+position = Vector2(75, 200)
 
 [node name="EssenceValueLabel" type="Label" parent="." unique_id=1912782659]
 offset_left = 175.0
