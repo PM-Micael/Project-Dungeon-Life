@@ -30,4 +30,4 @@ func _on_text_submitted(text: String):
 	PlayerData.player_display_name = text
 	PlayerData.save_player_data()
 	user_name_line_edit.text = ""
-	user_name_label.text = text
+	user_name_label.text = "[u][b]"+text
