@@ -2,7 +2,8 @@ extends Entity
 class_name Unit
 
 const Unity = {
-	PUTRID_SPAWN = "putrid_spawn"
+	PUTRID_SPAWN = "putrid_spawn",
+	SCORCHED_GROUNDS = "scorched_grounds"
 }
 
 @export_category("Info")
@@ -23,6 +24,7 @@ var unity: String
 var is_player_unit: bool
 var is_summon: bool = false
 var essence_value: Array[float]
+var is_boss: bool = false
 
 func _ready() -> void:
 	position = starting_position

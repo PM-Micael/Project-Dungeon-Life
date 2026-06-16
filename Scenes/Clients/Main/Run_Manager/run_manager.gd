@@ -47,17 +47,14 @@ func _connect_events():
 
 # ─── Stage Setup ─────────────────────────────────────────────────────────────
 
-func _check_dungeon_run_ongoing(value: bool, dungeon: String = ""):
+func _check_dungeon_run_ongoing(value: bool, _dungeon: String = ""):
 	if value:
-		if PlayerData.dungeon_run_ongoing_the_dungeon:
-			selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
-		selected_dungeon_zone = dungeon
 		_setup_stage()
 
 func _setup_stage():
 	start_stage_button.visible = true
-	if PlayerData.dungeon_run_ongoing_the_dungeon:
-		selected_dungeon_zone = DungeonData.get_or_roll_dungeon_zone()
+	selected_dungeon_zone = DungeonData.roll_dungeon_zone()
+
 	
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false

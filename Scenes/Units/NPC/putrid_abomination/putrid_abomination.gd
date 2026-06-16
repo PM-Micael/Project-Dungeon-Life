@@ -2,6 +2,7 @@ extends Unit
 
 func _init() -> void:
 	id = "putrid_abomination"
+	is_boss = true
 	base_health = 1000
 	attack_damage = 50
 	attack_range = 100

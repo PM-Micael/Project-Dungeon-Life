@@ -6,11 +6,6 @@ const DUNGEONS: Dictionary = {
 	THE_DUNGEON = "The Dungeon"
 }
 
-const ZONE: Dictionary = {
-	PUTRID_LAYERS = "putrid_layers",
-	SCORCHED_GROUNDS = "scorched_grounds"
-}
-
 const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
 	SCORCHED_WANDERER = "scorched_wanderer",
@@ -32,7 +27,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	ZONE.SCORCHED_GROUNDS:[
+	GameData.ZONE.SCORCHED_GROUNDS:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
@@ -51,7 +46,7 @@ var dungeon_wave_formations: Dictionary = {
 			]
 		}
 	],
-	ZONE.PUTRID_LAYERS:[
+	GameData.ZONE.PUTRID_LAYERS:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
@@ -100,14 +95,16 @@ func _initialize_owned_units():
 		var entity_instance: Entity = u.instantiate()
 		available_units_as_entities.append(entity_instance)
 
-func get_or_roll_dungeon_zone() -> String:
-	var needs_reroll = PlayerData.dungeon_current_zone.is_empty() \
-		or (PlayerData.dungeon_room - PlayerData.dungeon_zone_rolled_at_room) >= 10
-	if needs_reroll:
-		var zone_keys = ZONE.keys()
-		PlayerData.dungeon_current_zone = ZONE[zone_keys[randi() % zone_keys.size()]]
-		PlayerData.dungeon_zone_rolled_at_room = PlayerData.dungeon_room
-	return PlayerData.dungeon_current_zone
+func roll_dungeon_zone() -> String:
+	var zone_keys: Array = GameData.ZONE.values()
+	var new_zone: String = zone_keys[randi_range(0, zone_keys.size()-1)]
+	while new_zone == PlayerData.current_zone:
+		new_zone = zone_keys[randi_range(0, zone_keys.size())]
+	
+	PlayerData.current_zone = new_zone
+	print("Rolled new zone: "+new_zone)
+	
+	return PlayerData.current_zone
 
 func check_and_merge_backpack_items() -> void:
 	var groups: Dictionary[String, int] = {}

@@ -15,6 +15,7 @@ var set_scale_custom: Vector2:
 
 var collected_essence: int = 0
 var game_on: bool = false
+var boss_slain: bool = false
 
 @onready var run_manager: RunManager = get_parent().get_parent()
 @onready var enemy_units_node: Node2D = get_node("Units/EnemyUnits")
@@ -51,12 +52,7 @@ func _physics_process(_delta: float) -> void:
 func _place_friendly_units():
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var team_formation: Array[Dictionary]
-	if PlayerData.dungeon_run_ongoing_the_dungeon:
-		team_formation = PlayerData.dungeon_team_formation_the_dungeon
-	elif PlayerData.dungeon_run_ongoing_putrid_layers:
-		team_formation = PlayerData.dungeon_team_formation_putrid_layers
-	elif PlayerData.dungeon_run_ongoing_scorched_grounds:
-		team_formation = PlayerData.dungeon_team_formation_scorched_grounds
+	team_formation = PlayerData.dungeon_team_formation_the_dungeon
 	
 	for u in team_formation:
 		var unit_name: String = u["unit_name"]
@@ -116,6 +112,8 @@ func _on_friendly_unit_died(unit: Unit):
 	friendly_units.erase(unit)
 
 func _on_enemy_unit_died(unit: Unit):
+	if unit.is_boss:
+		boss_slain = true
 	if not unit.is_summon:
 		collected_essence += randi_range(unit.essence_value[0], unit.essence_value[1])
 	enemy_units.erase(unit)
@@ -139,6 +137,9 @@ func _check_units_alive():
 		_on_defeat()
 
 func _on_victory():
+	if boss_slain:
+		PlayerData.current_zone = DungeonData.roll_dungeon_zone()
+		boss_slain = false
 	PlayerData.add_inner_sanctum_essence(collected_essence)
 	PlayerData.dungeon_run_collected_esseence += collected_essence
 	gained_essence_label.text = "Gained essence: " + str(collected_essence)
@@ -169,6 +170,7 @@ func _on_victory():
 		next_stage_button.pressed.emit()
 
 func _on_defeat():
+	boss_slain = false
 	total_collected_essence_label.text = "Total essence collected = "+str(PlayerData.dungeon_run_collected_esseence)
 	defeat_screen.visible = true
 	game_on = false

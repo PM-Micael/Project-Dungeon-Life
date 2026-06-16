@@ -153,3 +153,4 @@ func _start_button_pressed():
 		DungeonData.DUNGEONS.THE_DUNGEON:
 			PlayerData.dungeon_team_formation_the_dungeon = formation
 			PlayerData.dungeon_run_ongoing_the_dungeon = true
+	
