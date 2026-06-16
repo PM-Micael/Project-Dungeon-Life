@@ -84,6 +84,7 @@ func increase_life_pressed(multiplier: int):
 		return
 		
 	allocated_life_points += 0.1*multiplier
+	allocated_life_points = snapped(allocated_life_points, 0.1)
 	allocated_essence = virtual_essence
 	_set_life_upgrade_cost()
 
@@ -110,6 +111,7 @@ func increase_power_pressed(multiplier: int):
 		return
 		
 	allocated_power_points += 0.1*multiplier
+	allocated_power_points = snapped(allocated_power_points, 0.1)
 	allocated_essence = virtual_essence
 	_set_power_upgrade_cost()
 
