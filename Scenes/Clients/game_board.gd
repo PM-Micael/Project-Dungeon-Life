@@ -86,7 +86,7 @@ func _place_friendly_units():
 		friendly_units.append(unit_instance)
 
 func place_enemy_units(dungeon: String): ## Wait for dungeon chosen
-	var enemy_formation: Array = DungeonData.get_room_formations(dungeon, PlayerData.dungeon_room)
+	var enemy_formation: Array = PlayerData.current_room_enemy_formation
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
 	var loop_itteration: int = 0
@@ -153,6 +153,10 @@ func _on_victory():
 	victory_screen.visible = true
 	for node in friendly_units_node.get_children():
 		node.queue_free_unit()
+		
+	PlayerData.current_room_enemy_formation = DungeonData.get_room_formations(
+		PlayerData.current_zone,
+		PlayerData.dungeon_room)
 	game_on = false
 	round_over.emit(true)
 	

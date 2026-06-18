@@ -152,6 +152,10 @@ func _start_button_pressed():
 	
 	DungeonData.roll_dungeon_zone()
 	
+	PlayerData.current_room_enemy_formation = DungeonData.get_room_formations(
+		PlayerData.current_zone,
+		PlayerData.dungeon_room)
+	
 	print(selected_dungeon_name)
 	match selected_dungeon_name:
 		DungeonData.DUNGEONS.THE_DUNGEON:

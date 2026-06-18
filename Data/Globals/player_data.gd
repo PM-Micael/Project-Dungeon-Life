@@ -77,6 +77,8 @@ var dungeon_team_formation_the_dungeon: Array[Dictionary] = [
 	},
 ]
 
+var current_room_enemy_formation: Array = []
+
 var dungeon_loot: Array[Dictionary] = []
 var dungeon_loot_as_entities: Array[Entity] = []
 
@@ -172,9 +174,9 @@ func save_player_data():
 	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
 	
 	# Serialize dungeon_team_formation
-	var formation_array = []
+	var team_formation_array = []
 	for unit in dungeon_team_formation_the_dungeon:
-		formation_array.append({
+		team_formation_array.append({
 			"mapValue": {
 				"fields": {
 					"unit_name": { "stringValue": unit["unit_name"] },
@@ -195,19 +197,28 @@ func save_player_data():
 			"item_type": { "stringValue": item["item_type"] },
 		}}})
 	
+	var enemy_formation_array: Array[Dictionary] = []
+	for enemy in current_room_enemy_formation:
+		enemy_formation_array.append({"mapValue": {"fields":{
+			"type": {"stringValue": enemy["type"]},
+			"pos_x": {"doubleValue": enemy["position"].x},
+			"pos_y": {"doubleValue": enemy["position"].y}
+		}}})
+	
 	var data = {
 		"fields": {
 			"player_data": {"mapValue": {"fields": {
 				"display_name": { "stringValue": player_display_name },
 			}}},
 			"dungeon_data": { "mapValue": {"fields":{
+				"current_room_enemy_formation": {"arrayValue": {"values": enemy_formation_array}},
 				"run_ongoing": {"booleanValue": dungeon_run_ongoing},
 				"dungeon_id": {"stringValue": dungeon_id},
 				"room": {"integerValue": dungeon_room},
 				"tier": {"integerValue": dungeon_run_tier},
 				"collected_essence": {"integerValue": dungeon_run_collected_esseence},
 				"current_zone": {"stringValue": current_zone},
-				"team_formation": { "arrayValue": { "values": formation_array}},
+				"team_formation": { "arrayValue": { "values": team_formation_array}},
 				"loot": {"arrayValue": {"values": loot_array}}
 			}}},
 			"dungeon_high_score": {"mapValue": { "fields": {
@@ -270,11 +281,12 @@ func load_player_data():
 		var json = JSON.new()
 		json.parse(body.get_string_from_utf8())
 		var fields = json.get_data()["fields"]
+		var dungeon_fields = fields["dungeon_data"]["mapValue"]["fields"]
 		
 		# Basic fields
 		player_display_name = fields["player_data"]["mapValue"]["fields"]["display_name"]["stringValue"]
-		dungeon_run_tier = int(fields["dungeon_data"]["mapValue"]["fields"]["tier"]["integerValue"])
-		current_zone = fields["dungeon_data"]["mapValue"]["fields"]["current_zone"]["stringValue"]
+		dungeon_run_tier = int(dungeon_fields["tier"]["integerValue"])
+		current_zone = dungeon_fields["current_zone"]["stringValue"]
 		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
 		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
 		
@@ -293,12 +305,12 @@ func load_player_data():
 			)
 		else:
 			print("Fields dungeon_high_score doesn't exist")
-		dungeon_run_ongoing = fields["dungeon_data"]["mapValue"]["fields"]["run_ongoing"]["booleanValue"]
+		dungeon_run_ongoing = dungeon_fields["run_ongoing"]["booleanValue"]
 		if dungeon_run_ongoing:
-			dungeon_room = int(fields["dungeon_data"]["mapValue"]["fields"]["room"]["integerValue"])
+			dungeon_room = int(dungeon_fields["room"]["integerValue"])
 			dungeon_team_formation_the_dungeon.clear()
-			var formation_values = fields["dungeon_data"]["mapValue"]["fields"]["team_formation"]["arrayValue"].get("values", [])
-			for entry in formation_values:
+			var team_formation_values = dungeon_fields["team_formation"]["arrayValue"].get("values", [])
+			for entry in team_formation_values:
 				var f = entry["mapValue"]["fields"]
 				dungeon_team_formation_the_dungeon.append({
 					"unit_name": f["unit_name"]["stringValue"],
@@ -309,9 +321,22 @@ func load_player_data():
 						float(f["pos_y"]["doubleValue"])
 					)
 				})
+			current_room_enemy_formation.clear()
+			if dungeon_fields.has("current_room_enemy_formation"):
+				var enemy_formation_values = dungeon_fields["current_room_enemy_formation"]["arrayValue"].get("values",[])
+				for entry in enemy_formation_values:
+					var e = entry["mapValue"]["fields"]
+					current_room_enemy_formation.append({
+						"type": e["type"]["stringValue"],
+						"position": Vector2(
+							float(e["pos_x"]["doubleValue"]),
+							float(e["pos_y"]["doubleValue"]),
+						)
+					})
+				
 			# Dungeon loot
 			dungeon_loot.clear()
-			var loot_values = fields["dungeon_data"]["mapValue"]["fields"]["loot"]["arrayValue"].get("values", [])
+			var loot_values = dungeon_fields["loot"]["arrayValue"].get("values", [])
 			for entry in loot_values:
 				var l = entry["mapValue"]["fields"]
 				dungeon_loot.append({
@@ -319,7 +344,7 @@ func load_player_data():
 					"star_level": int(l["star_level"]["integerValue"]),
 					"item_type": l["item_type"]["stringValue"],
 				})
-			dungeon_run_collected_esseence = int(fields["dungeon_data"]["mapValue"]["fields"]["collected_essence"]["integerValue"])
+			dungeon_run_collected_esseence = int(dungeon_fields["collected_essence"]["integerValue"])
 		
 		print("Player data loaded successfully")
 		_initialize_loot_as_entities()

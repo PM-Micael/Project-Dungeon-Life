@@ -64,5 +64,5 @@ Buggs:
 		Execute bool on die function to stop "random crashes"
 		new icon
  
-2026-06-15:
-	Give units sound effects
+2026-06-17:
+	Save enemy formations so that you cant restart to get a new one.

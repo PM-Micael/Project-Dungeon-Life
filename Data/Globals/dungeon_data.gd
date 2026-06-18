@@ -99,7 +99,7 @@ func roll_dungeon_zone() -> String:
 	var zone_keys: Array = GameData.ZONE.values()
 	var new_zone: String = zone_keys[randi_range(0, zone_keys.size()-1)]
 	while new_zone == PlayerData.current_zone:
-		new_zone = zone_keys[randi_range(0, zone_keys.size())]
+		new_zone = zone_keys[randi_range(0, zone_keys.size()-1)]
 	
 	PlayerData.current_zone = new_zone
 	print("Rolled new zone: "+new_zone)
