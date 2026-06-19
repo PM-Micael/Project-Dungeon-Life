@@ -3,7 +3,7 @@ class_name Unit
 
 const Unity = {
 	PUTRID_SPAWN = "putrid_spawn",
-	SCORCHED_GROUNDS = "scorched_grounds"
+	SCORCHED_ZONE = "scorched_zone"
 }
 
 @export_category("Info")

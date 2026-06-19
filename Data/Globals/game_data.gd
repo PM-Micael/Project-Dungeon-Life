@@ -10,8 +10,8 @@ const DUNGEON: Dictionary = {
 }
 
 const ZONE: Dictionary = {
-	PUTRID_LAYERS = "putrid_layers",
-	SCORCHED_GROUNDS = "scorched_grounds"
+	PUTRID_ZONE = "putrid_zone",
+	SCORCHED_ZONE = "scorched_zone"
 }
 
 const UNIT: Dictionary = {

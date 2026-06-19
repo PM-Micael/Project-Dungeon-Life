@@ -32,7 +32,7 @@ var _available_units_as_packed_scenes: Array[PackedScene] = [
 ]
 
 var dungeon_wave_formations: Dictionary = {
-	GameData.ZONE.SCORCHED_GROUNDS:[
+	GameData.ZONE.SCORCHED_ZONE:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
@@ -47,7 +47,7 @@ var dungeon_wave_formations: Dictionary = {
 			]
 		}
 	],
-	GameData.ZONE.PUTRID_LAYERS:[
+	GameData.ZONE.PUTRID_ZONE:[
 		{
 			"boss_1":[
 				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
