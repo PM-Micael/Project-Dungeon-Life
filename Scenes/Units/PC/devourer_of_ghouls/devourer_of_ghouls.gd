@@ -25,7 +25,7 @@ func _set_stats():
 	health_component.set_stats(get_total_health())
 	attack_component.set_stats_absolute(get_total_attack_damage(), attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
-func _apply_devour_debuff(targets: Array[Entity], is_crit: bool):
+func _apply_devour_debuff(targets: Array[Entity], _is_crit: bool):
 	for u in targets:
 		if not u == null:
 			if u.effect_component != null:

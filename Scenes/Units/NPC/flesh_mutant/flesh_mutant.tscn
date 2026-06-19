@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bbnew2csv8mrp"]
+
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="1_5odr3"]
+[ext_resource type="Script" uid="uid://feubilkhtlvv" path="res://Scenes/Units/NPC/flesh_mutant/flesh_mutant.gd" id="1_fioru"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="2_fioru"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="3_jsfx0"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="4_qpyv7"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="5_02mx5"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="6_teceq"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_xelv0"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_2k8vm"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_1xs78"]
+[ext_resource type="Texture2D" uid="uid://cet8mpquip7l5" path="res://Scenes/Units/NPC/flesh_goul/flesh_ghoul.png" id="10_b7ctf"]
+
+[node name="FleshMutant" type="Node2D" unique_id=1067971272]
+script = ExtResource("1_fioru")
+
+[node name="Components" type="Node2D" parent="." unique_id=1411334203]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("1_5odr3")]
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("2_fioru")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("3_jsfx0")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("4_qpyv7")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_02mx5")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("6_teceq")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("7_xelv0")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_2k8vm")]
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_1xs78")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1327775320]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_b7ctf")

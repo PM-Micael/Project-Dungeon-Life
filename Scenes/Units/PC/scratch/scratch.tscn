@@ -23,7 +23,7 @@ script = ExtResource("1_yavjn")
 
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("3_0a3eh")]
 attack_damage = 20
-attack_range = 300
+attack_range = 250
 base_critical_percent_chance = 15
 base_critical_damage_multiplier = 1.3
 

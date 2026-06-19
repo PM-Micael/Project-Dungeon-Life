@@ -36,5 +36,6 @@ script = ExtResource("1_a6kgj")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_svtj0")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1636351838]
+self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_iys0x")

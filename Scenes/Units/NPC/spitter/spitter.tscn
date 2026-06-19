@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bs2uyl5l2iusd"]
+
+[ext_resource type="Script" uid="uid://bcyn80rua01u6" path="res://Scenes/Units/NPC/spitter/spitter.gd" id="1_q7kfy"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="2_5drug"]
+[ext_resource type="AudioStream" uid="uid://dnvwfdb886vax" path="res://Scenes/Units/NPC/spitter/universfield-cartoon-splat-310479.mp3" id="3_5drug"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_amilj"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_r25un"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_gsa2f"]
+[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_pyn6h"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_af2kx"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="8_ntot6"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_gwcpu"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="10_aktqb"]
+[ext_resource type="Texture2D" uid="uid://cet8mpquip7l5" path="res://Scenes/Units/NPC/flesh_goul/flesh_ghoul.png" id="11_6210p"]
+
+[node name="Spitter" type="Node2D" unique_id=985491059]
+script = ExtResource("1_q7kfy")
+
+[node name="Components" type="Node2D" parent="." unique_id=2000397138]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_5drug")]
+attack_speed = 1.4
+
+[node name="Timer" parent="Components/AttackComponent" index="0" unique_id=1830321497]
+wait_time = 0.7
+
+[node name="AttackSound" parent="Components/AttackComponent" index="1" unique_id=88329044]
+stream = ExtResource("3_5drug")
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_amilj")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_r25un")]
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("5_gsa2f")]
+
+[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("6_pyn6h")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_af2kx")]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("8_ntot6")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_gwcpu")]
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_aktqb")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1248663027]
+self_modulate = Color(2.5749953e-06, 0.46792078, 0.17060328, 1)
+texture_repeat = 3
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_6210p")
+
+[editable path="Components/AttackComponent"]

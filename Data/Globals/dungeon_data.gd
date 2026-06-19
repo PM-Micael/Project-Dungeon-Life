@@ -8,6 +8,7 @@ const DUNGEONS: Dictionary = {
 
 const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
+	SPITTER = "spitter",
 	SCORCHED_WANDERER = "scorched_wanderer",
 	PUTRID_ABOMINATION = "putrid_abomination",
 }
@@ -54,12 +55,14 @@ var dungeon_wave_formations: Dictionary = {
 			"formation_1":[
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(350, 350) },
+				{ "type": EnemyType.SPITTER, "position": Vector2(350, 250) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(50, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SPITTER, "position": Vector2(350, 250) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(550, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(750, 350) },
 			],

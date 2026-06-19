@@ -1,7 +1,7 @@
 extends Unit
 
 func _init() -> void:
-	id = "flesh_goul"
+	id = "flesh_mutant"
 	
 	base_health = 200
 	attack_damage = 10
@@ -12,7 +12,7 @@ func _init() -> void:
 func _ready() -> void:
 	super._ready()
 	_set_stats()
-	_info("flesh_goul", "Flesh Goul", "Team 2", "Team 1")
+	_info("flesh_mutant", "Flesh Mutant", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
 
 func _set_stats():
