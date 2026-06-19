@@ -42,4 +42,7 @@ func _attack_adjacent_targets(targets: Array[Entity], _is_crit: bool):
 		var unit_tile = BoardGrid.world_to_tile(t.position)
 
 		if unit_tile in adjacent_tiles:
-			t.health_component.take_damage_flat(self, 10, false)
+			t.health_component.take_damage_flat(
+				self,
+				attack_component.get_total_attack_damage(),
+				false)
