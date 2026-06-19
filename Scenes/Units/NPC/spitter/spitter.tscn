@@ -44,7 +44,7 @@ stream = ExtResource("3_5drug")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_aktqb")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1248663027]
-self_modulate = Color(2.5749953e-06, 0.46792078, 0.17060328, 1)
+self_modulate = Color(0, 0.2901961, 1, 1)
 texture_repeat = 3
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_6210p")

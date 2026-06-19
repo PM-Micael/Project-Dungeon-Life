@@ -21,6 +21,7 @@ var final_damage_taken_amount: int = 0
 
 @export var max_health: int
 @export var current_health: int
+@export var base_defense: int
 
 
 func get_health_percent() -> float:
@@ -40,7 +41,8 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)
 	
-	final_damage_taken_amount = (amount * final_damage_taken_modifier)
+	final_damage_taken_amount = amount * final_damage_taken_modifier * (1.0 - base_defense / 100.0)
+	
 	post_calculate_damage.emit(attacker, amount, is_crit)
 	current_health -= final_damage_taken_amount
 	current_health = clamp(current_health, 0, max_health)

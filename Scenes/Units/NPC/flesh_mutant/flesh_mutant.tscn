@@ -14,6 +14,11 @@
 
 [node name="FleshMutant" type="Node2D" unique_id=1067971272]
 script = ExtResource("1_fioru")
+base_health = null
+attack_damage = null
+attack_range = null
+base_critical_percent_chance = null
+base_critical_damage_multiplier = null
 
 [node name="Components" type="Node2D" parent="." unique_id=1411334203]
 
@@ -24,6 +29,7 @@ script = ExtResource("1_fioru")
 [node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("3_jsfx0")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("4_qpyv7")]
+base_defense = 30
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_02mx5")]
 
@@ -36,5 +42,6 @@ script = ExtResource("1_fioru")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_1xs78")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1327775320]
+self_modulate = Color(0, 0.46666667, 0.17254902, 1)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_b7ctf")

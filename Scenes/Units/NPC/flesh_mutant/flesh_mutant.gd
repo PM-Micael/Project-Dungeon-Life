@@ -14,6 +14,7 @@ func _ready() -> void:
 	_set_stats()
 	_info("flesh_mutant", "Flesh Mutant", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
+	attack_component.post_attack_target.connect(_attack_adjacent_targets)
 
 func _set_stats():
 	health_component.set_stats(get_total_health())
@@ -22,3 +23,23 @@ func _set_stats():
 		attack_range,
 		base_critical_percent_chance,
 		base_critical_damage_multiplier)
+
+func _attack_adjacent_targets(targets: Array[Entity], _is_crit: bool):
+	var self_pos = BoardGrid.world_to_tile(position)
+	var target_pos = BoardGrid.world_to_tile(targets[0].position)
+
+	var adjacent_tiles: Array[Vector2i] = BoardGrid.get_tiles_adjacent_wide(self_pos, target_pos)
+
+	var board_targets: Array = get_parent().get_parent().get_node("FriendlyUnits").get_children()
+
+	for t in board_targets:
+		if t == targets[0]:
+			continue # Don't hit the original target again
+
+		if t.hostile_team != "Team 2":
+			continue
+
+		var unit_tile = BoardGrid.world_to_tile(t.position)
+
+		if unit_tile in adjacent_tiles:
+			t.health_component.take_damage_flat(self, 10, false)
