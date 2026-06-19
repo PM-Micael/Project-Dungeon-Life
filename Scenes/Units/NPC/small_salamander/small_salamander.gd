@@ -32,7 +32,7 @@ func _damage_surrounding_targets(targets: Array[Entity], _is_crit: bool):
 
 	for t in board_targets:
 		if t == targets[0]:
-			continue # Don't hit the original target again
+			continue
 
 		if t.hostile_team != "Team 2":
 			continue

@@ -1,20 +1,19 @@
 extends Unit
 
 func _init() -> void:
-	id = "flesh_mutant"
+	id = "scorcheed_juggernaut"
 	
 	base_health = 200
 	attack_damage = 10
-	attack_range = 100
+	attack_range = 250
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
 
 func _ready() -> void:
 	super._ready()
 	_set_stats()
-	_info("flesh_mutant", "Flesh Mutant", "Team 2", "Team 1")
+	_info("scorcheed_juggernaut", "Scorcheed Suggernaut", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
-	attack_component.post_attack_target.connect(_attack_adjacent_targets)
 
 func _set_stats():
 	health_component.set_stats(get_total_health())
@@ -23,13 +22,14 @@ func _set_stats():
 		attack_range,
 		base_critical_percent_chance,
 		base_critical_damage_multiplier)
+	
+	attack_component.post_attack_target.connect(_damage_surrounding_targets)
 
-func _attack_adjacent_targets(targets: Array[Entity], _is_crit: bool):
+func _damage_surrounding_targets(targets: Array[Entity], _is_crit: bool):
 	var self_pos = BoardGrid.world_to_tile(position)
 	var target_pos = BoardGrid.world_to_tile(targets[0].position)
-
-	var adjacent_tiles: Array[Vector2i] = BoardGrid.get_tiles_adjacent_wide(self_pos, target_pos)
-
+	
+	var tiles: Array[Vector2i] = BoardGrid.get_tiles_two_behind(self_pos, target_pos)
 	var board_targets: Array = get_parent().get_parent().get_node("FriendlyUnits").get_children()
 
 	for t in board_targets:
@@ -41,7 +41,7 @@ func _attack_adjacent_targets(targets: Array[Entity], _is_crit: bool):
 
 		var unit_tile = BoardGrid.world_to_tile(t.position)
 
-		if unit_tile in adjacent_tiles:
+		if unit_tile in tiles:
 			t.health_component.take_damage_flat(
 				self,
 				attack_component.get_total_attack_damage(),

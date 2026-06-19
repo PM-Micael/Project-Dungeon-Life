@@ -25,6 +25,7 @@ func _init() -> void:
 func get_tiles_adjacent_wide(start_tile: Vector2i, target_tile: Vector2i) -> Array[Vector2i]:
 	var target_a: Vector2i
 	var target_b: Vector2i
+	
 	if target_tile.x > start_tile.x or target_tile.x < start_tile.x:
 		target_a = target_tile - Vector2i(0, +1)
 		target_b = target_tile - Vector2i(0, -1)
@@ -47,6 +48,24 @@ func get_tiles_surrounding_target(target_tile: Vector2i) -> Array[Vector2i]:
 		target_tile + Vector2i(-1, +1),
 	]
 
+func get_tiles_two_behind(start_tile: Vector2i, target_tile: Vector2i) -> Array[Vector2i]:
+	var target_a: Vector2i
+	var target_b: Vector2i
+	
+	if target_tile.x > start_tile.x:
+		target_a = target_tile - Vector2i(+1, 0)
+		target_b = target_tile - Vector2i(+2, 0)
+	elif target_tile.x < start_tile.x:
+		target_a = target_tile - Vector2i(-1, 0)
+		target_b = target_tile - Vector2i(-2, 0)
+	elif target_tile.y > start_tile.y:
+		target_a = target_tile - Vector2i(0, +1)
+		target_b = target_tile - Vector2i(0, +2)
+	elif target_tile.y < start_tile.y:
+		target_a = target_tile - Vector2i(0, -1)
+		target_b = target_tile - Vector2i(0, -2)
+	
+	return [target_a, target_b]
 
 func get_neighbor_tile(tile: Vector2i, direction: Vector2i) -> Vector2i:
 	return tile + direction

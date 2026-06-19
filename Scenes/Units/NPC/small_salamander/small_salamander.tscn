@@ -38,6 +38,7 @@ script = ExtResource("1_48inj")
 [node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("3_hj6km")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("4_cc2mg")]
+base_defense = 30
 
 [node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_mvqs7")]
 
