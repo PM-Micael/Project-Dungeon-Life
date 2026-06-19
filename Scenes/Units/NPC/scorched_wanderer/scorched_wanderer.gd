@@ -17,4 +17,8 @@ func _ready() -> void:
 
 func _set_stats():
 	health_component.set_stats(get_total_health())
-	attack_component.set_stats_absolute(get_total_attack_damage(), 100, base_critical_percent_chance, base_critical_damage_multiplier)
+	attack_component.set_stats_absolute(
+		get_total_attack_damage(),
+		attack_range,
+		base_critical_percent_chance,
+		base_critical_damage_multiplier)

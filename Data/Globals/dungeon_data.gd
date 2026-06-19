@@ -10,8 +10,10 @@ const EnemyType: Dictionary = {
 	FLESH_GOUL = "flesh_goul",
 	SPITTER = "spitter",
 	FLESH_MUTANT = "flesh_mutant",
-	SCORCHED_WANDERER = "scorched_wanderer",
 	PUTRID_ABOMINATION = "putrid_abomination",
+	
+	SCORCHED_WANDERER = "scorched_wanderer",
+	SMALL_SALAMANDER = "small_salamander"
 }
 
 const ITEM_REGISTRY: Dictionary = {
@@ -36,13 +38,13 @@ var dungeon_wave_formations: Dictionary = {
 			],
 			"formation_1":[
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
-				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(350, 350) },
+				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(450, 350) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(550, 350) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(50, 350) },
-				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(550, 350) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(750, 350) },
 			]

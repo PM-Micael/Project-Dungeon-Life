@@ -35,6 +35,19 @@ func get_tiles_adjacent_wide(start_tile: Vector2i, target_tile: Vector2i) -> Arr
 	
 	return [target_a, target_b]
 
+func get_tiles_surrounding_target(target_tile: Vector2i) -> Array[Vector2i]:
+	return [
+		target_tile + Vector2i(0, +1),
+		target_tile + Vector2i(+1, 0),
+		target_tile + Vector2i(+1, +1),
+		target_tile + Vector2i(0, -1),
+		target_tile + Vector2i(-1, 0),
+		target_tile + Vector2i(-1, -1),
+		target_tile + Vector2i(+1, -1),
+		target_tile + Vector2i(-1, +1),
+	]
+
+
 func get_neighbor_tile(tile: Vector2i, direction: Vector2i) -> Vector2i:
 	return tile + direction
 
