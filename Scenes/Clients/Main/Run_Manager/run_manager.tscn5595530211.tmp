@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b8bb0gl5w2ebc"]
+
+[ext_resource type="Script" uid="uid://iere75t3y7yd" path="res://Scenes/Clients/Main/Run_Manager/run_manager.gd" id="1_d5ua6"]
+[ext_resource type="Script" uid="uid://comhurfb2ej2l" path="res://Scenes/Clients/Main/Board_Window/board_window.gd" id="2_ftwpc"]
+
+[node name="RunManager" type="Node2D" unique_id=896845944]
+script = ExtResource("1_d5ua6")
+
+[node name="BoardWindow" type="Window" parent="." unique_id=831020572]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+script = ExtResource("2_ftwpc")

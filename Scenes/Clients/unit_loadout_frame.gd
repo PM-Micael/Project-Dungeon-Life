@@ -1,38 +1,90 @@
 extends Node2D
 class_name UnitLoadoutFrame
 
-@onready var unit_entity: Entity:
+@onready var unit_entity: Unit:
 	set(value):
 		unit_entity = value
 		_on_unit_entity_change()
- 
-var show_stats: bool = false:
-	set(value):
-		show_stats = value
-		_toggle_show_stats()
 
 var unit_entity_container: EntityContainer
 var weapon_entity_container: EntityContainer
+
+@onready var buffs_h_box_container: HBoxContainer = $BuffFrame/Buffs/ScrollContainer/HBoxContainer
+@onready var debuffs_h_box_container: HBoxContainer = $DebuffFrame/Debuffs/ScrollContainer/HBoxContainer
 
 func _ready() -> void:
 	var container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 	var unit_container_instance = container_scene.instantiate()
 	unit_container_instance.name = "UnitContainer"
-	unit_container_instance.position = Vector2(425, -225.0)
-	unit_container_instance.scale = Vector2(2, 2)
+	unit_container_instance.position = Vector2(135, 170)
+	unit_container_instance.scale = Vector2(4, 4)
 	get_node("UnitPreview").add_child(unit_container_instance)
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
 	weapon_container_instance.name = "WeaponContainer"
-	weapon_container_instance.position = Vector2(150, -175)
-	weapon_container_instance.scale = Vector2(1.5, 1.5)
+	weapon_container_instance.position = Vector2(75, 120)
+	weapon_container_instance.scale = Vector2(1, 1)
 	get_node("WeaponPreviewFrame").add_child(weapon_container_instance)
 	
 	unit_entity_container = get_node("UnitPreview/UnitContainer")
 	weapon_entity_container = get_node("WeaponPreviewFrame/WeaponContainer")
 
-func _toggle_show_stats():
-	get_node("StatsFrame").visible = show_stats
+func fill_buffs():
+	for child in buffs_h_box_container.get_children():
+		child.queue_free()
+	
+	if not is_instance_valid(unit_entity_container.entity):
+		return
+	
+	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
+	var blessings: Array[Blessing] = effect_component.active_blessings
+	var buffs: Array[Buff] = effect_component.active_buffs
+	
+	var loop_count: int = 0
+	for blessing in blessings:
+		for buff in blessing.buffs:
+			var sprite: Sprite2D = Sprite2D.new()
+			sprite.scale = Vector2(0.8, 0.8)
+			sprite.position = Vector2(30 + (50*loop_count), 30)
+			sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+			buffs_h_box_container.add_child(sprite)
+			loop_count += 1
+	
+	loop_count = 0
+	for buff in buffs:
+		var sprite: Sprite2D = Sprite2D.new()
+		sprite.scale = Vector2(0.8, 0.8)
+		sprite.position = Vector2(30 + (50*loop_count), 30)
+		sprite.texture = load("res://Scripts/Effects/Buffs/"+buff.id+"/"+buff.id+".svg")
+		buffs_h_box_container.add_child(sprite)
+		loop_count += 1
+
+func fill_debuffs():
+	for child in debuffs_h_box_container.get_children():
+		child.queue_free()
+	
+	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
+	var afflictions: Array[Affliction] = effect_component.active_afflictions
+	var debuffs: Array[Debuff] = effect_component.active_debuffs
+	
+	var loop_count: int = 0
+	for affliction in afflictions:
+		for debuff in affliction.debuffs:
+			var sprite: Sprite2D = Sprite2D.new()
+			sprite.scale = Vector2(0.8, 0.8)
+			sprite.position = Vector2(30 + (50*loop_count), 30)
+			sprite.texture = load("res://Scripts/Effects/Buffs/"+debuff.id+"/"+debuff.id+".svg")
+			buffs_h_box_container.add_child(sprite)
+			loop_count += 1
+	
+	loop_count = 0
+	for debuff in debuffs:
+		var sprite: Sprite2D = Sprite2D.new()
+		sprite.scale = Vector2(0.8, 0.8)
+		sprite.position = Vector2(30 + (50*loop_count), 30)
+		sprite.texture = load("res://Scripts/Effects/Debuffs/"+debuff.id+"/"+debuff.id+".svg")
+		debuffs_h_box_container.add_child(sprite)
+		loop_count += 1
 
 func _on_unit_entity_change():
 	unit_entity_container.entity = unit_entity
@@ -40,26 +92,42 @@ func _on_unit_entity_change():
 	var weapon_slot_component = unit_entity.get_node("Components/WeaponSlotComponent")
 	if weapon_slot_component != null:
 		var weapon = weapon_slot_component.get_child(0)
-		if weapon == null:
-			weapon_entity_container.entity = null
-		else:
-			weapon_entity_container.entity = weapon
+		weapon_entity_container.entity = weapon if weapon != null else null
 
 	# Update StatsFrame
-	if show_stats:
-		get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
-		get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
+	var health_component: HealthComponent = unit_entity.get_node("Components/HealthComponent")
+	health_component.set_stats(unit_entity.get_total_health())
+	var attack_component: AttackComponent = unit_entity.get_node("Components/AttackComponent")
+	attack_component.set_stats_absolute(
+		unit_entity.get_total_attack_damage(),
+		unit_entity.attack_range,
+		unit_entity.base_critical_percent_chance,
+		unit_entity.base_critical_damage_multiplier)
+	var effect_component: EffectComponent = unit_entity.get_node("Components/EffectComponent")
+	get_node("StatsFrame/Health/ValueLabel").text = str(health_component.current_health) + " / " + str(health_component.max_health)
+	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
+	
+	# Connect signals for real-time updates (disconnect first to avoid duplicates)
+	if health_component.damage_taken.is_connected(_on_selected_unit_health_changed):
+		health_component.damage_taken.disconnect(_on_selected_unit_health_changed)
+	health_component.damage_taken.connect(_on_selected_unit_health_changed)
 
-		# Connect signals for real-time updates (disconnect first to avoid duplicates)
-		if unit_entity.health_component.damage_taken.is_connected(_on_selected_unit_health_changed):
-			unit_entity.health_component.damage_taken.disconnect(_on_selected_unit_health_changed)
-		unit_entity.health_component.damage_taken.connect(_on_selected_unit_health_changed)
+	if attack_component.post_attack_target.is_connected(_on_selected_unit_attacked):
+		attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
+	attack_component.post_attack_target.connect(_on_selected_unit_attacked)
+	
+	if effect_component.buff_applied.is_connected(_on_buff_changed):
+		effect_component.buff_applied.disconnect(_on_buff_changed)
+	effect_component.buff_applied.connect(_on_buff_changed)
+	
+	if effect_component.debuff_applied.is_connected(_on_debuff_changed):
+		effect_component.debuff_applied.disconnect(_on_debuff_changed)
+	effect_component.debuff_applied.connect(_on_debuff_changed)
+	
+	fill_buffs()
+	fill_debuffs()
 
-		if unit_entity.attack_component.post_attack_target.is_connected(_on_selected_unit_attacked):
-			unit_entity.attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
-		unit_entity.attack_component.post_attack_target.connect(_on_selected_unit_attacked)
-
-func _on_selected_unit_health_changed(_attacker: Entity):
+func _on_selected_unit_health_changed(_attacker: Entity, _is_crit: bool):
 	if not is_instance_valid(unit_entity):
 		return
 	get_node("StatsFrame/Health/ValueLabel").text = str(unit_entity.health_component.current_health) + " / " + str(unit_entity.health_component.max_health)
@@ -69,26 +137,15 @@ func _on_selected_unit_attacked(_targets: Array[Entity]):
 		return
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 
+func _on_buff_changed(_target: Entity):
+	fill_buffs()
+
+func _on_debuff_changed(_target: Entity):
+	fill_debuffs()
+
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")
-	var unit_weapon_slot_component: Entity = unit_entity.get_node("Components/WeaponSlotComponent")
-	var unit_weapon = unit_weapon_slot_component.get_child(0)
-	if unit_weapon != null:
-		unit_weapon.free()
-	
-	unit_weapon_slot_component.add_child(new_weapon_entity)
-	
-	# Update the selection
-	var unit_selection_container_entities: Array[EntityContainer] = get_parent().unit_selection_frame_entity_containers_node.get_children()
-	for u in unit_selection_container_entities:
-		if u.entity.display_name == unit_entity.display_name:
-			u.entity = unit_entity
+	DungeonData.change_unit_weapon(unit_entity, new_weapon_entity)
 
 func _get_display_attack_damage() -> int:
-	var total = unit_entity.attack_component.attack_damage
-	var weapon_slot = unit_entity.weapon_slot_component
-	if weapon_slot != null:
-		var weapon = weapon_slot.get_child(0)
-		if weapon != null:
-			total += weapon.weapon_component.added_attack_damage_multiplier
-	return total
+	return unit_entity.get_node("Components/AttackComponent").get_total_attack_damage()

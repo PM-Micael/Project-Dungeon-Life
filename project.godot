@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Project Dungeon Life"
-run/main_scene="uid://bok8av2qavev5"
+config/name="Dungeon Life"
+run/main_scene="uid://cs1d6obtt2nva"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 0)
+boot_splash/image="res://Assets/dungeon-life-icon.ico"
+config/icon="res://Assets/dungeon-life-icon.ico"
+config/windows_native_icon="res://Assets/dungeon-life-icon.ico"
 
 [autoload]
 
@@ -22,17 +25,17 @@ DungeonData="*uid://bcar2mpom4rjn"
 PlayerData="*uid://bgbudg866glv0"
 LocalData="*uid://c1pyjus1lfren"
 BoardGrid="*uid://dq3uan8m2l3k6"
+LootTable="*uid://dynvlo7g5ek6r"
+AudioManager="*uid://7giarjs3fuji"
+GameData="*uid://b4nt171p6fvva"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/resizable=false
+window/size/viewport_width=1919
+window/size/viewport_height=1079
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
-window/size/no_focus=true
-window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
 window/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)
 window/defaults/default_environment=""
@@ -41,6 +44,7 @@ window/defaults/default_environment=""
 
 folder_colors={
 "res://Assets/": "green",
+"res://Builds/": "purple",
 "res://Components/": "blue",
 "res://Data/": "orange",
 "res://Scripts/": "red"

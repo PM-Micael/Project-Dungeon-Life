@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://b8bb0gl5w2ebc"]
+
+[ext_resource type="Script" uid="uid://iere75t3y7yd" path="res://Scenes/Clients/Main/Run_Manager/run_manager.gd" id="1_d5ua6"]
+[ext_resource type="Script" uid="uid://comhurfb2ej2l" path="res://Scenes/Clients/Main/Board_Window/board_window.gd" id="2_rsedy"]
+[ext_resource type="Script" uid="uid://wrpyhbtmr8rm" path="res://Scenes/Clients/inventory.gd" id="3_8dbfp"]
+[ext_resource type="PackedScene" uid="uid://kfflhfiy04w" path="res://Scenes/Clients/board.tscn" id="3_svmjg"]
+[ext_resource type="Script" uid="uid://dhfjyiqbq5u31" path="res://Scenes/Clients/Main/Run_Manager/inventory_window.gd" id="4_ncke1"]
+[ext_resource type="PackedScene" uid="uid://bfi8yb8mqq7ob" path="res://Scenes/Clients/unit_loadout_frame.tscn" id="4_rsedy"]
+[ext_resource type="Script" uid="uid://bau5aydivr04r" path="res://Scenes/Clients/backpack_frame.gd" id="5_ncke1"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="6_ddveh"]
+[ext_resource type="Script" uid="uid://haveicp28q6u" path="res://Scenes/Clients/Main/Run_Manager/auto_advance_button.gd" id="8_b08fb"]
+
+[node name="RunManager" type="Node2D" unique_id=896845944]
+script = ExtResource("1_d5ua6")
+
+[node name="BoardWindow" type="Window" parent="." unique_id=17590501]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(800, 800)
+script = ExtResource("2_rsedy")
+
+[node name="Board" parent="BoardWindow" unique_id=1051771976 instance=ExtResource("3_svmjg")]
+
+[node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(800, 800)
+script = ExtResource("4_ncke1")
+
+[node name="UI" type="Node2D" parent="InventoryWindow" unique_id=1440841288]
+
+[node name="Inventory" type="Node2D" parent="InventoryWindow/UI" unique_id=1423679871]
+script = ExtResource("3_8dbfp")
+
+[node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=1433930670]
+
+[node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/Style" unique_id=236167174]
+offset_right = 800.0
+offset_bottom = 800.0
+mouse_filter = 2
+
+[node name="Backround" type="ColorRect" parent="InventoryWindow/UI/Inventory/Style" unique_id=1581728772]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 798.0
+offset_bottom = 798.0
+mouse_filter = 2
+color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="InventoryWindow/UI/Inventory/Style" unique_id=1031077245]
+position = Vector2(399.99997, 399.99997)
+scale = Vector2(0.995, 0.995)
+texture = ExtResource("6_ddveh")
+
+[node name="UnitLoadoutFrame" parent="InventoryWindow/UI/Inventory" unique_id=599129927 instance=ExtResource("4_rsedy")]
+
+[node name="BackpackFrame" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=1557088162]
+position = Vector2(453, 480)
+script = ExtResource("5_ncke1")
+
+[node name="Style" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1630188580]
+position = Vector2(-25, -5)
+
+[node name="Frame" type="ColorRect" parent="InventoryWindow/UI/Inventory/BackpackFrame/Style" unique_id=48483342]
+offset_right = 350.0
+offset_bottom = 300.0
+
+[node name="Background" type="ColorRect" parent="InventoryWindow/UI/Inventory/BackpackFrame/Style" unique_id=152295278]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 349.0
+offset_bottom = 299.0
+color = Color(0, 0, 0, 1)
+
+[node name="Items" type="Node2D" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1031920431]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame" unique_id=1294170850]
+offset_left = -20.0
+offset_right = 320.0
+offset_bottom = 290.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryWindow/UI/Inventory/BackpackFrame/ScrollContainer" unique_id=1278164257]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="OtherInfo" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=606502295]
+
+[node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/OtherInfo" unique_id=825724812]
+offset_right = 114.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 34
+text = "Room: "
+
+[node name="AutoAdvance" type="Node2D" parent="InventoryWindow/UI/Inventory" unique_id=142719757]
+
+[node name="AutoAdvanceButton" type="Button" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=2061859412]
+offset_left = 395.0
+offset_top = 5.0
+offset_right = 471.0
+offset_bottom = 36.0
+text = "Off"
+script = ExtResource("8_b08fb")
+
+[node name="Label" type="Label" parent="InventoryWindow/UI/Inventory/AutoAdvance" unique_id=160100725]
+offset_left = 353.0
+offset_top = 5.0
+offset_right = 393.0
+offset_bottom = 36.0
+text = "Auto:"
+horizontal_alignment = 1
+vertical_alignment = 1

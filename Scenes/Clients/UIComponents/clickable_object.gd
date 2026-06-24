@@ -1,30 +1,23 @@
-extends Area2D
+extends Control
 class_name ClickableObject
 
-@onready var parent = get_parent()
-@onready var popup_menu: PopupMenu = get_node("PopupMenu")
+signal left_clicked(entity_container: EntityContainer)
+signal right_clicked(entity_container: EntityContainer)
+signal tile_left_clicked(tile: Tile)
 
-func _ready() -> void:
-	#_create_popup_menu()
-	return
+@onready var entity_container_parent: EntityContainer
 
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				parent.on_clicked()
-			
-			MOUSE_BUTTON_RIGHT:
-				if popup_menu == null:
+				var node = get_parent().get_parent()
+				if node is Tile:
+					tile_left_clicked.emit(node)
 					return
-					
-				popup_menu.position = get_viewport().get_mouse_position()
-				popup_menu.popup()
-
-func _create_popup_menu():
-	popup_menu = PopupMenu.new()
-	add_child(popup_menu)
-
-func on_right_click_option_selected(id: int):
-	print("Clicked id: " + str(id))
-	parent.on_right_click_option_selected(id)
+				entity_container_parent = node
+				print("Left Clicked " + str(entity_container_parent.entity.name))
+				left_clicked.emit(entity_container_parent)
+			MOUSE_BUTTON_RIGHT:
+				print("Right Clicked")
+				right_clicked.emit(entity_container_parent)

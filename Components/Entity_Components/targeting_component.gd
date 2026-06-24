@@ -5,6 +5,9 @@ class_name TargetingComponent
 
 var target: Entity
 
+func _physics_process(delta: float) -> void:
+	select_closest_target(parent_entity.hostile_team)
+
 func select_closest_target(target_team: String):
 	var enemies = get_tree().get_nodes_in_group(target_team)
 	if enemies.is_empty():

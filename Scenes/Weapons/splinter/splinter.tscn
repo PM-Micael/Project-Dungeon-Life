@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ddv5m438vxeqd"]
+
+[ext_resource type="Script" uid="uid://6j521yh1ami4" path="res://Scenes/Weapons/splinter/splinter.gd" id="1_nwt7h"]
+[ext_resource type="Texture2D" uid="uid://csxaya2k8d4wc" path="res://Scenes/Weapons/splinter/splinter.png" id="2_2241d"]
+[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="3_mvh4w"]
+
+[node name="Splinter" type="Node2D" unique_id=1112050208]
+script = ExtResource("1_nwt7h")
+
+[node name="Components" type="Node2D" parent="." unique_id=1568524634]
+
+[node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_mvh4w")]
+added_attack_damage_multiplier = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=394093689]
+texture = ExtResource("2_2241d")

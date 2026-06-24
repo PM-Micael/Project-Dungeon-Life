@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dksr8nsejihd8"]
+
+[ext_resource type="Script" uid="uid://6xe0fvq0qbar" path="res://Scenes/Clients/Main/Profile/profile.gd" id="1_3btsy"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="1_us3fw"]
+
+[node name="Profile" type="Node2D" unique_id=65702442]
+script = ExtResource("1_3btsy")
+
+[node name="Style" type="Node2D" parent="." unique_id=400632792]
+
+[node name="Sprite2D" type="Sprite2D" parent="Style" unique_id=197927311]
+position = Vector2(160, 250)
+scale = Vector2(0.40000004, 0.625)
+texture = ExtResource("1_us3fw")
+
+[node name="ColorRect" type="ColorRect" parent="Style" unique_id=877927242]
+offset_right = 319.0
+offset_bottom = 500.0
+color = Color(0.10980392, 0.52156866, 0, 0.14509805)
+
+[node name="UserName" type="Node2D" parent="." unique_id=965365945]
+
+[node name="UserNameLabel" type="RichTextLabel" parent="UserName" unique_id=2009235344]
+offset_left = 14.0
+offset_top = 36.0
+offset_right = 168.0
+offset_bottom = 67.0
+bbcode_enabled = true
+text = "Username"
+vertical_alignment = 1
+
+[node name="UserNameLineEdit" type="LineEdit" parent="UserName" unique_id=1479652746]
+offset_left = 177.0
+offset_top = 36.0
+offset_right = 319.0
+offset_bottom = 67.0
+placeholder_text = "UserName"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="UserName" unique_id=2106611773]
+offset_top = 59.0
+offset_right = 320.0
+offset_bottom = 82.0
+text = "_______________________________________________"
+
+[node name="InnerSanctum" type="Node2D" parent="." unique_id=11241351]
+position = Vector2(0, 14)
+
+[node name="TitleLabel" type="RichTextLabel" parent="InnerSanctum" unique_id=1481854443]
+offset_left = 14.0
+offset_top = 67.0
+offset_right = 145.0
+offset_bottom = 97.0
+bbcode_enabled = true
+text = "[b]Inner Sanctum[/b]"
+
+[node name="EssenceLabel" type="Label" parent="InnerSanctum" unique_id=1471706212]
+offset_left = 38.0
+offset_top = 95.0
+offset_right = 108.0
+offset_bottom = 125.0
+text = "Essence: "
+
+[node name="LifeLabel" type="Label" parent="InnerSanctum" unique_id=750526905]
+offset_left = 38.0
+offset_top = 125.0
+offset_right = 78.0
+offset_bottom = 155.0
+text = "Life: "
+
+[node name="PowerLabel" type="Label" parent="InnerSanctum" unique_id=516850891]
+offset_left = 38.0
+offset_top = 155.0
+offset_right = 96.0
+offset_bottom = 185.0
+text = "Power: "
+
+[node name="Label" type="Label" parent="InnerSanctum" unique_id=1000401001]
+offset_top = 185.0
+offset_right = 320.0
+offset_bottom = 208.0
+text = "_______________________________________________"
+
+[node name="HighScores" type="Node2D" parent="." unique_id=1278769947]
+position = Vector2(0, 36)
+
+[node name="TheDungeon" type="Node2D" parent="HighScores" unique_id=1604186045]
+
+[node name="Tier1" type="Node2D" parent="HighScores/TheDungeon" unique_id=673825229]
+
+[node name="TitleLabel" type="Label" parent="HighScores/TheDungeon/Tier1" unique_id=1800324894]
+offset_left = 38.0
+offset_top = 245.0
+offset_right = 86.0
+offset_bottom = 275.0
+text = "Tier: 1"
+
+[node name="HighestRoomLabel" type="Label" parent="HighScores/TheDungeon/Tier1" unique_id=680807483]
+offset_left = 58.0
+offset_top = 275.0
+offset_right = 108.0
+offset_bottom = 298.0
+text = "Room:"
+
+[node name="Label" type="Label" parent="HighScores/TheDungeon" unique_id=1427530751]
+offset_left = 28.0
+offset_top = 215.0
+offset_right = 131.0
+offset_bottom = 245.0
+text = "The Dungeon"
+
+[node name="Label" type="RichTextLabel" parent="HighScores" unique_id=640490614]
+offset_left = 14.0
+offset_top = 185.0
+offset_right = 119.0
+offset_bottom = 215.0
+bbcode_enabled = true
+text = "[b]High Scores"
+
+[node name="Metric" type="Label" parent="." unique_id=1593467234]
+visible = false
+offset_right = 325.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "MMMMMMMMMMMMMMMMMMMMMM"
+horizontal_alignment = 2

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bhfbdbtunlhic"]
+
+[ext_resource type="Script" uid="uid://cgwy64qfyxxs6" path="res://Scenes/Weapons/rumble_gloves/rumble_gloves.gd" id="1_nciws"]
+[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="2_nciws"]
+[ext_resource type="Texture2D" uid="uid://bpbtn37na4eqd" path="res://Scenes/Weapons/rumble_gloves/rumble_gloves.png" id="2_nkpiu"]
+[ext_resource type="AudioStream" uid="uid://bv5ku7kurvkct" path="res://Scenes/Weapons/rumble_gloves/dragon-studio-heavy-rock-rolling-515254.mp3" id="4_nkpiu"]
+
+[node name="RumbleGloves" type="Node2D" unique_id=555035498]
+script = ExtResource("1_nciws")
+
+[node name="Components" type="Node2D" parent="." unique_id=2014975231]
+
+[node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("2_nciws")]
+added_attack_damage_multiplier = 10
+
+[node name="AudioStreamPlayer" parent="Components/WeaponComponent" index="0" unique_id=362102472]
+stream = ExtResource("4_nkpiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=56448775]
+visible = false
+texture = ExtResource("2_nkpiu")
+
+[editable path="Components/WeaponComponent"]

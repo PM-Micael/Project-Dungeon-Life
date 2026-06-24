@@ -34,8 +34,35 @@ Buggs:
 	On the desktop version:
 		Placing player units at the start of team_lineup is scalable as you move frieendly units. Enemy units placing are as well but differently. Look up and make final desition.
 		
+2026-05-07:
+	Maybe change the name of zac to D.O.T.L (Devourer Of The Living) or something similar
+	
+2026-05-10:
+	Units that enter the board should all call to one unified function to handle potential hicups like for example
+	conneecting their died signal to the board. Maybe.
 
-2026-05-06:
-	Potential wave scaling formula:
-		Wave each wave (up to 10) has a set amount of formations that can be placed on the board.
-		
+2026-05-11:
+	Zac devours more than he should when enemy dies
+	
+2026-06-04:
+	impliment simplee damage numbers for visual clarity and so that I can properly know that they are
+	dealing the right amount of damage.
+	
+20026-06-05:
+	Base dungeon
+	More enemies
+	More player units
+
+2026-06-10:
+	A lot of bugs are happening because of the die function being a free and not a queue free.
+	Potentially chnage to queue freee and refactor code.
+	Search for ALL code that uses is_instance_valid
+	
+2023-06-11:
+	Push to main on git hub.
+	Hotfix should contain:
+		Execute bool on die function to stop "random crashes"
+		new icon
+ 
+2026-06-17:
+	Save enemy formations so that you cant restart to get a new one.

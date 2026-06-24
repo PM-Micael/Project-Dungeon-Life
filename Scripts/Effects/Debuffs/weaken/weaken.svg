@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Weaken</title>
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#200808" stroke="#882222" stroke-width="1.5"/>
+  <line x1="22" y1="50" x2="32" y2="36" stroke="#993333" stroke-width="3" stroke-linecap="round"/>
+  <line x1="32" y1="32" x2="44" y2="14" stroke="#cc4444" stroke-width="3" stroke-linecap="round"/>
+  <line x1="28" y1="38" x2="36" y2="30" stroke="#ff8888" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M18 28 L24 36 L30 28" fill="none" stroke="#dd4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="24" y1="16" x2="24" y2="35" stroke="#dd4444" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

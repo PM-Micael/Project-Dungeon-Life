@@ -12,6 +12,21 @@ func _ready() -> void:
 	timer.wait_time = 1.1
 	# Use the unit's own tile_position instead of the global debug value
 
+func _physics_process(_delta: float) -> void:
+	movment_action()
+
+func movment_action():
+	if (timer.time_left <= 0.1 and not parent_entity.is_stunned and
+	parent_entity.targeting_component != null and 
+	parent_entity.targeting_component.target != null
+	):
+		if parent_entity.attack_component != null:
+			parent_entity.attack_component.in_target_attack_range = move_to_target_tile(parent_entity.targeting_component.target)
+		else:
+			move_to_target_tile(parent_entity.targeting_component.target)
+		
+		timer.start()
+
 func move_to_tile(target_tile: Vector2i):
 	var parent_entity_tile = BoardGrid.world_to_tile(parent_entity.position)
 	BoardGrid.set_tile_solid(parent_entity_tile, false)
@@ -25,10 +40,12 @@ func move_to_target_tile(target: Entity) -> bool:
 		stop_range = parent_entity.attack_component.attack_range
 	else:
 		stop_range = 100
+		
 	var distance = parent_entity.position.distance_to(target.position)
 	
-	if distance <= stop_range:
-		return true  # In range, don't move
+	var diagonal_range = stop_range * sqrt(2)
+	if distance <= diagonal_range:
+		return true  # In attack range, don't move
 	
 	var target_tile: Vector2i = BoardGrid.world_to_tile(target.position)
 	move_to_tile(target_tile)

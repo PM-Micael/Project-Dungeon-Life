@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Burning</title>
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#1a0500" stroke="#cc3300" stroke-width="1.5"/>
+  <path d="M32 54 Q16 46 16 32 Q16 20 24 14 Q22 24 28 26 Q24 16 32 10 Q32 22 38 20 Q44 18 46 10 Q52 20 48 32 Q46 40 54 36 Q50 48 32 54 Z" fill="#882200" stroke="#ff5500" stroke-width="1"/>
+  <path d="M32 48 Q22 40 22 30 Q22 22 28 18 Q27 26 32 28 Q36 22 40 18 Q44 26 42 34 Q48 30 46 38 Q42 46 32 48 Z" fill="#cc4400" stroke="#ff8800" stroke-width="0.8"/>
+  <ellipse cx="32" cy="38" rx="6" ry="7" fill="#ff6600" opacity="0.7"/>
+</svg>

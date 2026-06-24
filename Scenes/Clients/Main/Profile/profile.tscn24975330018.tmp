@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dksr8nsejihd8"]
+
+[ext_resource type="Script" uid="uid://6xe0fvq0qbar" path="res://Scenes/Clients/Main/Profile/profile.gd" id="1_3btsy"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="1_us3fw"]
+
+[node name="Profile" type="Node2D" unique_id=65702442]
+script = ExtResource("1_3btsy")
+
+[node name="Style" type="Node2D" parent="." unique_id=400632792]
+
+[node name="Frame" type="ColorRect" parent="Style" unique_id=614855483]
+offset_right = 500.0
+offset_bottom = 500.0
+
+[node name="Background" type="ColorRect" parent="Style" unique_id=328250283]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 495.0
+offset_bottom = 495.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Style" unique_id=197927311]
+position = Vector2(250, 250)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_us3fw")
+
+[node name="UserName" type="Node2D" parent="." unique_id=965365945]
+
+[node name="UserNameLabel" type="Label" parent="UserName" unique_id=993743641]
+offset_left = 38.0
+offset_top = 36.0
+offset_right = 118.0
+offset_bottom = 59.0
+text = "Username"
+
+[node name="UserNameLineEdit" type="LineEdit" parent="UserName" unique_id=1479652746]
+offset_left = 343.0
+offset_top = 36.0
+offset_right = 485.0
+offset_bottom = 67.0
+placeholder_text = "UserName"
+metadata/_edit_use_anchors_ = true
+
+[node name="EditLabel" type="Label" parent="UserName" unique_id=1039313951]
+offset_left = 296.0
+offset_top = 36.0
+offset_right = 342.0
+offset_bottom = 67.0
+text = "Edit"
+vertical_alignment = 1
+
+[node name="InnerSanctum" type="Node2D" parent="." unique_id=11241351]
+
+[node name="EssenceLabel" type="Label" parent="InnerSanctum" unique_id=1471706212]
+offset_left = 38.0
+offset_top = 95.0
+offset_right = 108.0
+offset_bottom = 125.0
+text = "Essence: "
+
+[node name="LifeLabel" type="Label" parent="InnerSanctum" unique_id=750526905]
+offset_left = 38.0
+offset_top = 125.0
+offset_right = 78.0
+offset_bottom = 155.0
+text = "Life: "
+
+[node name="PowerLabel" type="Label" parent="InnerSanctum" unique_id=516850891]
+offset_left = 38.0
+offset_top = 155.0
+offset_right = 96.0
+offset_bottom = 185.0
+text = "Power: "

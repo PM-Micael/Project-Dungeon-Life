@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bxsvoce7ty51b"]
+
+[node name="InnerSanctumStat" type="Node2D" unique_id=1133670572]
+
+[node name="KeyLabel" type="Label" parent="." unique_id=437542856]
+offset_left = 105.0
+offset_right = 255.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 30
+text = "Life"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="." unique_id=1088485748]
+offset_left = 105.0
+offset_top = 40.0
+offset_right = 255.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 1
+
+[node name="DecreaseButton" type="Button" parent="." unique_id=1374377823]
+offset_left = 50.0
+offset_right = 100.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 30
+text = "<"
+
+[node name="IncreaseButton" type="Button" parent="." unique_id=317382610]
+offset_left = 255.0
+offset_right = 305.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 30
+text = ">"
+
+[node name="IncreaseButtonX10" type="Button" parent="." unique_id=105469465]
+offset_left = 305.0
+offset_right = 355.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 30
+text = ">>"
+
+[node name="DecreaseButtonX10" type="Button" parent="." unique_id=1018290396]
+offset_right = 50.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 30
+text = "<<"

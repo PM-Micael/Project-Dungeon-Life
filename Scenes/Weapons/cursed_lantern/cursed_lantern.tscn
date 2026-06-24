@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://kbdb5f1mgnro"]
+
+[ext_resource type="Script" uid="uid://58edcrsqdxx3" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern.gd" id="1_aabep"]
+[ext_resource type="Texture2D" uid="uid://rtfsax4ol14j" path="res://Scenes/Weapons/cursed_lantern/cursed_lantern.png" id="2_p5y13"]
+[ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="3_yyryo"]
+
+[node name="CursedLantern" type="Node2D" unique_id=643131765]
+script = ExtResource("1_aabep")
+
+[node name="Components" type="Node2D" parent="." unique_id=5906358]
+
+[node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("3_yyryo")]
+added_attack_damage_multiplier = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=155332162]
+visible = false
+texture = ExtResource("2_p5y13")

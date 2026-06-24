@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c4gg1e7n5fs70"]
+
+[ext_resource type="Script" uid="uid://rn1boplk0bxb" path="res://Scenes/Units/PC/devourer_of_ghouls/devourer_of_ghouls.gd" id="1_gbevl"]
+[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="1_p27jx"]
+[ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="2_gbevl"]
+[ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_h7u56"]
+[ext_resource type="AudioStream" uid="uid://cghr2e8ja1j66" path="res://Scenes/Units/PC/devourer_of_ghouls/universfield-classic-punch-impact-352711.mp3" id="4_aif21"]
+[ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_b5ph5"]
+[ext_resource type="Script" uid="uid://blujcncb1d3m2" path="res://Components/Entity_Components/weapon_slot_component.gd" id="5_uhhh1"]
+[ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_oetp8"]
+[ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
+[ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_nxu0w"]
+[ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_nxu0w"]
+[ext_resource type="Texture2D" uid="uid://c6u1ge0dlp073" path="res://Scenes/Units/PC/devourer_of_ghouls/d_o_g.png" id="11_rwlgu"]
+
+[node name="DevourerOfGhouls" type="Node2D" unique_id=750954088 groups=["units"]]
+script = ExtResource("1_gbevl")
+
+[node name="Components" type="Node2D" parent="." unique_id=435150165]
+
+[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("1_p27jx")]
+
+[node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_gbevl")]
+
+[node name="AttackSound" parent="Components/AttackComponent" index="1" unique_id=88329044]
+stream = ExtResource("4_aif21")
+
+[node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_h7u56")]
+
+[node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_b5ph5")]
+
+[node name="WeaponSlotComponent" type="Node2D" parent="Components" unique_id=207148210]
+script = ExtResource("5_uhhh1")
+
+[node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("6_oetp8")]
+
+[node name="CollisionComponent" parent="Components" unique_id=367354158 groups=["units"] instance=ExtResource("10_nxu0w")]
+
+[node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_nxu0w")]
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("8_xvayg")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1478507541]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_rwlgu")
+
+[editable path="Components/AttackComponent"]

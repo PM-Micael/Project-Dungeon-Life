@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lt1yq282yuqo"]
 
-[ext_resource type="Script" uid="uid://dvtk6u2t8tonu" path="res://Scripts/ui_components.gd" id="1_rwbe0"]
+[ext_resource type="Script" uid="uid://dvtk6u2t8tonu" path="res://Scenes/UI/ui_components.gd" id="1_rwbe0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwbe0"]
 bg_color = Color(0.078431375, 0.52156866, 0.09803922, 1)
@@ -13,6 +13,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_rwbe0")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1922742722]

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cs1d6obtt2nva"]
+
+[ext_resource type="Script" uid="uid://dknjcthb7dn4x" path="res://Scenes/Clients/Main/main_client.gd" id="1_g888i"]
+[ext_resource type="PackedScene" uid="uid://b8bb0gl5w2ebc" path="res://Scenes/Clients/Main/Run_Manager/run_manager.tscn" id="2_g888i"]
+[ext_resource type="Script" uid="uid://dvogv222d75y5" path="res://Scenes/Clients/Main/Window_Manager/window_manager.gd" id="3_gm5dl"]
+[ext_resource type="Texture2D" uid="uid://cm18qjfpjb23m" path="res://Assets/Client/icon_go_back.svg" id="4_kfqkr"]
+[ext_resource type="Texture2D" uid="uid://g0mxfww63dkn" path="res://Assets/Client/icon_go_forward.svg" id="5_hap2d"]
+[ext_resource type="Texture2D" uid="uid://c6bdndtcicaxr" path="res://Assets/Client/icon_main_menu.svg" id="6_vblgr"]
+[ext_resource type="Texture2D" uid="uid://c3k370ykr5d0q" path="res://Assets/Client/icon_dungeon.svg" id="7_kqnoi"]
+[ext_resource type="Texture2D" uid="uid://cabwn7u7v8c25" path="res://Assets/Client/icon_board.svg" id="8_wnapl"]
+[ext_resource type="Texture2D" uid="uid://cqifai823yr1v" path="res://Assets/Client/icon_scale_up.svg" id="9_0pumd"]
+[ext_resource type="Texture2D" uid="uid://pdclehaplpg2" path="res://Assets/Client/icon_scale_down.svg" id="10_7302y"]
+
+[node name="MainClient" type="Node2D" unique_id=1690257351]
+script = ExtResource("1_g888i")
+
+[node name="RunManager" parent="." unique_id=896845944 instance=ExtResource("2_g888i")]
+
+[node name="WindowManager" type="Window" parent="." unique_id=209614530]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+script = ExtResource("3_gm5dl")
+
+[node name="BackButton" type="TextureButton" parent="WindowManager" unique_id=684513443]
+offset_left = 80.0
+offset_right = 168.0
+offset_bottom = 88.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_kfqkr")
+
+[node name="NextPageButton" type="TextureButton" parent="WindowManager" unique_id=1803554232]
+visible = false
+offset_left = 225.0
+offset_right = 313.0
+offset_bottom = 88.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_hap2d")
+
+[node name="HomeMenuButton" type="TextureButton" parent="WindowManager" unique_id=1559317402]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_vblgr")
+
+[node name="DungeonMenuButton" type="TextureButton" parent="WindowManager" unique_id=906244988]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("7_kqnoi")
+
+[node name="BoardMenuButton" type="TextureButton" parent="WindowManager" unique_id=626043638]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("8_wnapl")
+
+[node name="BoardScaleUpButton" type="TextureButton" parent="WindowManager/BoardMenuButton" unique_id=944768245]
+visible = false
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 88.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("9_0pumd")
+
+[node name="BoardScaleDownButton" type="TextureButton" parent="WindowManager/BoardMenuButton" unique_id=1320244573]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("10_7302y")
+
+[node name="InnerSanctumWindow" type="Window" parent="." unique_id=969489278]
+oversampling_override = 1.0
+position = Vector2i(0, 36)

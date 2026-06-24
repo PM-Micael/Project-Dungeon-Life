@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://brqcerkuyo18u"]
+
+[ext_resource type="PackedScene" uid="uid://bxsvoce7ty51b" path="res://Scenes/Clients/Upgrades/inner_sanctum_stat.tscn" id="1_vjqfk"]
+[ext_resource type="Script" uid="uid://c5u7n8asjym4y" path="res://Scenes/Clients/Upgrades/inner_sanctum_menu.gd" id="1_xi5mb"]
+
+[node name="InnerSanctum" type="Node2D" unique_id=1848263234]
+script = ExtResource("1_xi5mb")
+
+[node name="Style" type="Node2D" parent="." unique_id=1670736169]
+
+[node name="Frame" type="ColorRect" parent="Style" unique_id=2015190705]
+offset_right = 800.0
+offset_bottom = 800.0
+
+[node name="Background" type="ColorRect" parent="Style" unique_id=1249630652]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 790.0
+offset_bottom = 790.0
+color = Color(0, 0, 0, 1)
+
+[node name="InnerSanctumLife" parent="." unique_id=1133670572 instance=ExtResource("1_vjqfk")]
+position = Vector2(200, 100)
+
+[node name="InnerSanctumPower" parent="." unique_id=518375834 instance=ExtResource("1_vjqfk")]
+position = Vector2(200, 300)
+
+[node name="EssenceValueLabel" type="Label" parent="." unique_id=1912782659]
+offset_left = 300.0
+offset_right = 414.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 30
+text = "Essence:"
+
+[node name="CommitButton" type="Button" parent="." unique_id=1827587154]
+offset_right = 8.0
+offset_bottom = 8.0

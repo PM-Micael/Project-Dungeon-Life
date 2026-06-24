@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dxw4set8d1xrh"]
 
 [ext_resource type="Script" uid="uid://cwjg31qd1vm1p" path="res://Scenes/Weapons/burst_staff.gd" id="1_7ku28"]
-[ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/Weapons/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="2_tajp4"]
+[ext_resource type="Texture2D" uid="uid://dkho15jf5xhs5" path="res://Assets/Weapons/ChatGPT Image Mar 28, 2026, 10_34_00 PM.png" id="2_qn47s"]
 [ext_resource type="PackedScene" uid="uid://sq5eqop82gaj" path="res://Components/Entity_Components/weapon_component.tscn" id="3_qn47s"]
 
 [node name="BurstStaff" type="Node2D" unique_id=1525957550]
 script = ExtResource("1_7ku28")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=690315678]
-texture = ExtResource("2_tajp4")
+texture = ExtResource("2_qn47s")
 
 [node name="Components" type="Node2D" parent="." unique_id=53723408]
 
