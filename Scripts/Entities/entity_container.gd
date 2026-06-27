@@ -13,6 +13,7 @@ func _set_sprite():
 	if entity != null:
 		sprite.position = entity.get_node("Sprite2D").position
 		sprite.texture = entity.get_node("Sprite2D").texture
+		sprite.self_modulate = entity.get_node("Sprite2D").self_modulate
 		
 		star_level_label = get_node("Sprite2D/StarLevelLabel")
 		star_level_label.text = ""

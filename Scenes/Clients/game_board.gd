@@ -79,13 +79,13 @@ func _place_friendly_units():
 		entity_container_instance.entity = unit_instance
 		entity_container_instance.position = unit_starting_position
 		entity_container_instance.scale = unit_instance.scale
-		entity_container_instance.get_node("Sprite2D").scale = Vector2(1.5, 1.5)
+		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.35, 0.35)
 		unit_instance.starting_position = entity_container_instance.position
 		
 		get_node("Units/FriendlyUnits").add_child(entity_container_instance)
 		friendly_units.append(unit_instance)
 
-func place_enemy_units(dungeon: String): ## Wait for dungeon chosen
+func place_enemy_units(): ## Wait for dungeon chosen
 	var enemy_formation: Array = PlayerData.current_room_enemy_formation
 	var entity_container_scene: PackedScene = load("res://Scripts/Entities/entity_container.tscn")
 
@@ -101,7 +101,7 @@ func place_enemy_units(dungeon: String): ## Wait for dungeon chosen
 		entity_container_instance.entity = enemy_instance
 		entity_container_instance.position = enemy_position
 		entity_container_instance.scale = enemy_instance.scale
-		entity_container_instance.get_node("Sprite2D").scale = Vector2(1.5, 1.5)
+		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.35, 0.35)
 		enemy_instance.starting_position = entity_container_instance.position
 
 		get_node("Units/EnemyUnits").add_child(entity_container_instance)

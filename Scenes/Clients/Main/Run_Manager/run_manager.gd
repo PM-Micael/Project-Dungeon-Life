@@ -58,7 +58,7 @@ func _setup_stage():
 	board.friendly_units.clear()
 	board.enemy_units.clear()
 	board._place_friendly_units()
-	board.place_enemy_units(PlayerData.current_zone)
+	board.place_enemy_units()
 	room_label.text = "Room: "+str(PlayerData.dungeon_room)
 
 	if PlayerData.settings.auto_advance:
