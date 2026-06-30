@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="6_8rcd3"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_psvux"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="9_82kvg"]
+[ext_resource type="Texture2D" uid="uid://c8puupdgieg2t" path="res://Scenes/Units/PC/walking_hive/gen-769a39a3-2cd4-483f-8b69-b7da9e09d5d6.png" id="11_5psmv"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_qj47k"]
-[ext_resource type="Texture2D" uid="uid://24ce0yx3b126" path="res://Scenes/Units/PC/walking_hive/walking_hive.png" id="11_vlonv"]
 
 [node name="WalkingHive" type="Node2D" unique_id=1319104232]
 script = ExtResource("1_vlonv")
@@ -38,4 +38,4 @@ script = ExtResource("5_q44od")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1721653816]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("11_vlonv")
+texture = ExtResource("11_5psmv")

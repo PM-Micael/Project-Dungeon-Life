@@ -68,8 +68,7 @@ func _ready() -> void:
 	unresizable = true
 	borderless = true
 	always_on_top = true
-	transparent_bg = true
-	transparent = true
+	transparent_bg = true	
 	
 	_connect_events()
 	
@@ -89,6 +88,40 @@ func _ready() -> void:
 	}
 	
 	menu_selected = home_menu_button
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1:
+				_activate_menu_hotkey(0)
+			KEY_2:
+				_activate_menu_hotkey(1)
+			KEY_3:
+				_activate_menu_hotkey(2)
+			KEY_4:
+				_activate_menu_hotkey(3)
+			KEY_5:
+				_activate_menu_hotkey(4)
+			KEY_6:
+				_activate_menu_hotkey(5)
+			KEY_Q:
+				_on_back_pressed()
+
+func _activate_menu_hotkey(index: int) -> void:
+	if menu_selected == null:
+		return
+
+	var buttons: Array = config.get(menu_selected, [])
+
+	if index >= buttons.size():
+		return
+
+	var button: TextureButton = buttons[index]
+
+	if button == null or not button.visible:
+		return
+
+	button.emit_signal("pressed")
 
 func _connect_events():
 	back_button.pressed.connect(_on_back_pressed)
@@ -111,7 +144,6 @@ func _connect_events():
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
-	
 
 func _on_window_visibility_changed(window: Window):
 	center_menu_showing = window.visible

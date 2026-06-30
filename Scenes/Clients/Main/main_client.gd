@@ -34,16 +34,24 @@ var dsw_size: Vector2
 
 @onready var run_manager: RunManager = get_node("RunManager")
 
-var polygon_window: CollisionPolygon2D 
+var polygon_window: CollisionPolygon2D
+
+# Inputs
+var one_was_pressed := false
 
 func _ready() -> void:
 	polygon_window = CollisionPolygon2D.new()
 	get_window().mouse_passthrough_polygon = polygon_window.polygon
 	await _initialize_game_data()
-	
+
 func _physics_process(_delta: float) -> void:
 	if game_initialized:
 		_check_update_polygon()
+	
+	var one_pressed = Input.is_key_pressed(Key.KEY_Q)
+	if one_pressed and not one_was_pressed:
+		window_manager._activate_menu_hotkey(0)
+	one_was_pressed = one_pressed
 
 func _initialize_game_data():
 	PlayerData.load_player_data()
