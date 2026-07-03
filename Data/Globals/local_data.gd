@@ -3,6 +3,13 @@ extends Node
 var board: GameBoard
 var ui: Node2D
 
+var settings: Dictionary = {
+	"auto_advance": false,
+	"volume_master": 1.0,
+	"volume_sfx": 1.0,
+	"volume_music": 1.0
+}
+
 var current_board_layout_id: int:
 	set(value):
 		current_board_layout_id = value

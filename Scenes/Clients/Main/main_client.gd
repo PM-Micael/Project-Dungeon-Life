@@ -32,6 +32,13 @@ var dsw_visible: bool = false
 var dsw_position: Vector2
 var dsw_size: Vector2
 
+var settings_window: SettingsWindow:
+	get:
+		return get_node("SettingsWindow")
+var sw_visible: bool = false
+var sw_position: Vector2
+var sw_size: Vector2
+
 @onready var run_manager: RunManager = get_node("RunManager")
 
 var polygon_window: CollisionPolygon2D
@@ -82,14 +89,19 @@ func _check_update_polygon(): # Dont initialize them every time
 	var new_dsw_visible = dungeon_selection_window.visible
 	var new_dsw_pos = Vector2(dungeon_selection_window.position)
 	var new_dsw_size = Vector2(dungeon_selection_window.size)
-
+	
+	var new_sw_visible = settings_window.visible
+	var new_sw_pos = Vector2(settings_window.position)
+	var new_sw_size = Vector2(settings_window.size)
+	
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
 		bw_position != new_bw_pos or bw_size != new_bw_size or bw_visible != new_bw_visible or
 		iw_position != new_iw_pos or iw_size != new_iw_size or iw_visible != new_iw_visible or
 		isw_position != new_isw_pos or isw_size != new_isw_size or isw_visible != new_isw_visible or
 		dsw_position != new_dsw_pos or dsw_size != new_dsw_size or dsw_visible != new_dsw_visible or
-		pw_position != new_pw_pos or pw_size != new_pw_size or pw_visible != new_pw_visible
+		pw_position != new_pw_pos or pw_size != new_pw_size or pw_visible != new_pw_visible or
+		sw_position != new_sw_pos or sw_size != new_sw_size or sw_visible != new_sw_visible 
 		):
 
 		var poly: Array[Vector2] = [Vector2(0, 0)]
@@ -131,6 +143,16 @@ func _check_update_polygon(): # Dont initialize them every time
 				new_isw_pos + new_isw_size,
 				new_isw_pos + Vector2(0, new_isw_size.y),
 				new_isw_pos,
+				Vector2(0, 0),
+			])
+		
+		if settings_window.visible:
+			poly.append_array([
+				new_sw_pos,
+				new_sw_pos + Vector2(new_sw_size.x, 0),
+				new_sw_pos + new_sw_size,
+				new_sw_pos + Vector2(0, new_sw_size.y),
+				new_sw_pos,
 				Vector2(0, 0),
 			])
 		
@@ -176,3 +198,6 @@ func _check_update_polygon(): # Dont initialize them every time
 		
 		iw_position = new_iw_pos
 		iw_size = new_iw_size
+		
+		sw_position = new_sw_pos
+		sw_size = new_sw_size

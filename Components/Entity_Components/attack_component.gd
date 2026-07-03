@@ -25,6 +25,8 @@ var in_target_attack_range: bool = false
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
+	attack_sound.volume_db += (LocalData.settings.volume_sfx + LocalData.settings.volume_master)
+	attack_crit_sound.volume_db += (LocalData.settings.volume_sfx + LocalData.settings.volume_master)
 
 func _physics_process(_delta: float) -> void:
 	if (timer.time_left <= 0.1 and not entity_parent.is_stunned and

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_nklia"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_sfq3v"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_uni71"]
-[ext_resource type="Texture2D" uid="uid://cj3gywsybidxr" path="res://Scenes/Units/NPC/scorched_wanderer/scorched_wanderer.png" id="10_imhl5"]
+[ext_resource type="Texture2D" uid="uid://dgi5nikxoipp1" path="res://Scenes/Units/NPC/scorched_juggernaut/gen-ebb316f5-becf-4cf8-9f3a-938fe46b92b9.png" id="10_ak5xi"]
 
 [sub_resource type="GDScript" id="GDScript_ct3rg"]
 script/source = "extends Sprite2D
@@ -48,11 +48,11 @@ base_defense = 30
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_sfq3v")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_uni71")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1912500581]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("10_imhl5")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("10_ak5xi")
 script = SubResource("GDScript_ct3rg")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_uni71")]
 
 [editable path="Components/AttackComponent"]
