@@ -64,6 +64,7 @@ func _initialize_game_data():
 	PlayerData.load_player_data()
 	await PlayerData.player_data_loaded
 	DungeonData.initialize_data()
+	LocalData.load_local_data()
 	game_initialized = true
 
 func _check_update_polygon(): # Dont initialize them every time

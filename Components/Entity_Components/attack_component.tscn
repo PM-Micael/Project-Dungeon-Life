@@ -9,7 +9,6 @@ script = ExtResource("1_duee5")
 wait_time = 1.1
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=88329044]
-volume_db = -16.0
+volume_db = 1.0
 
 [node name="AttackCritSound" type="AudioStreamPlayer" parent="." unique_id=2030778084]
-volume_db = -16.0

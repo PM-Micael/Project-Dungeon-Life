@@ -25,6 +25,8 @@ func _ready() -> void:
 	set_weapon_energy_bar()
 	_connect_events()
 	set_stats_absolute()
+	
+	weapon_skill_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
 
 func _connect_events():
 	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
