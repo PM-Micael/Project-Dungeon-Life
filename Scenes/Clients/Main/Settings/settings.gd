@@ -2,17 +2,24 @@ extends Node2D
 
 var settings: Dictionary
 
-@onready var mv_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/Audio/MasterVolume/MVLineEdit
-@onready var mv_increment_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/MasterVolume/IncrementButton
-@onready var mv_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/MasterVolume/DecrementButton
+var all_settings: Array[String] = [
+	"AudioSettings"
+]
 
-@onready var sfx_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/Audio/SFXVolume/SFXVolumeLineEdit
-@onready var sfx_increment_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/SFXVolume/IncrementButton
-@onready var sfx_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/SFXVolume/DecrementButton
+@onready var audio_settings: Node2D = $Options/ScrollContainer/VBoxContainer/AudioSettings
+@onready var audio_settings_button: Button = $Options/AudioSettingsButton
 
-@onready var music_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/Audio/MusicVolume/MusicVolumeLineEdit
-@onready var music_increment_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/MusicVolume/IncrementButton
-@onready var music_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/Audio/MusicVolume/DecrementButton
+@onready var mv_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume/MVLineEdit
+@onready var mv_increment_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume/IncrementButton
+@onready var mv_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume/DecrementButton
+
+@onready var sfx_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume/SFXVolumeLineEdit
+@onready var sfx_increment_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume/IncrementButton
+@onready var sfx_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume/DecrementButton
+
+@onready var music_line_edit: LineEdit = $Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume/MusicVolumeLineEdit
+@onready var music_increment_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume/IncrementButton
+@onready var music_decrement_button: Button = $Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume/DecrementButton
 
 @onready var apply_button: Button = $Options/ApplyButton
 
@@ -21,6 +28,15 @@ func _ready() -> void:
 		await LocalData.local_data_loaded
 	
 	_initialize_data()
+	_connect_events()
+
+func _initialize_data():
+	mv_line_edit.text = str(LocalData.settings["audio"]["volume_master"])
+	sfx_line_edit.text = str(LocalData.settings["audio"]["volume_sfx"])
+	music_line_edit.text = str(LocalData.settings["audio"]["volume_music"])
+
+func _connect_events():
+	audio_settings_button.pressed.connect(_audio_button_pressed.bind("AudioSettings"))
 	
 	mv_line_edit.text_changed.connect(_on_line_edit_text_changed.bind(mv_line_edit))
 	sfx_line_edit.text_changed.connect(_on_line_edit_text_changed.bind(sfx_line_edit))
@@ -37,10 +53,13 @@ func _ready() -> void:
 	
 	apply_button.pressed.connect(_apply_button_pressed)
 
-func _initialize_data():
-	mv_line_edit.text = str(LocalData.settings["audio"]["volume_master"])
-	sfx_line_edit.text = str(LocalData.settings["audio"]["volume_sfx"])
-	music_line_edit.text = str(LocalData.settings["audio"]["volume_music"])
+func _audio_button_pressed(setting_name):
+	for setting in all_settings:
+		var node: Node2D = get_node("Options/ScrollContainer/VBoxContainer/" + setting_name)
+		if setting != setting_name:
+			node.visible = false
+		else:
+			node.visible = true
 
 func _on_line_edit_text_changed(new_text: String, line_edit: LineEdit) -> void:
 	var filtered := ""

@@ -3,20 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="1_s2ey2"]
 [ext_resource type="Script" uid="uid://bnucbf34gqjil" path="res://Scenes/Clients/Main/Settings/settings.gd" id="1_v2o0a"]
 
-[sub_resource type="GDScript" id="GDScript_v2o0a"]
-script/source = "extends LineEdit
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="Settings" type="Node2D" unique_id=1210921123]
 script = ExtResource("1_v2o0a")
 
@@ -38,6 +24,11 @@ position = Vector2(400.00003, 250)
 scale = Vector2(1, 0.62499994)
 texture = ExtResource("1_s2ey2")
 
+[node name="ColorRect" type="ColorRect" parent="Style" unique_id=1536662641]
+offset_left = 88.0
+offset_right = 89.0
+offset_bottom = 500.0
+
 [node name="Options" type="Node2D" parent="." unique_id=774027082]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Options" unique_id=142402362]
@@ -54,86 +45,79 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Audio" type="Node2D" parent="Options/ScrollContainer/VBoxContainer" unique_id=1159083415]
+[node name="AudioSettings" type="Node2D" parent="Options/ScrollContainer/VBoxContainer" unique_id=1159083415]
+visible = false
+position = Vector2(100, 0)
 
-[node name="AudioLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/Audio" unique_id=1493585808]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Audio"
+[node name="MasterVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/AudioSettings" unique_id=891507161]
 
-[node name="MasterVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/Audio" unique_id=891507161]
-position = Vector2(0, 25)
-
-[node name="MasterVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/Audio/MasterVolume" unique_id=1162349710]
+[node name="MasterVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume" unique_id=1162349710]
 offset_right = 118.0
 offset_bottom = 23.0
 text = "Master Volume"
 
-[node name="MVLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/Audio/MasterVolume" unique_id=1643681959]
+[node name="MVLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume" unique_id=1643681959]
 offset_left = 157.0
 offset_right = 225.5
 offset_bottom = 31.0
-script = SubResource("GDScript_v2o0a")
 
-[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/MasterVolume" unique_id=1254217621]
+[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume" unique_id=1254217621]
 offset_left = 226.0
 offset_right = 244.0
 offset_bottom = 31.0
 text = ">"
 
-[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/MasterVolume" unique_id=1496181401]
+[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MasterVolume" unique_id=1496181401]
 offset_left = 138.0
 offset_right = 156.0
 offset_bottom = 31.0
 text = "<"
 
-[node name="SFXVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/Audio" unique_id=1204658159]
-position = Vector2(0, 57)
+[node name="SFXVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/AudioSettings" unique_id=1204658159]
+position = Vector2(0, 25)
 
-[node name="SFXVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/Audio/SFXVolume" unique_id=945117910]
+[node name="SFXVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume" unique_id=945117910]
 offset_right = 118.0
 offset_bottom = 23.0
 text = "SFX Volume"
 
-[node name="SFXVolumeLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/Audio/SFXVolume" unique_id=927412512]
+[node name="SFXVolumeLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume" unique_id=927412512]
 offset_left = 157.0
 offset_right = 225.5
 offset_bottom = 31.0
-script = SubResource("GDScript_v2o0a")
 
-[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/SFXVolume" unique_id=645602258]
+[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume" unique_id=645602258]
 offset_left = 226.0
 offset_right = 244.0
 offset_bottom = 31.0
 text = ">"
 
-[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/SFXVolume" unique_id=989057595]
+[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/SFXVolume" unique_id=989057595]
 offset_left = 138.0
 offset_right = 156.0
 offset_bottom = 31.0
 text = "<"
 
-[node name="MusicVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/Audio" unique_id=1669053250]
-position = Vector2(0, 89)
+[node name="MusicVolume" type="Node2D" parent="Options/ScrollContainer/VBoxContainer/AudioSettings" unique_id=1669053250]
+position = Vector2(0, 50)
 
-[node name="MusicVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/Audio/MusicVolume" unique_id=1979499892]
+[node name="MusicVolumeLabel" type="Label" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume" unique_id=1979499892]
 offset_right = 118.0
 offset_bottom = 23.0
 text = "Music Volume"
 
-[node name="MusicVolumeLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/Audio/MusicVolume" unique_id=2011463953]
+[node name="MusicVolumeLineEdit" type="LineEdit" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume" unique_id=2011463953]
 offset_left = 157.0
 offset_right = 225.5
 offset_bottom = 31.0
-script = SubResource("GDScript_v2o0a")
 
-[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/MusicVolume" unique_id=245981874]
+[node name="IncrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume" unique_id=245981874]
 offset_left = 226.0
 offset_right = 244.0
 offset_bottom = 31.0
 text = ">"
 
-[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/Audio/MusicVolume" unique_id=2120185549]
+[node name="DecrementButton" type="Button" parent="Options/ScrollContainer/VBoxContainer/AudioSettings/MusicVolume" unique_id=2120185549]
 offset_left = 138.0
 offset_right = 156.0
 offset_bottom = 31.0
@@ -145,3 +129,8 @@ offset_top = 436.0
 offset_right = 759.0
 offset_bottom = 467.0
 text = "Apply"
+
+[node name="AudioSettingsButton" type="Button" parent="Options" unique_id=462496374]
+offset_right = 88.0
+offset_bottom = 31.0
+text = "Audio"
