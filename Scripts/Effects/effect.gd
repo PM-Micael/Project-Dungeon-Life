@@ -1,6 +1,8 @@
 class_name Effect
 extends Resource
 
+signal ticked
+
 var id: String
 var display_name: String
 var owner: Unit
@@ -12,7 +14,5 @@ func apply(target: Entity) -> void:
 	pass
 
 func tick(target: Entity, delta: float) -> void:
-	pass
-
-func remove(target: Entity) -> void:
-	pass
+	duration -= 1
+	ticked.emit()
