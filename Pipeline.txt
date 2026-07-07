@@ -58,11 +58,12 @@ Buggs:
 	Potentially chnage to queue freee and refactor code.
 	Search for ALL code that uses is_instance_valid
 	
-2023-06-11:
+2026-06-11:
 	Push to main on git hub.
 	Hotfix should contain:
 		Execute bool on die function to stop "random crashes"
 		new icon
  
-2026-06-17:
-	Save enemy formations so that you cant restart to get a new one.
+2026-07-07:
+	Volume doesn't update in real time
+	Rework how it reads buffs and debuffs

@@ -17,7 +17,7 @@ func _ready() -> void:
 	var unit_container_instance = container_scene.instantiate()
 	unit_container_instance.name = "UnitContainer"
 	unit_container_instance.position = Vector2(135, 170)
-	unit_container_instance.scale = Vector2(4, 4)
+	unit_container_instance.scale = Vector2(1, 1)
 	get_node("UnitPreview").add_child(unit_container_instance)
 	
 	var weapon_container_instance: EntityContainer = container_scene.instantiate()
@@ -62,6 +62,9 @@ func fill_buffs():
 func fill_debuffs():
 	for child in debuffs_h_box_container.get_children():
 		child.queue_free()
+	
+	if not is_instance_valid(unit_entity_container.entity):
+		return
 	
 	var effect_component: EffectComponent = unit_entity_container.entity.get_node("Components/EffectComponent")
 	var afflictions: Array[Affliction] = effect_component.active_afflictions

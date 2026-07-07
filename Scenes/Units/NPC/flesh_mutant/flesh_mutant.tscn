@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_xelv0"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_2k8vm"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_1xs78"]
-[ext_resource type="Texture2D" uid="uid://cet8mpquip7l5" path="res://Scenes/Units/NPC/flesh_goul/flesh_ghoul.png" id="10_b7ctf"]
+[ext_resource type="Texture2D" uid="uid://dlutxgq7bj4c2" path="res://Scenes/Units/NPC/flesh_mutant/gen-5377d5a9-51b0-4c76-925b-500ac34ba0b3.png" id="10_fioru"]
 
 [node name="FleshMutant" type="Node2D" unique_id=1067971272]
 script = ExtResource("1_fioru")
@@ -20,7 +20,7 @@ script = ExtResource("1_fioru")
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("1_5odr3")]
 
 [node name="Timer" parent="Components/AttackComponent" index="0" unique_id=1830321497]
-wait_time = 1.5999999999999999
+wait_time = 1.6
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("2_fioru")]
 
@@ -37,11 +37,10 @@ base_defense = 30
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_2k8vm")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_1xs78")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1327775320]
-self_modulate = Color(0, 0.46666667, 0.17254902, 1)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("10_b7ctf")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("10_fioru")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_1xs78")]
 
 [editable path="Components/AttackComponent"]

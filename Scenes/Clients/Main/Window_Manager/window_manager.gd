@@ -35,6 +35,9 @@ var _navigating_back: bool = false
 @onready var inner_sanctum_window: InnerSanctumWindow = get_parent().get_node("InnerSanctumWindow")
 @onready var inner_sanctum_menu_button: TextureButton = get_node("InnerSanctum/InnerSanctumMenuButton")
 
+@onready var settings_window: SettingsWindow = get_parent().get_node("SettingsWindow")
+@onready var settings_button: TextureButton = get_node("Settings/SettingsButton")
+
 @onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
 @onready var board_menu_button: TextureButton = get_node("Board/BoardMenuButton")
 @onready var board_scale_up_button: TextureButton = get_node("Board/BoardScaleUpButton")
@@ -68,14 +71,14 @@ func _ready() -> void:
 	unresizable = true
 	borderless = true
 	always_on_top = true
-	transparent_bg = true
-	transparent = true
+	transparent_bg = true	
 	
 	_connect_events()
 	
 	center_windows = [
 		inner_sanctum_window,
 		dungeon_selection_window,
+		settings_window,
 	]
 	config = {
 		home_menu_button: [
@@ -90,11 +93,48 @@ func _ready() -> void:
 	
 	menu_selected = home_menu_button
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1:
+				_activate_menu_hotkey(0)
+			KEY_2:
+				_activate_menu_hotkey(1)
+			KEY_3:
+				_activate_menu_hotkey(2)
+			KEY_4:
+				_activate_menu_hotkey(3)
+			KEY_5:
+				_activate_menu_hotkey(4)
+			KEY_6:
+				_activate_menu_hotkey(5)
+			KEY_Q:
+				_on_back_pressed()
+
+func _activate_menu_hotkey(index: int) -> void:
+	if menu_selected == null:
+		return
+
+	var buttons: Array = config.get(menu_selected, [])
+
+	if index >= buttons.size():
+		return
+
+	var button: TextureButton = buttons[index]
+
+	if button == null or not button.visible:
+		return
+
+	button.emit_signal("pressed")
+
 func _connect_events():
 	back_button.pressed.connect(_on_back_pressed)
 	next_page_button.pressed.connect(_on_back_pressed)
 	
 	profile_button.pressed.connect(_on_profile_pressed)
+	
+	settings_button.pressed.connect(_on_settings_pressed)
+	settings_window.visibility_changed.connect(func(): _on_window_visibility_changed(settings_window))
 	
 	dungeon_selection_button.pressed.connect(_on_dungeon_selection_pressed)
 	dungeon_selection_window.visibility_changed.connect(func(): _on_window_visibility_changed(dungeon_selection_window))
@@ -111,7 +151,6 @@ func _connect_events():
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
-	
 
 func _on_window_visibility_changed(window: Window):
 	center_menu_showing = window.visible
@@ -227,6 +266,10 @@ func _scale_down_inventory():
 
 func _minimize_inventory():
 	inventory_window.visible = not inventory_window.visible
+
+# Settings
+func _on_settings_pressed():
+	_check_center_window(settings_window)
 
 # Inner Sanctum
 func _on_inner_sanctum_pressed():

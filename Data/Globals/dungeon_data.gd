@@ -40,6 +40,7 @@ var dungeon_wave_formations: Dictionary = {
 			"formation_1":[
 				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
 				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(450, 350) },
+				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(650, 350) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
@@ -54,10 +55,14 @@ var dungeon_wave_formations: Dictionary = {
 			],
 			"formation_1":[
 				{ "type": EnemyType.FLESH_MUTANT, "position": Vector2(350, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
+				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
 				{ "type": EnemyType.SPITTER, "position": Vector2(350, 250) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.FLESH_MUTANT, "position": Vector2(250, 350) },
+				{ "type": EnemyType.FLESH_MUTANT, "position": Vector2(450, 350) },
+				{ "type": EnemyType.SPITTER, "position": Vector2(250, 250) },
 				{ "type": EnemyType.SPITTER, "position": Vector2(450, 250) },
 			],
 		}

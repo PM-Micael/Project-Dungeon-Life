@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://cimfa342h2ier" path="res://Assets/Client/icon_profile.svg" id="18_2c5lf"]
 [ext_resource type="Script" uid="uid://dgq5qn4h1hapn" path="res://Scenes/Clients/Main/Profile/profile_window.gd" id="18_fbmiu"]
 [ext_resource type="PackedScene" uid="uid://dksr8nsejihd8" path="res://Scenes/Clients/Main/Profile/profile.tscn" id="18_qbbx0"]
+[ext_resource type="Script" uid="uid://b40bbfgsodrob" path="res://Scenes/Clients/Main/settings_window.gd" id="21_o7oc5"]
+[ext_resource type="PackedScene" uid="uid://r81xnhj68mq5" path="res://Scenes/Clients/Main/Settings/settings.tscn" id="22_o7oc5"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
@@ -153,6 +155,13 @@ offset_bottom = 193.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("18_2c5lf")
 
+[node name="Settings" type="Node2D" parent="WindowManager" unique_id=16403146]
+
+[node name="SettingsButton" type="TextureButton" parent="WindowManager/Settings" unique_id=1073844465]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_vblgr")
+
 [node name="ProfileWindow" type="Window" parent="." unique_id=509221237]
 oversampling_override = 1.0
 size = Vector2i(320, 500)
@@ -160,3 +169,12 @@ visible = false
 script = ExtResource("18_fbmiu")
 
 [node name="Profile" parent="ProfileWindow" unique_id=65702442 instance=ExtResource("18_qbbx0")]
+
+[node name="SettingsWindow" type="Window" parent="." unique_id=2104198798]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(900, 500)
+visible = false
+script = ExtResource("21_o7oc5")
+
+[node name="Settings" parent="SettingsWindow" unique_id=1210921123 instance=ExtResource("22_o7oc5")]

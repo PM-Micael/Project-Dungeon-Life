@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="8_ntot6"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_gwcpu"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="10_aktqb"]
-[ext_resource type="Texture2D" uid="uid://cet8mpquip7l5" path="res://Scenes/Units/NPC/flesh_goul/flesh_ghoul.png" id="11_6210p"]
+[ext_resource type="Texture2D" uid="uid://dwegvn25uv4sd" path="res://Scenes/Units/NPC/spitter/gen-311e73b1-4ece-4057-9918-d02856e2a857.png" id="11_5drug"]
 
 [node name="Spitter" type="Node2D" unique_id=985491059]
 script = ExtResource("1_q7kfy")
@@ -41,12 +41,11 @@ stream = ExtResource("3_5drug")
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_gwcpu")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_aktqb")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1248663027]
-self_modulate = Color(0, 0.2901961, 1, 1)
 texture_repeat = 3
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("11_6210p")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("11_5drug")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_aktqb")]
 
 [editable path="Components/AttackComponent"]

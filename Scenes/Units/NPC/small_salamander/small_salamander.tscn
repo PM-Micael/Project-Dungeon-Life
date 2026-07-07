@@ -48,11 +48,11 @@ base_defense = 30
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_xbq1i")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_gg6bj")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1426441509]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_4vnuk")
 script = SubResource("GDScript_hj6km")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_gg6bj")]
 
 [editable path="Components/AttackComponent"]

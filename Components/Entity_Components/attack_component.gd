@@ -25,6 +25,8 @@ var in_target_attack_range: bool = false
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
+	attack_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
+	attack_crit_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
 
 func _physics_process(_delta: float) -> void:
 	if (timer.time_left <= 0.1 and not entity_parent.is_stunned and
@@ -47,7 +49,6 @@ func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
 
-	
 func attack_target(target: Entity):
 	pre_attack_target.emit(target)
 	is_crit = roll_crit()

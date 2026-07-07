@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr2bxakvsmjbe"
-path="res://.godot/imported/Frame.PNG-9b575f234ba1a65b6d5a4dd47fcf3cea.ctex"
+uid="uid://dgi5nikxoipp1"
+path="res://.godot/imported/gen-ebb316f5-becf-4cf8-9f3a-938fe46b92b9.png-0acf2896b2c5e29f7f28dee246d51894.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Frame.PNG"
-dest_files=["res://.godot/imported/Frame.PNG-9b575f234ba1a65b6d5a4dd47fcf3cea.ctex"]
+source_file="res://Scenes/Units/NPC/scorched_juggernaut/gen-ebb316f5-becf-4cf8-9f3a-938fe46b92b9.png"
+dest_files=["res://.godot/imported/gen-ebb316f5-becf-4cf8-9f3a-938fe46b92b9.png-0acf2896b2c5e29f7f28dee246d51894.ctex"]
 
 [params]
 

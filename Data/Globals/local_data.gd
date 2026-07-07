@@ -1,155 +1,50 @@
 extends Node
 
-var board: GameBoard
-var ui: Node2D
+signal local_data_loaded
 
-var current_board_layout_id: int:
-	set(value):
-		current_board_layout_id = value
-		_set_layout()
-var current_inventory_layout_id: int:
-	set(value):
-		current_inventory_layout_id = value
-		_set_layout()
+var local_data_has_loaded: bool
 
-func initialize_data(_ui: Node2D, _board: GameBoard = board):
-	board = _board
-	ui = _ui
-	current_board_layout_id = 2
-	current_inventory_layout_id = 2
-
-func set_layout_dev(mode: int):
-	var window = get_window()
-	match mode:
-		0:
-			window.mouse_passthrough_polygon = polygon_shape["setups"]["start"]
-
-func _set_layout():
-	var layout_id: String = (str(0) + str(current_inventory_layout_id) + str(current_board_layout_id))
-	
-	var window = get_window()
-	window.mouse_passthrough_polygon = polygon_shape["setups"][layout_id]
-	var board_position: Vector2 = polygon_shape["position_setup"][layout_id]["board"]
-	var invencory_position: Vector2 = polygon_shape["position_setup"][layout_id]["inventory"]
-	
-	# Placeholder solution
-	if current_board_layout_id == 1:
-		board.scale = Vector2(0.4, 0.4)
-	elif current_board_layout_id == 2:
-		board.scale = Vector2(1, 1)
-	
-	if current_inventory_layout_id == 1:
-		ui.scale = Vector2(0.4, 0.4)
-	elif current_inventory_layout_id == 2:
-		ui.scale = Vector2(1, 1)
-	
-	board.position = Vector2(board_position)
-	ui.position = Vector2(invencory_position)
-
-var polygon_shape: Dictionary = {
-	"setups": 
-	{
-		"001": 	
-		[
-		Vector2(1920.0, 1080.0),
-		Vector2(1600.0, 1080.0),
-		Vector2(1600.0, 760.0),
-		Vector2(1920.0, 760.0),
-		],
-		"010": [
-		Vector2(1920.0, 1080.0),
-		Vector2(1120.0, 1080.0),
-		Vector2(1120.0, 280.0),
-		Vector2(1920.0, 280.0),
-		],
-		"002": [
-		Vector2(1920.0, 1080.0),
-		Vector2(1120.0, 1080.0),
-		Vector2(1120.0, 280.0),
-		Vector2(1920.0, 280.0),
-		],
-		"011": [
-		Vector2(0.0, 0.0),
-		Vector2(1920.0, 0.0),
-		Vector2(1920.0, 1080.0),
-		Vector2(1280.0, 1080.0),
-		Vector2(1280.0, 760.0),
-		Vector2(1920.0, 760.0),
-		Vector2(1919.9, 0.1),
-		Vector2(1090.0, 0.1),
-		Vector2(1090.0, 40.0),
-		Vector2(910.0, 40.0),
-		Vector2(910.0, 1.0),
-		],
-		"012": [
-		Vector2(0.0, 0.0),
-		Vector2(1920.0, 0.0),
-		Vector2(1920.0, 1080.0),
-		Vector2(800.0, 1080.0),
-		Vector2(800.0, 760.0),
-		Vector2(1120.9999, 760.0),
-		Vector2(1120.9999, 280.0),
-		Vector2(1919.0, 280.0),
-		Vector2(1919.0, 0.1),
-		Vector2(1090.0, 0.1),
-		Vector2(1090.0, 40.0),
-		Vector2(910.0, 40.0),
-		Vector2(910.0, 1.0),
-		],
-		"021": [
-		Vector2(0.0, 0.0),
-		Vector2(1920.0, 0.0),
-		Vector2(1920.0, 1080.0),
-		Vector2(800.0, 1080.0),
-		Vector2(800.0, 280.0),
-		Vector2(1600.0, 280.0),
-		Vector2(1600.0, 760.0),
-		Vector2(1919.9, 760.0),
-		Vector2(1919.9, 0.1),
-		Vector2(1090.0, 0.1),
-		Vector2(1090.0, 40),
-		Vector2(910.0, 40),
-		Vector2(910.0, 1.0),
-		],
-		"022": [
-		Vector2(0.0, 0.0),
-		Vector2(1920.0, 0.0),
-		Vector2(1920.0, 1080.0),
-		Vector2(320.0, 1080.0),
-		Vector2(320.0, 280.0),
-		Vector2(1919.9999, 280.0),
-		Vector2(1919.9999, 0.1),
-		Vector2(1090.0, 0.1),
-		Vector2(1090.0, 40.0),
-		Vector2(910.0, 40.0),
-		Vector2(910.0, 1.0),
-		],
+var settings: Dictionary = {
+	"auto_advance": false,
+	"audio": {
+		"volume_master": 1.0,
+		"volume_sfx": 1.0,
+		"volume_music": 1.0
 	},
-	"position_setup":
-	{
-		"001": {
-			"board": Vector2(1600.0, 760.0),
-			"inventory": Vector2(0, 0)
-		},
-		"002": {
-			"board": Vector2(1120.0, 280.0),
-			"inventory": Vector2(0, 0)
-		},
-		"011": {
-			"board": Vector2(1600.0, 760.0),
-			"inventory": Vector2(1280.0, 950.0)
-		},
-		"012": {
-			"board": Vector2(1120.0, 280.0),
-			"inventory": Vector2(800.0, 950.0)
-		},
-		"021": {
-			"board": Vector2(1600.0, 760.0),
-			"inventory": Vector2(800.0, 755.0)
-		},
-		"022": {
-			"board": Vector2(1120.0, 280.0),
-			"inventory": Vector2(320.0, 755.0)
-		},
-	}
 }
+
+func load_local_data():
+	settings = load_settings()
+	local_data_has_loaded = true
+	local_data_loaded.emit()
+
+func apply_settings(_settings: Dictionary):
+	for setting in _settings.keys():
+		settings[setting] = _settings[setting]
+	print(str(settings))
+	save_settings()
+
+func save_settings():
+	var data = JSON.stringify(settings)
+	var file = FileAccess.open("res://local_data.json", FileAccess.WRITE)
+	file.store_string(data)
+	file.close()
+
+func load_settings():
+	if not FileAccess.file_exists("res://local_data.json"):
+		print("No save file found, using defaults.")
+		return settings
+	
+	var file = FileAccess.open("res://local_data.json", FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	
+	var result = JSON.parse_string(content)
+	
+	if result == null or typeof(result) != TYPE_DICTIONARY:
+		print("Invalid save file, using defaults.")
+		return settings
+	
+	settings = result
+	print("Loaded settings:", settings)
+	return settings

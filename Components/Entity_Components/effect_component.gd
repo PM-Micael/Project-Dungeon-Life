@@ -15,13 +15,26 @@ var active_blessings: Array[Blessing] = []
 var active_debuffs: Array[Debuff] = []
 var active_afflictions: Array[Affliction] = []
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_effect_countdown(delta, active_blessings)
+	_effect_countdown(delta, active_afflictions)
+	_effect_countdown(delta, active_buffs)
+	_effect_countdown(delta, active_debuffs)
+	
 	for debuff in active_debuffs:
 		debuff.tick(parent_entity, delta)
 		if debuff.duration > 0:
 			debuff.duration -= delta
 			if debuff.duration <= 0:
 				_remove_debuff(debuff)
+
+func _effect_countdown(delta: float, effect_array: Array):
+	for effect in effect_array:
+		effect.tick(parent_entity, delta) # Check the tick. Will not always do the same
+		if effect.duration > 0:
+			effect.duration -= delta
+		elif effect.duration <= 0:
+			effect_array.erase(effect)
 
 func add_blessing(blessing: Blessing, owner: Unit):
 	blessing.warer = parent_entity
