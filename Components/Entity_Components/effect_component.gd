@@ -7,7 +7,7 @@ signal buff_extended(target: Entity)
 signal debuff_applied(target: Entity)
 signal debuff_extended(target: Entity)
 
-@onready var parent_entity: Entity = get_parent().get_parent()
+@onready var parent_entity: Unit = get_parent().get_parent()
 
 var active_buffs: Array[Buff] = []
 var active_blessings: Array[Blessing] = []

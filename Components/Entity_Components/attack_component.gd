@@ -4,6 +4,8 @@ class_name AttackComponent
 signal pre_attack_target
 signal post_attack_target
 
+@export var base_attack_damage: int = 1
+@export var base_attack_speed: float = 1.1
 @export var attack_damage: int = 1
 @export var attack_range: int = 100
 @export var attack_speed: float = 1.1
@@ -44,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 					timer.start()
 
 func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
+	base_attack_damage = set_attack_damage
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range
 	base_critical_percent_chance = set_crit_chance
