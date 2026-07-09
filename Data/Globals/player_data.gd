@@ -239,7 +239,7 @@ func save_player_data():
 	
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(func(result, code, headers, body):
+	http.request_completed.connect(func(_result, code, headers, _body):
 		print("Save result - HTTP code: ", code)
 	)
 	
@@ -268,7 +268,7 @@ func load_player_data():
 	
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(func(result, code, headers, body):
+	http.request_completed.connect(func(_result, code, headers, body):
 		if code == 404:
 			save_player_data()
 			await get_tree().create_timer(0.5).timeout
@@ -357,7 +357,7 @@ func load_player_data():
 func _generate_guid() -> String:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var b = func(n): return "%02x" % (rng.randi() % 256)
+	var b = func(_n): return "%02x" % (rng.randi() % 256)
 	return (
 		b.call(0)+b.call(1)+b.call(2)+b.call(3) + "-" +
 		b.call(4)+b.call(5) + "-" +

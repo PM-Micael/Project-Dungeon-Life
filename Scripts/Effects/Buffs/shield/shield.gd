@@ -32,3 +32,6 @@ func effect(_unit, amount, _is_crit):
 		warer.effect_component.remove_buff(self)
 		shield_broken.emit()
 		
+
+func remove():
+	pass

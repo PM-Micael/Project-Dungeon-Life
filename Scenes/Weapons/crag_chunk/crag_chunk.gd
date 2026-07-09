@@ -39,7 +39,7 @@ func _weapon_skill(_targets: Array[Entity]) -> void:
 	# Hook into damage to intercept incoming hits
 	wearer.health_component.pre_calculate_damage.connect(_on_damage_incoming)
 
-func _on_damage_incoming(attacker: Entity, amount: int, is_crit: bool) -> void:
+func _on_damage_incoming(attacker: Entity, amount: int, _is_crit: bool) -> void:
 	var wearer: Entity = weapon_component.entity_holding_weapon
 	if not is_instance_valid(wearer):
 		_end_stance(wearer)

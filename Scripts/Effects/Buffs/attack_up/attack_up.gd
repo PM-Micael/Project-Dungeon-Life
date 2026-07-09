@@ -10,13 +10,14 @@ func _init() -> void:
 	stacks = 1
 
 func apply(_target: Entity) -> void:
-	var ac: AttackComponent = warer.attack_componwent
-	if ac != null:
-		ac.attack_damage = int(ac.base_attack_damage * (1.0 + attack_multiplier))
-
-func remove(_target: Entity) -> void:
 	var ac: AttackComponent = warer.attack_component
 	if ac != null:
-		var attack_differrence: int = int((ac.base_attack_damage * (1.0 + attack_multiplier)) - ac.base_attack_damage)
-		# Reverse the multiplier
-		ac.attack_damage -= attack_differrence
+		ac.attack_damage += get_added_damage(ac)
+
+func remove() -> void:
+	var ac: AttackComponent = warer.attack_component
+	if ac != null:
+		ac.attack_damage -= get_added_damage(ac)
+
+func get_added_damage(ac: AttackComponent) -> int:
+	return int((ac.base_attack_damage * (1.0 + attack_multiplier)) - ac.base_attack_damage)

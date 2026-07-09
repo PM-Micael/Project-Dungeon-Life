@@ -42,7 +42,7 @@ func set_weapon_energy_bar():
 		weapon_energy_bar.max_value = max_weapon_energy
 		weapon_energy_bar.value = current_weapon_energy
 
-func _on_damage_taken(attacker, is_crit):
+func _on_damage_taken(_attacker, _is_crit):
 	adjust_energy([])
 
 func _prep_attack(target: Entity):

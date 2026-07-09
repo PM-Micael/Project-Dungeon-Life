@@ -5,7 +5,7 @@ class_name TargetingComponent
 
 var target: Entity
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	select_closest_target(parent_entity.hostile_team)
 
 func select_closest_target(target_team: String):

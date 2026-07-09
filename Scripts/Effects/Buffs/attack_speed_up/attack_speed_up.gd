@@ -14,7 +14,7 @@ func apply(_target: Entity) -> void:
 	if ac != null:
 		ac.timer.wait_time = ac.base_attack_speed * speed_multiplier
 
-func remove(_target: Entity) -> void:
+func remove() -> void:
 	var ac: AttackComponent = warer.attack_component
 	if ac != null:
 		var speed_difference = ac.base_attack_speed * speed_multiplier - ac.base_attack_speed

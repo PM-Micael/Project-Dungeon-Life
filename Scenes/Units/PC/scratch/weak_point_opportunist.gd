@@ -4,7 +4,7 @@ class_name WeakPointOpportunist
 func _init() -> void:
 	id = "weak_point_opportunist"
 	display_name = "Weak Point Opportunist"
-	duration = -1
+	duration = 999
 	stacks = 1
 
 func apply(_target: Entity) -> void:

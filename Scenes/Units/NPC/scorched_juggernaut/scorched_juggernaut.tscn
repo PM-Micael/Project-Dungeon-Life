@@ -14,16 +14,6 @@
 
 [sub_resource type="GDScript" id="GDScript_ct3rg"]
 script/source = "extends Sprite2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 "
 
 [node name="ScorchedJuggernaut" type="Node2D" unique_id=1429615787]

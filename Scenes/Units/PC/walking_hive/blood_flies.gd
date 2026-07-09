@@ -21,6 +21,9 @@ func _apply_debuffs():
 	for debuff in debuffs:
 		debuff.debuff_effect()
 
+func remove():
+	pass
+
 func apply(_target: Entity) -> void:
 	warer.health_component.died.connect(blood_collector)
 	warer.effect_component.debuff_applied.connect(_on_debuff_applied)

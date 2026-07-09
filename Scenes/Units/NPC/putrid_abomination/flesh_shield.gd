@@ -57,3 +57,6 @@ func _on_reapply_timer_timeout(timer: Timer):
 	timer.queue_free()
 	apply_buffs()
 	print("Flesh Shield reapplied!")
+
+func remove():
+	pass
