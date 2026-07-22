@@ -67,3 +67,11 @@ Buggs:
 2026-07-07:
 	Volume doesn't update in real time
 	Rework how it reads buffs and debuffs
+
+2026-07-11:
+	Question: Should Blessings act like a passive and always be active or act as temporary buffs
+	
+Version 0.5 check list:
+	5: Proper character sprites for the new characters.
+	2: New Database in Supabase
+	3: Settings

@@ -29,9 +29,8 @@ func effect(_unit, amount, _is_crit):
 		hc.final_damage_taken_amount = overflow
 		shield_value = 0
 		hc.post_calculate_damage.disconnect(effect)
-		warer.effect_component.remove_buff(self)
+		warer.effect_component.remove_effect(self, warer.effect_component.active_buffs)
 		shield_broken.emit()
-		
 
 func remove():
 	pass
