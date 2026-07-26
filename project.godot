@@ -28,6 +28,7 @@ BoardGrid="*uid://dq3uan8m2l3k6"
 LootTable="*uid://dynvlo7g5ek6r"
 AudioManager="*uid://7giarjs3fuji"
 GameData="*uid://b4nt171p6fvva"
+Auth="*uid://838kn1str8m3"
 
 [display]
 

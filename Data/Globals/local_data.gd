@@ -48,3 +48,15 @@ func load_settings():
 	settings = result
 	print("Loaded settings:", settings)
 	return settings
+
+func string_to_vector2(s: String) -> Vector2:
+	s = s.trim_prefix("(").trim_suffix(")")
+	var parts = s.split(",")
+
+	if parts.size() != 2:
+		return Vector2.ZERO
+
+	return Vector2(
+		parts[0].to_float(),
+		parts[1].strip_edges().to_float()
+	)

@@ -75,3 +75,12 @@ Version 0.5 check list:
 	5: Proper character sprites for the new characters.
 	2: New Database in Supabase
 	3: Settings
+	
+	Buggs:
+		Starting the game for the first time when no id file exists will make
+		so that the player can not interact with their desktop outside of the game
+		until game restart.
+		CLUE: It is in the player_data, further down in the load_player_data
+		
+	Hide connection string bfore push.
+	During the starting/log in screen you should not be locked if there is not internet access.
