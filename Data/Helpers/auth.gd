@@ -3,9 +3,6 @@ extends Node
 const SUPABASE_URL = "https://mbpsphlldyzzdtrhglbr.supabase.co"
 const SUPABASE_KEY = "sb_publishable_dih5hMaz1q21iRcknN4DDQ_U3qHObWs"
 
-const TEST_EMAIL = "fransisco7117@gmail.com"
-const TEST_PASSWORD = "Micael123!"
-
 var access_token: String = ""
 var refresh_token: String = ""
 var user_id: String = ""
@@ -56,24 +53,20 @@ func register_user(email: String, password: String) -> Dictionary:
 
 	http.queue_free()
 
-	print("Register status:", code)
-	print(response_text)
-
 	var json = JSON.parse_string(response_text)
 
 	if code != 200:
 		return {
 			"success": false,
+			"code": code,
+			"response_text": response_text,
 			"error": json
 		}
 
-	# Save the session
-	access_token = json["access_token"]
-	refresh_token = json["refresh_token"]
-	user_id = json["user"]["id"]
-
 	return {
 		"success": true,
+		"code": code,
+		"response_text": response_text,
 		"user": json["user"]
 	}
 
@@ -115,14 +108,13 @@ func login_user(email: String, password: String) -> Dictionary:
 
 	http.queue_free()
 
-	print("Login status:", code)
-	print(response_text)
-
 	var json = JSON.parse_string(response_text)
 
 	if code != 200:
 		return {
 			"success": false,
+			"code": code,
+			"response_text": response_text,
 			"error": json
 		}
 
@@ -133,5 +125,7 @@ func login_user(email: String, password: String) -> Dictionary:
 
 	return {
 		"success": true,
+		"code": code,
+		"response_text": response_text,
 		"user": json["user"]
 	}

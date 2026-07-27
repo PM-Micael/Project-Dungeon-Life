@@ -82,5 +82,11 @@ Version 0.5 check list:
 		until game restart.
 		CLUE: It is in the player_data, further down in the load_player_data
 		
-	Hide connection string bfore push.
+	Hide connection string before push.
 	During the starting/log in screen you should not be locked if there is not internet access.
+
+Figuere out policys for stopping players from changing data on their row through
+cheating via access to api key.
+
+POTENTIAL REDUNDANT SCRIPTS AND SCENES:
+	game_startup.gd

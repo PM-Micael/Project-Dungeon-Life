@@ -46,9 +46,26 @@ script = ExtResource("5_qllb2")
 
 [node name="DungeonSelection" parent="DungeonSelectionWindow" unique_id=2059361181 instance=ExtResource("5_b4scl")]
 
-[node name="WindowManager" type="Window" parent="." unique_id=209614530]
+[node name="SettingsWindow" type="Window" parent="." unique_id=2104198798]
 oversampling_override = 1.0
 position = Vector2i(0, 36)
+size = Vector2i(900, 500)
+visible = false
+script = ExtResource("21_o7oc5")
+
+[node name="Settings" parent="SettingsWindow" unique_id=1210921123 instance=ExtResource("22_o7oc5")]
+
+[node name="ProfileWindow" type="Window" parent="." unique_id=509221237]
+oversampling_override = 1.0
+size = Vector2i(320, 500)
+visible = false
+script = ExtResource("18_fbmiu")
+
+[node name="Profile" parent="ProfileWindow" unique_id=65702442 instance=ExtResource("18_qbbx0")]
+
+[node name="WindowManager" type="Window" parent="." unique_id=209614530]
+oversampling_override = 1.0
+position = Vector2i(700, 36)
 size = Vector2i(350, 200)
 script = ExtResource("3_gm5dl")
 
@@ -161,20 +178,3 @@ texture_normal = ExtResource("18_2c5lf")
 offset_right = 40.0
 offset_bottom = 40.0
 texture_normal = ExtResource("6_vblgr")
-
-[node name="ProfileWindow" type="Window" parent="." unique_id=509221237]
-oversampling_override = 1.0
-size = Vector2i(320, 500)
-visible = false
-script = ExtResource("18_fbmiu")
-
-[node name="Profile" parent="ProfileWindow" unique_id=65702442 instance=ExtResource("18_qbbx0")]
-
-[node name="SettingsWindow" type="Window" parent="." unique_id=2104198798]
-oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(900, 500)
-visible = false
-script = ExtResource("21_o7oc5")
-
-[node name="Settings" parent="SettingsWindow" unique_id=1210921123 instance=ExtResource("22_o7oc5")]

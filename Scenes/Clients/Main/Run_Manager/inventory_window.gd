@@ -23,7 +23,7 @@ var layout_config: Dictionary[String, int] = {
 }
 
 func _ready() -> void:
-	title = "Inveentory"
+	title = "Inventory"
 	position = Vector2(320, 240)
 	unresizable = true
 	borderless = true

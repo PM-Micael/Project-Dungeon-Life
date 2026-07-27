@@ -47,6 +47,7 @@ var polygon_window: CollisionPolygon2D
 var one_was_pressed := false
 
 func _ready() -> void:
+	_apply_settings()
 	polygon_window = CollisionPolygon2D.new()
 	get_window().mouse_passthrough_polygon = polygon_window.polygon
 	await _initialize_game_data()
@@ -59,6 +60,10 @@ func _physics_process(_delta: float) -> void:
 	if one_pressed and not one_was_pressed:
 		window_manager._activate_menu_hotkey(0)
 	one_was_pressed = one_pressed
+
+func _apply_settings():
+	var window = get_window()
+	window.borderless = true
 
 func _initialize_game_data():
 	PlayerData.load_player_data()

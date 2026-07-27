@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://piydve1f2eu3"]
+
+[ext_resource type="Script" uid="uid://1nuto8qhqvrf" path="res://Scenes/Clients/Main/Login/login.gd" id="1_ds2c3"]
+
+[node name="LoginClient" type="Node2D" unique_id=1481915282]
+script = ExtResource("1_ds2c3")
+
+[node name="Login" type="Node2D" parent="." unique_id=646405559]
+
+[node name="Style" type="Node2D" parent="Login" unique_id=277956405]
+
+[node name="ColorRect" type="ColorRect" parent="Login/Style" unique_id=696057583]
+offset_right = 900.0
+offset_bottom = 500.0
+color = Color(0.12156863, 0, 0.47058824, 1)
+
+[node name="Email" type="Node2D" parent="Login" unique_id=1282183953]
+
+[node name="LineEdit" type="LineEdit" parent="Login/Email" unique_id=368951970]
+offset_left = 102.0
+offset_right = 328.0
+offset_bottom = 31.0
+placeholder_text = "user@gmail.com"
+
+[node name="Label" type="Label" parent="Login/Email" unique_id=1278632427]
+offset_right = 49.0
+offset_bottom = 29.0
+text = "Email"
+vertical_alignment = 1
+
+[node name="Password" type="Node2D" parent="Login" unique_id=987158733]
+position = Vector2(0, 35)
+
+[node name="LineEdit" type="LineEdit" parent="Login/Password" unique_id=1442517944]
+offset_left = 102.0
+offset_right = 328.0
+offset_bottom = 31.0
+placeholder_text = "Password123!"
+
+[node name="Label" type="Label" parent="Login/Password" unique_id=439726492]
+offset_right = 49.0
+offset_bottom = 29.0
+text = "Password"
+vertical_alignment = 1
+
+[node name="LoginButton" type="Button" parent="Login" unique_id=1568368474]
+offset_left = 130.0
+offset_top = 150.0
+offset_right = 197.0
+offset_bottom = 181.0
+text = "Login"
+
+[node name="RegisterPageButton" type="Button" parent="Login" unique_id=161741016]
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 115.0
+offset_bottom = 281.0
+text = "Sign up"
+
+[node name="ErrorLabel" type="Label" parent="Login" unique_id=1940508905]
+visible = false
+offset_left = 1.0
+offset_top = 388.0
+offset_right = 902.0
+offset_bottom = 411.0
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Register" type="Node2D" parent="." unique_id=46695619]
+visible = false
+
+[node name="Style" type="Node2D" parent="Register" unique_id=1553786050]
+
+[node name="ColorRect" type="ColorRect" parent="Register/Style" unique_id=241422962]
+offset_left = 3.0
+offset_right = 903.0
+offset_bottom = 500.0
+color = Color(0.12156863, 0, 0.47058824, 1)
+
+[node name="Email" type="Node2D" parent="Register" unique_id=958074058]
+
+[node name="LineEdit" type="LineEdit" parent="Register/Email" unique_id=1932158496]
+offset_left = 150.0
+offset_right = 376.0
+offset_bottom = 31.0
+placeholder_text = "user@gmail.com"
+
+[node name="Label" type="Label" parent="Register/Email" unique_id=1023794285]
+offset_right = 49.0
+offset_bottom = 29.0
+text = "Email"
+vertical_alignment = 1
+
+[node name="Password" type="Node2D" parent="Register" unique_id=829412677]
+position = Vector2(0, 35)
+
+[node name="LineEdit" type="LineEdit" parent="Register/Password" unique_id=1852805824]
+offset_left = 150.0
+offset_right = 376.0
+offset_bottom = 31.0
+placeholder_text = "Password123!"
+
+[node name="Label" type="Label" parent="Register/Password" unique_id=435089895]
+offset_right = 49.0
+offset_bottom = 29.0
+text = "Password"
+vertical_alignment = 1
+
+[node name="RepeatPassword" type="Node2D" parent="Register" unique_id=136272651]
+position = Vector2(0, 70)
+
+[node name="LineEdit" type="LineEdit" parent="Register/RepeatPassword" unique_id=778850384]
+offset_left = 150.0
+offset_right = 376.0
+offset_bottom = 31.0
+placeholder_text = "Password123!"
+
+[node name="Label" type="Label" parent="Register/RepeatPassword" unique_id=145346582]
+offset_right = 133.0
+offset_bottom = 29.0
+text = "Repeat Password"
+vertical_alignment = 1
+
+[node name="RegisterButton" type="Button" parent="Register" unique_id=1457766869]
+offset_left = 130.0
+offset_top = 150.0
+offset_right = 202.0
+offset_bottom = 181.0
+text = "Register"
+
+[node name="LoginPageButton" type="Button" parent="Register" unique_id=1769737400]
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 100.0
+offset_bottom = 281.0
+text = "Login Page"
+
+[node name="ErrorLabel" type="Label" parent="Register" unique_id=99324753]
+visible = false
+offset_left = 1.0
+offset_top = 388.0
+offset_right = 902.0
+offset_bottom = 411.0
+text = "Error"
+horizontal_alignment = 1

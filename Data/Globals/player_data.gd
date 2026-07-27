@@ -203,6 +203,7 @@ func save_player_data():
 	http.request_completed.connect(func(result, code, headers, body):
 		print("HTTP:", code)
 		print(body.get_string_from_utf8())
+		print()
 	)
 	
 	var url = Auth.SUPABASE_URL + "/rest/v1/players"
@@ -218,30 +219,7 @@ func save_player_data():
 	player_data_has_saved = true
 
 func load_player_data():
-	#await Auth.register_test_user()
-	var login_result = await Auth.login_user(Auth.TEST_EMAIL, Auth.TEST_PASSWORD)
-	
-	player_id = login_result["user"]["id"]
-
 	print("Id: " + player_id)
-	
-	print("Awaited User has registred.")
-	
-	#var id_file_path = "res://player_id.txt"
-	#var file = FileAccess.open(id_file_path, FileAccess.READ)
-#
-	#if file:
-		#var stored_id = file.get_as_text().strip_edges()
-		#file.close()
-#
-		#if stored_id != "":
-			#player_id = stored_id
-		#else:
-			#player_id = Auth.generate_guid()
-			#Auth.write_player_id(player_id)
-	#else:
-		#player_id = Auth.generate_guid()
-		#Auth.write_player_id(player_id)
 
 	var url = Auth.SUPABASE_URL + "/rest/v1/players?id=eq." + player_id + "&select=data"
 
