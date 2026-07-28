@@ -29,11 +29,12 @@ LootTable="*uid://dynvlo7g5ek6r"
 AudioManager="*uid://7giarjs3fuji"
 GameData="*uid://b4nt171p6fvva"
 Auth="*uid://838kn1str8m3"
+Database="*uid://8o8r0k801ekr"
 
 [display]
 
-window/size/viewport_width=900
-window/size/viewport_height=500
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/transparent=true
 window/per_pixel_transparency/allowed=true
 window/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)

@@ -28,6 +28,7 @@ var main_client_scene: PackedScene = load("res://Scenes/Clients/Main/main_client
 @onready var login_error_label: Label = $Login/ErrorLabel
 
 func _ready() -> void:
+	Database.get_table("patch_notes")
 	login_button.pressed.connect(login_button_pressed)
 	login_page_button.pressed.connect(change_window.bind("Login"))
 	register_button.pressed.connect(register_button_pressed)

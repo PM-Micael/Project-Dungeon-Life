@@ -1,15 +1,12 @@
 extends Node
 
-const SUPABASE_URL = "https://mbpsphlldyzzdtrhglbr.supabase.co"
-const SUPABASE_KEY = "sb_publishable_dih5hMaz1q21iRcknN4DDQ_U3qHObWs"
-
 var access_token: String = ""
 var refresh_token: String = ""
 var user_id: String = ""
 
 func get_headers() -> PackedStringArray:
 	return PackedStringArray([
-		"apikey: " + SUPABASE_KEY,
+		"apikey: " + Database.SUPABASE_KEY,
 		"Authorization: Bearer " + access_token,
 		"Content-Type: application/json",
 		"Prefer: resolution=merge-duplicates"
@@ -17,12 +14,7 @@ func get_headers() -> PackedStringArray:
 
 
 func register_user(email: String, password: String) -> Dictionary:
-	var url = SUPABASE_URL + "/auth/v1/signup"
-
-	var headers = [
-		"apikey: " + SUPABASE_KEY,
-		"Content-Type: application/json"
-	]
+	var url = Database.SUPABASE_URL + "/auth/v1/signup"
 
 	var body = {
 		"email": email,
@@ -34,7 +26,7 @@ func register_user(email: String, password: String) -> Dictionary:
 
 	var err = http.request(
 		url,
-		headers,
+		get_headers(),
 		HTTPClient.METHOD_POST,
 		JSON.stringify(body)
 	)
@@ -72,12 +64,7 @@ func register_user(email: String, password: String) -> Dictionary:
 
 
 func login_user(email: String, password: String) -> Dictionary:
-	var url = SUPABASE_URL + "/auth/v1/token?grant_type=password"
-
-	var headers = [
-		"apikey: " + SUPABASE_KEY,
-		"Content-Type: application/json"
-	]
+	var url = Database.SUPABASE_URL + "/auth/v1/token?grant_type=password"
 
 	var body = {
 		"email": email,
@@ -89,7 +76,7 @@ func login_user(email: String, password: String) -> Dictionary:
 
 	var err = http.request(
 		url,
-		headers,
+		get_headers(),
 		HTTPClient.METHOD_POST,
 		JSON.stringify(body)
 	)

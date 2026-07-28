@@ -1,25 +1,41 @@
 [gd_scene format=3 uid="uid://piydve1f2eu3"]
 
-[ext_resource type="Script" uid="uid://1nuto8qhqvrf" path="res://Scenes/Clients/Main/Login/login.gd" id="1_ds2c3"]
+[ext_resource type="Script" uid="uid://1nuto8qhqvrf" path="res://Scenes/Clients/Main/Login/login.gd" id="1_go5pu"]
+[ext_resource type="Script" uid="uid://ba0mrw32kffot" path="res://Scenes/Clients/Main/Login/news.gd" id="2_e026i"]
 
-[node name="LoginClient" type="Node2D" unique_id=1481915282]
-script = ExtResource("1_ds2c3")
+[node name="StartClient" type="Node2D" unique_id=1481915282]
+script = ExtResource("1_go5pu")
+
+[node name="Style" type="Node2D" parent="." unique_id=905166516]
+
+[node name="ColorRect" type="ColorRect" parent="Style" unique_id=1885619038]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
 
 [node name="Login" type="Node2D" parent="." unique_id=646405559]
 
 [node name="Style" type="Node2D" parent="Login" unique_id=277956405]
 
 [node name="ColorRect" type="ColorRect" parent="Login/Style" unique_id=696057583]
-offset_right = 900.0
-offset_bottom = 500.0
+offset_right = 250.0
+offset_bottom = 720.0
 color = Color(0.12156863, 0, 0.47058824, 1)
 
+[node name="Line" type="Label" parent="Login/Style" unique_id=1932454018]
+offset_top = 360.0
+offset_right = 250.0
+offset_bottom = 383.0
+text = "____________________________________"
+horizontal_alignment = 1
+
 [node name="Email" type="Node2D" parent="Login" unique_id=1282183953]
+position = Vector2(10, 20)
 
 [node name="LineEdit" type="LineEdit" parent="Login/Email" unique_id=368951970]
-offset_left = 102.0
-offset_right = 328.0
-offset_bottom = 31.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
 placeholder_text = "user@gmail.com"
 
 [node name="Label" type="Label" parent="Login/Email" unique_id=1278632427]
@@ -29,12 +45,12 @@ text = "Email"
 vertical_alignment = 1
 
 [node name="Password" type="Node2D" parent="Login" unique_id=987158733]
-position = Vector2(0, 35)
+position = Vector2(10, 100)
 
 [node name="LineEdit" type="LineEdit" parent="Login/Password" unique_id=1442517944]
-offset_left = 102.0
-offset_right = 328.0
-offset_bottom = 31.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
 placeholder_text = "Password123!"
 
 [node name="Label" type="Label" parent="Login/Password" unique_id=439726492]
@@ -44,17 +60,17 @@ text = "Password"
 vertical_alignment = 1
 
 [node name="LoginButton" type="Button" parent="Login" unique_id=1568368474]
-offset_left = 130.0
-offset_top = 150.0
-offset_right = 197.0
-offset_bottom = 181.0
+offset_left = 10.0
+offset_top = 200.0
+offset_right = 100.0
+offset_bottom = 231.0
 text = "Login"
 
 [node name="RegisterPageButton" type="Button" parent="Login" unique_id=161741016]
-offset_left = 50.0
-offset_top = 250.0
-offset_right = 115.0
-offset_bottom = 281.0
+offset_left = 10.0
+offset_top = 425.0
+offset_right = 100.0
+offset_bottom = 456.0
 text = "Sign up"
 
 [node name="ErrorLabel" type="Label" parent="Login" unique_id=1940508905]
@@ -69,20 +85,27 @@ horizontal_alignment = 1
 [node name="Register" type="Node2D" parent="." unique_id=46695619]
 visible = false
 
-[node name="Style" type="Node2D" parent="Register" unique_id=1553786050]
+[node name="Style" type="Node2D" parent="Register" unique_id=896352156]
 
-[node name="ColorRect" type="ColorRect" parent="Register/Style" unique_id=241422962]
-offset_left = 3.0
-offset_right = 903.0
+[node name="ColorRect" type="ColorRect" parent="Register/Style" unique_id=1043030777]
+offset_right = 250.0
 offset_bottom = 500.0
 color = Color(0.12156863, 0, 0.47058824, 1)
 
+[node name="Line" type="Label" parent="Register/Style" unique_id=1592540431]
+offset_top = 360.0
+offset_right = 250.0
+offset_bottom = 383.0
+text = "____________________________________"
+horizontal_alignment = 1
+
 [node name="Email" type="Node2D" parent="Register" unique_id=958074058]
+position = Vector2(10, 20)
 
 [node name="LineEdit" type="LineEdit" parent="Register/Email" unique_id=1932158496]
-offset_left = 150.0
-offset_right = 376.0
-offset_bottom = 31.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
 placeholder_text = "user@gmail.com"
 
 [node name="Label" type="Label" parent="Register/Email" unique_id=1023794285]
@@ -92,27 +115,27 @@ text = "Email"
 vertical_alignment = 1
 
 [node name="Password" type="Node2D" parent="Register" unique_id=829412677]
-position = Vector2(0, 35)
+position = Vector2(10, 100)
 
 [node name="LineEdit" type="LineEdit" parent="Register/Password" unique_id=1852805824]
-offset_left = 150.0
-offset_right = 376.0
-offset_bottom = 31.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
 placeholder_text = "Password123!"
 
 [node name="Label" type="Label" parent="Register/Password" unique_id=435089895]
-offset_right = 49.0
+offset_right = 75.0
 offset_bottom = 29.0
 text = "Password"
 vertical_alignment = 1
 
 [node name="RepeatPassword" type="Node2D" parent="Register" unique_id=136272651]
-position = Vector2(0, 70)
+position = Vector2(10, 180)
 
 [node name="LineEdit" type="LineEdit" parent="Register/RepeatPassword" unique_id=778850384]
-offset_left = 150.0
-offset_right = 376.0
-offset_bottom = 31.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
 placeholder_text = "Password123!"
 
 [node name="Label" type="Label" parent="Register/RepeatPassword" unique_id=145346582]
@@ -122,18 +145,18 @@ text = "Repeat Password"
 vertical_alignment = 1
 
 [node name="RegisterButton" type="Button" parent="Register" unique_id=1457766869]
-offset_left = 130.0
-offset_top = 150.0
-offset_right = 202.0
-offset_bottom = 181.0
+offset_left = 10.0
+offset_top = 275.0
+offset_right = 100.0
+offset_bottom = 306.0
 text = "Register"
 
 [node name="LoginPageButton" type="Button" parent="Register" unique_id=1769737400]
-offset_left = 50.0
-offset_top = 250.0
+offset_left = 10.0
+offset_top = 425.0
 offset_right = 100.0
-offset_bottom = 281.0
-text = "Login Page"
+offset_bottom = 456.0
+text = "Login"
 
 [node name="ErrorLabel" type="Label" parent="Register" unique_id=99324753]
 visible = false
@@ -143,3 +166,31 @@ offset_right = 902.0
 offset_bottom = 411.0
 text = "Error"
 horizontal_alignment = 1
+
+[node name="News" type="Node2D" parent="." unique_id=716306754]
+position = Vector2(255, 2)
+script = ExtResource("2_e026i")
+
+[node name="Style" type="Node2D" parent="News" unique_id=861465688]
+
+[node name="ColorRect" type="ColorRect" parent="News/Style" unique_id=1368401775]
+offset_right = 1023.0
+offset_bottom = 716.0
+color = Color(0, 0.3882353, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="News" unique_id=1553465159]
+offset_left = 2.0
+offset_right = 1021.0
+offset_bottom = 716.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="News/ScrollContainer" unique_id=213414670]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ArtScreen" type="Node2D" parent="." unique_id=1083602792]
+
+[node name="ColorRect" type="ColorRect" parent="ArtScreen" unique_id=1082307286]
+visible = false
+offset_left = 250.0
+offset_right = 900.0
+offset_bottom = 718.0

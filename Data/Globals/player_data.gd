@@ -221,7 +221,7 @@ func save_player_data():
 func load_player_data():
 	print("Id: " + player_id)
 
-	var url = Auth.SUPABASE_URL + "/rest/v1/players?id=eq." + player_id + "&select=data"
+	var url = Database.SUPABASE_URL + "/rest/v1/players?id=eq." + player_id + "&select=data"
 
 	var http = HTTPRequest.new()
 	add_child(http)
