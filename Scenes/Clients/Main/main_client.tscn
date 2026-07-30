@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dksr8nsejihd8" path="res://Scenes/Clients/Main/Profile/profile.tscn" id="18_qbbx0"]
 [ext_resource type="Script" uid="uid://b40bbfgsodrob" path="res://Scenes/Clients/Main/settings_window.gd" id="21_o7oc5"]
 [ext_resource type="PackedScene" uid="uid://r81xnhj68mq5" path="res://Scenes/Clients/Main/Settings/settings.tscn" id="22_o7oc5"]
+[ext_resource type="Texture2D" uid="uid://d22r43qc11r4v" path="res://Assets/Client/icon_settings.svg" id="23_x6tcn"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
@@ -177,4 +178,5 @@ texture_normal = ExtResource("18_2c5lf")
 [node name="SettingsButton" type="TextureButton" parent="WindowManager/Settings" unique_id=1073844465]
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("6_vblgr")
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("23_x6tcn")

@@ -86,7 +86,9 @@ func _ready() -> void:
 			invenetory_menu_button,
 			dungeon_selection_button,
 			inner_sanctum_menu_button,
-			profile_button],
+			profile_button,
+			settings_button,
+			],
 		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
 		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
 	}
@@ -197,6 +199,8 @@ func _on_menu_selected_changed() -> void: #Potential for adding a check to minim
 				child.position = Vector2(105, 130)
 			4:
 				child.position = Vector2(25, 105)
+			5:
+				child.position = Vector2(25, 25)
 		
 		loop_itteration += 1
 
