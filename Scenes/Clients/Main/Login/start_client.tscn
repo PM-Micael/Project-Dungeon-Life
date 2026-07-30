@@ -20,7 +20,7 @@ color = Color(0, 0, 0, 1)
 [node name="ColorRect" type="ColorRect" parent="Login/Style" unique_id=696057583]
 offset_right = 250.0
 offset_bottom = 720.0
-color = Color(0.12156863, 0, 0.47058824, 1)
+color = Color(0.16120416, 0.55071867, 5.7756904e-07, 0.77254903)
 
 [node name="Line" type="Label" parent="Login/Style" unique_id=1932454018]
 offset_top = 360.0
@@ -52,6 +52,7 @@ offset_top = 30.0
 offset_right = 226.0
 offset_bottom = 61.0
 placeholder_text = "Password123!"
+secret = true
 
 [node name="Label" type="Label" parent="Login/Password" unique_id=439726492]
 offset_right = 49.0
@@ -76,11 +77,18 @@ text = "Sign up"
 [node name="ErrorLabel" type="Label" parent="Login" unique_id=1940508905]
 visible = false
 offset_left = 1.0
-offset_top = 388.0
-offset_right = 902.0
-offset_bottom = 411.0
+offset_top = 350.0
+offset_right = 249.0
+offset_bottom = 373.0
 text = "Error"
 horizontal_alignment = 1
+
+[node name="RecoverPasswordPageButton" type="Button" parent="Login" unique_id=445706042]
+offset_left = 10.0
+offset_top = 475.0
+offset_right = 147.0
+offset_bottom = 506.0
+text = "Forgot Password"
 
 [node name="Register" type="Node2D" parent="." unique_id=46695619]
 visible = false
@@ -89,8 +97,8 @@ visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Register/Style" unique_id=1043030777]
 offset_right = 250.0
-offset_bottom = 500.0
-color = Color(0.12156863, 0, 0.47058824, 1)
+offset_bottom = 720.0
+color = Color(0.16078432, 0.54901963, 0, 0.77254903)
 
 [node name="Line" type="Label" parent="Register/Style" unique_id=1592540431]
 offset_top = 360.0
@@ -122,6 +130,7 @@ offset_top = 30.0
 offset_right = 226.0
 offset_bottom = 61.0
 placeholder_text = "Password123!"
+secret = true
 
 [node name="Label" type="Label" parent="Register/Password" unique_id=435089895]
 offset_right = 75.0
@@ -137,6 +146,7 @@ offset_top = 30.0
 offset_right = 226.0
 offset_bottom = 61.0
 placeholder_text = "Password123!"
+secret = true
 
 [node name="Label" type="Label" parent="Register/RepeatPassword" unique_id=145346582]
 offset_right = 133.0
@@ -161,9 +171,9 @@ text = "Login"
 [node name="ErrorLabel" type="Label" parent="Register" unique_id=99324753]
 visible = false
 offset_left = 1.0
-offset_top = 388.0
-offset_right = 902.0
-offset_bottom = 411.0
+offset_top = 350.0
+offset_right = 249.0
+offset_bottom = 373.0
 text = "Error"
 horizontal_alignment = 1
 
@@ -174,9 +184,11 @@ script = ExtResource("2_e026i")
 [node name="Style" type="Node2D" parent="News" unique_id=861465688]
 
 [node name="ColorRect" type="ColorRect" parent="News/Style" unique_id=1368401775]
-offset_right = 1023.0
-offset_bottom = 716.0
-color = Color(0, 0.3882353, 0, 1)
+offset_left = -5.0
+offset_top = -2.0
+offset_right = 1025.0
+offset_bottom = 718.0
+color = Color(0, 0, 0, 1)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="News" unique_id=1553465159]
 offset_left = 2.0
@@ -187,10 +199,57 @@ offset_bottom = 716.0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ArtScreen" type="Node2D" parent="." unique_id=1083602792]
-
-[node name="ColorRect" type="ColorRect" parent="ArtScreen" unique_id=1082307286]
+[node name="PasswordRecover" type="Node2D" parent="." unique_id=1353391572]
 visible = false
-offset_left = 250.0
-offset_right = 900.0
-offset_bottom = 718.0
+
+[node name="Style" type="Node2D" parent="PasswordRecover" unique_id=1079285085]
+
+[node name="ColorRect" type="ColorRect" parent="PasswordRecover/Style" unique_id=707725054]
+offset_right = 250.0
+offset_bottom = 720.0
+color = Color(0.16120416, 0.55071867, 5.7756904e-07, 0.77254903)
+
+[node name="Line" type="Label" parent="PasswordRecover/Style" unique_id=994669486]
+offset_top = 360.0
+offset_right = 250.0
+offset_bottom = 383.0
+text = "____________________________________"
+horizontal_alignment = 1
+
+[node name="Email" type="Node2D" parent="PasswordRecover" unique_id=906472889]
+position = Vector2(10, 20)
+
+[node name="LineEdit" type="LineEdit" parent="PasswordRecover/Email" unique_id=1500549939]
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 61.0
+placeholder_text = "user@gmail.com"
+
+[node name="Label" type="Label" parent="PasswordRecover/Email" unique_id=1462743450]
+offset_right = 49.0
+offset_bottom = 29.0
+text = "Email"
+vertical_alignment = 1
+
+[node name="SendRecoveryEmailButton" type="Button" parent="PasswordRecover" unique_id=520485809]
+offset_left = 10.0
+offset_top = 200.0
+offset_right = 100.0
+offset_bottom = 231.0
+text = "Send"
+
+[node name="LoginPageButton" type="Button" parent="PasswordRecover" unique_id=226211750]
+offset_left = 10.0
+offset_top = 425.0
+offset_right = 100.0
+offset_bottom = 456.0
+text = "Login"
+
+[node name="MessageLabel" type="Label" parent="PasswordRecover" unique_id=588727587]
+visible = false
+offset_left = 1.0
+offset_top = 350.0
+offset_right = 249.0
+offset_bottom = 373.0
+text = "Error"
+horizontal_alignment = 1

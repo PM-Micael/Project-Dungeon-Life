@@ -25,11 +25,12 @@ func get_table(table: String) -> Array:
 
 	if response_code == 200:
 		var data = JSON.parse_string(body.get_string_from_utf8())
+		
+		if data.size() > 0:
+			var patch_note: Dictionary = data[0]
 
-		var patch_note: Dictionary = data[0]
-
-		print(data)
-		print(patch_note["version"])
+			print(data)
+			print(patch_note["version"])
 
 		http.queue_free()
 		return data

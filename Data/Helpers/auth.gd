@@ -63,6 +63,53 @@ func register_user(email: String, password: String) -> Dictionary:
 	}
 
 
+func send_password_reset(email: String) -> Dictionary:
+	var url = Database.SUPABASE_URL + "/auth/v1/recover"
+
+	var headers = [
+		"apikey: " + Database.SUPABASE_KEY,
+		"Content-Type: application/json"
+	]
+
+	var body = {
+		"email": email
+	}
+
+	var http := HTTPRequest.new()
+	add_child(http)
+
+	var err = http.request(
+		url,
+		headers,
+		HTTPClient.METHOD_POST,
+		JSON.stringify(body)
+	)
+
+	if err != OK:
+		http.queue_free()
+		return {
+			"success": false,
+			"error": "Failed to start request."
+		}
+
+	var response = await http.request_completed
+
+	var code: int = response[1]
+	var text = response[3].get_string_from_utf8()
+
+	http.queue_free()
+
+	if code != 200:
+		return {
+			"success": false,
+			"status": code,
+			"body": text
+		}
+
+	return {
+		"success": true
+	}
+
 func login_user(email: String, password: String) -> Dictionary:
 	var url = Database.SUPABASE_URL + "/auth/v1/token?grant_type=password"
 
