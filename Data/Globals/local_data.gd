@@ -10,6 +10,7 @@ const DISPLAY_MODE = {
 }
 
 var settings: Dictionary = {
+	"email_cockie": "",
 	"auto_advance": false,
 	"audio": {
 		"volume_master": 1.0,
@@ -27,15 +28,7 @@ func load_local_data():
 	local_data_loaded.emit()
 
 func apply_settings():
-	settings = {
-		"auto_advance":false,
-		"display": {
-			"display_mode": DISPLAY_MODE.BORDERLESS
-		},
-		"audio":{
-			"volume_master":1.0,"volume_music":3.0,"volume_sfx":1.0
-		},
-	}
+	settings["display_mode"] = DISPLAY_MODE.BORDERLESS
 	
 	var window = get_window()
 	window.borderless = settings["display"]["display_mode"] == DISPLAY_MODE.BORDERLESS

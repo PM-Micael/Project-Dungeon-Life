@@ -1,9 +1,1 @@
-{
-	"auto_advance":false,
-	"display": {
-		"display_mode": "borderless"
-	},
-	"audio":{
-		"volume_master":1.0,"volume_music":3.0,"volume_sfx":1.0
-	},
-}
+{"audio":{"volume_master":1.0,"volume_music":1.0,"volume_sfx":1.0},"auto_advance":false,"display":{"display_mode":"borderless"},"email_cockie":""}

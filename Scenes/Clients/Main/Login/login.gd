@@ -34,6 +34,8 @@ var main_client_scene: PackedScene = load("res://Scenes/Clients/Main/main_client
 
 func _ready() -> void:
 	Database.get_table("patch_notes")
+	var settings = LocalData.load_settings()
+	email_login_line_edit.text = settings["email_cockie"]
 	login_button.pressed.connect(login_button_pressed)
 	login_page_button.pressed.connect(change_window.bind("Login"))
 	recover_password_login_page_button.pressed.connect(change_window.bind("Login"))
@@ -97,6 +99,9 @@ func login(email: String, password: String):
 	if code >= 200 and code <= 299:
 		PlayerData.player_id = result["user"]["id"]
 		LocalData.settings["display"]["display_mode"] = LocalData.DISPLAY_MODE.BORDERLESS
+		LocalData.settings["email_cockie"] = email
+		print("AAAAAAAAAAAAAAAAAAAAAAAAAa" + str(LocalData.settings))
+		LocalData.save_settings()
 		
 		LocalData.apply_settings()
 		
