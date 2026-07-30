@@ -131,15 +131,15 @@ func _connect_events():
 	back_button.pressed.connect(_on_back_pressed)
 	next_page_button.pressed.connect(_on_back_pressed)
 	
-	profile_button.pressed.connect(_on_profile_pressed)
+	profile_button.pressed.connect(_on_window_button_pressed.bind(profile_window))
 	
-	settings_button.pressed.connect(_on_settings_pressed)
+	settings_button.pressed.connect(_on_window_button_pressed.bind(settings_window))
 	settings_window.visibility_changed.connect(func(): _on_window_visibility_changed(settings_window))
 	
-	dungeon_selection_button.pressed.connect(_on_dungeon_selection_pressed)
+	dungeon_selection_button.pressed.connect(_on_window_button_pressed.bind(dungeon_selection_window))
 	dungeon_selection_window.visibility_changed.connect(func(): _on_window_visibility_changed(dungeon_selection_window))
 	
-	inner_sanctum_menu_button.pressed.connect(_on_inner_sanctum_pressed)
+	inner_sanctum_menu_button.pressed.connect(_on_window_button_pressed.bind(inner_sanctum_window))
 	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
 	
 	board_menu_button.pressed.connect(_on_board_pressed)
@@ -271,13 +271,8 @@ func _minimize_inventory():
 func _on_settings_pressed():
 	_check_center_window(settings_window)
 
-# Inner Sanctum
-func _on_inner_sanctum_pressed():
-	_check_center_window(inner_sanctum_window)
-
-# Dungeon selection
-func _on_dungeon_selection_pressed():
-	_check_center_window(dungeon_selection_window)
+func _on_window_button_pressed(window: Window):
+	_check_center_window(window)
 
 # Profile
 func _on_profile_pressed():
