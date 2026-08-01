@@ -21,10 +21,10 @@ var center_menu_showing: bool:
 var menu_history: Array[TextureButton] = []
 var _navigating_back: bool = false
 @onready var back_button: TextureButton = get_node("BackButton")
-
 @onready var next_page_button: TextureButton = get_node("NextPageButton")
 
-@onready var home_menu_button: TextureButton = get_node("HomeMenuButton")
+@onready var home_menu_button_1: TextureButton = get_node("HomeMenuButton1")
+@onready var home_menu_button_2: TextureButton = get_node("HomeMenuButton2")
 
 @onready var profile_window: ProfileWindow = get_parent().get_node("ProfileWindow")
 @onready var profile_button: TextureButton = get_node("Profile/ProfileButton")
@@ -37,6 +37,9 @@ var _navigating_back: bool = false
 
 @onready var settings_window: SettingsWindow = get_parent().get_node("SettingsWindow")
 @onready var settings_button: TextureButton = get_node("Settings/SettingsButton")
+
+@onready var database_client_window: DatabaseClientWindow = get_parent().get_node("DatabaseClientWindow")
+@onready var database_client_button: TextureButton = get_node("DatabaseClient/DatabaseClientButton")
 
 @onready var board_window: BoardWindow = get_parent().get_node("RunManager/BoardWindow")
 @onready var board_menu_button: TextureButton = get_node("Board/BoardMenuButton")
@@ -79,21 +82,34 @@ func _ready() -> void:
 		inner_sanctum_window,
 		dungeon_selection_window,
 		settings_window,
+		database_client_window,
 	]
 	config = {
-		home_menu_button: [
+		home_menu_button_1: [
 			board_menu_button,
 			invenetory_menu_button,
 			dungeon_selection_button,
 			inner_sanctum_menu_button,
 			profile_button,
 			settings_button,
-			],
-		board_menu_button: [board_scale_up_button, board_scale_down_button, board_minimize_button],
-		invenetory_menu_button: [inventory_scale_up_button,inventory_scale_down_button, inventory_minimize_button],
+			next_page_button
+		],
+		home_menu_button_2: [
+			database_client_button
+		],
+		board_menu_button: [
+			board_scale_up_button,
+			board_scale_down_button,
+			board_minimize_button
+		],
+		invenetory_menu_button: [
+			inventory_scale_up_button,
+			inventory_scale_down_button,
+			inventory_minimize_button
+		],
 	}
 	
-	menu_selected = home_menu_button
+	menu_selected = home_menu_button_1
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -131,9 +147,12 @@ func _activate_menu_hotkey(index: int) -> void:
 
 func _connect_events():
 	back_button.pressed.connect(_on_back_pressed)
-	next_page_button.pressed.connect(_on_back_pressed)
+	next_page_button.pressed.connect(_on_menu_change_pressed.bind(next_page_button))
 	
 	profile_button.pressed.connect(_on_window_button_pressed.bind(profile_window))
+	
+	database_client_button.pressed.connect(_on_window_button_pressed.bind(database_client_window))
+	database_client_window.visibility_changed.connect(_on_window_visibility_changed.bind(database_client_window))
 	
 	settings_button.pressed.connect(_on_window_button_pressed.bind(settings_window))
 	settings_window.visibility_changed.connect(func(): _on_window_visibility_changed(settings_window))
@@ -144,12 +163,12 @@ func _connect_events():
 	inner_sanctum_menu_button.pressed.connect(_on_window_button_pressed.bind(inner_sanctum_window))
 	inner_sanctum_window.visibility_changed.connect(func(): _on_window_visibility_changed(inner_sanctum_window))
 	
-	board_menu_button.pressed.connect(_on_board_pressed)
+	board_menu_button.pressed.connect(_on_menu_change_pressed.bind(board_menu_button))
 	board_scale_up_button.pressed.connect(_scale_up_board)
 	board_scale_down_button.pressed.connect(_scale_down_board)
 	board_minimize_button.pressed.connect(_minimize_board)
 	
-	invenetory_menu_button.pressed.connect(_on_inventory_pressed)
+	invenetory_menu_button.pressed.connect(_on_menu_change_pressed.bind(invenetory_menu_button))
 	inventory_scale_up_button.pressed.connect(_scale_up_inventory)
 	inventory_scale_down_button.pressed.connect(_scale_down_inventory)
 	inventory_minimize_button.pressed.connect(_minimize_inventory)
@@ -170,7 +189,7 @@ func _on_menu_selected_changed() -> void: #Potential for adding a check to minim
 			if child != null:
 				child.visible = false
 	
-	if menu_selected == home_menu_button:
+	if menu_selected == home_menu_button_1:
 		back_button.visible = false
 	else:
 		back_button.visible = true
@@ -188,6 +207,9 @@ func _on_menu_selected_changed() -> void: #Potential for adding a check to minim
 		if child == null:
 			continue
 		child.visible = true
+		if child.name == "NextPageButton":
+			child.position = Vector2(225, 0)
+			continue
 		match loop_itteration:
 			0:
 				child.position = Vector2(265, 25)
@@ -206,9 +228,8 @@ func _on_menu_selected_changed() -> void: #Potential for adding a check to minim
 
 func _check_center_window(window: Window):
 	for w in center_windows:
-		if w == window:
-			continue
-		w.visible = false
+		if w != window and w != null:
+			w.visible = false
 	window.visible = not window.visible
 
 # Back button
@@ -219,11 +240,15 @@ func _on_back_pressed():
 	menu_selected = menu_history.pop_back()
 	_navigating_back = false
 
-# Board menu button
-func _on_board_pressed():
-	if menu_selected != board_menu_button:
-		menu_selected = board_menu_button
+func _on_menu_change_pressed(button: TextureButton):
+	if button == next_page_button:
+		match menu_selected:
+			home_menu_button_1:
+				menu_selected = home_menu_button_2
+	elif menu_selected != button:
+		menu_selected = button
 
+# Board menu button
 func _scale_down_board():
 	if not board_scale_locked:
 		if not board_window.visible:
@@ -246,10 +271,6 @@ func _minimize_board():
 	board_window.visible = not board_window.visible
 
 # Inventory menu button
-func _on_inventory_pressed():
-	if menu_selected != invenetory_menu_button:
-		menu_selected = invenetory_menu_button
-
 func _scale_up_inventory():
 	if not inventory_scale_locked:
 		if not inventory_window.visible:
@@ -270,10 +291,6 @@ func _scale_down_inventory():
 
 func _minimize_inventory():
 	inventory_window.visible = not inventory_window.visible
-
-# Settings
-func _on_settings_pressed():
-	_check_center_window(settings_window)
 
 func _on_window_button_pressed(window: Window):
 	_check_center_window(window)

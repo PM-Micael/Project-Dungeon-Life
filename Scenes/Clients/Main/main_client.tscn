@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cabwn7u7v8c25" path="res://Assets/Client/icon_board.svg" id="8_wnapl"]
 [ext_resource type="Texture2D" uid="uid://cqifai823yr1v" path="res://Assets/Client/icon_scale_up.svg" id="9_0pumd"]
 [ext_resource type="Texture2D" uid="uid://pdclehaplpg2" path="res://Assets/Client/icon_scale_down.svg" id="10_7302y"]
+[ext_resource type="Script" uid="uid://dgerdfrbkoggk" path="res://Scenes/Clients/Main/database_window.gd" id="11_kh8v3"]
 [ext_resource type="Texture2D" uid="uid://s0b0710u7mob" path="res://Assets/Client/icon_minimize.svg" id="11_uljfg"]
+[ext_resource type="PackedScene" uid="uid://rj8m20mbt3vp" path="res://Scenes/Clients/Main/Database_Client/database_client.tscn" id="12_kkycs"]
 [ext_resource type="Texture2D" uid="uid://bb031d843swea" path="res://Assets/Client/icon_inventory.svg" id="12_ufw4t"]
 [ext_resource type="PackedScene" uid="uid://brqcerkuyo18u" path="res://Scenes/Clients/Upgrades/inner_sanctum.tscn" id="13_couco"]
 [ext_resource type="Script" uid="uid://b5vnq7lillori" path="res://Scenes/Clients/Main/inner_sanctum_window.gd" id="13_g3ocy"]
@@ -64,6 +66,15 @@ script = ExtResource("18_fbmiu")
 
 [node name="Profile" parent="ProfileWindow" unique_id=65702442 instance=ExtResource("18_qbbx0")]
 
+[node name="DatabaseClientWindow" type="Window" parent="." unique_id=1669928108]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(900, 500)
+visible = false
+script = ExtResource("11_kh8v3")
+
+[node name="Database" parent="DatabaseClientWindow" unique_id=1752301446 instance=ExtResource("12_kkycs")]
+
 [node name="WindowManager" type="Window" parent="." unique_id=209614530]
 oversampling_override = 1.0
 position = Vector2i(700, 36)
@@ -85,9 +96,15 @@ offset_bottom = 88.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("5_hap2d")
 
-[node name="HomeMenuButton" type="TextureButton" parent="WindowManager" unique_id=1559317402]
+[node name="HomeMenuButton1" type="TextureButton" parent="WindowManager" unique_id=1559317402]
 offset_right = 40.0
 offset_bottom = 40.0
+texture_normal = ExtResource("6_vblgr")
+
+[node name="HomeMenuButton2" type="TextureButton" parent="WindowManager" unique_id=1897893876]
+visible = false
+offset_right = 88.0
+offset_bottom = 88.0
 texture_normal = ExtResource("6_vblgr")
 
 [node name="DungeonMenuButton" type="TextureButton" parent="WindowManager" unique_id=906244988]
@@ -176,6 +193,15 @@ texture_normal = ExtResource("18_2c5lf")
 [node name="Settings" type="Node2D" parent="WindowManager" unique_id=16403146]
 
 [node name="SettingsButton" type="TextureButton" parent="WindowManager/Settings" unique_id=1073844465]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("23_x6tcn")
+
+[node name="DatabaseClient" type="Node2D" parent="WindowManager" unique_id=12665643]
+
+[node name="DatabaseClientButton" type="TextureButton" parent="WindowManager/DatabaseClient" unique_id=1368773840]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.75, 0.75)

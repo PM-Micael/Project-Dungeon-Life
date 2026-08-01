@@ -100,7 +100,6 @@ func login(email: String, password: String):
 		PlayerData.player_id = result["user"]["id"]
 		LocalData.settings["display"]["display_mode"] = LocalData.DISPLAY_MODE.BORDERLESS
 		LocalData.settings["email_cockie"] = email
-		print("AAAAAAAAAAAAAAAAAAAAAAAAAa" + str(LocalData.settings))
 		LocalData.save_settings()
 		
 		LocalData.apply_settings()
@@ -110,10 +109,10 @@ func login(email: String, password: String):
 		get_tree().root.add_child(main_client)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = main_client
-		print(result["response_text"])
+		#print(result["response_text"])
 	else:
 		var response = JSON.parse_string(result["response_text"])
 		var msg = response["msg"]
-		print(result["response_text"])
+		#print(result["response_text"])
 		login_message_label.text = msg
 		login_message_label.visible = true

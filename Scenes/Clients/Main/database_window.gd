@@ -1,10 +1,9 @@
-# Handle user interaction
 extends Window
-class_name ProfileWindow
+class_name DatabaseClientWindow
 
 func _ready() -> void:
-	title = "Profile Window"
-	position = Vector2(0, 0)
+	title = "Database"
+	position = Vector2(490, 219)
 	unresizable = true
 	borderless = true
 	always_on_top = true

@@ -29,8 +29,8 @@ func get_table(table: String) -> Array:
 		if data.size() > 0:
 			var patch_note: Dictionary = data[0]
 
-			print(data)
-			print(patch_note["version"])
+			#print(data)
+			#print(patch_note["version"])
 
 		http.queue_free()
 		return data

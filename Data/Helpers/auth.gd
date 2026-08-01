@@ -62,7 +62,6 @@ func register_user(email: String, password: String) -> Dictionary:
 		"user": json["user"]
 	}
 
-
 func send_password_reset(email: String) -> Dictionary:
 	var url = Database.SUPABASE_URL + "/auth/v1/recover"
 
