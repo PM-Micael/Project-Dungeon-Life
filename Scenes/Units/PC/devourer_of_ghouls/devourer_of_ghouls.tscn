@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_nxu0w"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_nxu0w"]
-[ext_resource type="Texture2D" uid="uid://c6u1ge0dlp073" path="res://Scenes/Units/PC/devourer_of_ghouls/d_o_g.png" id="11_rwlgu"]
+[ext_resource type="Texture2D" uid="uid://c6u1ge0dlp073" path="res://Scenes/Units/PC/devourer_of_ghouls/devourer_of_ghouls.png" id="11_rwlgu"]
 
 [node name="DevourerOfGhouls" type="Node2D" unique_id=750954088 groups=["units"]]
 script = ExtResource("1_gbevl")

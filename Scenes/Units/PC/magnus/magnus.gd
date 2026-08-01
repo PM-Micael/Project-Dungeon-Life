@@ -5,8 +5,8 @@ var molten_core_active: bool = false
 func _init() -> void:
 	id = "magnus"
 	passive_description = "Magnus starts the battle shielded by Molten Layer.
-		When the shield is broken, his molten core is exposed —
-		any attacker who strikes him will be set Burning."
+		When the shield is broken, his molten core is exposed.
+		Any attacker who strikes him will be set Burning."
 	base_health = 400
 	attack_damage = 10
 	attack_range = 100

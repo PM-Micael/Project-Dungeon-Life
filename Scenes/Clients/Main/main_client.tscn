@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://b40bbfgsodrob" path="res://Scenes/Clients/Main/settings_window.gd" id="21_o7oc5"]
 [ext_resource type="PackedScene" uid="uid://r81xnhj68mq5" path="res://Scenes/Clients/Main/Settings/settings.tscn" id="22_o7oc5"]
 [ext_resource type="Texture2D" uid="uid://d22r43qc11r4v" path="res://Assets/Client/icon_settings.svg" id="23_x6tcn"]
+[ext_resource type="Texture2D" uid="uid://cm5x6jkkg25l2" path="res://Assets/Client/icon_database_client.svg" id="26_a651h"]
 
 [node name="MainClient" type="Node2D" unique_id=1690257351]
 script = ExtResource("1_g888i")
@@ -205,4 +206,4 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.75, 0.75)
-texture_normal = ExtResource("23_x6tcn")
+texture_normal = ExtResource("26_a651h")

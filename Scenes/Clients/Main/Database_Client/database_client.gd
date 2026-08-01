@@ -31,52 +31,77 @@ func _ready() -> void:
 	# Display only enabled filters
 	display_filtered_tables()
 
+func _add_stat(control_node: Control, pos: Vector2, stat: String, value: String):
+	var label = Label.new()
+	label.text = stat+": "+value
+	label.position = pos
+	
+	control_node.add_child(label)
+
+func prettify_name(text: String) -> String:
+	var words = text.split("_")
+	
+	for i in range(words.size()):
+		words[i] = words[i].capitalize()
+	
+	return " ".join(words)
+
 func display_filtered_tables() -> void:
 	for table_name in filters:
 		if filters[table_name]:
+			var table_label = Label.new()
+			table_label.text = prettify_name(table_name)
+			table_label.add_theme_font_size_override("font_size", 32)
+			browser_container.add_child(table_label)
+			
 			var table = data_tables[table_name]
 			for row in table:
-				var node = Node2D.new()
-				var sprite = Sprite2D.new()
+				var control = Control.new()
+				control.custom_minimum_size = Vector2(0, 350)
+				browser_container.add_child(control)
 				
 				var display_name = Label.new()
 				display_name.text = row["display_name"]
 				display_name.add_theme_font_size_override("font_size", 24)
-				browser_container.add_child(display_name)
+				control.add_child(display_name)
 				
 				match table_name:
 					"player_units":
-						var health = Label.new()
-						health.text = "Base Health: "+str(int(row["base_health"]))
-						browser_container.add_child(health)
+						_add_stat(control, Vector2(0, 40), "Base Health", str(int(row["base_health"])))
 						
-						var attack = Label.new()
-						attack.text = "Base Attack: "+str(int(row["base_attack_damage"]))
-						browser_container.add_child(attack)
+						_add_stat(control, Vector2(0, 65), "Base Attack Damage", str(int(row["base_attack_damage"])))
 						
-						var attack_range = Label.new()
-						attack_range.text = "Base Attack Range: "+str(int(row["base_attack_range"]))
-						browser_container.add_child(attack_range)
+						_add_stat(control, Vector2(0, 90), "Base Attack Range", str(int(row["base_attack_range"])))
 						
-						var attack_speed = Label.new()
-						attack_speed.text = "Base Attack Speed: "+str(row["base_attack_speed"])
-						browser_container.add_child(attack_speed)
+						_add_stat(control, Vector2(0, 115), "Base Attack Speed", str(row["base_attack_speed"]))
 						
-						var crit_chance = Label.new()
-						crit_chance.text = "Critical Chance: "+str(int(row["base_critical_percent_chance"]))+"%"
-						browser_container.add_child(crit_chance)
+						_add_stat(control, Vector2(0, 140), "Base Crit Chance", str(int(row["base_critical_percent_chance"]))+"%")
 						
-						var crit_damage = Label.new()
-						crit_damage.text = "Critical Damage: "+str(row["base_critical_damage_multiplier"])+"x"
-						browser_container.add_child(crit_damage)
+						_add_stat(control, Vector2(0, 165), "Base Crit Damage", str(int(row["base_critical_damage_multiplier"]))+"x")
+						
+						var sprite = Sprite2D.new()
+						sprite.texture = load("res://Scenes/Units/PC/"+row["entry_id"]+"/"+row["entry_id"]+".png")
+						sprite.position = Vector2(400, 100)
+						sprite.scale = Vector2(3, 3)
+						control.add_child(sprite)
 						
 						var weapon_label = Label.new()
+						weapon_label.position = Vector2(0, 190)
 						var weapon_table = data_tables["weapons"]
 						for weapon in weapon_table:
 							if weapon["id"] == row["signature_weapon_id"]:
 								weapon_label.text = "Signature Weapon: "+weapon["display_name"]
-						browser_container.add_child(weapon_label)
-				
+						control.add_child(weapon_label)
+						
+						var passive_label = Label.new()
+						passive_label.position = Vector2(0, 225)
+						passive_label.size = Vector2(500, 0) # Maximum width
+						passive_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+						passive_label.text = "Passive: " + row["passive_description"]
+						control.add_child(passive_label)
+					"weapons":
+						_add_stat(control, Vector2(0, 40), "Added Attack", str(int(row["added_attack_damage"])))
+					
 				browser_container.add_child(_create_line_break())
 		browser_container.add_child(_create_line_break())
 
