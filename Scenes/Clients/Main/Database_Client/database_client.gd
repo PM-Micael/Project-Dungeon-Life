@@ -34,6 +34,7 @@ func _ready() -> void:
 func _add_stat(control_node: Control, pos: Vector2, stat: String, value: String):
 	var label = Label.new()
 	label.text = stat+": "+value
+	label.name = value
 	label.position = pos
 	
 	control_node.add_child(label)
@@ -51,6 +52,7 @@ func display_filtered_tables() -> void:
 		if filters[table_name]:
 			var table_label = Label.new()
 			table_label.text = prettify_name(table_name)
+			table_label.name = table_name
 			table_label.add_theme_font_size_override("font_size", 32)
 			browser_container.add_child(table_label)
 			
@@ -58,10 +60,12 @@ func display_filtered_tables() -> void:
 			for row in table:
 				var control = Control.new()
 				control.custom_minimum_size = Vector2(0, 350)
+				control.name = row["display_name"] + "_control"
 				browser_container.add_child(control)
 				
 				var display_name = Label.new()
 				display_name.text = row["display_name"]
+				display_name.name = "DisplayName"
 				display_name.add_theme_font_size_override("font_size", 24)
 				control.add_child(display_name)
 				
@@ -94,6 +98,7 @@ func display_filtered_tables() -> void:
 						control.add_child(weapon_label)
 						
 						var passive_label = Label.new()
+						passive_label.name = row["display_name"]
 						passive_label.position = Vector2(0, 225)
 						passive_label.size = Vector2(500, 0) # Maximum width
 						passive_label.autowrap_mode = TextServer.AUTOWRAP_WORD
@@ -101,7 +106,45 @@ func display_filtered_tables() -> void:
 						control.add_child(passive_label)
 					"weapons":
 						_add_stat(control, Vector2(0, 40), "Added Attack", str(int(row["added_attack_damage"])))
-					
+						_add_stat(control, Vector2(0, 65), "Weapon Energy", str(int(row["max_weapon_energy"])))
+						
+						var weapon_skill = Label.new()
+						weapon_skill.name = row["entry_id"]+"_sprite"
+						weapon_skill.position = Vector2(0, 225)
+						weapon_skill.size = Vector2(500, 0) # Maximum width
+						weapon_skill.autowrap_mode = TextServer.AUTOWRAP_WORD
+						weapon_skill.text = "Weapon Skill: " + row["weapon_skill"]
+						control.add_child(weapon_skill)
+						
+						var sprite = Sprite2D.new()
+						sprite.name = row["entry_id"]+"_sprite"
+						sprite.texture = load("res://Scenes/Weapons/"+row["entry_id"]+"/"+row["entry_id"]+".png")
+						sprite.position = Vector2(400, 100)
+						sprite.scale = Vector2(2, 2)
+						control.add_child(sprite)
+					"buffs":
+						var sprite = Sprite2D.new()
+						sprite.name = row["entry_id"]+"_sprite"
+						sprite.texture = load("res://Scripts/Effects/Buffs/"+row["entry_id"]+"/"+row["entry_id"]+".svg")
+						sprite.position = Vector2(400, 100)
+						sprite.scale = Vector2(2, 2)
+						control.add_child(sprite)
+					"debuffs":
+						var sprite = Sprite2D.new()
+						sprite.name = row["entry_id"]+"_sprite"
+						sprite.texture = load("res://Scripts/Effects/Debuffs/"+row["entry_id"]+"/"+row["entry_id"]+".svg")
+						sprite.position = Vector2(400, 100)
+						sprite.scale = Vector2(2, 2)
+						control.add_child(sprite)
+					"combat_stats":
+						var description = Label.new()
+						description.name = "combad_stats_description"
+						description.position = Vector2(0, 225)
+						description.size = Vector2(500, 0)
+						description.autowrap_mode = TextServer.AUTOWRAP_WORD
+						description.text = "Description: " + row["description"]
+						control.add_child(description)
+						
 				browser_container.add_child(_create_line_break())
 		browser_container.add_child(_create_line_break())
 
