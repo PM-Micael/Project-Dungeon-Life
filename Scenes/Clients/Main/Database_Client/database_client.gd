@@ -16,20 +16,44 @@ var filters: Dictionary[String, bool] = {
 	"buffs": true,
 	"debuffs": true,
 	"combat_stats": true
-}
+	}
 
 @onready var search_bar: LineEdit = $Search/SearchBar
 @onready var search_button: Button = $Search/Button
 @onready var browser_container: VBoxContainer = $WikiBrowser/ScrollContainer/VBoxContainer
+
+@onready var toggle_player_units: Button = $Filters/TogglePlayerUnits
+@onready var toggle_enemy_units: Button = $Filters/ToggleEnemyUnits
+@onready var toggle_weapons: Button = $Filters/ToggleWeapons
+@onready var toggle_buffs: Button = $Filters/ToggleBuffs
+@onready var toggle_debuffs: Button = $Filters/ToggleDebuffs
+@onready var toggle_combat_stats: Button = $Filters/ToggleCombatStats
 
 func _ready() -> void:
 	# Fetch everything
 	for table_name in data_tables.keys():
 		print("Fetching " + table_name + " table...")
 		data_tables[table_name] = await Database.get_table(table_name)
+	
+	_display_filtered_tables()
+	_connect_events()
 
-	# Display only enabled filters
-	display_filtered_tables()
+func _connect_events():
+	search_button.pressed.connect(_on_search_button_clicked)
+	toggle_player_units.pressed.connect(_toggle_filters.bind(toggle_player_units, "player_units"))
+	toggle_enemy_units.pressed.connect(_toggle_filters.bind(toggle_enemy_units, "enemy_units"))
+	toggle_weapons.pressed.connect(_toggle_filters.bind(toggle_weapons, "weapons"))
+	toggle_buffs.pressed.connect(_toggle_filters.bind(toggle_buffs, "buffs"))
+	toggle_debuffs.pressed.connect(_toggle_filters.bind(toggle_debuffs, "debuffs"))
+	toggle_combat_stats.pressed.connect(_toggle_filters.bind(toggle_combat_stats, "combat_stats"))
+	
+func _toggle_filters(button: Button, filter: String):
+	filters[filter] = not filters[filter]
+	if filters[filter]:
+		button.modulate = Color.GREEN
+	else:
+		button.modulate = Color.RED
+	_display_filtered_tables()
 
 func _add_stat(control_node: Control, pos: Vector2, stat: String, value: String):
 	var label = Label.new()
@@ -47,7 +71,10 @@ func prettify_name(text: String) -> String:
 	
 	return " ".join(words)
 
-func display_filtered_tables() -> void:
+func _display_filtered_tables() -> void:
+	var nodes = browser_container.get_children()
+	for node in nodes:
+		node.queue_free()
 	for table_name in filters:
 		if filters[table_name]:
 			var table_label = Label.new()
@@ -148,8 +175,6 @@ func display_filtered_tables() -> void:
 				browser_container.add_child(_create_line_break())
 		browser_container.add_child(_create_line_break())
 
-func _connect_events():
-	search_button.pressed.connect(_on_search_button_clicked)
 
 func _create_line_break() -> Label:
 	var label = Label.new()

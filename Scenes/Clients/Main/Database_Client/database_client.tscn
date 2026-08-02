@@ -31,6 +31,55 @@ offset_bottom = 500.0
 
 [node name="Filters" type="Node2D" parent="." unique_id=466616077]
 
+[node name="TogglePlayerUnits" type="Button" parent="Filters" unique_id=1409237285]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 100.0
+offset_right = 235.0
+offset_bottom = 131.0
+text = "Player Units"
+
+[node name="ToggleEnemyUnits" type="Button" parent="Filters" unique_id=102872642]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(80, 30)
+offset_left = 5.0
+offset_top = 150.0
+offset_right = 235.0
+offset_bottom = 180.0
+text = "Enemy Units"
+
+[node name="ToggleWeapons" type="Button" parent="Filters" unique_id=1986304045]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 200.0
+offset_right = 235.0
+offset_bottom = 231.0
+text = "Weapons"
+
+[node name="ToggleBuffs" type="Button" parent="Filters" unique_id=779979615]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 250.0
+offset_right = 235.0
+offset_bottom = 281.0
+text = "Buffs"
+
+[node name="ToggleDebuffs" type="Button" parent="Filters" unique_id=286992669]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 300.0
+offset_right = 235.0
+offset_bottom = 331.0
+text = "Debuffs"
+
+[node name="ToggleCombatStats" type="Button" parent="Filters" unique_id=377091221]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 350.0
+offset_right = 235.0
+offset_bottom = 381.0
+text = "Combat Stats"
+
 [node name="Search" type="Node2D" parent="." unique_id=1883664773]
 
 [node name="SearchBar" type="LineEdit" parent="Search" unique_id=817913923]
