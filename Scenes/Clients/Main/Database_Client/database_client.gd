@@ -9,6 +9,8 @@ var data_tables: Dictionary[String, Array] = {
 	"combat_stats": []
 }
 
+var search_filter: String = ""
+
 var filters: Dictionary[String, bool] = {
 	"player_units": true,
 	"enemy_units": true,
@@ -19,7 +21,6 @@ var filters: Dictionary[String, bool] = {
 	}
 
 @onready var search_bar: LineEdit = $Search/SearchBar
-@onready var search_button: Button = $Search/Button
 @onready var browser_container: VBoxContainer = $WikiBrowser/ScrollContainer/VBoxContainer
 
 @onready var toggle_player_units: Button = $Filters/TogglePlayerUnits
@@ -39,14 +40,18 @@ func _ready() -> void:
 	_connect_events()
 
 func _connect_events():
-	search_button.pressed.connect(_on_search_button_clicked)
+	search_bar.text_changed.connect(_on_search_text_changed)
 	toggle_player_units.pressed.connect(_toggle_filters.bind(toggle_player_units, "player_units"))
 	toggle_enemy_units.pressed.connect(_toggle_filters.bind(toggle_enemy_units, "enemy_units"))
 	toggle_weapons.pressed.connect(_toggle_filters.bind(toggle_weapons, "weapons"))
 	toggle_buffs.pressed.connect(_toggle_filters.bind(toggle_buffs, "buffs"))
 	toggle_debuffs.pressed.connect(_toggle_filters.bind(toggle_debuffs, "debuffs"))
 	toggle_combat_stats.pressed.connect(_toggle_filters.bind(toggle_combat_stats, "combat_stats"))
-	
+
+func _on_search_text_changed(new_text: String):
+	search_filter = new_text
+	_display_filtered_tables()
+
 func _toggle_filters(button: Button, filter: String):
 	filters[filter] = not filters[filter]
 	if filters[filter]:
@@ -85,6 +90,10 @@ func _display_filtered_tables() -> void:
 			
 			var table = data_tables[table_name]
 			for row in table:
+				if search_filter != "" and not search_filter in row["display_name"].to_lower():
+					continue
+				
+				
 				var control = Control.new()
 				control.custom_minimum_size = Vector2(0, 350)
 				control.name = row["display_name"] + "_control"
@@ -180,6 +189,3 @@ func _create_line_break() -> Label:
 	var label = Label.new()
 	label.text = "____________________________________________________________________________"
 	return label
-
-func _on_search_button_clicked():
-	return
