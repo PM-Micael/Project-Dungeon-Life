@@ -77,7 +77,7 @@ func _place_friendly_units():
 		
 		entity_container_instance.name = "EntityContainer_" + unit_name
 		entity_container_instance.entity = unit_instance
-		entity_container_instance.position = LocalData.string_to_vector2(unit_starting_position)
+		entity_container_instance.position = unit_starting_position
 		entity_container_instance.scale = unit_instance.scale
 		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.35, 0.35)
 		unit_instance.starting_position = entity_container_instance.position
@@ -92,7 +92,7 @@ func place_enemy_units(): ## Wait for dungeon chosen
 	var loop_itteration: int = 0
 	for e in enemy_formation:
 		var enemy_type: String = e["type"]
-		var enemy_position: Vector2 = LocalData.string_to_vector2(e["position"])
+		var enemy_position: Vector2 = e["position"]
 		var enemy_scene: PackedScene = load("res://Scenes/Units/NPC/" + enemy_type + "/" + enemy_type + ".tscn")
 		var enemy_instance: Unit = enemy_scene.instantiate()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()

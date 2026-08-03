@@ -36,7 +36,7 @@ func set_stats(set_max_health: int):
 		health_bar.max_value = max_health
 		health_bar.value = current_health
 
-func take_damage_flat(attacker: Entity, amount: int, is_crit: bool):
+func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	pre_calculate_damage.emit(attacker, amount, is_crit)
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)

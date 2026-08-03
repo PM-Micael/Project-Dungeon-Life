@@ -1,7 +1,7 @@
 extends Buff
 class_name AttackSpeedUp
 
-var speed_multiplier: float = 0.7  # e.g. 30% faster attacks per stack
+var attack_timer_multiplier: float = 0.7  # e.g. 30% faster attacks per stack
 
 func _init() -> void:
 	id = "attack_speed_up"
@@ -12,10 +12,13 @@ func _init() -> void:
 func apply(_target: Entity) -> void:
 	var ac: AttackComponent = warer.attack_component
 	if ac != null:
-		ac.timer.wait_time = ac.base_attack_speed * speed_multiplier
+		ac.timer.wait_time -= get_removed_speed_timer(ac)
 
 func remove() -> void:
 	var ac: AttackComponent = warer.attack_component
 	if ac != null:
-		var speed_difference = ac.base_attack_speed * speed_multiplier - ac.base_attack_speed
-		ac.timer.wait_time -= speed_difference
+		ac.timer.wait_time += get_removed_speed_timer(ac)
+
+func get_removed_speed_timer(ac: AttackComponent) -> float:
+	var new_speed = ac.base_attack_speed * attack_timer_multiplier
+	return -new_speed + ac.base_attack_speed

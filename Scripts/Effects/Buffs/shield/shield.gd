@@ -33,4 +33,4 @@ func effect(_unit, amount, _is_crit):
 		shield_broken.emit()
 
 func remove():
-	pass
+	shield_value = 0

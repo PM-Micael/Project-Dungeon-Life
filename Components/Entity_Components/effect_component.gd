@@ -100,5 +100,4 @@ func add_effect(effect: Effect, effect_array: Array[Effect], owner: Unit):
 			
 
 func remove_effect(effect: Effect, effect_array: Array):
-	effect.remove()
 	effect_array.erase(effect)

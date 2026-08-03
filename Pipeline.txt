@@ -67,3 +67,10 @@ POTENTIAL REDUNDANT SCRIPTS AND SCENES:
 
 2026-08-02:
 	Rework blessings
+
+Buff review checklist:
+	Attack up = Looks fine. Propper apply and remove
+	Attack Speed Up = looks fine. Proper apply and remove
+	Shield = Easy apply and rmove
+	Attack Speed Down: Oposite of attack speed up
+	Attack up: Opposite of Attack up

@@ -206,7 +206,7 @@ func save_player_data():
 		print()
 	)
 	
-	var url = Auth.SUPABASE_URL + "/rest/v1/players"
+	var url = Database.SUPABASE_URL + "/rest/v1/players"
 	
 	http.request(
 		url,
