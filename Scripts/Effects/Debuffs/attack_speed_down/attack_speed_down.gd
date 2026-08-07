@@ -14,7 +14,7 @@ func apply(_target: Entity) -> void:
 	if ac != null:
 		ac.timer.wait_time = get_added_speed_timer(ac)
 
-func remove(_target: Entity) -> void:
+func remove() -> void:
 	var ac: AttackComponent = warer.attack_component
 	if ac != null:
 		ac.timer.wait_time = get_added_speed_timer(ac)

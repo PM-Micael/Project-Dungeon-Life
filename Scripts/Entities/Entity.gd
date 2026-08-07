@@ -14,10 +14,6 @@ var effect_component: EffectComponent:
 	get:
 		return get_node_or_null("Components/EffectComponent")
 	
-var buff_component: BuffComponent:
-	get:
-		return get_node_or_null("Components/BuffComponent")
-	
 var health_component: HealthComponent:
 	get:
 		return get_node_or_null("Components/HealthComponent")

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dnp3gms6fuarh"]
-
-[ext_resource type="Script" uid="uid://oxkp1e7gk6ul" path="res://Components/Entity_Components/buff_component.gd" id="1_enu06"]
-
-[node name="BuffComponent" type="Node2D" unique_id=1197356877]
-script = ExtResource("1_enu06")

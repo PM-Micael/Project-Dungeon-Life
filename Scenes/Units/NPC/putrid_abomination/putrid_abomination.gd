@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _apply_flesh_shield():
 	var flesh_shield = FleshShield.new()
-	effect_component.add_blessing(flesh_shield, self)
+	effect_component.add_effect(flesh_shield, self, effect_component.active_blessings)
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
 
 func _set_stats():

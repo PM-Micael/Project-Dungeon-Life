@@ -26,12 +26,13 @@ func remove():
 
 func apply(_target: Entity) -> void:
 	warer.health_component.died.connect(blood_collector)
-	warer.effect_component.debuff_applied.connect(_on_debuff_applied)
+	warer.effect_component.effect_applied.connect(_on_debuff_applied)
 
-func _on_debuff_applied(target: Unit):
-	if target.effect_component != null:
-		for debuff in debuffs:
-			debuff.debuff_effect()
+func _on_debuff_applied(target: Unit, effect: Effect):
+	if effect is Debuff:
+		if target.effect_component != null:
+			for debuff in debuffs:
+				debuff.debuff_effect()
 
 func blood_collector(dead_unit: Unit): 
 	var board: GameBoard = dead_unit.get_node("/root/MainClient/RunManager/BoardWindow/Board")

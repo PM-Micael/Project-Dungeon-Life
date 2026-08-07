@@ -11,3 +11,6 @@ var stacks: int = 1
 
 func apply(_target: Entity) -> void:
 	pass
+
+func remove():
+	pass

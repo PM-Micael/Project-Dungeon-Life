@@ -32,7 +32,7 @@ func _apply_weak_point_opportunist():
 			return
 	
 	var blessing = WeakPointOpportunist.new()
-	effect_component.add_blessing(blessing, self)
+	effect_component.add_effect(blessing, self, effect_component.active_blessings)
 
 func _consume_weak_point_opportunist_stack():
 	for blessing in effect_component.active_blessings:

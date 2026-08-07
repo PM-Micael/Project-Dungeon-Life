@@ -43,4 +43,4 @@ func _weapon_skill(_targets: Array[Entity]):
 		atk_up.attack_multiplier +=ATTACK_UP_PER_BURN
 		atk_up.duration = ATTACK_UP_DURATION
 		# Force separate instances so each ticks down independently
-	wearer.effect_component.add_buff(atk_up, wearer)
+	wearer.effect_component.add_effect(atk_up, wearer, wearer.effect_component.active_buffs)

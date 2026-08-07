@@ -27,7 +27,7 @@ func _set_stats() -> void:
 
 func _apply_molten_layer() -> void:
 	var molten_layer = MoltenLayer.new()
-	effect_component.add_blessing(molten_layer, self)
+	effect_component.add_effect(molten_layer, self, effect_component.active_blessings)
 
 # Called by MoltenLayer when the shield breaks
 func _on_molten_layer_broken() -> void:
@@ -36,7 +36,7 @@ func _on_molten_layer_broken() -> void:
 func _on_damage_taken(attacker: Entity, _is_crit: bool) -> void:
 	if molten_core_active:
 		if is_instance_valid(attacker) and not attacker.effect_component == null:
-			attacker.effect_component.add_debuff(_construct_burning(), self)
+			attacker.effect_component.add_effect(_construct_burning(), self, attacker.effect_component.active_debuffs)
 
 func _construct_burning() -> Burning:
 	return Burning.new()

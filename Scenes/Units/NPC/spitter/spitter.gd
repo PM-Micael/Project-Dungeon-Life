@@ -28,4 +28,4 @@ func _on_attack_target(targets: Array[Entity], _is_crit: bool):
 	var debuff = AttackSpeedDown.new(4, 1)
 	
 	for target in targets:
-		target.effect_component.add_debuff(debuff, self)
+		target.effect_component.add_effect(debuff, self, target.effect_component.active_debuffs)

@@ -35,4 +35,4 @@ func _apply_blood_flies(unit: Node):
 	if not unit.has_method("get") or not "effect_component" in unit:
 		return
 	if unit.effect_component != null:
-		unit.effect_component.add_affliction(BloodFlies.new(), self)
+		unit.effect_component.add_effect(BloodFlies.new(), self, effect_component.active_afflictions)

@@ -29,7 +29,7 @@ func _apply_devour_debuff(targets: Array[Entity], _is_crit: bool):
 	for u in targets:
 		if not u == null:
 			if u.effect_component != null:
-				u.effect_component.add_affliction(_construct_devour_mark_debuff(), self)
+				u.effect_component.add_effect(_construct_devour_mark_debuff(), self, u.effect_component.active_afflictions)
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()

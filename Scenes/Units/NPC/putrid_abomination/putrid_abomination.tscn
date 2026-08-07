@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="3_xjql5"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="4_3pf4x"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_18om8"]
-[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="6_1poc2"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_h1tn5"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_vbbgu"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_wrc0k"]
@@ -24,8 +23,6 @@ script = ExtResource("1_wrc0k")
 [node name="TargetableComponent" parent="Components" unique_id=684955616 instance=ExtResource("4_3pf4x")]
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("5_18om8")]
-
-[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("6_1poc2")]
 
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_h1tn5")]
 

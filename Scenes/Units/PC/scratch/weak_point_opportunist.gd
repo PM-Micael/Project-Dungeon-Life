@@ -25,4 +25,4 @@ func consume_stack() -> void:
 		# Remove the speed buff on last stack
 		if buffs.size() > 0:
 			var buff = buffs.pop_back()
-			buff.remove(warer)
+			buff.remove()

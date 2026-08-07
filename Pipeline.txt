@@ -68,9 +68,27 @@ POTENTIAL REDUNDANT SCRIPTS AND SCENES:
 2026-08-02:
 	Rework blessings
 
-Buff review checklist:
+Buff / Debuff review checklist:
 	Attack up = Looks fine. Propper apply and remove
 	Attack Speed Up = looks fine. Proper apply and remove
 	Shield = Easy apply and rmove
 	Attack Speed Down: Oposite of attack speed up
 	Attack up: Opposite of Attack up
+
+Blessing description
+Blessings:
+	Flesh Shield:
+		Applies a UNIQUE shield
+	Molten Layer:
+		Applies a UNIQUE shield
+	Weak Point Oppertunist:
+		Applies a UNIQUE attack_speed_up
+	
+Afflictions:
+	Devourers Mark
+	Blood Flies
+	
+
+Unsolved bug:
+	entity container crashed because entity didnt have a sprite. It was fixd by it self?
+	No way to handle no internet connection
