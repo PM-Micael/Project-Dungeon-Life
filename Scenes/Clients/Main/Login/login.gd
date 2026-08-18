@@ -28,12 +28,11 @@ var main_client_scene: PackedScene = load("res://Scenes/Clients/Main/main_client
 @onready var recover_password_email_label: Label = $PasswordRecover/Email/Label
 @onready var send_recovery_email_button: Button = $PasswordRecover/SendRecoveryEmailButton
 @onready var recover_password_message_label: Label = $PasswordRecover/MessageLabel
-@onready var error_label: Label = $Register/ErrorLabel
+@onready var error_label: Label = $Register/ErrorLabel	
 @onready var recover_password_login_page_button: Button = $PasswordRecover/LoginPageButton
 
 
 func _ready() -> void:
-	Database.get_table("patch_notes")
 	var settings = LocalData.load_settings()
 	email_login_line_edit.text = settings["email_cockie"]
 	login_button.pressed.connect(login_button_pressed)
@@ -60,7 +59,7 @@ func change_window(window_type: String):
 			get_node("Login").visible = false
 
 func recover_password_button_pressed():
-	var result = await Auth.send_password_reset(recover_password_email_line_edit.text)
+	await Auth.send_password_reset(recover_password_email_line_edit.text)
 	
 	recover_password_message_label.text = "Recovery email has been sent."
 	recover_password_message_label.visible = true
@@ -96,7 +95,11 @@ func login(email: String, password: String):
 	var result = await Auth.login_user(email, password)
 	
 	var code = result["code"]
-	if code >= 200 and code <= 299:
+	print(result)
+	if code == 0:
+		login_message_label.text = "Couldn't connect"
+		login_message_label.visible = true
+	elif code >= 200 and code <= 299:
 		PlayerData.player_id = result["user"]["id"]
 		LocalData.settings["display"]["display_mode"] = LocalData.DISPLAY_MODE.BORDERLESS
 		LocalData.settings["email_cockie"] = email

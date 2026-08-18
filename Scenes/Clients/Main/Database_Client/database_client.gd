@@ -34,7 +34,10 @@ func _ready() -> void:
 	# Fetch everything
 	for table_name in data_tables.keys():
 		print("Fetching " + table_name + " table...")
-		data_tables[table_name] = await Database.get_table(table_name)
+		var response = await Database.get_table(table_name)
+		var code = Database.get_code_from_response(response)
+		if code == 200:
+			data_tables[table_name] = await Database.get_body_from_response(response)
 	
 	_display_filtered_tables()
 	_connect_events()
