@@ -80,8 +80,12 @@ Blessings:
 Afflictions:
 	Devourers Mark
 	Blood Flies
-	
 
 Unsolved bug:
 	entity container crashed because entity didnt have a sprite. It was fixd by it self?
 	No way to handle no internet connection
+
+2026-08-20:
+	Look at the formations of each of the two zones.
+	Itch IO page.
+	impliment defense stat.

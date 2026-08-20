@@ -82,7 +82,7 @@ func _place_friendly_units():
 		else:
 			entity_container_instance.position = unit_starting_position
 		entity_container_instance.scale = unit_instance.scale
-		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.35, 0.35)
+		entity_container_instance.get_node("Sprite2D").scale = entity_container_instance.entity.get_node("Sprite2D").scale
 		unit_instance.starting_position = entity_container_instance.position
 		
 		get_node("Units/FriendlyUnits").add_child(entity_container_instance)
@@ -108,7 +108,7 @@ func place_enemy_units(): ## Wait for dungeon chosen
 		entity_container_instance.entity = enemy_instance
 		entity_container_instance.position = enemy_position
 		entity_container_instance.scale = enemy_instance.scale
-		entity_container_instance.get_node("Sprite2D").scale = Vector2(0.35, 0.35)
+		entity_container_instance.get_node("Sprite2D").scale = entity_container_instance.entity.get_node("Sprite2D").scale
 		enemy_instance.starting_position = entity_container_instance.position
 
 		get_node("Units/EnemyUnits").add_child(entity_container_instance)

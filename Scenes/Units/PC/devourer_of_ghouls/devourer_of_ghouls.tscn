@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="8_xvayg"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_nxu0w"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="10_nxu0w"]
-[ext_resource type="Texture2D" uid="uid://c6u1ge0dlp073" path="res://Scenes/Units/PC/devourer_of_ghouls/devourer_of_ghouls.png" id="11_rwlgu"]
+[ext_resource type="Texture2D" uid="uid://b3i6a71wprs7w" path="res://Scenes/Units/PC/devourer_of_ghouls/D_O_G.png" id="12_mgyvc"]
 
 [node name="DevourerOfGhouls" type="Node2D" unique_id=750954088 groups=["units"]]
 script = ExtResource("1_gbevl")
@@ -41,7 +41,7 @@ script = ExtResource("5_uhhh1")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("8_xvayg")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1478507541]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("11_rwlgu")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("12_mgyvc")
 
 [editable path="Components/AttackComponent"]

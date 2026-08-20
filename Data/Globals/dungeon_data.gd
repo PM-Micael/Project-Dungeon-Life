@@ -44,7 +44,7 @@ var dungeon_wave_formations: Dictionary = {
 			],
 			"formation_2":[
 				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
-				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(550, 350) },
+				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(350, 350) },
 			]
 		}
 	],

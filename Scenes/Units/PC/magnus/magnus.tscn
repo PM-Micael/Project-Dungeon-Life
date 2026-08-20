@@ -45,7 +45,7 @@ script = ExtResource("5_48w7k")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_3fe0g")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1213065479]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("10_3fe0g")
 
 [editable path="Components/AttackComponent"]
