@@ -4,6 +4,7 @@ func _init() -> void:
 	id = "flesh_mutant"
 	
 	base_health = 200
+	base_defense = 30
 	attack_damage = 10
 	attack_range = 100
 	base_critical_percent_chance = 0
@@ -17,7 +18,9 @@ func _ready() -> void:
 	attack_component.post_attack_target.connect(_attack_adjacent_targets)
 
 func _set_stats():
-	health_component.set_stats(get_total_health())
+	health_component.set_stats(
+		get_total_health(),
+		base_defense)
 	attack_component.set_stats_absolute(
 		get_total_attack_damage(),
 		attack_range,

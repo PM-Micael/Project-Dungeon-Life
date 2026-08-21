@@ -10,7 +10,9 @@ signal pre_heal(target: Entity, amount: int)
 signal post_heal(target: Entity, amount: int)
 
 @onready var parent_entity: Entity = get_parent().get_parent()
-@onready var health_bar:  = get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
+@onready var health_bar: ProgressBar  = get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
+@onready var defense_node: Control = get_parent().get_parent().get_node_or_null("UIComponents/Defense")
+@onready var defense_value_label: Label = get_parent().get_parent().get_node_or_null("UIComponents/Defense/DefenseValueLabel")
 
 var is_alive: bool = true
 var base_heal_modifier: float = 1.0
@@ -21,7 +23,8 @@ var final_damage_taken_amount: int = 0
 
 @export var max_health: int
 @export var current_health: int
-@export var base_defense: int
+@export var base_defense: int = 0
+@export var defense: int
 
 
 func get_health_percent() -> float:
@@ -29,19 +32,30 @@ func get_health_percent() -> float:
 		return 0.0
 	return float(current_health) / float(max_health)
 
-func set_stats(set_max_health: int):
+func set_stats(set_max_health: int, set_defense: int = 0):
 	max_health = set_max_health
 	current_health = max_health
+	base_defense = set_defense
+	defense = set_defense
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = current_health
+	
+	_set_defense(defense)
+
+func _set_defense(defense: int):
+	if defense == 0:
+		defense_node.visible = false
+	else:
+		defense_value_label.text = str(defense)
+		defense_node.visible = true
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	pre_calculate_damage.emit(attacker, amount, is_crit)
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)
 	
-	final_damage_taken_amount = amount * final_damage_taken_modifier * (1.0 - base_defense / 100.0)
+	final_damage_taken_amount = amount * final_damage_taken_modifier * (1.0 - defense / 100.0)
 	
 	post_calculate_damage.emit(attacker, amount, is_crit)
 	current_health -= final_damage_taken_amount

@@ -45,7 +45,12 @@ func _physics_process(_delta: float) -> void:
 				if is_instance_valid(timer):
 					timer.start()
 
-func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
+func set_stats_absolute(
+	set_attack_damage: int,
+	set_attack_range: int,
+	set_crit_chance: int,
+	set_crit_damage
+	):
 	base_attack_damage = set_attack_damage
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range

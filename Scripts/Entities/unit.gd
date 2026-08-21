@@ -12,6 +12,7 @@ var starting_position: Vector2
 
 @export_category("Stats")
 @export var base_health: int
+@export var base_defense: int
 @export var attack_damage: int
 @export var attack_range: int
 @export var base_critical_percent_chance: int

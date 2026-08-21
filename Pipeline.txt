@@ -86,6 +86,10 @@ Unsolved bug:
 	No way to handle no internet connection
 
 2026-08-20:
-	Look at the formations of each of the two zones.
+	Design a boss for Scorched Zone:
+		Blob of living magma
+		AOE Attack
+		
 	Itch IO page.
 	impliment defense stat.
+	Hit indicator with scalability for aoe attacks
