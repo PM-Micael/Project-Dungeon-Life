@@ -1,12 +1,16 @@
 extends Blessing
 class_name MoltenDisaster
 
-var shield_value_flat: int = 10000
-var shield_value_percent: float = 0.2
+var shield_value_flat: int = 0
+var shield_value_percent: float = 0.35
 var charge_time: float = 5.0
 var interupted = false
 var shield: Shield
 var channel_bar: ProgressBar
+var is_channeling: bool:
+	set(value):
+		is_channeling = value
+		warer.is_channeling = is_channeling
 
 func _init() -> void:
 	id = "molten_disaster"
@@ -26,36 +30,36 @@ func apply_shield():
 	shield.apply(owner)
 	
 	channel_bar = warer.ui_component.channel_bar
+	warer.ui_component.channel_title.text = "Magma Wave"
 	channel_bar.max_value = charge_time
 	channel_bar.value = charge_time
-	
-	#var timer = Timer.new()
-	#timer.wait_time = charge_time
-	#timer.one_shot = true
-	#owner.effect_component.add_child(timer)
-	#timer.timeout.connect(_magma_wave)
-	#timer.start()
+	is_channeling = true
 
 func tick_down(_delta):
 	if channel_bar:
-		channel_bar.value = _delta
+		channel_bar.value = (channel_bar.max_value - _delta)
 		if _delta <= 0:
 			_magma_wave()
+			channel_bar.value = 0
+			warer.ui_component.channel_title.text = ""
 
 func _magma_wave():
 	print("MAGMA WAVE!!!_______________________________________________________")
-	var targets: Array[Node] = owner.get_parent().get_parent().get_node("EnemyUnits").get_children()
+	is_channeling = false
+	var targets: Array[Node] = owner.get_parent().get_parent().get_node("FriendlyUnits").get_children()
 	for target in targets:
 		var bonus_damage = owner.attack_component.attack_damage * 3
 		owner.attack_component.attack_target(target, bonus_damage)
 	
-	remove()
+	remove_early()
 
 func _on_shield_broken():
 	print("INTERUPTED MAGMA WAVE")
+	is_channeling = false
 	interupted = true
 	duration = 0
-	remove()
+	remove_early()
 
-func remove():
+func remove_early():
+	warer.effect_component.remove_effect(shield, warer.effect_component.active_buffs)
 	warer.effect_component.remove_effect(self, warer.effect_component.active_blessings)

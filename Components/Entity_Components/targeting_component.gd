@@ -4,10 +4,20 @@ class_name TargetingComponent
 @onready var parent_entity: Entity = get_parent().get_parent()
 
 var target: Entity
+var targets: Array[Entity]
 
 func _physics_process(_delta: float) -> void:
 	select_closest_target(parent_entity.hostile_team)
 
+func select_all_targets(target_team: String):
+	targets.clear()
+	var enemies = get_tree().get_nodes_in_group(target_team)
+	if enemies.is_empty():
+		return
+	
+	for enemy in enemies:
+		targets.append(enemy)
+	
 func select_closest_target(target_team: String):
 	var enemies = get_tree().get_nodes_in_group(target_team)
 	if enemies.is_empty():

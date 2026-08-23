@@ -70,9 +70,24 @@ offset_bottom = -250.0
 theme_override_font_sizes/font_size = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_bb8pe")
 
-[node name="ChannelBar" type="ProgressBar" parent="." unique_id=1397922312]
+[node name="Channel" type="Control" parent="." unique_id=1886489442]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChannelBar" type="ProgressBar" parent="Channel" unique_id=1397922312]
 layout_mode = 0
 offset_left = -290.0
-offset_top = 200.0
+offset_top = 200.00002
 offset_right = 293.3333
 offset_bottom = 260.0
+show_percentage = false
+
+[node name="ChannelTitle" type="Label" parent="Channel" unique_id=1621260442]
+layout_mode = 0
+offset_left = -286.66666
+offset_top = 206.66666
+offset_right = 286.66666
+offset_bottom = 253.33334
+theme_override_font_sizes/font_size = 33
+horizontal_alignment = 1

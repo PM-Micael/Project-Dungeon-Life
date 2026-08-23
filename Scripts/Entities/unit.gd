@@ -18,6 +18,9 @@ var starting_position: Vector2
 @export var base_critical_percent_chance: int
 @export var base_critical_damage_multiplier: float
 
+@export_category("States")
+@export var is_channeling: bool = false
+
 @export_category("Tags")
 var unity: String
 

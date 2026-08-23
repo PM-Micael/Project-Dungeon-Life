@@ -50,4 +50,5 @@ func effect(_unit: Unit, amount: int, _is_crit: bool):
 		shield_broken.emit()
 
 func remove():
-	warer.effect_component.remove_effect(self, warer.effect_component.active_buffs)
+	shield_progress_bar.value = 0
+	pass

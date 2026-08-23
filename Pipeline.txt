@@ -84,6 +84,7 @@ Afflictions:
 Unsolved bug:
 	entity container crashed because entity didnt have a sprite. It was fixd by it self?
 	No way to handle no internet connection
+	Breaking the shield will deal exess damage to the warer no mather their defense
 
 2026-08-20:
 	Design a boss for Scorched Zone:
@@ -93,4 +94,3 @@ Unsolved bug:
 	Itch IO page.
 	Hit indicator with scalability for aoe attacks
 	Decide if stats on units should be set in the exported fileds in the Inspector
-	Rework Magnus passive to: WHen attacked while no shield is active, burn the attacker. Start combat with a shield
