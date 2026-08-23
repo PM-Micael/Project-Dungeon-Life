@@ -17,6 +17,7 @@ func _init(flat: int, percent: float) -> void:
 	display_name = "Shield"
 	flat_modifier = flat
 	percent_modifier = percent
+	duration = 1000
 	
 	_set_sprite()
 
@@ -27,8 +28,8 @@ func _set_sprite():
 
 func apply(_target: Entity):
 	super.apply(_target)
-	sprite.scale = owner.get_node("Sprite2D").scale - Vector2(0.27, 0.27)
-	shield_progress_bar = owner.ui_component.shield_bar
+	sprite.scale = warer.get_node("Sprite2D").scale - Vector2(0.27, 0.27)
+	shield_progress_bar = warer.ui_component.shield_bar
 	shield_value = (warer.health_component.max_health * percent_modifier) + flat_modifier
 	shield_progress_bar.max_value = shield_value
 	warer.health_component.post_calculate_damage.connect(effect)
@@ -36,7 +37,6 @@ func apply(_target: Entity):
 func effect(_unit: Unit, amount: int, _is_crit: bool):
 	var hc = warer.health_component
 	var incoming = (amount * hc.final_damage_taken_modifier)
-	print(owner.name+" Shield Effect procked")
 
 	if shield_value >= incoming:
 		shield_value -= incoming

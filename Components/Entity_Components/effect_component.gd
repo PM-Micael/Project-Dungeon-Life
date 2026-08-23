@@ -37,7 +37,6 @@ func add_effect(effect: Effect, owner: Unit, effect_array: Array):
 			return
 	effect_array.append(effect)
 	effect.apply(parent_entity)
-	print(effect_applied.get_connections())
 	effect_applied.emit(parent_entity, effect)
 
 func remove_effect(effect: Effect, effect_array: Array):

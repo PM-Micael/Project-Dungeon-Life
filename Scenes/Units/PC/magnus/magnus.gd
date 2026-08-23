@@ -1,12 +1,10 @@
 extends Unit
 
-var molten_core_active: bool = false
 
 func _init() -> void:
 	id = "magnus"
-	passive_description = "Magnus starts the battle shielded by Molten Layer.
-		When the shield is broken, his molten core is exposed.
-		Any attacker who strikes him will be set Burning."
+	passive_description = "Starts every round with a shield.
+	When Magnus is atacked while not under a shild, aplies Burning on the attacker."
 	base_health = 400
 	attack_damage = 10
 	attack_range = 100
@@ -26,13 +24,16 @@ func _set_stats() -> void:
 	attack_component.set_stats_absolute(attack_damage * PlayerData.inner_sanctum.power, attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _apply_shield() -> void:
-	var shield = Shield.new(0, 1000)
-	effect_component.add_effect(shield, self, effect_component.active_blessings)
+	var shield = Shield.new(0, 0.5)
+	effect_component.add_effect(shield, self, effect_component.active_buffs)
 
-func _on_damage_taken(attacker: Entity, _is_crit: bool) -> void:	
-	if not effect_component.active_buffs.has(Shield):
-		if is_instance_valid(attacker) and not attacker.effect_component == null:
-			attacker.effect_component.add_effect(_construct_burning(), self, attacker.effect_component.active_debuffs)
+func _on_damage_taken(attacker: Entity, _is_crit: bool) -> void:
+	for buff in effect_component.active_buffs:
+		if buff is Shield:
+			return
+		
+	if is_instance_valid(attacker) and not attacker.effect_component == null:
+		attacker.effect_component.add_effect(_construct_burning(), self, attacker.effect_component.active_debuffs)
 
 func _construct_burning() -> Burning:
 	return Burning.new()
