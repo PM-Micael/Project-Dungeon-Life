@@ -69,4 +69,10 @@ offset_right = 233.33331
 offset_bottom = -250.0
 theme_override_font_sizes/font_size = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_bb8pe")
-value = 50.0
+
+[node name="ChannelBar" type="ProgressBar" parent="." unique_id=1397922312]
+layout_mode = 0
+offset_left = -290.0
+offset_top = 200.0
+offset_right = 293.3333
+offset_bottom = 260.0

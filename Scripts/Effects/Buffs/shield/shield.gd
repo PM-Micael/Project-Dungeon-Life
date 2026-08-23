@@ -50,6 +50,4 @@ func effect(_unit: Unit, amount: int, _is_crit: bool):
 		shield_broken.emit()
 
 func remove():
-	print("Shield Removed*************************************")
-	super.remove()
-	shield_value = 0
+	warer.effect_component.remove_effect(self, warer.effect_component.active_buffs)

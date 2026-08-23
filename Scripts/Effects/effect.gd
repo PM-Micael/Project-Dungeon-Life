@@ -6,18 +6,18 @@ var display_name: String
 var description: String = ""
 var owner: Unit
 var warer: Unit
-var duration: float
+var duration: float:
+	set(value):
+		duration = value
+		tick_down(duration)
 var stacks: int = 1
 var sprite: Sprite2D
 
+func tick_down(_delta: float):
+	pass
+
 func apply(_target: Entity):
-	if sprite == null:
-		sprite = Sprite2D.new()
-		sprite.name = id+"_Sprite2D"
-	if owner and not sprite.is_inside_tree():
-		owner.add_child(sprite)
+	pass
 
 func remove() -> void:
-	if is_instance_valid(sprite):
-		sprite.queue_free()
-	sprite = null
+	pass

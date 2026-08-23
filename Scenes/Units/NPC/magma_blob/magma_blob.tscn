@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_b6kek"]
 [ext_resource type="Texture2D" uid="uid://d0mncx6m7q3bg" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination.png" id="8_ybc8d"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_ysull"]
-[ext_resource type="Texture2D" uid="uid://bvx4odla6xa0e" path="res://Assets/shield_buff_icon.png" id="11_bp41x"]
 
 [node name="MagmaBlob" type="Node2D" unique_id=560436679]
 script = ExtResource("1_yaqvs")
@@ -40,8 +39,3 @@ texture = ExtResource("8_ybc8d")
 offset_top = -77.0
 offset_bottom = -37.0
 scale = Vector2(0.45, 0.45)
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1995848297]
-modulate = Color(1, 1, 1, 0.4745098)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("11_bp41x")
