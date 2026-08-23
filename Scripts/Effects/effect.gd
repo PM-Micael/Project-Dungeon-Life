@@ -10,7 +10,7 @@ var duration: float
 var stacks: int = 1
 var sprite: Sprite2D
 
-func apply(_target: Entity) -> void:
+func apply(_target: Entity):
 	if sprite == null:
 		sprite = Sprite2D.new()
 		sprite.name = id+"_Sprite2D"

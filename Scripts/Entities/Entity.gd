@@ -50,3 +50,4 @@ var weapon_component: WeaponComponent:
 #
 @onready var ui_components_health_bar: ProgressBar = get_node_or_null("UIComponents/HealthBar")
 @onready var ui_components_weapon_energy_bar: ProgressBar = get_node_or_null("UIComponents/WeaponEnergyProgressBar")
+@onready var ui_component: UIComponents = $UIComponents

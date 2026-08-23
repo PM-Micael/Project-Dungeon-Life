@@ -9,6 +9,9 @@ bg_color = Color(0.078431375, 0.52156866, 0.09803922, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajbjq"]
 bg_color = Color(0.14901961, 0.08627451, 0.6, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb8pe"]
+bg_color = Color(0.64861, 0.70881677, 0.7232201, 1)
+
 [node name="UIComponents" type="Control" unique_id=207219878]
 layout_mode = 3
 anchors_preset = 0
@@ -24,6 +27,8 @@ offset_top = -310.0
 offset_right = 233.33331
 offset_bottom = -250.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_rwbe0")
+value = 80.0
+show_percentage = false
 
 [node name="WeaponEnergyProgressBar" type="ProgressBar" parent="." unique_id=236322045]
 layout_mode = 0
@@ -55,3 +60,13 @@ theme_override_constants/outline_size = 30
 theme_override_font_sizes/font_size = 100
 text = "100"
 horizontal_alignment = 1
+
+[node name="ShieldBar" type="ProgressBar" parent="." unique_id=449116246]
+layout_mode = 0
+offset_left = -290.0
+offset_top = -270.0
+offset_right = 233.33331
+offset_bottom = -250.0
+theme_override_font_sizes/font_size = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_bb8pe")
+value = 50.0
