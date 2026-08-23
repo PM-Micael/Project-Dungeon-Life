@@ -57,7 +57,7 @@ func set_stats_absolute(
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
 
-func attack_target(target: Entity):
+func attack_target(target: Entity, bonus_damage: int = 0):
 	pre_attack_target.emit(target)
 	is_crit = roll_crit()
 	if is_crit:
@@ -69,7 +69,7 @@ func attack_target(target: Entity):
 
 	var target_health_bar: HealthComponent = target.health_component
 	if target_health_bar != null:
-		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit), is_crit)
+		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit) + bonus_damage, is_crit)
 
 	if not is_instance_valid(self):
 		return

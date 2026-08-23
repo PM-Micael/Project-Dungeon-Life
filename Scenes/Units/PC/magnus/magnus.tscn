@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_22qsp"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_3fe0g"]
 [ext_resource type="Texture2D" uid="uid://d4iuup32r0fi2" path="res://Scenes/Units/PC/magnus/magnus.png" id="10_3fe0g"]
+[ext_resource type="Texture2D" uid="uid://bvx4odla6xa0e" path="res://Assets/shield_buff_icon.png" id="13_uayqu"]
 
 [node name="Magnus" type="Node2D" unique_id=1715150549]
 script = ExtResource("1_kaoh6")
@@ -42,10 +43,16 @@ script = ExtResource("5_48w7k")
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_22qsp")]
 
-[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_3fe0g")]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1213065479]
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("10_3fe0g")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=158462595]
+visible = false
+modulate = Color(1, 1, 1, 0.45490196)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("13_uayqu")
+
+[node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_3fe0g")]
 
 [editable path="Components/AttackComponent"]

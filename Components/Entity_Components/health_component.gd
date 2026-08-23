@@ -44,11 +44,12 @@ func set_stats(set_max_health: int, set_defense: int = 0):
 	_set_defense(defense)
 
 func _set_defense(defense: int):
-	if defense == 0:
-		defense_node.visible = false
-	else:
-		defense_value_label.text = str(defense)
-		defense_node.visible = true
+	if defense_node:
+		if defense == 0:
+			defense_node.visible = false
+		else:
+			defense_value_label.text = str(defense)
+			defense_node.visible = true
 
 func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	pre_calculate_damage.emit(attacker, amount, is_crit)

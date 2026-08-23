@@ -88,8 +88,9 @@ Unsolved bug:
 2026-08-20:
 	Design a boss for Scorched Zone:
 		Blob of living magma
-		AOE Attack
+		Charge an aoe attack that charges up (Like the Dragon from Raid Shadow Legends)
 		
 	Itch IO page.
-	impliment defense stat.
 	Hit indicator with scalability for aoe attacks
+	Decide if stats on units should be set in the exported fileds in the Inspector
+	Rework Magnus passive to: WHen attacked while no shield is active, burn the attacker. Start combat with a shield

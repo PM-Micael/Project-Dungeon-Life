@@ -12,8 +12,17 @@ func _init(flat: int, percent: float) -> void:
 	display_name = "Shield"
 	flat_modifier = flat
 	percent_modifier = percent
+	
+	_set_sprite()
+
+func _set_sprite():
+	sprite = Sprite2D.new()
+	sprite.texture = load("res://Assets/shield_buff_icon.png")
+	sprite.modulate = "ffffff74"
 
 func apply(_target: Entity) -> void:
+	super.apply(_target)
+	sprite.scale = owner.get_node("Sprite2D").scale - Vector2(0.27, 0.27)
 	shield_value = (warer.health_component.max_health * percent_modifier) + flat_modifier
 	warer.health_component.post_calculate_damage.connect(effect)
 
@@ -33,4 +42,6 @@ func effect(_unit, amount, _is_crit):
 		shield_broken.emit()
 
 func remove():
+	print("Shield Removed*************************************")
+	super.remove()
 	shield_value = 0
