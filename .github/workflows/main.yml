@@ -26,8 +26,8 @@ jobs:
           
       - name: Export Godot Project
         run: |
-          ./Godot_v4.2.1-stable_linux.x86_64 --headless --export-release "Windows Desktop" ../DL-Builds/Windows/Dungeon\ Life.exe
-          ./Godot_v4.2.1-stable_linux.x86_64 --headless --export-release "Linux" ../DL-Builds/Linux/Dungeon\ Life.zip
+          ./Godot_v4.2.1-stable_linux.x86_64 --headless --export-release "Windows Desktop" ./builds/windows/Dungeon\ Life.exe
+          ./Godot_v4.2.1-stable_linux.x86_64 --headless --export-release "Linux" ./builds/linux/Dungeon\ Life.zip
           
       - name: Download Butler
         run: |
