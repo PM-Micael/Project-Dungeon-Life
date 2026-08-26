@@ -85,7 +85,8 @@ Unsolved bug:
 	entity container crashed because entity didnt have a sprite. It was fixd by it self?
 	No way to handle no internet connection
 	Breaking the shield will deal exess damage to the warer no mather their defense
-
+	Pressing continiue on dungeon selection after exiting a dungeon doesn't work.
+	
 2026-08-20:
 	Design a boss for Scorched Zone:
 		Blob of living magma

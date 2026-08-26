@@ -29,6 +29,11 @@ func apply_shield():
 	buffs.append(shield)
 	shield.apply(owner)
 	
+	warer.start_channel(charge_time, "Magma Wave")
+	warer.channel_complete.connect(_magma_wave)
+	
+	return
+	
 	channel_bar = warer.ui_component.channel_bar
 	warer.ui_component.channel_title.text = "Magma Wave"
 	channel_bar.max_value = charge_time
@@ -36,29 +41,34 @@ func apply_shield():
 	is_channeling = true
 
 func tick_down(_delta):
+	return
 	if channel_bar:
 		channel_bar.value = (channel_bar.max_value - _delta)
 		if _delta <= 0:
-			_magma_wave()
 			channel_bar.value = 0
 			warer.ui_component.channel_title.text = ""
+			if interupted:
+				return
+			_magma_wave("Magma Wave")
 
-func _magma_wave():
-	print("MAGMA WAVE!!!_______________________________________________________")
+func _magma_wave(title: String):
+	if not title == "Magma Wave":
+		return
+	
 	is_channeling = false
 	var targets: Array[Node] = owner.get_parent().get_parent().get_node("FriendlyUnits").get_children()
 	for target in targets:
-		var bonus_damage = owner.attack_component.attack_damage * 3
+		var bonus_damage = owner.attack_component.attack_damage * 2.5
 		owner.attack_component.attack_target(target, bonus_damage)
 	
 	remove_early()
 
 func _on_shield_broken():
 	print("INTERUPTED MAGMA WAVE")
-	is_channeling = false
+	warer.interrupt_channel("Magma Wave")
 	interupted = true
-	duration = 0
 	remove_early()
+	warer.stun_unit(2.0)
 
 func remove_early():
 	warer.effect_component.remove_effect(shield, warer.effect_component.active_buffs)

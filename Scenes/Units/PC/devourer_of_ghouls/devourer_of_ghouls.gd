@@ -7,7 +7,7 @@ func _init() -> void:
 	passive_description = "Dealing damage to an enemy marks them.
 		Dealing damage to a marked enemy with 5% or less executes them and grants Devourer Of Ghouls a stack of Devour.
 		Each stack of devour grants plus 1 max health"
-	base_health = 300
+	base_health = 400
 	attack_damage = 10
 	attack_range = 100
 	base_critical_percent_chance = 0

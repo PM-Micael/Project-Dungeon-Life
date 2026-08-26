@@ -5,7 +5,7 @@ func _init() -> void:
 	id = "magnus"
 	passive_description = "Starts every round with a shield.
 	When Magnus is atacked while not under a shild, aplies Burning on the attacker."
-	base_health = 400
+	base_health = 300
 	attack_damage = 10
 	attack_range = 100
 	base_critical_percent_chance = 0

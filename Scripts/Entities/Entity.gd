@@ -4,7 +4,6 @@ class_name Entity
 var id: String
 var display_name: String
 var hostile_team: String
-var is_stunned: bool = false
 
 var attack_component: AttackComponent:
 	get:

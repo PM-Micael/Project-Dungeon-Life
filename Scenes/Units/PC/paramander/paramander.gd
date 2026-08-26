@@ -1,7 +1,7 @@
 extends Unit
 
 const CONE_DEPTH: int = 4
-const CONE_DAMAGE_MULTIPLIER: float = 1.5
+const CONE_DAMAGE_MULTIPLIER: float = 2
 
 var _debug_rects: Array[ColorRect] = []
 

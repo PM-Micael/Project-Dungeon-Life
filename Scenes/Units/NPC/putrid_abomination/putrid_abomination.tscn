@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="5_18om8"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="7_h1tn5"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_vbbgu"]
-[ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="9_wrc0k"]
 [ext_resource type="Texture2D" uid="uid://d0mncx6m7q3bg" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination.png" id="10_wrc0k"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="11_2lr1o"]
 
@@ -17,6 +16,9 @@ script = ExtResource("1_wrc0k")
 [node name="Components" type="Node2D" parent="." unique_id=874187603]
 
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("2_3knse")]
+base_attack_speed = 2.1
+attack_speed = 2.1
+is_aoe = true
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("3_xjql5")]
 
@@ -27,8 +29,6 @@ script = ExtResource("1_wrc0k")
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("7_h1tn5")]
 
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("9_vbbgu")]
-
-[node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("9_wrc0k")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=929049321]
 position = Vector2(0, -50)

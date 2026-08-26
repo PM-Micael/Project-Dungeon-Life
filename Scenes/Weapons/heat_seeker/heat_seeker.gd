@@ -30,7 +30,7 @@ func _weapon_skill(_targets: Array[Entity]):
 					to_remove.append(debuff)
 
 			for debuff in to_remove:
-				entity.effect_component._remove_debuff(debuff)
+				entity.effect_component.remove_effect(debuff, entity.effect_component.active_debuffs)
 				burn_count += 1
 
 	# Grant one Attack Up buff per Burning absorbed (each carries a 10% boost)

@@ -48,7 +48,6 @@ var dungeon_wave_formations: Dictionary = {
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(350, 350) },
 				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(450, 350) },
-				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(550, 350) },
 			]
 		}
 	],

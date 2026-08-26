@@ -1,10 +1,13 @@
 extends Unit
 
+var shield_cooldown: float = 7.0
+var shield_recharge_timer: float = 0
+
 func _init() -> void:
 	id = "putrid_abomination"
 	is_boss = true
 	base_health = 1000
-	attack_damage = 50
+	attack_damage = 20
 	attack_range = 100
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
@@ -14,7 +17,17 @@ func _ready() -> void:
 	_set_stats()
 	_info("putrid_abomination", "Putrid Abomination", "Team 2", "Team 1")
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
-	_apply_flesh_shield()
+
+func _physics_process(delta: float) -> void: 
+	targeting_component.select_targets_in_attack_range("Team 1") ## Placeholder before attack component rework
+	
+	for effect in effect_component.active_blessings:
+		if effect is FleshShield:
+			return
+	shield_recharge_timer -= delta
+	if shield_recharge_timer <= 0:
+		shield_recharge_timer = shield_cooldown
+		_apply_flesh_shield()
 
 func _apply_flesh_shield():
 	var flesh_shield = FleshShield.new()

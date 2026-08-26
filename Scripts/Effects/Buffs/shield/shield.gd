@@ -30,8 +30,9 @@ func apply(_target: Entity):
 	super.apply(_target)
 	sprite.scale = warer.get_node("Sprite2D").scale - Vector2(0.27, 0.27)
 	shield_progress_bar = warer.ui_component.shield_bar
-	shield_value = (warer.health_component.max_health * percent_modifier) + flat_modifier
-	shield_progress_bar.max_value = shield_value
+	var value = (warer.health_component.max_health * percent_modifier) + flat_modifier
+	shield_progress_bar.max_value = value
+	shield_value = value
 	warer.health_component.post_calculate_damage.connect(effect)
 
 func effect(_unit: Unit, amount: int, _is_crit: bool):

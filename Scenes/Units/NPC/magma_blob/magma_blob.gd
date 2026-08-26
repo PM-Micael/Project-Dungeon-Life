@@ -20,6 +20,10 @@ func _ready() -> void:
 	targeting_component.select_all_targets("Team 1")
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	if is_stunned:
+		return
+
 	for effect in effect_component.active_blessings:
 		if effect is MoltenDisaster:
 			return
