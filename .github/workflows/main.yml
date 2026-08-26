@@ -21,8 +21,7 @@ jobs:
         run: |
           mkdir -p ~/.local/share/godot/export_templates/4.7.stable
           wget https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz
-          cd ~/.local/share/godot/export_templates/4.7.stable
-          tar xzf ~/Godot_v4.7-stable_export_templates.tpz
+          tar xzf ~/Godot_v4.7-stable_export_templates.tpz -C ~/.local/share/godot/export_templates/4.7.stable
       
       - name: Export Godot Project
         run: |
