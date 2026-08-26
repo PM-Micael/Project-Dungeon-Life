@@ -28,5 +28,5 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          ./butler push ./builds/windows/ your-username/dungeon-life:windows
-          ./butler push ./builds/linux/ your-username/dungeon-life:linux
+          ./butler push ./builds/windows/ daremane/dungeon-life:windows
+          ./butler push ./builds/linux/ daremane/dungeon-life:linux
