@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
             
       - name: Download Godot 4.7
         run: |
@@ -41,5 +43,10 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          ./butler-bin/butler push ./builds/windows/ daremane/dungeon-life:windows
-          ./butler-bin/butler push ./builds/linux/ daremane/dungeon-life:linux
+          BASE=$(cat VERSION)
+          LAST_BUMP=$(git log -1 --format=%H -- VERSION)
+          PATCH=$(git rev-list --count $LAST_BUMP..HEAD)
+          VERSION="$BASE.$PATCH"
+          echo "Publishing version $VERSION"
+          ./butler-bin/butler push ./builds/windows/ daremane/dungeon-life:windows --userversion "$VERSION"
+          ./butler-bin/butler push ./builds/linux/ daremane/dungeon-life:linux --userversion "$VERSION"
