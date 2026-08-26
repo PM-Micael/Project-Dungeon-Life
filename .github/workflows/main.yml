@@ -26,6 +26,7 @@ jobs:
             
       - name: Export Godot Project
         run: |
+          mkdir -p ./builds/windows ./builds/linux
           ./Godot_v4.7-stable_linux.x86_64 --headless --export-release "Windows Desktop" ./builds/windows/Dungeon\ Life.exe
           ./Godot_v4.7-stable_linux.x86_64 --headless --export-release "Linux" ./builds/linux/Dungeon\ Life.zip
 
