@@ -13,14 +13,14 @@ jobs:
             
       - name: Download Godot 4.7
         run: |
-          wget https://downloads.tuxfamily.org/godotengine/4.7/Godot_v4.7-stable_linux.x86_64.zip
+          wget https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_linux.x86_64.zip
           unzip Godot_v4.7-stable_linux.x86_64.zip
           chmod +x Godot_v4.7-stable_linux.x86_64
           
       - name: Download Export Templates
         run: |
           mkdir -p ~/.local/share/godot/export_templates/4.7.stable
-          wget https://downloads.tuxfamily.org/godotengine/4.7/Godot_v4.7-stable_export_templates.tpz
+          wget https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz
           cd ~/.local/share/godot/export_templates/4.7.stable
           tar xzf ~/Godot_v4.7-stable_export_templates.tpz
       
