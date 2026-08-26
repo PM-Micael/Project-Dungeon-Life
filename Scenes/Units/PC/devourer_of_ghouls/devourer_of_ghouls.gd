@@ -7,7 +7,7 @@ func _init() -> void:
 	passive_description = "Dealing damage to an enemy marks them.
 		Dealing damage to a marked enemy with 5% or less executes them and grants Devourer Of Ghouls a stack of Devour.
 		Each stack of devour grants plus 1 max health"
-	base_health = 300
+	base_health = 400
 	attack_damage = 10
 	attack_range = 100
 	base_critical_percent_chance = 0
@@ -29,7 +29,7 @@ func _apply_devour_debuff(targets: Array[Entity], _is_crit: bool):
 	for u in targets:
 		if not u == null:
 			if u.effect_component != null:
-				u.effect_component.add_affliction(_construct_devour_mark_debuff(), self)
+				u.effect_component.add_effect(_construct_devour_mark_debuff(), self, u.effect_component.active_afflictions)
 
 func _construct_devour_mark_debuff() -> DevourersMark:
 	var mark = DevourersMark.new()

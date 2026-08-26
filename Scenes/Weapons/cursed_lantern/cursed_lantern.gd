@@ -34,5 +34,5 @@ func _weapon_skill(targets: Array[Entity]):
 	weaken.damage_modifier = weaken_modifier
 	weaken.duration = 5
 
-	target.effect_component.add_debuff(heal_reduction, wearer)
-	target.effect_component.add_debuff(weaken, wearer)
+	target.effect_component.add_effect(heal_reduction, wearer, target.effect_component.active_debuffs)
+	target.effect_component.add_effect(weaken, wearer, target.effect_component.active_debuffs)

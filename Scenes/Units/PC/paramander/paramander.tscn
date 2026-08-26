@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="8_4qtod"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="9_8xp27"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="10_gajwt"]
-[ext_resource type="Texture2D" uid="uid://c1qepqkhpdv3b" path="res://Scenes/Units/PC/paramander/Paramander.png" id="11_mlhct"]
+[ext_resource type="Texture2D" uid="uid://c1qepqkhpdv3b" path="res://Scenes/Units/PC/paramander/paramander.png" id="11_mlhct"]
 
 [node name="Paramander" type="Node2D" unique_id=476637343]
 script = ExtResource("1_1eukt")
@@ -39,7 +39,7 @@ script = ExtResource("6_hueyw")
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("10_gajwt")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577642782]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("11_mlhct")
 
 [editable path="Components/AttackComponent"]

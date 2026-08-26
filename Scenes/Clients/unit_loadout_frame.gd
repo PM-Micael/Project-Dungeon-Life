@@ -119,13 +119,13 @@ func _on_unit_entity_change():
 		attack_component.post_attack_target.disconnect(_on_selected_unit_attacked)
 	attack_component.post_attack_target.connect(_on_selected_unit_attacked)
 	
-	if effect_component.buff_applied.is_connected(_on_buff_changed):
-		effect_component.buff_applied.disconnect(_on_buff_changed)
-	effect_component.buff_applied.connect(_on_buff_changed)
+	if effect_component.effect_applied.is_connected(_on_buff_changed):
+		effect_component.effect_applied.disconnect(_on_buff_changed)
+	effect_component.effect_applied.connect(_on_buff_changed)
 	
-	if effect_component.debuff_applied.is_connected(_on_debuff_changed):
-		effect_component.debuff_applied.disconnect(_on_debuff_changed)
-	effect_component.debuff_applied.connect(_on_debuff_changed)
+	if effect_component.effect_applied.is_connected(_on_debuff_changed):
+		effect_component.effect_applied.disconnect(_on_debuff_changed)
+	effect_component.effect_applied.connect(_on_debuff_changed)
 	
 	fill_buffs()
 	fill_debuffs()
@@ -140,11 +140,14 @@ func _on_selected_unit_attacked(_targets: Array[Entity]):
 		return
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
 
-func _on_buff_changed(_target: Entity):
-	fill_buffs()
+func _on_buff_changed(_target: Entity, effect: Effect):
+	if effect is Buff:
+		print("Splinter buff CHANGED!!!!!!!!!!!!!!!!!!!")
+		fill_buffs()
 
-func _on_debuff_changed(_target: Entity):
-	fill_debuffs()
+func _on_debuff_changed(_target: Entity, effect: Effect):
+	if effect is Debuff:
+		fill_debuffs()
 
 func change_unit_weapon(new_weapon_entity: Entity):
 	print("Changing unit weapon")

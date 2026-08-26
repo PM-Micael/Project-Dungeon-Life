@@ -15,7 +15,7 @@ script = ExtResource("1_d5ua6")
 
 [node name="BoardWindow" type="Window" parent="." unique_id=17590501]
 oversampling_override = 1.0
-position = Vector2i(0, 36)
+position = Vector2i(546, 36)
 size = Vector2i(800, 800)
 script = ExtResource("2_rsedy")
 
@@ -23,7 +23,7 @@ script = ExtResource("2_rsedy")
 
 [node name="InventoryWindow" type="Window" parent="." unique_id=1361579765]
 oversampling_override = 1.0
-position = Vector2i(0, 36)
+position = Vector2i(320, 36)
 size = Vector2i(800, 800)
 script = ExtResource("4_ncke1")
 

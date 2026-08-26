@@ -4,7 +4,7 @@ func _init() -> void:
 	id = "small_salamander"
 	
 	base_health = 200
-	attack_damage = 10
+	attack_damage = 20
 	attack_range = 250
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2

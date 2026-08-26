@@ -4,7 +4,6 @@ class_name Entity
 var id: String
 var display_name: String
 var hostile_team: String
-var is_stunned: bool = false
 
 var attack_component: AttackComponent:
 	get:
@@ -13,10 +12,6 @@ var attack_component: AttackComponent:
 var effect_component: EffectComponent:
 	get:
 		return get_node_or_null("Components/EffectComponent")
-	
-var buff_component: BuffComponent:
-	get:
-		return get_node_or_null("Components/BuffComponent")
 	
 var health_component: HealthComponent:
 	get:
@@ -54,3 +49,4 @@ var weapon_component: WeaponComponent:
 #
 @onready var ui_components_health_bar: ProgressBar = get_node_or_null("UIComponents/HealthBar")
 @onready var ui_components_weapon_energy_bar: ProgressBar = get_node_or_null("UIComponents/WeaponEnergyProgressBar")
+@onready var ui_component: UIComponents = $UIComponents

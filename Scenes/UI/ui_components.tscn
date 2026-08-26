@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://lt1yq282yuqo"]
 
 [ext_resource type="Script" uid="uid://dvtk6u2t8tonu" path="res://Scenes/UI/ui_components.gd" id="1_rwbe0"]
+[ext_resource type="Texture2D" uid="uid://xnkqww0dfmdt" path="res://Assets/7b317e23-5b7b-4786-826f-bd2857c07457.png" id="2_b0rx5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwbe0"]
 bg_color = Color(0.078431375, 0.52156866, 0.09803922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajbjq"]
 bg_color = Color(0.14901961, 0.08627451, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb8pe"]
+bg_color = Color(0.64861, 0.70881677, 0.7232201, 1)
 
 [node name="UIComponents" type="Control" unique_id=207219878]
 layout_mode = 3
@@ -20,16 +24,70 @@ script = ExtResource("1_rwbe0")
 layout_mode = 0
 offset_left = -290.0
 offset_top = -310.0
-offset_right = 290.0
+offset_right = 233.33331
 offset_bottom = -250.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_rwbe0")
+value = 80.0
+show_percentage = false
 
 [node name="WeaponEnergyProgressBar" type="ProgressBar" parent="." unique_id=236322045]
 layout_mode = 0
 offset_left = -290.0
 offset_top = -250.0
-offset_right = 290.0
+offset_right = 233.33331
 offset_bottom = -210.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_ajbjq")
+
+[node name="Defense" type="Control" parent="." unique_id=488535648]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Defense" unique_id=1502314619]
+position = Vector2(326.66666, -246.66669)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_b0rx5")
+
+[node name="DefenseValueLabel" type="Label" parent="Defense" unique_id=1138013581]
+layout_mode = 0
+offset_left = 233.33333
+offset_top = -326.66666
+offset_right = 405.3333
+offset_bottom = -189.66666
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 100
+text = "100"
+horizontal_alignment = 1
+
+[node name="ShieldBar" type="ProgressBar" parent="." unique_id=449116246]
+layout_mode = 0
+offset_left = -290.0
+offset_top = -270.0
+offset_right = 233.33331
+offset_bottom = -250.0
+theme_override_font_sizes/font_size = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_bb8pe")
+
+[node name="Channel" type="Control" parent="." unique_id=1886489442]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChannelBar" type="ProgressBar" parent="Channel" unique_id=1397922312]
+layout_mode = 0
+offset_left = -290.0
+offset_top = 200.00002
+offset_right = 293.3333
+offset_bottom = 260.0
+show_percentage = false
+
+[node name="ChannelTitle" type="Label" parent="Channel" unique_id=1621260442]
+layout_mode = 0
+offset_left = -286.66666
+offset_top = 206.66666
+offset_right = 286.66666
+offset_bottom = 253.33334
+theme_override_font_sizes/font_size = 33
+horizontal_alignment = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6u1ge0dlp073"
-path="res://.godot/imported/d_o_g.png-fadd9cb28004eb80b37021122c3c0bb1.ctex"
+uid="uid://t123g36w6iqc"
+path="res://.godot/imported/small-salamander_rescale.png-44e84938d3cc7aeb4cbc833074166b52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/PC/devourer_of_ghouls/d_o_g.png"
-dest_files=["res://.godot/imported/d_o_g.png-fadd9cb28004eb80b37021122c3c0bb1.ctex"]
+source_file="res://Scenes/Units/NPC/small_salamander/small-salamander_rescale.png"
+dest_files=["res://.godot/imported/small-salamander_rescale.png-44e84938d3cc7aeb4cbc833074166b52.ctex"]
 
 [params]
 

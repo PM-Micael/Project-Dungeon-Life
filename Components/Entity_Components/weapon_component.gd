@@ -5,8 +5,8 @@ signal use_weapon_skill
 
 var star_level: int = 1
 
-var max_weapon_energy: int = 100
-var current_weapon_energy: int = 70
+@export var max_weapon_energy: int = 100
+@export var current_weapon_energy: int = 70
 var weapon_energy_gained_on_attack: int = 10
 var weapon_energy_gained_on_damage_taken: int = 0
 var ability_can_crit: bool = false
@@ -42,7 +42,7 @@ func set_weapon_energy_bar():
 		weapon_energy_bar.max_value = max_weapon_energy
 		weapon_energy_bar.value = current_weapon_energy
 
-func _on_damage_taken(attacker, is_crit):
+func _on_damage_taken(_attacker, _is_crit):
 	adjust_energy([])
 
 func _prep_attack(target: Entity):

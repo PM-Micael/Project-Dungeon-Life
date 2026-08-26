@@ -11,6 +11,8 @@ script = ExtResource("1_lrasn")
 [node name="Components" type="Node2D" parent="." unique_id=1207313522]
 
 [node name="WeaponComponent" parent="Components" unique_id=47458186 instance=ExtResource("1_pe7nk")]
+max_weapon_energy = 50
+current_weapon_energy = 10
 added_attack_damage_multiplier = 10
 
 [node name="AudioStreamPlayer" parent="Components/WeaponComponent" index="0" unique_id=362102472]

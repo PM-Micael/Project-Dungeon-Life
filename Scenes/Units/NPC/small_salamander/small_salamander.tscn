@@ -5,25 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="2_48inj"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="3_hj6km"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="4_cc2mg"]
-[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="5_mvqs7"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="6_0wxf4"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_lth0l"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_xbq1i"]
+[ext_resource type="Texture2D" uid="uid://t123g36w6iqc" path="res://Scenes/Units/NPC/small_salamander/small-salamander_rescale.png" id="9_4vnuk"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_gg6bj"]
-[ext_resource type="Texture2D" uid="uid://cj3gywsybidxr" path="res://Scenes/Units/NPC/scorched_wanderer/scorched_wanderer.png" id="10_4vnuk"]
 
 [sub_resource type="GDScript" id="GDScript_hj6km"]
 script/source = "extends Sprite2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 "
 
 [node name="SmallSalamander" type="Node2D" unique_id=1475573676]
@@ -40,8 +29,6 @@ script = ExtResource("1_48inj")
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("4_cc2mg")]
 base_defense = 30
 
-[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_mvqs7")]
-
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("6_0wxf4")]
 
 [node name="MovmentComponent" parent="Components" unique_id=565826085 instance=ExtResource("7_lth0l")]
@@ -49,8 +36,8 @@ base_defense = 30
 [node name="EffectComponent" parent="Components" unique_id=1677900983 instance=ExtResource("8_xbq1i")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1426441509]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("10_4vnuk")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("9_4vnuk")
 script = SubResource("GDScript_hj6km")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_gg6bj")]

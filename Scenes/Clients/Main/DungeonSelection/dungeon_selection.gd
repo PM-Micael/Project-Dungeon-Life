@@ -116,7 +116,7 @@ func _display_unit(index: int, units_container: Node2D, button_on: bool):
 	node_container.position = Vector2(125 + (275 * index), 150)
 	units_container.add_child(node_container)
 	
-	unit_container.scale = Vector2(2, 2)
+	unit_container.scale = Vector2(0.7, 0.7)
 	node_container.add_child(unit_container)
 	
 	var unit_id: String = unit_container.entity.id

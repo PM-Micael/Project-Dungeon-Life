@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://rj8m20mbt3vp"]
+
+[ext_resource type="Script" uid="uid://87c37kf6k8it" path="res://Scenes/Clients/Main/Database_Client/database_client.gd" id="1_viwdy"]
+[ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="2_ff83l"]
+
+[node name="DatabaseClient" type="Node2D" unique_id=1752301446]
+script = ExtResource("1_viwdy")
+
+[node name="Style" type="Node2D" parent="." unique_id=1602337251]
+
+[node name="Frame" type="ColorRect" parent="Style" unique_id=597495262]
+offset_right = 800.0
+offset_bottom = 500.0
+
+[node name="Background" type="ColorRect" parent="Style" unique_id=1748093989]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 795.0
+offset_bottom = 495.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Style" unique_id=1911442808]
+position = Vector2(400.00003, 250)
+scale = Vector2(1, 0.62499994)
+texture = ExtResource("2_ff83l")
+
+[node name="ColorRect" type="ColorRect" parent="Style" unique_id=1269294884]
+offset_left = 240.0
+offset_right = 241.0
+offset_bottom = 500.0
+
+[node name="Filters" type="Node2D" parent="." unique_id=466616077]
+
+[node name="TogglePlayerUnits" type="Button" parent="Filters" unique_id=1409237285]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 100.0
+offset_right = 235.0
+offset_bottom = 131.0
+text = "Player Units"
+
+[node name="ToggleEnemyUnits" type="Button" parent="Filters" unique_id=102872642]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(80, 30)
+offset_left = 5.0
+offset_top = 150.0
+offset_right = 235.0
+offset_bottom = 180.0
+text = "Enemy Units"
+
+[node name="ToggleWeapons" type="Button" parent="Filters" unique_id=1986304045]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 200.0
+offset_right = 235.0
+offset_bottom = 231.0
+text = "Weapons"
+
+[node name="ToggleBuffs" type="Button" parent="Filters" unique_id=779979615]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 250.0
+offset_right = 235.0
+offset_bottom = 281.0
+text = "Buffs"
+
+[node name="ToggleDebuffs" type="Button" parent="Filters" unique_id=286992669]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 300.0
+offset_right = 235.0
+offset_bottom = 331.0
+text = "Debuffs"
+
+[node name="ToggleCombatStats" type="Button" parent="Filters" unique_id=377091221]
+modulate = Color(0, 1, 0, 1)
+offset_left = 5.0
+offset_top = 350.0
+offset_right = 235.0
+offset_bottom = 381.0
+text = "Combat Stats"
+
+[node name="Search" type="Node2D" parent="." unique_id=1883664773]
+
+[node name="SearchBar" type="LineEdit" parent="Search" unique_id=817913923]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 233.0
+offset_bottom = 41.0
+placeholder_text = "Search"
+
+[node name="WikiBrowser" type="Node2D" parent="." unique_id=1423274715]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WikiBrowser" unique_id=1784618114]
+offset_left = 243.0
+offset_top = 2.0
+offset_right = 800.0
+offset_bottom = 498.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WikiBrowser/ScrollContainer" unique_id=1810442427]
+layout_mode = 2

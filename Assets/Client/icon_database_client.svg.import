@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw3mc6j8vgt0k"
-path="res://.godot/imported/spitter.png-bfef7562f35ca413895b2cfc1224ca95.ctex"
+uid="uid://cm5x6jkkg25l2"
+path="res://.godot/imported/icon_database_client.svg-8277fe372621e8dd88b304aea3326ed3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/NPC/spitter/spitter.png"
-dest_files=["res://.godot/imported/spitter.png-bfef7562f35ca413895b2cfc1224ca95.ctex"]
+source_file="res://Assets/Client/icon_database_client.svg"
+dest_files=["res://.godot/imported/icon_database_client.svg-8277fe372621e8dd88b304aea3326ed3.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

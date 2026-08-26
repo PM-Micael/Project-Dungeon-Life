@@ -22,20 +22,12 @@ Buggs:
 2026-04-25:
 	Check if other scripts could be a "Resource" instead of "Node"
 
-2026-04-25:
-	Good characters to add:
-		Petamer
-		Clobber
-
 2026-04-26:
 	Finalize unit pathfinding
 
 2026-04-28:
 	On the desktop version:
-		Placing player units at the start of team_lineup is scalable as you move frieendly units. Enemy units placing are as well but differently. Look up and make final desition.
-		
-2026-05-07:
-	Maybe change the name of zac to D.O.T.L (Devourer Of The Living) or something similar
+		Placing player units at the start of team_lineup is scalable as you move friendly units. Enemy units placing are as well but differently. Look up and make final desition.
 	
 2026-05-10:
 	Units that enter the board should all call to one unified function to handle potential hicups like for example
@@ -45,25 +37,61 @@ Buggs:
 	Zac devours more than he should when enemy dies
 	
 2026-06-04:
-	impliment simplee damage numbers for visual clarity and so that I can properly know that they are
+	impliment simple damage numbers for visual clarity and so that I can properly know that they are
 	dealing the right amount of damage.
-	
-20026-06-05:
-	Base dungeon
-	More enemies
-	More player units
 
 2026-06-10:
 	A lot of bugs are happening because of the die function being a free and not a queue free.
-	Potentially chnage to queue freee and refactor code.
+	Potentially chnage to queue free and refactor code.
 	Search for ALL code that uses is_instance_valid
-	
-2026-06-11:
-	Push to main on git hub.
-	Hotfix should contain:
-		Execute bool on die function to stop "random crashes"
-		new icon
  
 2026-07-07:
 	Volume doesn't update in real time
 	Rework how it reads buffs and debuffs
+
+2026-07-11:
+	Question: Should Blessings act like a passive and always be active or act as temporary buffs
+	
+Version 0.5 check list:
+	5: Proper character sprites for the new characters.
+	2: New Database in Supabase | CHECK
+	3: Settings
+		
+	During the starting/log in screen you should not be locked if there is not internet access.
+
+Figuere out policys for stopping players from changing data on their row through
+cheating via access to api key.
+
+POTENTIAL REDUNDANT SCRIPTS AND SCENES:
+	game_startup.gd
+
+2026-08-02:
+	Rework blessings
+
+Blessing description
+Blessings:
+	Flesh Shield:
+		Applies a UNIQUE shield
+	Molten Layer:
+		Applies a UNIQUE shield
+	Weak Point Oppertunist:
+		Applies a UNIQUE attack_speed_up
+	
+Afflictions:
+	Devourers Mark
+	Blood Flies
+
+Unsolved bug:
+	entity container crashed because entity didnt have a sprite. It was fixd by it self?
+	No way to handle no internet connection
+	Breaking the shield will deal exess damage to the warer no mather their defense
+	Pressing continiue on dungeon selection after exiting a dungeon doesn't work.
+	
+2026-08-20:
+	Design a boss for Scorched Zone:
+		Blob of living magma
+		Charge an aoe attack that charges up (Like the Dragon from Raid Shadow Legends)
+		
+	Itch IO page.
+	Hit indicator with scalability for aoe attacks
+	Decide if stats on units should be set in the exported fileds in the Inspector

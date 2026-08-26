@@ -93,5 +93,5 @@ func _apply_button_pressed():
 			"volume_music": float(music_line_edit.text)
 		}
 	}
-	LocalData.apply_settings(settings)
+	LocalData.apply_new_settings(settings)
 	_initialize_data()

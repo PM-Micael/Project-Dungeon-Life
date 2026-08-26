@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="2_fioru"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="3_jsfx0"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="4_qpyv7"]
-[ext_resource type="PackedScene" uid="uid://dnp3gms6fuarh" path="res://Components/Entity_Components/buff_component.tscn" id="5_02mx5"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="6_teceq"]
 [ext_resource type="PackedScene" uid="uid://c5iw7v64su0bm" path="res://Components/Entity_Components/movment_component.tscn" id="7_xelv0"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="8_2k8vm"]
@@ -28,8 +27,6 @@ wait_time = 1.6
 
 [node name="HealthComponent" parent="Components" unique_id=1983591510 instance=ExtResource("4_qpyv7")]
 base_defense = 30
-
-[node name="BuffComponent" parent="Components" unique_id=1197356877 instance=ExtResource("5_02mx5")]
 
 [node name="CollisionComponent" parent="Components" unique_id=367354158 instance=ExtResource("6_teceq")]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qepqkhpdv3b"
-path="res://.godot/imported/Paramander.png-1bb40c2e436ae0d1d3ed14d074bb1d3a.ctex"
+uid="uid://b3i6a71wprs7w"
+path="res://.godot/imported/D_O_G.png-578bc75494339fd9ad2b339b85275cb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/PC/paramander/Paramander.png"
-dest_files=["res://.godot/imported/Paramander.png-1bb40c2e436ae0d1d3ed14d074bb1d3a.ctex"]
+source_file="res://Scenes/Units/PC/devourer_of_ghouls/D_O_G.png"
+dest_files=["res://.godot/imported/D_O_G.png-578bc75494339fd9ad2b339b85275cb8.ctex"]
 
 [params]
 

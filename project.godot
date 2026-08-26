@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dungeon Life"
-run/main_scene="uid://cs1d6obtt2nva"
+run/main_scene="uid://piydve1f2eu3"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/image="res://Assets/dungeon-life-icon.ico"
@@ -28,13 +28,13 @@ BoardGrid="*uid://dq3uan8m2l3k6"
 LootTable="*uid://dynvlo7g5ek6r"
 AudioManager="*uid://7giarjs3fuji"
 GameData="*uid://b4nt171p6fvva"
+Auth="*uid://838kn1str8m3"
+Database="*uid://8o8r0k801ekr"
 
 [display]
 
-window/size/viewport_width=1919
-window/size/viewport_height=1079
-window/size/borderless=true
-window/size/always_on_top=true
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/transparent=true
 window/per_pixel_transparency/allowed=true
 window/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)

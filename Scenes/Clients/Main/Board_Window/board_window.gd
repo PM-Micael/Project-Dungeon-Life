@@ -22,7 +22,7 @@ var layout_config: Dictionary[String, Vector2] = {
 
 func _ready() -> void:
 	title = "Board"
-	position = Vector2(1119, 240)
+	position = Vector2(1120, 240)
 	unresizable = true
 	borderless = true
 	always_on_top = true

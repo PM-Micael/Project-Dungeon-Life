@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvimilfvxyi8a"
-path="res://.godot/imported/scratch.png-8220f84e5f37bdcd9a531de3b619cec2.ctex"
+uid="uid://xnkqww0dfmdt"
+path="res://.godot/imported/7b317e23-5b7b-4786-826f-bd2857c07457.png-65dda1036109eab2af612c057a64a741.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Units/PC/scratch/scratch.png"
-dest_files=["res://.godot/imported/scratch.png-8220f84e5f37bdcd9a531de3b619cec2.ctex"]
+source_file="res://Assets/7b317e23-5b7b-4786-826f-bd2857c07457.png"
+dest_files=["res://.godot/imported/7b317e23-5b7b-4786-826f-bd2857c07457.png-65dda1036109eab2af612c057a64a741.ctex"]
 
 [params]
 

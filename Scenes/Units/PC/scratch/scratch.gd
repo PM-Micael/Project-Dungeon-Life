@@ -17,7 +17,7 @@ func _ready() -> void:
 	attack_component.post_attack_target.connect(_on_post_attack)
 
 func _set_stats():
-	health_component.set_stats(base_health*PlayerData.inner_sanctum.life)
+	health_component.set_stats(base_health*PlayerData.inner_sanctum.life, base_defense)
 	attack_component.set_stats_absolute(attack_damage*PlayerData.inner_sanctum.power, attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
 func _on_post_attack(_targets: Array[Entity], was_crit:bool):
@@ -32,7 +32,7 @@ func _apply_weak_point_opportunist():
 			return
 	
 	var blessing = WeakPointOpportunist.new()
-	effect_component.add_blessing(blessing, self)
+	effect_component.add_effect(blessing, self, effect_component.active_blessings)
 
 func _consume_weak_point_opportunist_stack():
 	for blessing in effect_component.active_blessings:

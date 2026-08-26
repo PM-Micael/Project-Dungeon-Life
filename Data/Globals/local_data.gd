@@ -4,13 +4,22 @@ signal local_data_loaded
 
 var local_data_has_loaded: bool
 
+const DISPLAY_MODE = {
+	BORDERLESS = "borderless",
+	WINDOWED = "windowed"
+}
+
 var settings: Dictionary = {
+	"email_cockie": "",
 	"auto_advance": false,
 	"audio": {
 		"volume_master": 1.0,
 		"volume_sfx": 1.0,
 		"volume_music": 1.0
 	},
+	"display": {
+		
+	}
 }
 
 func load_local_data():
@@ -18,7 +27,19 @@ func load_local_data():
 	local_data_has_loaded = true
 	local_data_loaded.emit()
 
-func apply_settings(_settings: Dictionary):
+func apply_settings():
+	settings["display_mode"] = DISPLAY_MODE.BORDERLESS
+	
+	var window = get_window()
+	window.borderless = settings["display"]["display_mode"] == DISPLAY_MODE.BORDERLESS
+	window.size = Vector2(1919, 1079)
+	window.transient = true
+	window.always_on_top = true
+	
+	var viewport := get_viewport()
+	viewport.transparent_bg = true
+
+func apply_new_settings(_settings: Dictionary):
 	for setting in _settings.keys():
 		settings[setting] = _settings[setting]
 	print(str(settings))
@@ -48,3 +69,15 @@ func load_settings():
 	settings = result
 	print("Loaded settings:", settings)
 	return settings
+
+func string_to_vector2(s: String) -> Vector2:
+	s = s.trim_prefix("(").trim_suffix(")")
+	var parts = s.split(",")
+
+	if parts.size() != 2:
+		return Vector2.ZERO
+
+	return Vector2(
+		parts[0].to_float(),
+		parts[1].strip_edges().to_float()
+	)

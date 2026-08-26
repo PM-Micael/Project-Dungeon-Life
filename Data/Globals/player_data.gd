@@ -5,6 +5,7 @@ signal player_data_saved
 signal dungeon_run_ongoing_changed
 
 var player_data_has_loaded: bool = false
+var player_data_has_saved: bool = false
 
 var player_id: String
 var player_display_name: String = ""
@@ -170,206 +171,128 @@ func add_loot_to_inventory(loot: Array[Dictionary]) -> void:
 
 # Database
 
-func save_player_data(): 
-	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
-	
-	# Serialize dungeon_team_formation
-	var team_formation_array = []
-	for unit in dungeon_team_formation_the_dungeon:
-		team_formation_array.append({
-			"mapValue": {
-				"fields": {
-					"unit_name": { "stringValue": unit["unit_name"] },
-					"weapon_id": { "stringValue": unit["weapon_id"] },
-					"weapon_star_level": { "integerValue": str(unit.get("weapon_star_level", 1)) },
-					"pos_x": { "doubleValue": unit["starting_position"].x },
-					"pos_y": { "doubleValue": unit["starting_position"].y },
-				}
-			}
-		})
-	
-	# Serialize dungeon_loot
-	var loot_array = []
-	for item in dungeon_loot:
-		loot_array.append({ "mapValue": { "fields": {
-			"item_id": { "stringValue": item["item_id"] },
-			"star_level": { "integerValue": str(item["star_level"]) },
-			"item_type": { "stringValue": item["item_type"] },
-		}}})
-	
-	var enemy_formation_array: Array[Dictionary] = []
-	for enemy in current_room_enemy_formation:
-		enemy_formation_array.append({"mapValue": {"fields":{
-			"type": {"stringValue": enemy["type"]},
-			"pos_x": {"doubleValue": enemy["position"].x},
-			"pos_y": {"doubleValue": enemy["position"].y}
-		}}})
-	
+func save_player_data():
+	player_data_has_saved = false
 	var data = {
-		"fields": {
-			"player_data": {"mapValue": {"fields": {
-				"display_name": { "stringValue": player_display_name },
-			}}},
-			"dungeon_data": { "mapValue": {"fields":{
-				"current_room_enemy_formation": {"arrayValue": {"values": enemy_formation_array}},
-				"run_ongoing": {"booleanValue": dungeon_run_ongoing},
-				"dungeon_id": {"stringValue": dungeon_id},
-				"room": {"integerValue": dungeon_room},
-				"tier": {"integerValue": dungeon_run_tier},
-				"collected_essence": {"integerValue": dungeon_run_collected_esseence},
-				"current_zone": {"stringValue": current_zone},
-				"team_formation": { "arrayValue": { "values": team_formation_array}},
-				"loot": {"arrayValue": {"values": loot_array}}
-			}}},
-			"dungeon_high_score": {"mapValue": { "fields": {
-				"the_dungeon": {"mapValue": {"fields": {
-					"tier_1": {"mapValue": {"fields": {
-						"room": {"integerValue": str(dungeon_high_score["the_dungeon"]["tier_1"]["room"])}
-					}}}
-				}}}
-			}}},
-			"inner_sanctum_essence_total": { "integerValue": str(inner_sanctum_essence_total) },
-			"inner_sanctum_essence_current": { "integerValue": str(inner_sanctum_essence_current) },
-			"inner_sanctum": { "mapValue": { "fields": {
-				"life": {"doubleValue": inner_sanctum["life"]},
-				"power": {"doubleValue": inner_sanctum["power"]},
-			}}},
+		"id": player_id,
+		"data": {
+			"player_data": {
+				"display_name": player_display_name
+			},
+			"dungeon_data": {
+				"run_ongoing": dungeon_run_ongoing,
+				"dungeon_id": dungeon_id,
+				"room": dungeon_room,
+				"tier": dungeon_run_tier,
+				"collected_essence": dungeon_run_collected_esseence,
+				"current_zone": current_zone,
+				"team_formation": dungeon_team_formation_the_dungeon,
+				"loot": dungeon_loot,
+				"current_room_enemy_formation": current_room_enemy_formation
+			},
+			"dungeon_high_score": dungeon_high_score,
+			"inner_sanctum": inner_sanctum,
+			"inner_sanctum_essence_total": inner_sanctum_essence_total,
+			"inner_sanctum_essence_current": inner_sanctum_essence_current
 		}
 	}
 	
 	var http = HTTPRequest.new()
 	add_child(http)
+	
 	http.request_completed.connect(func(result, code, headers, body):
-		print("Save result - HTTP code: ", code)
+		print("HTTP:", code)
+		print(body.get_string_from_utf8())
+		print()
 	)
 	
-	var headers = ["Content-Type: application/json"]
-	var body = JSON.stringify(data)
-	http.request(url, headers, HTTPClient.METHOD_PATCH, body)
-	player_data_saved.emit()
+	var url = Database.SUPABASE_URL + "/rest/v1/players"
+	
+	http.request(
+		url,
+		Auth.get_headers(),
+		HTTPClient.METHOD_POST,
+		JSON.stringify(data)
+	)
 
-func load_player_data():	
-	var id_file_path = "res://player_id.txt"
-	var file = FileAccess.open(id_file_path, FileAccess.READ)
-	if file:
-		var stored_id = file.get_as_text().strip_edges()
-		file.close()
-		if stored_id != "":
-			player_id = stored_id
-		else:
-			player_id = _generate_guid()
-			_write_player_id(player_id)
-	else:
-		player_id = _generate_guid()
-		_write_player_id(player_id)
-	# ---------------------------
-	
-	var url = "https://firestore.googleapis.com/v1/projects/project-dungeon-life/databases/(default)/documents/players/" + player_id
-	
+	player_data_saved.emit()
+	player_data_has_saved = true
+
+func load_player_data():
+	print("Id: " + player_id)
+
+	var url = Database.SUPABASE_URL + "/rest/v1/players?id=eq." + player_id + "&select=data"
+
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(func(result, code, headers, body):
-		if code == 404:
-			save_player_data()
-			await get_tree().create_timer(0.5).timeout
-			load_player_data()
-			return
+
+	http.request_completed.connect(func(_result, code, _headers, body):
+
 		if code != 200:
-			print("Load failed - HTTP code: ", code)
+			print("Load failed:", code)
+			print(body.get_string_from_utf8())
 			return
-		
+
 		var json = JSON.new()
 		json.parse(body.get_string_from_utf8())
-		var fields = json.get_data()["fields"]
-		var dungeon_fields = fields["dungeon_data"]["mapValue"]["fields"]
-		
-		# Basic fields
-		player_display_name = fields["player_data"]["mapValue"]["fields"]["display_name"]["stringValue"]
-		dungeon_run_tier = int(dungeon_fields["tier"]["integerValue"])
-		current_zone = dungeon_fields["current_zone"]["stringValue"]
-		inner_sanctum_essence_total = int(fields["inner_sanctum_essence_total"]["integerValue"])
-		inner_sanctum_essence_current = int(fields["inner_sanctum_essence_current"]["integerValue"])
-		
-		# Inner sanctum
-		var sanctum_fields = fields["inner_sanctum"]["mapValue"]["fields"]
-		inner_sanctum["life"] = float(sanctum_fields["life"]["doubleValue"])
-		inner_sanctum["power"] = float(sanctum_fields["power"]["doubleValue"])
-		
-		# Dungeon team formation
-		if fields.has("dungeon_high_score"):
-			var high_score = fields["dungeon_high_score"]["mapValue"]["fields"]
-			dungeon_high_score["the_dungeon"]["tier_1"]["room"] = int(
-			high_score["the_dungeon"]["mapValue"]["fields"]
-				["tier_1"]["mapValue"]["fields"]
-				["room"]["integerValue"]
-			)
-		else:
-			print("Fields dungeon_high_score doesn't exist")
-		dungeon_run_ongoing = dungeon_fields["run_ongoing"]["booleanValue"]
-		if dungeon_run_ongoing:
-			dungeon_room = int(dungeon_fields["room"]["integerValue"])
-			dungeon_team_formation_the_dungeon.clear()
-			var team_formation_values = dungeon_fields["team_formation"]["arrayValue"].get("values", [])
-			for entry in team_formation_values:
-				var f = entry["mapValue"]["fields"]
-				dungeon_team_formation_the_dungeon.append({
-					"unit_name": f["unit_name"]["stringValue"],
-					"weapon_id": f["weapon_id"]["stringValue"],
-					"weapon_star_level": int(f["weapon_star_level"]["integerValue"]),
-					"starting_position": Vector2(
-						float(f["pos_x"]["doubleValue"]),
-						float(f["pos_y"]["doubleValue"])
-					)
-				})
-			current_room_enemy_formation.clear()
-			if dungeon_fields.has("current_room_enemy_formation"):
-				var enemy_formation_values = dungeon_fields["current_room_enemy_formation"]["arrayValue"].get("values",[])
-				for entry in enemy_formation_values:
-					var e = entry["mapValue"]["fields"]
-					current_room_enemy_formation.append({
-						"type": e["type"]["stringValue"],
-						"position": Vector2(
-							float(e["pos_x"]["doubleValue"]),
-							float(e["pos_y"]["doubleValue"]),
-						)
-					})
-				
-			# Dungeon loot
-			dungeon_loot.clear()
-			var loot_values = dungeon_fields["loot"]["arrayValue"].get("values", [])
-			for entry in loot_values:
-				var l = entry["mapValue"]["fields"]
-				dungeon_loot.append({
-					"item_id": l["item_id"]["stringValue"],
-					"star_level": int(l["star_level"]["integerValue"]),
-					"item_type": l["item_type"]["stringValue"],
-				})
-			dungeon_run_collected_esseence = int(dungeon_fields["collected_essence"]["integerValue"])
-		
-		print("Player data loaded successfully")
+
+		var rows = json.data
+
+		if rows.is_empty():
+			print("Rows are empty")
+			save_player_data()
+			return
+
+		var data = rows[0]["data"]
+
+		player_display_name = data["player_data"]["display_name"]
+
+		var dungeon = data["dungeon_data"]
+
+		dungeon_run_ongoing = dungeon["run_ongoing"]
+		dungeon_id = dungeon["dungeon_id"]
+		dungeon_room = dungeon["room"]
+		dungeon_run_tier = dungeon["tier"]
+		dungeon_run_collected_esseence = dungeon["collected_essence"]
+		current_zone = dungeon["current_zone"]
+
+		inner_sanctum = data["inner_sanctum"]
+		inner_sanctum_essence_total = data["inner_sanctum_essence_total"]
+		inner_sanctum_essence_current = data["inner_sanctum_essence_current"]
+
+		dungeon_high_score = data["dungeon_high_score"]
+
+		# Team formation
+		dungeon_team_formation_the_dungeon.clear()
+		for unit in dungeon["team_formation"]:
+			dungeon_team_formation_the_dungeon.append({
+				"unit_name": unit["unit_name"],
+				"weapon_id": unit["weapon_id"],
+				"weapon_star_level": unit["weapon_star_level"],
+				"starting_position": unit["starting_position"]
+			})
+
+		# Loot
+		dungeon_loot.clear()
+
+		for item in dungeon["loot"]:
+			dungeon_loot.append(item)
+
+		# Enemy formation
+		current_room_enemy_formation.clear()
+
+		for enemy in dungeon["current_room_enemy_formation"]:
+			current_room_enemy_formation.append({
+				"type": enemy["type"],
+				"position": enemy["position"]
+			})
+
 		_initialize_loot_as_entities()
+
 		player_data_has_loaded = true
 		player_data_loaded.emit()
-	)
-	
-	http.request(url, [], HTTPClient.METHOD_GET, "")
 
-func _generate_guid() -> String:
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var b = func(n): return "%02x" % (rng.randi() % 256)
-	return (
-		b.call(0)+b.call(1)+b.call(2)+b.call(3) + "-" +
-		b.call(4)+b.call(5) + "-" +
-		b.call(6)+b.call(7) + "-" +
-		b.call(8)+b.call(9) + "-" +
-		b.call(10)+b.call(11)+b.call(12)+b.call(13)+b.call(14)+b.call(15)
+		print("Player data loaded successfully")
 	)
 
-func _write_player_id(id: String) -> void:
-	var file = FileAccess.open("res://player_id.txt", FileAccess.WRITE)
-	if file:
-		file.store_string(id)
-		file.close()
-	else:
-		push_warning("PlayerData: Could not write player_id.txt")
+	http.request(url, Auth.get_headers(), HTTPClient.METHOD_GET)

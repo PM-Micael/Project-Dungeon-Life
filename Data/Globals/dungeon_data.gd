@@ -14,7 +14,8 @@ const EnemyType: Dictionary = {
 	
 	SCORCHED_WANDERER = "scorched_wanderer",
 	SCORCHED_JUGGERNAUT = "scorched_juggernaut",
-	SMALL_SALAMANDER = "small_salamander"
+	SMALL_SALAMANDER = "small_salamander",
+	MAGMA_BLOB = "magma_blob"
 }
 
 const ITEM_REGISTRY: Dictionary = {
@@ -35,16 +36,18 @@ var dungeon_wave_formations: Dictionary = {
 	GameData.ZONE.SCORCHED_ZONE:[
 		{
 			"boss_1":[
-				{ "type": EnemyType.PUTRID_ABOMINATION, "position": Vector2(350, 250) },
+				{ "type": EnemyType.MAGMA_BLOB, "position": Vector2(350, 250) },
 			],
 			"formation_1":[
 				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
+				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(250, 350) },
 				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(450, 350) },
-				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(650, 350) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.SMALL_SALAMANDER, "position": Vector2(350, 150) },
-				{ "type": EnemyType.SCORCHED_JUGGERNAUT, "position": Vector2(550, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(250, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(350, 350) },
+				{ "type": EnemyType.SCORCHED_WANDERER, "position": Vector2(450, 350) },
 			]
 		}
 	],
@@ -57,7 +60,8 @@ var dungeon_wave_formations: Dictionary = {
 				{ "type": EnemyType.FLESH_MUTANT, "position": Vector2(350, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(250, 350) },
 				{ "type": EnemyType.FLESH_GOUL, "position": Vector2(450, 350) },
-				{ "type": EnemyType.SPITTER, "position": Vector2(350, 250) },
+				{ "type": EnemyType.SPITTER, "position": Vector2(250, 250) },
+				{ "type": EnemyType.SPITTER, "position": Vector2(450, 250) },
 			],
 			"formation_2":[
 				{ "type": EnemyType.FLESH_MUTANT, "position": Vector2(250, 350) },

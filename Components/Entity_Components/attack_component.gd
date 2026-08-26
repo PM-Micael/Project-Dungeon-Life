@@ -2,13 +2,18 @@ extends Node2D
 class_name AttackComponent
 
 signal pre_attack_target
+signal pre_attack_targets
 signal post_attack_target
+signal post_attack_targets
 
+@export var base_attack_damage: int = 1
+@export var base_attack_speed: float = 1.1
 @export var attack_damage: int = 1
 @export var attack_range: int = 100
 @export var attack_speed: float = 1.1
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.0
+@export var is_aoe: bool = false
 
 # --- Shake settings ---
 @export var shake_strength: float = 6.0   # pixels offset at peak
@@ -18,7 +23,7 @@ var weapon_added_multiplier: int = 0
 var is_crit = false
 var in_target_attack_range: bool = false
 
-@onready var entity_parent: Entity = get_parent().get_parent()
+@onready var entity_parent: Unit = get_parent().get_parent()
 @onready var timer: Timer = $Timer
 @onready var attack_sound: AudioStreamPlayer = $AttackSound
 @onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
@@ -27,29 +32,77 @@ func _ready() -> void:
 	timer.wait_time = attack_speed
 	attack_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
 	attack_crit_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
+	timer.start()
 
 func _physics_process(_delta: float) -> void:
-	if (timer.time_left <= 0.1 and not entity_parent.is_stunned and
-		entity_parent.targeting_component != null &&
-		entity_parent.targeting_component.target != null):
-			var in_range: bool
-			if entity_parent.movment_component != null:
-				in_range = in_target_attack_range
-			else:
-				var dist = position.distance_to(entity_parent.targeting_component.target.position)
-				in_range = dist <= attack_range * sqrt(2)
-			if in_range:
-				attack_target(entity_parent.targeting_component.target)
-				if is_instance_valid(timer):
-					timer.start()
+	if entity_parent.is_stunned:
+		return
+	
+	if entity_parent.is_channeling:
+		return
+	
+	if entity_parent.targeting_component == null:
+		return
+	
+	if entity_parent.targeting_component.target == null:
+		return
+	
+	if timer.time_left <= 0.1:
+		if is_aoe:
+			entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
+			if is_instance_valid(timer):
+				timer.start()
+			return
+	
+		var in_range: bool
+		if entity_parent.movment_component != null:
+			in_range = in_target_attack_range
+		else:
+			var dist = position.distance_to(entity_parent.targeting_component.target.position)
+			in_range = dist <= attack_range * sqrt(2)
+		if in_range:
+			attack_target(entity_parent.targeting_component.target)
+			if is_instance_valid(timer):
+				timer.start()
 
-func set_stats_absolute(set_attack_damage: int, set_attack_range: int, set_crit_chance: int, set_crit_damage):
+func set_stats_absolute(
+	set_attack_damage: int,
+	set_attack_range: int,
+	set_crit_chance: int,
+	set_crit_damage
+	):
+	base_attack_damage = set_attack_damage
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
 
-func attack_target(target: Entity):
+func attack_targets(targets: Array[Entity], bonus_damage: int = 0):
+	pre_attack_targets.emit(targets)
+	is_crit = roll_crit()
+	if is_crit:
+		attack_crit_sound.play()
+	else:
+		attack_sound.play()
+
+	_play_shake()
+	
+	for target in targets:
+		if not is_instance_valid(target):
+			continue
+		var target_health_component: HealthComponent = target.health_component
+		if target_health_component != null:
+			target_health_component.take_damage_flat(
+				entity_parent,
+				get_total_attack_damage(is_crit) + bonus_damage, is_crit)
+	
+	if not is_instance_valid(self):
+		return
+	
+	post_attack_targets.emit(targets if is_instance_valid(targets) else [],
+	is_crit)
+
+func attack_target(target: Entity, bonus_damage: int = 0):
 	pre_attack_target.emit(target)
 	is_crit = roll_crit()
 	if is_crit:
@@ -59,9 +112,11 @@ func attack_target(target: Entity):
 
 	_play_shake()
 
-	var target_health_bar: HealthComponent = target.health_component
-	if target_health_bar != null:
-		target_health_bar.take_damage_flat(entity_parent, get_total_attack_damage(is_crit), is_crit)
+	var target_health_component: HealthComponent = target.health_component
+	if target_health_component != null:
+		target_health_component.take_damage_flat(
+			entity_parent,
+			get_total_attack_damage(is_crit) + bonus_damage, is_crit)
 
 	if not is_instance_valid(self):
 		return

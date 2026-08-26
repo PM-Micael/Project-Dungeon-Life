@@ -3,7 +3,7 @@ extends Window
 class_name ProfileWindow
 
 func _ready() -> void:
-	title = "Window Manager"
+	title = "Profile Window"
 	position = Vector2(0, 0)
 	unresizable = true
 	borderless = true

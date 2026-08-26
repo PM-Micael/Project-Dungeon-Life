@@ -4,8 +4,9 @@ func _init() -> void:
 	id = "scorcheed_juggernaut"
 	
 	base_health = 200
+	base_defense = 30
 	attack_damage = 10
-	attack_range = 250
+	attack_range = 100
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
 
@@ -16,7 +17,9 @@ func _ready() -> void:
 	essence_value = [1, PlayerData.dungeon_layer_level]
 
 func _set_stats():
-	health_component.set_stats(get_total_health())
+	health_component.set_stats(
+		get_total_health(),
+		base_defense)
 	attack_component.set_stats_absolute(
 		get_total_attack_damage(),
 		attack_range,

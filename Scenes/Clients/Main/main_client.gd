@@ -39,6 +39,13 @@ var sw_visible: bool = false
 var sw_position: Vector2
 var sw_size: Vector2
 
+var database_client_window: DatabaseClientWindow:
+	get:
+		return get_node("DatabaseClientWindow")
+var dc_visible: bool = false
+var dc_position: Vector2
+var dc_size: Vector2
+
 @onready var run_manager: RunManager = get_node("RunManager")
 
 var polygon_window: CollisionPolygon2D
@@ -47,6 +54,7 @@ var polygon_window: CollisionPolygon2D
 var one_was_pressed := false
 
 func _ready() -> void:
+	_apply_settings()
 	polygon_window = CollisionPolygon2D.new()
 	get_window().mouse_passthrough_polygon = polygon_window.polygon
 	await _initialize_game_data()
@@ -60,9 +68,14 @@ func _physics_process(_delta: float) -> void:
 		window_manager._activate_menu_hotkey(0)
 	one_was_pressed = one_pressed
 
+func _apply_settings():
+	var window = get_window()
+	window.borderless = true
+
 func _initialize_game_data():
 	PlayerData.load_player_data()
-	await PlayerData.player_data_loaded
+	if not PlayerData.player_data_has_loaded:
+		await PlayerData.player_data_loaded
 	DungeonData.initialize_data()
 	LocalData.load_local_data()
 	game_initialized = true
@@ -95,6 +108,10 @@ func _check_update_polygon(): # Dont initialize them every time
 	var new_sw_pos = Vector2(settings_window.position)
 	var new_sw_size = Vector2(settings_window.size)
 	
+	var new_dc_visible = database_client_window.visible
+	var new_dc_pos = Vector2(database_client_window.position)
+	var new_dc_size = Vector2(database_client_window.size)
+	
 	if (
 		wm_position != new_wm_pos or wm_size != new_wm_size or
 		bw_position != new_bw_pos or bw_size != new_bw_size or bw_visible != new_bw_visible or
@@ -116,6 +133,16 @@ func _check_update_polygon(): # Dont initialize them every time
 			new_wm_pos,
 			Vector2(0, 0),
 		])
+		
+		if database_client_window.visible:
+			poly.append_array([
+				new_dc_pos,
+				new_dc_pos + Vector2(new_dc_size.x, 0),
+				new_dc_pos + new_dc_size,
+				new_dc_pos + Vector2(0, new_dc_size.y),
+				new_dc_pos,
+				Vector2(0, 0),
+			])
 		
 		if profile_window.visible:
 			poly.append_array([
@@ -202,3 +229,6 @@ func _check_update_polygon(): # Dont initialize them every time
 		
 		sw_position = new_sw_pos
 		sw_size = new_sw_size
+		
+		dc_position = new_dc_pos
+		dc_size = new_dc_size
