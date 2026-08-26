@@ -38,6 +38,10 @@ func initialize_data():
 	dungeon_select.visible = true
 	unit_select.visible = false
 	
+	team_units.clear()
+	taken_unit_indexes.clear()
+	slot_indexes.clear()
+	
 	dungeons = DungeonData.DUNGEONS.values()
 	
 	_connect_events()
