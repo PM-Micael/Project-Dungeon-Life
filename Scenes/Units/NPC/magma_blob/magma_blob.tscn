@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="4_g422e"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="5_cg36n"]
 [ext_resource type="PackedScene" uid="uid://foh26dp5uery" path="res://Components/Entity_Components/effect_component.tscn" id="6_lbpo7"]
-[ext_resource type="Texture2D" uid="uid://d0mncx6m7q3bg" path="res://Scenes/Units/NPC/putrid_abomination/putrid_abomination.png" id="8_ybc8d"]
+[ext_resource type="Texture2D" uid="uid://b6txov2sfl6by" path="res://Scenes/Units/NPC/magma_blob/magma_blob_sprite.png" id="8_f6kc0"]
 [ext_resource type="PackedScene" uid="uid://lt1yq282yuqo" path="res://Scenes/UI/ui_components.tscn" id="9_ysull"]
 
 [node name="MagmaBlob" type="Node2D" unique_id=560436679]
@@ -32,8 +32,7 @@ is_aoe = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1177535380]
 position = Vector2(0, -50)
-rotation = 3.1415927
-texture = ExtResource("8_ybc8d")
+texture = ExtResource("8_f6kc0")
 
 [node name="UIComponents" parent="." unique_id=207219878 instance=ExtResource("9_ysull")]
 offset_top = -77.0
