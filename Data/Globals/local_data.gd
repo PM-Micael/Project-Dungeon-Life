@@ -32,7 +32,10 @@ func apply_settings():
 	
 	var window = get_window()
 	window.borderless = settings["display"]["display_mode"] == DISPLAY_MODE.BORDERLESS
-	window.size = Vector2(1919, 1079)
+
+	var usable: Rect2i = DisplayServer.screen_get_usable_rect(window.current_screen)
+	window.size = usable.size - Vector2i(1, 1)   # keep the 1px inset
+	window.position = Vector2i(0, 0)         # must come after the resize
 	window.transient = true
 	window.always_on_top = true
 	
