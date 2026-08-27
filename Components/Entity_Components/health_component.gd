@@ -26,6 +26,7 @@ var final_damage_taken_amount: int = 0
 @export var base_defense: int = 0
 @export var defense: int
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func get_health_percent() -> float:
 	if max_health <= 0:
@@ -65,18 +66,26 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	health_bar.value = current_health
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
-		_flash_damage()
+		_flash_damage(attacker.attack_component.attack_sprite_scene)
 		if current_health <= 0:
 			die(attacker)
 
-func _flash_damage() -> void:
+func _flash_damage(vfx_scene: PackedScene = null) -> void:
 	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
 	if sprite == null:
 		return
 	sprite.modulate = Color.RED
-	await get_tree().create_timer(0.15).timeout
+	#await get_tree().create_timer(0.15).timeout
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
+	
+	var vfx = vfx_scene.instantiate()
+	add_child(vfx)
+	vfx.play("default")
+	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
+
+func _on_animation_finished(vfx):
+	vfx.queue_free()
 
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier

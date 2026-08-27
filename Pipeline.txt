@@ -92,6 +92,10 @@ Unsolved bug:
 		Blob of living magma
 		Charge an aoe attack that charges up (Like the Dragon from Raid Shadow Legends)
 		
-	Itch IO page.
 	Hit indicator with scalability for aoe attacks
 	Decide if stats on units should be set in the exported fileds in the Inspector
+
+2026-08-26:
+	Tasks for the Pretty update:
+		Default mele hit sprite indicator
+		Each attack_component should have their own attack sprite

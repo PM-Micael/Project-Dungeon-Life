@@ -27,6 +27,7 @@ var in_target_attack_range: bool = false
 @onready var timer: Timer = $Timer
 @onready var attack_sound: AudioStreamPlayer = $AttackSound
 @onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
+@onready var attack_sprite_scene: PackedScene = preload("res://Assets/Animations/Slash/slash.tscn")
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
@@ -111,6 +112,9 @@ func attack_target(target: Entity, bonus_damage: int = 0):
 		attack_sound.play()
 
 	_play_shake()
+	#attack_animation.position = target.position
+	#target.attack_component.attack_animation.scale = target.scale
+	#target.attack_component.attack_animation.play("default")
 
 	var target_health_component: HealthComponent = target.health_component
 	if target_health_component != null:
