@@ -52,7 +52,10 @@ func _check_dungeon_run_ongoing(value: bool, _dungeon: String = ""):
 
 func _setup_stage():
 	start_stage_button.visible = true
-	
+
+	# Let go of the previous stage's unit before it is freed
+	unit_loadout_frame.entity = null
+
 	board.victory_screen.visible = false
 	board.defeat_screen.visible = false
 	board.friendly_units.clear()
@@ -116,7 +119,7 @@ func _try_select_friendly_unit_on_tile(tile: Tile) -> void:
 			_deselect_current_unit()
 			currently_selected_unit_entity_container = container
 			_set_highlight(container, true)
-			unit_loadout_frame.unit_entity = container.entity
+			unit_loadout_frame.entity = container.entity
 			return
 	_deselect_current_unit()
 
@@ -127,7 +130,7 @@ func _move_selected_unit_to_tile(tile: Tile) -> void:
 			_deselect_current_unit()
 			currently_selected_unit_entity_container = container
 			_set_highlight(container, true)
-			unit_loadout_frame.unit_entity = container.entity
+			unit_loadout_frame.entity = container.entity
 			return
 	_set_highlight(currently_selected_unit_entity_container, false)
 	currently_selected_unit_entity_container.position = new_pos
@@ -158,11 +161,12 @@ func _handle_in_game_unit_selected(unit: Node2D) -> void:
 	if entity == null:
 		return
 	_set_highlight_node(unit, true)
-	unit_loadout_frame.unit_entity = entity
+	unit_loadout_frame.entity = entity
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
 
 func _deselect_current_unit() -> void:
+	unit_loadout_frame.entity = null
 	if currently_selected_unit_entity_container != null:
 		_set_highlight(currently_selected_unit_entity_container, false)
 		currently_selected_unit_entity_container = null

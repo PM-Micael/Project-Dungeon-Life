@@ -53,7 +53,6 @@ func _magma_wave(title: String):
 	for target in targets:
 		var bonus_damage = owner.attack_component.attack_damage * 2.5
 		owner.attack_component.attack_target(target, bonus_damage)
-	
 
 func _on_shield_broken():
 	print("INTERUPTED MAGMA WAVE")

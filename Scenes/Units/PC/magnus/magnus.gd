@@ -15,7 +15,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("magnus", "Magnus", "Team 1", "Team 2")
 	_apply_shield()
 	health_component.damage_taken.connect(_on_damage_taken)

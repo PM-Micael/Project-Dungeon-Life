@@ -5,14 +5,28 @@ signal pre_damage_taken(attacker: Entity, is_crit: bool)
 signal pre_calculate_damage
 signal post_calculate_damage
 signal damage_taken(attacker: Entity, is_crit: bool)
+signal health_changed(current: int, maximum: int)
 signal died(this_unit: Unit)
 signal pre_heal(target: Entity, amount: int)
 signal post_heal(target: Entity, amount: int)
 
-@onready var parent_entity: Entity = get_parent().get_parent()
-@onready var health_bar: ProgressBar  = get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
-@onready var defense_node: Control = get_parent().get_parent().get_node_or_null("UIComponents/Defense")
-@onready var defense_value_label: Label = get_parent().get_parent().get_node_or_null("UIComponents/Defense/DefenseValueLabel")
+# Lazy getters, not @onready: stats are applied at instantiate() while the entity is
+# still detached, and @onready vars are null until the node enters the tree.
+var parent_entity: Entity:
+	get:
+		return get_parent().get_parent() as Entity
+
+var health_bar: ProgressBar:
+	get:
+		return get_parent().get_parent().get_node_or_null("UIComponents/HealthBar")
+
+var defense_node: Control:
+	get:
+		return get_parent().get_parent().get_node_or_null("UIComponents/Defense")
+
+var defense_value_label: Label:
+	get:
+		return get_parent().get_parent().get_node_or_null("UIComponents/Defense/DefenseValueLabel")
 
 var is_alive: bool = true
 var base_heal_modifier: float = 1.0
@@ -35,14 +49,21 @@ func get_health_percent() -> float:
 
 func set_stats(set_max_health: int, set_defense: int = 0):
 	max_health = set_max_health
-	current_health = max_health
 	base_defense = set_defense
 	defense = set_defense
 	if health_bar:
 		health_bar.max_value = max_health
-		health_bar.value = current_health
-	
+	_set_health(max_health)
+
 	_set_defense(defense)
+
+## The single place current_health changes. Keeps the health bar and any listening
+## UI in sync, and is safe to call while the entity is detached from the tree.
+func _set_health(value: int):
+	current_health = clamp(value, 0, max_health)
+	if health_bar:
+		health_bar.value = current_health
+	health_changed.emit(current_health, max_health)
 
 func _set_defense(defense: int):
 	if defense_node:
@@ -60,10 +81,8 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	final_damage_taken_amount = amount * final_damage_taken_modifier * (1.0 - defense / 100.0)
 	
 	post_calculate_damage.emit(attacker, amount, is_crit)
-	current_health -= final_damage_taken_amount
-	current_health = clamp(current_health, 0, max_health)
-	
-	health_bar.value = current_health
+	_set_health(current_health - final_damage_taken_amount)
+
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
 		_flash_damage(attacker.attack_component.attack_sprite_scene)
@@ -90,9 +109,7 @@ func _on_animation_finished(vfx):
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier
 	pre_heal.emit(parent_entity, amount)
-	current_health += (int(amount * final_heal_modifier))
-	current_health = clamp(current_health, 0, max_health)
-	health_bar.value = current_health
+	_set_health(current_health + int(amount * final_heal_modifier))
 	post_heal.emit(parent_entity, amount)
 
 func die(_killer: Unit, execute: bool = false):

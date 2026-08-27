@@ -45,10 +45,28 @@ var is_channeling: bool:
 		if value:
 			channel_started.emit()
 
+var _stats_initialized: bool = false
+
 func _ready() -> void:
+	initialize_stats()
 	channel_bar = ui_component.channel_bar
 	position = starting_position
 	BoardGrid.set_tile_solid(BoardGrid.world_to_tile(position), true)
+
+## Applies this unit's stats to its components. Call right after instantiate() so the
+## unit has valid stats while it is still detached from the tree (the lineup phase
+## reads them from an unparented Unit). Runs only once; _ready() is the fallback for
+## anything spawned straight into the tree.
+func initialize_stats() -> void:
+	if _stats_initialized:
+		return
+	_stats_initialized = true
+	_set_stats()
+
+## Overridden per unit. Must stay safe to call while detached: no @onready vars,
+## no get_tree(), no BoardGrid, no signal connections.
+func _set_stats() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	if is_stunned:

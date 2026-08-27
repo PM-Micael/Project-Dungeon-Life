@@ -150,12 +150,12 @@ func roll_crit() -> bool:
 	return false
 
 func get_total_attack_damage(is_crit: bool = false) -> int:
-	var wc: WeaponComponent
 	var wsc: WeaponSlotComponent = get_parent().get_node_or_null("WeaponSlotComponent")
 	var wc_damage: int = 0
-	if wsc != null:
-		wc = wsc.get_child(0).get_node("Components/WeaponComponent")
-		wc_damage = wc.get_total_damage()
+	if wsc != null and wsc.weapon != null:
+		var wc: WeaponComponent = wsc.weapon.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc_damage = wc.get_total_damage()
 
 	if is_crit:
 		return ((attack_damage*PlayerData.inner_sanctum.power) + wc_damage) * base_critical_damage_multiplier

@@ -8,8 +8,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("orbath", "Orbath", "Team 1", "Team 2")
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(max_health)

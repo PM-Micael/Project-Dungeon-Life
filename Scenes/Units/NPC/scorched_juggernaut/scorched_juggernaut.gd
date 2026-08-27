@@ -12,11 +12,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("scorcheed_juggernaut", "Scorcheed Suggernaut", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
+	attack_component.post_attack_target.connect(_damage_surrounding_targets)
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(
 		get_total_health(),
 		base_defense)
@@ -25,8 +25,6 @@ func _set_stats():
 		attack_range,
 		base_critical_percent_chance,
 		base_critical_damage_multiplier)
-	
-	attack_component.post_attack_target.connect(_damage_surrounding_targets)
 
 func _damage_surrounding_targets(targets: Array[Entity], _is_crit: bool):
 	var self_pos = BoardGrid.world_to_tile(position)

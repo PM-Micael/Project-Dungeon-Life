@@ -17,11 +17,10 @@ func _init() -> void:
 func _ready() -> void:
 	super._ready()
 	_info("devourer_of_ghouls", "Devourer Of Ghouls", "Team 1", "Team 2")
-	_set_stats()
 	attack_component.post_attack_target.connect(_apply_devour_debuff)
 	# Connect to damage by weapon skill
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(get_total_health())
 	attack_component.set_stats_absolute(get_total_attack_damage(), attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 

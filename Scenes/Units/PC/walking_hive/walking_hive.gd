@@ -16,13 +16,12 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("walking_hive", "Walking Hive", "Team 1", "Team 2")
 	is_player_unit = true
 	unity_count = _check_unity_in_battle()
 	_connect_blood_flies()
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(get_total_health())
 	attack_component.set_stats_absolute(get_total_attack_damage(), attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
 
