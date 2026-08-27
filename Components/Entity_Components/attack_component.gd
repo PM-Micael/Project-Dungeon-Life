@@ -27,7 +27,7 @@ var in_target_attack_range: bool = false
 @onready var timer: Timer = $Timer
 @onready var attack_sound: AudioStreamPlayer = $AttackSound
 @onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
-@onready var attack_sprite_scene: PackedScene = preload("res://Assets/Animations/Slash/slash.tscn")
+var attack_sprite_scene: PackedScene = preload("res://Assets/Animations/Slash/slash.tscn")
 
 func _ready() -> void:
 	timer.wait_time = attack_speed

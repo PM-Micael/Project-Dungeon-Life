@@ -99,3 +99,4 @@ Unsolved bug:
 	Tasks for the Pretty update:
 		Default mele hit sprite indicator
 		Each attack_component should have their own attack sprite
+		Fix / Rework the unit loadout frame.

@@ -97,15 +97,9 @@ func _on_unit_entity_change():
 		var weapon = weapon_slot_component.get_child(0)
 		weapon_entity_container.entity = weapon if weapon != null else null
 
-	# Update StatsFrame
+	# Update StatsFrame (display only - the unit owns its stats, applied in its own _set_stats)
 	var health_component: HealthComponent = unit_entity.get_node("Components/HealthComponent")
-	health_component.set_stats(unit_entity.get_total_health())
 	var attack_component: AttackComponent = unit_entity.get_node("Components/AttackComponent")
-	attack_component.set_stats_absolute(
-		unit_entity.get_total_attack_damage(),
-		unit_entity.attack_range,
-		unit_entity.base_critical_percent_chance,
-		unit_entity.base_critical_damage_multiplier)
 	var effect_component: EffectComponent = unit_entity.get_node("Components/EffectComponent")
 	get_node("StatsFrame/Health/ValueLabel").text = str(health_component.current_health) + " / " + str(health_component.max_health)
 	get_node("StatsFrame/Attack/ValueLabel").text = str(_get_display_attack_damage())
