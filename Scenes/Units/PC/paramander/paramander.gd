@@ -17,14 +17,13 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("paramander", "Paramander", "Team 1", "Team 2")
 
 	# Hook into the weapon skill signal once the weapon slot is populated
 	await get_tree().process_frame
 	_connect_weapon_skill()
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(base_health * PlayerData.inner_sanctum.life)
 	attack_component.set_stats_absolute(
 		attack_damage * PlayerData.inner_sanctum.power,
@@ -37,7 +36,7 @@ func _set_stats():
 func _connect_weapon_skill():
 	if weapon_slot_component == null:
 		return
-	var weapon = weapon_slot_component.get_child(0)
+	var weapon: Entity = weapon_slot_component.weapon
 	if weapon == null:
 		return
 	var wc: WeaponComponent = weapon.get_node_or_null("Components/WeaponComponent")

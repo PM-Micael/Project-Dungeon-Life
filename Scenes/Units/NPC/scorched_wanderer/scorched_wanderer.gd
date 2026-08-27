@@ -11,11 +11,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("scorched_wanderer", "Scorched Wanderer", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(get_total_health())
 	attack_component.set_stats_absolute(
 		get_total_attack_damage(),

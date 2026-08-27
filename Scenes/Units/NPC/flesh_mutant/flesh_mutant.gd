@@ -12,12 +12,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("flesh_mutant", "Flesh Mutant", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
 	attack_component.post_attack_target.connect(_attack_adjacent_targets)
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(
 		get_total_health(),
 		base_defense)

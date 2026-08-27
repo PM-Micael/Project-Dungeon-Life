@@ -27,6 +27,7 @@ var in_target_attack_range: bool = false
 @onready var timer: Timer = $Timer
 @onready var attack_sound: AudioStreamPlayer = $AttackSound
 @onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
+var attack_sprite_scene: PackedScene = preload("res://Assets/Animations/Slash/slash.tscn")
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
@@ -111,6 +112,9 @@ func attack_target(target: Entity, bonus_damage: int = 0):
 		attack_sound.play()
 
 	_play_shake()
+	#attack_animation.position = target.position
+	#target.attack_component.attack_animation.scale = target.scale
+	#target.attack_component.attack_animation.play("default")
 
 	var target_health_component: HealthComponent = target.health_component
 	if target_health_component != null:
@@ -146,12 +150,12 @@ func roll_crit() -> bool:
 	return false
 
 func get_total_attack_damage(is_crit: bool = false) -> int:
-	var wc: WeaponComponent
 	var wsc: WeaponSlotComponent = get_parent().get_node_or_null("WeaponSlotComponent")
 	var wc_damage: int = 0
-	if wsc != null:
-		wc = wsc.get_child(0).get_node("Components/WeaponComponent")
-		wc_damage = wc.get_total_damage()
+	if wsc != null and wsc.weapon != null:
+		var wc: WeaponComponent = wsc.weapon.get_node_or_null("Components/WeaponComponent")
+		if wc != null:
+			wc_damage = wc.get_total_damage()
 
 	if is_crit:
 		return ((attack_damage*PlayerData.inner_sanctum.power) + wc_damage) * base_critical_damage_multiplier

@@ -14,7 +14,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("magma_blob", "Magma Blob", "Team 2", "Team 1")
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
 	targeting_component.select_all_targets("Team 1")
@@ -38,7 +37,7 @@ func _physics_process(delta: float) -> void:
 			)
 		skill_cooldown = 4.0
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(get_total_health(), base_defense)
 	attack_component.set_stats_absolute(
 		get_total_attack_damage(),

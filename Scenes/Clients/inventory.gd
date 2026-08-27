@@ -14,8 +14,6 @@ var set_scale_custom: Vector2:
 
 @onready var run_manager: RunManager = get_parent().get_parent().get_parent()
 @onready var unit_loadout_frame: UnitLoadoutFrame = get_node("UnitLoadoutFrame")
-@onready var unit_preview_frame: Node2D = get_node("UnitLoadoutFrame/UnitPreview")
-@onready var weapon_preview_frame: Node2D = get_node("UnitLoadoutFrame/WeaponPreviewFrame")
 @onready var backpack_frame: Node2D = get_node("BackpackFrame")
 
 func _ready() -> void:
@@ -77,7 +75,7 @@ func fill_backpack_frame():
 
 # On click events
 func entity_unit_selection_container_clicked(entity_container: EntityContainer):
-	unit_loadout_frame.unit_entity = entity_container.entity
+	unit_loadout_frame.entity = entity_container.entity
 
 func on_right_click_option_selected(id: int, entity_container: EntityContainer) -> void:
 	match id:
@@ -85,21 +83,20 @@ func on_right_click_option_selected(id: int, entity_container: EntityContainer) 
 			print("Not Implimented")
 		1:
 			print("Attempting to equip item")
-			if unit_loadout_frame.unit_entity == null:
+			if unit_loadout_frame.entity == null:
 				print("No unit selected")
 				return
-			
+
 			entity_container.remove_child(entity_container.entity)
-			
-			var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, entity_container.entity)
+
+			var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.entity, entity_container.entity)
 			DungeonData.backpack_contents_as_entities.erase(entity_container.entity)
-			
+
 			if old_weapon != null:
 				DungeonData.backpack_contents_as_entities.append(old_weapon)
-				
+
 			DungeonData.check_and_merge_backpack_items()
-			
-			unit_loadout_frame._on_unit_entity_change()
+
 			fill_backpack_frame()
 		2:
 			print("Not Implimented")
@@ -108,19 +105,17 @@ func _on_inventory_item_left_clicked(item_container: EntityContainer):
 	var is_weapon: bool = item_container.entity.has_node("Components/WeaponComponent")
 	if is_weapon:
 		print("Attempting to equip item")
-		if unit_loadout_frame.unit_entity == null:
+		if unit_loadout_frame.entity == null:
 			print("No unit selected")
 			return
-		
+
 		item_container.remove_child(item_container.entity)
-			
-		var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.unit_entity, item_container.entity)
+
+		var old_weapon: Entity = DungeonData.set_unit_entity_weapon(unit_loadout_frame.entity, item_container.entity)
 		PlayerData.dungeon_loot_as_entities.erase(item_container.entity)
-		
+
 		if old_weapon != null:
 			PlayerData.dungeon_loot_as_entities.append(old_weapon)
-			
-			DungeonData.check_and_merge_backpack_items()
-			
-			unit_loadout_frame._on_unit_entity_change()
-			fill_backpack_frame()
+
+		DungeonData.check_and_merge_backpack_items()
+		fill_backpack_frame()

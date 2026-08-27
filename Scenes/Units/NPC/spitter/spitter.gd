@@ -11,12 +11,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
 	_info("spitter", "Spitter", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
 	attack_component.post_attack_target.connect(_on_attack_target)
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(get_total_health())
 	attack_component.set_stats_absolute(
 		get_total_attack_damage(),

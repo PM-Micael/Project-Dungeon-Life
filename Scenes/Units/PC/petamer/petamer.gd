@@ -10,12 +10,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	_set_stats()
-	_set_stats()
 	_info("petamer", "Petamer", "Team 1", "Team 2")
 	_connect_to_all_units()
 
-func _set_stats():
+func _set_stats() -> void:
 	health_component.set_stats(base_health)
 	attack_component.set_stats_absolute(attack_damage, 100, base_critical_percent_chance, base_critical_damage_multiplier)
 

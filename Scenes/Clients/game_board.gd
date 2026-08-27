@@ -72,7 +72,10 @@ func _place_friendly_units():
 			
 			var weapon_slot = unit_instance.get_node("Components/WeaponSlotComponent")
 			weapon_slot.add_child(weapon_instance)
-		
+
+		# Apply stats now: the lineup phase reads them while the unit is still detached
+		unit_instance.initialize_stats()
+
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 		
 		entity_container_instance.name = "EntityContainer_" + unit_name
@@ -102,6 +105,7 @@ func place_enemy_units(): ## Wait for dungeon chosen
 			enemy_position = e["position"]
 		var enemy_scene: PackedScene = load("res://Scenes/Units/NPC/" + enemy_type + "/" + enemy_type + ".tscn")
 		var enemy_instance: Unit = enemy_scene.instantiate()
+		enemy_instance.initialize_stats()
 		var entity_container_instance: EntityContainer = entity_container_scene.instantiate()
 
 		entity_container_instance.name = "EntityContainer_" + str(loop_itteration + 1)

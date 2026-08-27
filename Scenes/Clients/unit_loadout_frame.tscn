@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br3l6ovn64fqg" path="res://Scenes/Clients/unit_loadout_frame.gd" id="1_terp8"]
 [ext_resource type="Texture2D" uid="uid://cjfmpmgoic0iy" path="res://Assets/Textures/dungeon_tile_800x800.png" id="2_rewvx"]
+[ext_resource type="PackedScene" uid="uid://kmo544hvrev0" path="res://Scripts/Entities/entity_container.tscn" id="3_entcn"]
 
 [node name="UnitLoadoutFrame" type="Node2D" unique_id=599129927]
 script = ExtResource("1_terp8")
@@ -30,6 +31,12 @@ position = Vector2(137.50002, 174.75)
 scale = Vector2(0.34375003, 0.43812504)
 texture = ExtResource("2_rewvx")
 
+[node name="UnitContainer" parent="UnitPreview" instance=ExtResource("3_entcn")]
+offset_left = 135.0
+offset_top = 170.0
+offset_right = 135.0
+offset_bottom = 170.0
+
 [node name="WeaponPreviewFrame" type="Node2D" parent="." unique_id=2105905004]
 position = Vector2(80, 140)
 
@@ -53,6 +60,12 @@ visible = false
 position = Vector2(74.99999, 125)
 scale = Vector2(0.18749999, 0.31249997)
 texture = ExtResource("2_rewvx")
+
+[node name="WeaponContainer" parent="WeaponPreviewFrame" instance=ExtResource("3_entcn")]
+offset_left = 75.0
+offset_top = 120.0
+offset_right = 75.0
+offset_bottom = 120.0
 
 [node name="StatsFrame" type="Node2D" parent="." unique_id=1537041036]
 
