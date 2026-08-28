@@ -95,6 +95,5 @@ animations = [{
 }]
 
 [node name="Splash" type="AnimatedSprite2D" unique_id=430637635]
-z_index = 1
 sprite_frames = SubResource("SpriteFrames_72eth")
 animation = &"magma"

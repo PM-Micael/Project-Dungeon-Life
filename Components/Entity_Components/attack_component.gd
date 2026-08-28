@@ -25,11 +25,7 @@ var attack_type: int = 0
 # --- Shake settings ---
 @export var shake_strength: float = 6.0   # pixels offset at peak
 @export var shake_duration: float = 0.15  # total shake time in seconds
-@export var attack_sprite_scene: Dictionary = {
-	"path": preload("res://Scenes/Animations/Attacks/strike_effect.tscn"),
-	"animation": "default",
-	"scale": Vector2(1, 1)
-}
+var attack_sprite_scene: Dictionary = {}
 
 var weapon_added_multiplier: int = 0
 var is_crit = false
@@ -81,13 +77,15 @@ func set_stats_absolute(
 	set_attack_damage: int,
 	set_attack_range: int,
 	set_crit_chance: int,
-	set_crit_damage
+	set_crit_damage: float,
+	set_attack_sprite_scene: Dictionary = {}
 	):
 	base_attack_damage = set_attack_damage
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
+	attack_sprite_scene = set_attack_sprite_scene
 
 func attack_targets(
 	targets: Array[Entity],

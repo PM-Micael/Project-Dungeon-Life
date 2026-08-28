@@ -47,6 +47,8 @@ var is_channeling: bool:
 
 var _stats_initialized: bool = false
 
+var attack_sprite_scene: Dictionary = {}
+
 func _ready() -> void:
 	initialize_stats()
 	channel_bar = ui_component.channel_bar

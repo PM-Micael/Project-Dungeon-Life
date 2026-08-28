@@ -91,31 +91,32 @@ func take_damage_flat(
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
 		if is_strike:
-			_flash_damage(attacker.attack_component.attack_sprite_scene)
+			_damage_effect(attacker.attack_component.attack_sprite_scene)
 		else:
-			_flash_damage({})
+			_damage_effect({})
 		if current_health <= 0:
 			die(attacker)
 
-func _flash_damage(vfx_dict: Dictionary = {}) -> void:
+func _damage_effect(vfx_dict: Dictionary = {}) -> void:
+	if not vfx_dict.is_empty():
+		var vfx_scene: PackedScene = vfx_dict["path"]
+		var vfx_animation: String = vfx_dict["animation"]
+		var vfx = vfx_scene.instantiate()
+		vfx.scale = vfx_dict["scale"]
+		add_child(vfx)
+		vfx.play(vfx_animation)
+		vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
+	
+	_flash_damage()
+
+func _flash_damage() -> void:
 	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
 	if sprite == null:
 		return
 	sprite.modulate = Color.RED
-	#await get_tree().create_timer(0.15).timeout
+	await get_tree().create_timer(0.15).timeout
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
-	
-	if vfx_dict.is_empty():
-		return
-	
-	var vfx_scene: PackedScene = vfx_dict["path"]
-	var vfx_animation: String = vfx_dict["animation"]
-	var vfx = vfx_scene.instantiate()
-	vfx.scale = vfx_dict["scale"]
-	add_child(vfx)
-	vfx.play(vfx_animation)
-	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
 
 func _on_animation_finished(vfx):
 	vfx.queue_free()
