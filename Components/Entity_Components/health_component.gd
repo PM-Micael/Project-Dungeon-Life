@@ -73,7 +73,12 @@ func _set_defense(defense: int):
 			defense_value_label.text = str(defense)
 			defense_node.visible = true
 
-func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
+func take_damage_flat(
+	attacker: Entity,
+	amount: int,
+	is_crit: bool = false,
+	is_strike: bool = true
+	):
 	pre_calculate_damage.emit(attacker, amount, is_crit)
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)
@@ -85,11 +90,14 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
-		_flash_damage(attacker.attack_component.attack_sprite_scene)
+		if is_strike:
+			_flash_damage(attacker.attack_component.attack_sprite_scene)
+		else:
+			_flash_damage({})
 		if current_health <= 0:
 			die(attacker)
 
-func _flash_damage(vfx_scene: PackedScene = null) -> void:
+func _flash_damage(vfx_dict: Dictionary = {}) -> void:
 	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
 	if sprite == null:
 		return
@@ -98,9 +106,15 @@ func _flash_damage(vfx_scene: PackedScene = null) -> void:
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
 	
+	if vfx_dict.is_empty():
+		return
+	
+	var vfx_scene: PackedScene = vfx_dict["path"]
+	var vfx_animation: String = vfx_dict["animation"]
 	var vfx = vfx_scene.instantiate()
+	vfx.scale = vfx_dict["scale"]
 	add_child(vfx)
-	vfx.play("default")
+	vfx.play(vfx_animation)
 	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
 
 func _on_animation_finished(vfx):

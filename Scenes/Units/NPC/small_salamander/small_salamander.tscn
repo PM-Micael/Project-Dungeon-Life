@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bt0k1c3or1h5r" path="res://Components/Entity_Components/attack_component.tscn" id="1_4vnuk"]
 [ext_resource type="Script" uid="uid://bodmce3cdjy0p" path="res://Scenes/Units/NPC/small_salamander/small_salamander.gd" id="1_48inj"]
 [ext_resource type="PackedScene" uid="uid://buwcqf2o5uu2" path="res://Components/Entity_Components/targeting_component.tscn" id="2_48inj"]
+[ext_resource type="PackedScene" uid="uid://d08akluhypcvx" path="res://Assets/Animations/Splash/splash.tscn" id="3_48inj"]
 [ext_resource type="PackedScene" uid="uid://b7cdc50lodhn5" path="res://Components/Entity_Components/targetable_component.tscn" id="3_hj6km"]
 [ext_resource type="PackedScene" uid="uid://b1074i86ytmwl" path="res://Components/Entity_Components/health_component.tscn" id="4_cc2mg"]
 [ext_resource type="PackedScene" uid="uid://bwmdnoxdmkxg2" path="res://Components/Entity_Components/collision_component.tscn" id="6_0wxf4"]
@@ -21,6 +22,11 @@ script = ExtResource("1_48inj")
 [node name="Components" type="Node2D" parent="." unique_id=2105729267]
 
 [node name="AttackComponent" parent="Components" unique_id=2084874936 instance=ExtResource("1_4vnuk")]
+attack_sprite_scene = {
+"animation": "magma",
+"path": ExtResource("3_48inj"),
+"scale": Vector2(6, 6)
+}
 
 [node name="TargetingComponent" parent="Components" unique_id=620451675 instance=ExtResource("2_48inj")]
 

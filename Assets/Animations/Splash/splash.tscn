@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://d08akluhypcvx"]
+
+[ext_resource type="Texture2D" uid="uid://b7lmbsre5lbg3" path="res://Assets/Animations/Magma_Wave/77.png" id="1_w56lm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hgid"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3qai"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw5uv"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsxaa"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1f4g"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyihy"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kugeu"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dh81"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(448, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl3ug"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(512, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14evh"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(576, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iavq"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(640, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jvfp"]
+atlas = ExtResource("1_w56lm")
+region = Rect2(704, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72eth"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hgid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3qai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw5uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsxaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1f4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyihy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kugeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dh81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl3ug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14evh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iavq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jvfp")
+}],
+"loop": 0,
+"name": &"magma",
+"speed": 30.0
+}]
+
+[node name="Splash" type="AnimatedSprite2D" unique_id=430637635]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_72eth")
+animation = &"magma"
