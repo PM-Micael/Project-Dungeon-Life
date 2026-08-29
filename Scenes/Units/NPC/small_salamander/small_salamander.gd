@@ -20,7 +20,6 @@ func _ready() -> void:
 	_info("small_salamander", "Small Small", "Team 2", "Team 1")
 	essence_value = [1, PlayerData.dungeon_layer_level]
 	attack_component.attack_type = attack_component.ATTACK_TYPE.PROJECTILE_SPLASH
-	attack_component.is_aoe = true
 
 func _set_stats() -> void:
 	health_component.set_stats(get_total_health())

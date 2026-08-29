@@ -56,22 +56,10 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	if timer.time_left <= 0.1:
-		if is_aoe:
-			entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
-			if is_instance_valid(timer):
-				timer.start()
-			return
-	
-		var in_range: bool
-		if entity_parent.movment_component != null:
-			in_range = in_target_attack_range
-		else:
-			var dist = position.distance_to(entity_parent.targeting_component.target.position)
-			in_range = dist <= attack_range * sqrt(2)
-		if in_range:
-			attack_target(entity_parent.targeting_component.target)
-			if is_instance_valid(timer):
-				timer.start()
+		entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
+		if is_instance_valid(timer):
+			timer.start()
+		return
 
 func set_stats_absolute(
 	set_attack_damage: int,
