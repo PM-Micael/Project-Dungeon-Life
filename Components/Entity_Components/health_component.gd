@@ -118,7 +118,7 @@ func _flash_damage() -> void:
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
 
-func _on_animation_finished(vfx):
+func _on_animation_finished(vfx: AnimatedSprite2D):
 	vfx.queue_free()
 
 func heal(amount: int):

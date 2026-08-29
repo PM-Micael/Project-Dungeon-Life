@@ -5,6 +5,12 @@ const CONE_DAMAGE_MULTIPLIER: float = 5.0
 
 var _debug_rects: Array[ColorRect] = []
 
+var ability_sprite_scene = {
+	"path": preload("res://Scenes/Animations/Skills/fire_breath.tscn"),
+	"animation": "default",
+	"scale": Vector2(6, 6),
+	}
+
 func _init() -> void:
 	id = "paramander"
 	passive_description = "Breathe fire in a cone in front of Paramander when he uses his weapon skill."
@@ -63,6 +69,14 @@ func _fire_cone():
 			if entity_tile in cone_tiles:
 				entity.health_component.take_damage_flat(self, damage, false)
 				
+	var vfx_scene: PackedScene = ability_sprite_scene["path"]
+	var vfx_animation: String = ability_sprite_scene["animation"]
+	var vfx = vfx_scene.instantiate()
+	vfx.scale = ability_sprite_scene["scale"]
+	add_child(vfx)
+	vfx.play(vfx_animation)
+	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
+	
 	# ── DEBUG: highlight cone tiles ──────────────────────────────────────────
 	# Rects are children of Paramander so they disappear automatically when he dies.
 	for tile in cone_tiles:
@@ -82,6 +96,9 @@ func _fire_cone():
 			rect.queue_free()
 	_debug_rects.clear()
 	# ── END DEBUG ────────────────────────────────────────────────────────────
+
+func _on_animation_finished(vfx: AnimatedSprite2D):
+	vfx.queue_free()
 
 func _get_facing_direction() -> Vector2i:
 	if targeting_component != null and targeting_component.target != null:

@@ -100,5 +100,6 @@ Unsolved bug:
 		Default mele hit sprite indicator
 		Each attack_component should have their own attack sprite
 		Fix / Rework the unit loadout frame.
-		take_damage_flat and take_none_strike_damage can be  one function
+		take_damage_flat and take_none_strike_damage can be one function
 		dokument a bluprint for how each unit script sould look like at base.
+		Make a SpriteManager node
