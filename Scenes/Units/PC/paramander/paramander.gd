@@ -1,9 +1,10 @@
 extends Unit
 
+const TILE_SIZE: float = 100.0
+const VFX_NATIVE_LENGTH: float = 256.0      # apex → tip along the frame's X
+const VFX_NATIVE_HALF_WIDTH: float = 256.0  # centreline → edge at the tip
 const CONE_DEPTH: int = 4
 const CONE_DAMAGE_MULTIPLIER: float = 5.0
-
-var _debug_rects: Array[ColorRect] = []
 
 var ability_sprite_scene = {
 	"path": preload("res://Scenes/Animations/Skills/fire_breath.tscn"),
@@ -69,33 +70,41 @@ func _fire_cone():
 			if entity_tile in cone_tiles:
 				entity.health_component.take_damage_flat(self, damage, false)
 				
-	var vfx_scene: PackedScene = ability_sprite_scene["path"]
-	var vfx_animation: String = ability_sprite_scene["animation"]
-	var vfx = vfx_scene.instantiate()
-	vfx.scale = ability_sprite_scene["scale"]
+	_spawn_cone_vfx(facing)
+
+func _spawn_cone_vfx(facing: Vector2i) -> void:
+	var vfx: AnimatedSprite2D = ability_sprite_scene["path"].instantiate()
+	var anim: String = ability_sprite_scene["animation"]
 	add_child(vfx)
-	vfx.play(vfx_animation)
+
+	var dir: Vector2 = Vector2(facing).normalized()
+	var is_diagonal: bool = facing.x != 0 and facing.y != 0
+	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)
+
+	# How far the cone actually reaches, in world px.
+	# Chebyshev range means a diagonal cone is sqrt(2) longer.
+	var reach: float = (CONE_DEPTH + 0.5) * TILE_SIZE
+	if is_diagonal:
+		reach *= sqrt(2.0)
+
+	# 1. Angle — art points +X at rest, so facing.angle() is all you need.
+	vfx.rotation = dir.angle()
+
+	# 2. Scale — stretch length to reach, width to match the cone's half-angle.
+	var art_scale: Vector2 = ability_sprite_scene["scale"]
+	vfx.scale = Vector2(
+		reach / VFX_NATIVE_LENGTH,
+		(reach * tan(half_angle)) / VFX_NATIVE_HALF_WIDTH
+	) * art_scale
+
+	# 3. Pivot — slide the texture forward so the node origin sits on the apex.
+	vfx.centered = true
+	vfx.offset = Vector2(VFX_NATIVE_LENGTH * 0.5, 0.0)
+
+	vfx.position = Vector2.ZERO  # = Paramander's tile centre
+	#vfx.z_index = 5
+	vfx.play(anim)
 	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
-	
-	# ── DEBUG: highlight cone tiles ──────────────────────────────────────────
-	# Rects are children of Paramander so they disappear automatically when he dies.
-	for tile in cone_tiles:
-		var world_pos: Vector2 = BoardGrid.tile_to_world(tile) - Vector2(50, 50)
-		var rect := ColorRect.new()
-		rect.color = Color(1, 0.4, 0, 0.45)
-		rect.size = Vector2(100, 100)
-		rect.position = world_pos - position  # local to Paramander node
-		rect.z_index = 10
-		add_child(rect)
-		_debug_rects.append(rect)
-
-	await get_tree().create_timer(1.5).timeout
-
-	for rect in _debug_rects:
-		if is_instance_valid(rect):
-			rect.queue_free()
-	_debug_rects.clear()
-	# ── END DEBUG ────────────────────────────────────────────────────────────
 
 func _on_animation_finished(vfx: AnimatedSprite2D):
 	vfx.queue_free()

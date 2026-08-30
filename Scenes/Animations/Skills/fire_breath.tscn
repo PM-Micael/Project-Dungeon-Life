@@ -61,11 +61,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fp2fi")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="FireBreath" type="AnimatedSprite2D" unique_id=242053158]
 sprite_frames = SubResource("SpriteFrames_bb8pe")
-frame_progress = 0.3021486
