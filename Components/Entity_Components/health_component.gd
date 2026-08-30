@@ -10,8 +10,6 @@ signal died(this_unit: Unit)
 signal pre_heal(target: Entity, amount: int)
 signal post_heal(target: Entity, amount: int)
 
-# Lazy getters, not @onready: stats are applied at instantiate() while the entity is
-# still detached, and @onready vars are null until the node enters the tree.
 var parent_entity: Entity:
 	get:
 		return get_parent().get_parent() as Entity
@@ -57,8 +55,6 @@ func set_stats(set_max_health: int, set_defense: int = 0):
 
 	_set_defense(defense)
 
-## The single place current_health changes. Keeps the health bar and any listening
-## UI in sync, and is safe to call while the entity is detached from the tree.
 func _set_health(value: int):
 	current_health = clamp(value, 0, max_health)
 	if health_bar:
@@ -87,39 +83,21 @@ func take_damage_flat(
 	
 	post_calculate_damage.emit(attacker, amount, is_crit)
 	_set_health(current_health - final_damage_taken_amount)
-
+	
+	if attacker.id == "small_salamander":
+		print()
+	
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
 		if is_strike:
-			_damage_effect(attacker.attack_component.attack_sprite_scene)
+			VfxManager.damage_effect(self, attacker.attack_component.attack_sprite_scene)
 		else:
-			_damage_effect({})
+			VfxManager.damage_effect(self, {})
+		
+		VfxManager.flash_damage(parent_entity.get_node_or_null("Sprite2D"))
+		
 		if current_health <= 0:
 			die(attacker)
-
-func _damage_effect(vfx_dict: Dictionary = {}) -> void:
-	if not vfx_dict.is_empty():
-		var vfx_scene: PackedScene = vfx_dict["path"]
-		var vfx_animation: String = vfx_dict["animation"]
-		var vfx = vfx_scene.instantiate()
-		vfx.scale = vfx_dict["scale"]
-		add_child(vfx)
-		vfx.play(vfx_animation)
-		vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
-	
-	_flash_damage()
-
-func _flash_damage() -> void:
-	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
-	if sprite == null:
-		return
-	sprite.modulate = Color.RED
-	await get_tree().create_timer(0.15).timeout
-	if is_instance_valid(sprite):
-		sprite.modulate = Color.WHITE
-
-func _on_animation_finished(vfx: AnimatedSprite2D):
-	vfx.queue_free()
 
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier

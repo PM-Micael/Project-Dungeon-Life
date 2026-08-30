@@ -22,6 +22,15 @@ func _init() -> void:
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 
+func world_to_tile(world_pos: Vector2) -> Vector2i:
+	return Vector2i(world_pos / astar.cell_size)
+
+func tile_to_world(tile: Vector2i) -> Vector2:
+	return Vector2(tile) * astar.cell_size + astar.cell_size / 2
+
+func set_tile_solid(tile: Vector2i, solid: bool):
+	astar.set_point_solid(tile, solid)
+
 func get_tiles_adjacent_wide(start_tile: Vector2i, target_tile: Vector2i) -> Array[Vector2i]:
 	var target_a: Vector2i
 	var target_b: Vector2i
@@ -111,11 +120,38 @@ func get_closest_walkable_tile_to(target_tile: Vector2i, from_tile: Vector2i) ->
 	
 	return best_tile
 
-func world_to_tile(world_pos: Vector2) -> Vector2i:
-	return Vector2i(world_pos / astar.cell_size)
+func get_facing_direction(entity: Entity) -> Vector2i:
+	if entity.targeting_component != null and entity.targeting_component.target != null:
+		var target_tile: Vector2i = world_to_tile(entity.targeting_component.target.position)
+		var my_tile: Vector2i = world_to_tile(entity.position)
+		var diff: Vector2i = target_tile - my_tile
+		if diff == Vector2i.ZERO:
+			return Vector2i(1, 0)
+		# Snap each axis independently to -1, 0, or 1
+		return Vector2i(sign(diff.x), sign(diff.y))
+	return Vector2i(1, 0)
 
-func tile_to_world(tile: Vector2i) -> Vector2:
-	return Vector2(tile) * astar.cell_size + astar.cell_size / 2
-
-func set_tile_solid(tile: Vector2i, solid: bool):
-	astar.set_point_solid(tile, solid)
+func get_cone_tiles(
+	origin: Vector2i,
+	forward: Vector2i,
+	CONE_DEPTH: int
+	) -> Array[Vector2i]:
+	var tiles: Array[Vector2i] = []
+	var fwd_f: Vector2 = Vector2(forward).normalized()
+	var is_diagonal: bool = forward.x != 0 and forward.y != 0
+	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)
+	for dx in range(-CONE_DEPTH, CONE_DEPTH + 1):
+		for dy in range(-CONE_DEPTH, CONE_DEPTH + 1):
+			var tile: Vector2i = origin + Vector2i(dx, dy)
+			if not astar.region.has_point(tile):
+				continue
+			var offset: Vector2 = Vector2(tile - origin)
+			if offset == Vector2.ZERO:
+				continue
+			if max(abs(dx), abs(dy)) > CONE_DEPTH:
+				continue
+			var dot: float = offset.normalized().dot(fwd_f)
+			var angle: float = acos(clamp(dot, -1.0, 1.0))
+			if angle <= half_angle:
+				tiles.append(tile)
+	return tiles

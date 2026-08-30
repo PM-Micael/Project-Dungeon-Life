@@ -39,7 +39,6 @@ func _set_stats() -> void:
 		base_critical_damage_multiplier
 	)
 
-# ── Passive: connect to the weapon's use_weapon_skill signal ──────────────────
 func _connect_weapon_skill():
 	if weapon_slot_component == null:
 		return
@@ -57,9 +56,9 @@ func _on_weapon_skill_used(_targets: Array[Entity]):
 func _fire_cone():
 	AudioManager.play_sfx_once(self, "res://Scenes/Units/PC/paramander/floraphonic-fireball-whoosh-5-179129.mp3")
 	var my_tile: Vector2i = BoardGrid.world_to_tile(position)
-	var facing: Vector2i = _get_facing_direction()
+	var facing: Vector2i = BoardGrid.get_facing_direction(self)
 
-	var cone_tiles: Array[Vector2i] = _get_cone_tiles(my_tile, facing)
+	var cone_tiles: Array[Vector2i] = BoardGrid.get_cone_tiles(my_tile, facing, CONE_DEPTH)
 
 	var damage: int = int(attack_component.get_total_attack_damage() * CONE_DAMAGE_MULTIPLIER)
 	var enemies: Array[Node] = get_tree().get_nodes_in_group(hostile_team)
@@ -70,73 +69,11 @@ func _fire_cone():
 			if entity_tile in cone_tiles:
 				entity.health_component.take_damage_flat(self, damage, false)
 				
-	_spawn_cone_vfx(facing)
-
-func _spawn_cone_vfx(facing: Vector2i) -> void:
-	var vfx: AnimatedSprite2D = ability_sprite_scene["path"].instantiate()
-	var anim: String = ability_sprite_scene["animation"]
-	add_child(vfx)
-
-	var dir: Vector2 = Vector2(facing).normalized()
-	var is_diagonal: bool = facing.x != 0 and facing.y != 0
-	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)
-
-	# How far the cone actually reaches, in world px.
-	# Chebyshev range means a diagonal cone is sqrt(2) longer.
-	var reach: float = (CONE_DEPTH + 0.5) * TILE_SIZE
-	if is_diagonal:
-		reach *= sqrt(2.0)
-
-	# 1. Angle — art points +X at rest, so facing.angle() is all you need.
-	vfx.rotation = dir.angle()
-
-	# 2. Scale — stretch length to reach, width to match the cone's half-angle.
-	var art_scale: Vector2 = ability_sprite_scene["scale"]
-	vfx.scale = Vector2(
-		reach / VFX_NATIVE_LENGTH,
-		(reach * tan(half_angle)) / VFX_NATIVE_HALF_WIDTH
-	) * art_scale
-
-	# 3. Pivot — slide the texture forward so the node origin sits on the apex.
-	vfx.centered = true
-	vfx.offset = Vector2(VFX_NATIVE_LENGTH * 0.5, 0.0)
-
-	vfx.position = Vector2.ZERO  # = Paramander's tile centre
-	#vfx.z_index = 5
-	vfx.play(anim)
-	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
-
-func _on_animation_finished(vfx: AnimatedSprite2D):
-	vfx.queue_free()
-
-func _get_facing_direction() -> Vector2i:
-	if targeting_component != null and targeting_component.target != null:
-		var target_tile: Vector2i = BoardGrid.world_to_tile(targeting_component.target.position)
-		var my_tile: Vector2i = BoardGrid.world_to_tile(position)
-		var diff: Vector2i = target_tile - my_tile
-		if diff == Vector2i.ZERO:
-			return Vector2i(1, 0)
-		# Snap each axis independently to -1, 0, or 1
-		return Vector2i(sign(diff.x), sign(diff.y))
-	return Vector2i(1, 0)
-
-func _get_cone_tiles(origin: Vector2i, forward: Vector2i) -> Array[Vector2i]:
-	var tiles: Array[Vector2i] = []
-	var fwd_f: Vector2 = Vector2(forward).normalized()
-	var is_diagonal: bool = forward.x != 0 and forward.y != 0
-	var half_angle: float = deg_to_rad(35.0) if is_diagonal else deg_to_rad(45.0)
-	for dx in range(-CONE_DEPTH, CONE_DEPTH + 1):
-		for dy in range(-CONE_DEPTH, CONE_DEPTH + 1):
-			var tile: Vector2i = origin + Vector2i(dx, dy)
-			if not BoardGrid.astar.region.has_point(tile):
-				continue
-			var offset: Vector2 = Vector2(tile - origin)
-			if offset == Vector2.ZERO:
-				continue
-			if max(abs(dx), abs(dy)) > CONE_DEPTH:
-				continue
-			var dot: float = offset.normalized().dot(fwd_f)
-			var angle: float = acos(clamp(dot, -1.0, 1.0))
-			if angle <= half_angle:
-				tiles.append(tile)
-	return tiles
+	VfxManager.spawn_cone_vfx(
+		self,
+		facing,
+		ability_sprite_scene,
+		CONE_DEPTH,
+		TILE_SIZE,
+		VFX_NATIVE_HALF_WIDTH,
+		VFX_NATIVE_LENGTH)

@@ -30,6 +30,7 @@ AudioManager="*uid://7giarjs3fuji"
 GameData="*uid://b4nt171p6fvva"
 Auth="*uid://838kn1str8m3"
 Database="*uid://8o8r0k801ekr"
+VfxManager="*uid://cs6crqpwlwguy"
 
 [display]
 
