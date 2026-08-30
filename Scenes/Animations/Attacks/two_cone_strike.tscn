@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cn7r58fauny66"]
+
+[ext_resource type="Texture2D" uid="uid://cx8yi320xp20b" path="res://Assets/Animations/Two_Cone_Slam/76.png" id="1_unvgn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvoxv"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvff0"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc63h"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rppi"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxjng"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itrf1"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yy7s"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8woi"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(448, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sddmc"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(512, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34ks3"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(576, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld28o"]
+atlas = ExtResource("1_unvgn")
+region = Rect2(640, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bb8pe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvoxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvff0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc63h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rppi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxjng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itrf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yy7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8woi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sddmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34ks3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld28o")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"magma",
+"speed": 30.0
+}]
+
+[node name="TwoConeStrike" type="AnimatedSprite2D" unique_id=2144818620]
+sprite_frames = SubResource("SpriteFrames_bb8pe")
+animation = &"magma"

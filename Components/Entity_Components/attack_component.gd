@@ -8,8 +8,9 @@ signal post_attack_targets
 
 const ATTACK_TYPE = {
 	MELEE = 0,
-	PROJECTILE = 1,
-	PROJECTILE_SPLASH = 2
+	MELEE_LONG = 1,
+	PROJECTILE = 2,
+	PROJECTILE_SPLASH = 3
 }
 var attack_type: int = 0 
 

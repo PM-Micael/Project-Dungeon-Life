@@ -9,6 +9,12 @@ func _init() -> void:
 	attack_range = 100
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
+	
+	attack_sprite_scene = {
+	"path": preload("res://Scenes/Animations/Attacks/two_cone_strike.tscn"),
+	"animation": "magma",
+	"scale": Vector2(1, 1),
+	}
 
 func _ready() -> void:
 	super._ready()
