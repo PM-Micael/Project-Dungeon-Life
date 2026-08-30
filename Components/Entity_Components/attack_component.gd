@@ -123,12 +123,14 @@ func attack_targets(
 							get_total_attack_damage(),
 							false,
 							false)
+		
+		if not is_instance_valid(target):
+			targets.erase(target)
 	
 	if not is_instance_valid(self):
 		return
 	
-	post_attack_targets.emit(targets if is_instance_valid(targets) else [],
-	is_crit)
+	post_attack_targets.emit(targets, is_crit)
 
 func attack_target(target: Entity, bonus_damage: int = 0,):
 	pre_attack_target.emit(target)

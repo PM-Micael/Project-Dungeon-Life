@@ -8,7 +8,7 @@ var _debug_rects: Array[ColorRect] = []
 var ability_sprite_scene = {
 	"path": preload("res://Scenes/Animations/Skills/fire_breath.tscn"),
 	"animation": "default",
-	"scale": Vector2(6, 6),
+	"scale": Vector2(1, 1),
 	}
 
 func _init() -> void:
