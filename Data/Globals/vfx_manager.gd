@@ -53,6 +53,35 @@ func spawn_tile_vfx(
 		vfx.play(anim)
 		vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
 
+## Spawns a single copy of the sprite scene on the centre of `origin`, stretched
+## so the art spans the whole square area the ability covers. Use for radial
+## effects that read as one impact — a ground slam, a shockwave, a burst — where
+## nine separate copies would read as nine separate hits.
+## `radius` is in tiles and matches BoardGrid.get_tiles_around(), so radius 1
+## covers the 3x3 block around the origin.
+## `sprite_scene_dict` takes a "native_size" (px, the width of the frame at rest)
+## describing how big the art is before stretching.
+func spawn_area_vfx(
+	node_spawn: Node2D,
+	origin: Vector2i,
+	radius: int,
+	sprite_scene_dict: Dictionary
+	):
+	if sprite_scene_dict.is_empty():
+		return
+
+	var vfx: AnimatedSprite2D = sprite_scene_dict["path"].instantiate()
+	node_spawn.add_child(vfx)
+
+	# How wide the covered block is in world px, art is square so this is both axes.
+	var span: float = (radius * 2 + 1) * BoardGrid.astar.cell_size.x
+	var native_size: float = sprite_scene_dict.get("native_size", span)
+	vfx.scale = Vector2.ONE * (span / native_size) * sprite_scene_dict["scale"]
+	# Children are in the spawner's local space, so undo its board position.
+	vfx.position = BoardGrid.tile_to_world(origin) - node_spawn.position
+	vfx.play(sprite_scene_dict["animation"])
+	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
+
 func spawn_cone_vfx(
 	node_spawn: Node,
 	facing: Vector2i,

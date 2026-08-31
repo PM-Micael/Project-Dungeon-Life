@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://c8gk3mxq1rn4b"]
+
+[ext_resource type="Texture2D" uid="uid://b7lmbsre5lbg3" path="res://Assets/Animations/Magma_Wave/77.png" id="1_mgwv7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs001"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs002"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs003"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs004"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs005"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs006"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs007"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(384, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs008"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(448, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs009"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(512, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs010"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(576, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs011"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(640, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs012"]
+atlas = ExtResource("1_mgwv7")
+region = Rect2(704, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsdst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs001")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs002")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs003")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs004")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs005")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs006")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs007")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs008")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs009")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs011")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs012")
+}],
+"loop": 0,
+"name": &"dust",
+"speed": 30.0
+}]
+
+[node name="GroundSlam" type="AnimatedSprite2D" unique_id=2109753418]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_gsdst")
+animation = &"dust"

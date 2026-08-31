@@ -92,6 +92,20 @@ func get_tiles_ahead(origin: Vector2i, facing: Vector2i, depth: int) -> Array[Ve
 		tiles.append(tile)
 	return tiles
 
+## The square block of tiles reaching `radius` out from `origin` in every
+## direction, `origin` itself included. Radius 1 is the 3x3 around the origin,
+## radius 2 the 5x5, and so on. Use for radial area effects centred on a unit.
+## Tiles off the edge of the board are dropped.
+func get_tiles_around(origin: Vector2i, radius: int) -> Array[Vector2i]:
+	var tiles: Array[Vector2i] = []
+	for dx in range(-radius, radius + 1):
+		for dy in range(-radius, radius + 1):
+			var tile: Vector2i = origin + Vector2i(dx, dy)
+			if not astar.region.has_point(tile):
+				continue
+			tiles.append(tile)
+	return tiles
+
 func get_neighbor_tile(tile: Vector2i, direction: Vector2i) -> Vector2i:
 	return tile + direction
 
