@@ -96,7 +96,16 @@ Unsolved bug:
 	Decide if stats on units should be set in the exported fileds in the Inspector
 
 2026-08-26:
+	Impliment a practice_range/testing room
 	Tasks for the Pretty update:
-		Default mele hit sprite indicator
-		Each attack_component should have their own attack sprite
-		Fix / Rework the unit loadout frame.
+		Each attack_component should have their own attack sprite:
+			Flesh Mutant.
+			Scorched Juggernaut.
+			Rumble gloves.
+			Ranged attack projectiles
+			
+		Review the rework CLaude did the unit loadout frame.
+		take_damage_flat and take_none_strike_damage can be one function
+		dokument a bluprint for how each unit script sould look like at base.
+		Look into debuff visuals.
+		Add Exit run early button

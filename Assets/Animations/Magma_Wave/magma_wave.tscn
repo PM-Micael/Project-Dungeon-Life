@@ -50,6 +50,9 @@ region = Rect2(640, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bp41x")
 }, {
 "duration": 1.0,
@@ -81,6 +84,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j2tdr")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": 0,
 "name": &"default",
@@ -90,5 +96,3 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=1235461043]
 scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_bb8pe")
-frame = 10
-frame_progress = 1.0

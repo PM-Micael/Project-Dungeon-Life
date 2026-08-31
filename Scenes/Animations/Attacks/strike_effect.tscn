@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bdknkahv7b83u"]
+
+[ext_resource type="Texture2D" uid="uid://cao2ean2wryaj" path="res://Assets/Animations/Smoke_Puff/25.png" id="1_rvp86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c71p3"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibugo"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqhr1"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmuen"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wi7"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu157"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5joho"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(384, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b20vs"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(448, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yutwu"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(512, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv3pu"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(576, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db8d8"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(640, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvhai"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(704, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig4u3"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(768, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xbnb"]
+atlas = ExtResource("1_rvp86")
+region = Rect2(832, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgg3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c71p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibugo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqhr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmuen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7wi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu157")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5joho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b20vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yutwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv3pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db8d8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvhai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig4u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xbnb")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="StrikeEffect" type="AnimatedSprite2D" unique_id=1284638481]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_tgg3c")
+frame = 13
+frame_progress = 1.0

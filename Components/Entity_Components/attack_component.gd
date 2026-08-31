@@ -6,6 +6,14 @@ signal pre_attack_targets
 signal post_attack_target
 signal post_attack_targets
 
+const ATTACK_TYPE = {
+	MELEE = 0,
+	MELEE_LONG = 1,
+	PROJECTILE = 2,
+	PROJECTILE_SPLASH = 3
+}
+var attack_type: int = 0 
+
 @export var base_attack_damage: int = 1
 @export var base_attack_speed: float = 1.1
 @export var attack_damage: int = 1
@@ -13,11 +21,12 @@ signal post_attack_targets
 @export var attack_speed: float = 1.1
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.0
-@export var is_aoe: bool = false
+@export var is_aoe: bool = false ## TEMP
 
 # --- Shake settings ---
 @export var shake_strength: float = 6.0   # pixels offset at peak
 @export var shake_duration: float = 0.15  # total shake time in seconds
+var attack_sprite_scene: Dictionary = {}
 
 var weapon_added_multiplier: int = 0
 var is_crit = false
@@ -27,7 +36,6 @@ var in_target_attack_range: bool = false
 @onready var timer: Timer = $Timer
 @onready var attack_sound: AudioStreamPlayer = $AttackSound
 @onready var attack_crit_sound: AudioStreamPlayer = $AttackCritSound
-var attack_sprite_scene: PackedScene = preload("res://Assets/Animations/Slash/slash.tscn")
 
 func _ready() -> void:
 	timer.wait_time = attack_speed
@@ -49,36 +57,29 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	if timer.time_left <= 0.1:
-		if is_aoe:
-			entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
-			if is_instance_valid(timer):
-				timer.start()
-			return
-	
-		var in_range: bool
-		if entity_parent.movment_component != null:
-			in_range = in_target_attack_range
-		else:
-			var dist = position.distance_to(entity_parent.targeting_component.target.position)
-			in_range = dist <= attack_range * sqrt(2)
-		if in_range:
-			attack_target(entity_parent.targeting_component.target)
-			if is_instance_valid(timer):
-				timer.start()
+		entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
+		if is_instance_valid(timer):
+			timer.start()
+		return
 
 func set_stats_absolute(
 	set_attack_damage: int,
 	set_attack_range: int,
 	set_crit_chance: int,
-	set_crit_damage
+	set_crit_damage: float,
+	set_attack_sprite_scene: Dictionary = {}
 	):
 	base_attack_damage = set_attack_damage
 	attack_damage = set_attack_damage
 	attack_range = set_attack_range
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
+	attack_sprite_scene = set_attack_sprite_scene
 
-func attack_targets(targets: Array[Entity], bonus_damage: int = 0):
+func attack_targets(
+	targets: Array[Entity],
+	bonus_damage: int = 0,
+	):
 	pre_attack_targets.emit(targets)
 	is_crit = roll_crit()
 	if is_crit:
@@ -97,13 +98,42 @@ func attack_targets(targets: Array[Entity], bonus_damage: int = 0):
 				entity_parent,
 				get_total_attack_damage(is_crit) + bonus_damage, is_crit)
 	
+		match attack_type:
+			ATTACK_TYPE.PROJECTILE_SPLASH:
+				var target_pos = BoardGrid.world_to_tile(target.position)
+				var tiles: Array[Vector2i] = BoardGrid.get_tiles_surrounding_target(target_pos)
+				var enemy_team_node: String
+				if entity_parent.hostile_team == "Team 1":
+					enemy_team_node = "FriendlyUnits"
+				else:
+					enemy_team_node = "EnemyUnits"
+				var board_targets: Array = entity_parent.get_parent().get_parent().get_node(enemy_team_node).get_children()
+				
+				for t in board_targets:
+					if t == targets[0]:
+						continue
+			
+					if t.hostile_team == entity_parent.hostile_team:
+						continue
+			
+					var unit_tile = BoardGrid.world_to_tile(t.position)
+			
+					if unit_tile in tiles:
+						t.health_component.take_damage_flat(
+							entity_parent,
+							get_total_attack_damage(),
+							false,
+							false)
+		
+		if not is_instance_valid(target):
+			targets.erase(target)
+	
 	if not is_instance_valid(self):
 		return
 	
-	post_attack_targets.emit(targets if is_instance_valid(targets) else [],
-	is_crit)
+	post_attack_targets.emit(targets, is_crit)
 
-func attack_target(target: Entity, bonus_damage: int = 0):
+func attack_target(target: Entity, bonus_damage: int = 0,):
 	pre_attack_target.emit(target)
 	is_crit = roll_crit()
 	if is_crit:
@@ -112,9 +142,6 @@ func attack_target(target: Entity, bonus_damage: int = 0):
 		attack_sound.play()
 
 	_play_shake()
-	#attack_animation.position = target.position
-	#target.attack_component.attack_animation.scale = target.scale
-	#target.attack_component.attack_animation.play("default")
 
 	var target_health_component: HealthComponent = target.health_component
 	if target_health_component != null:
@@ -126,6 +153,30 @@ func attack_target(target: Entity, bonus_damage: int = 0):
 		return
 	var targets: Array[Entity] = [target]
 	post_attack_target.emit(targets if is_instance_valid(target) else [],
+	is_crit)
+
+func attack_target_with_splash(targets: Array[Unit], bonus_damage: int = 0):
+	pre_attack_targets.emit(targets)
+	is_crit = roll_crit()
+	if is_crit:
+		attack_crit_sound.play()
+	else:
+		attack_sound.play()
+	_play_shake()
+
+	for t in targets:
+		if not is_instance_valid(t):
+			continue
+		var target_health_component: HealthComponent = t.health_component
+		if target_health_component != null:
+			target_health_component.take_damage_flat(
+				entity_parent,
+				get_total_attack_damage(is_crit) + bonus_damage, is_crit)
+				
+	if not is_instance_valid(self):
+		return
+		
+	post_attack_targets.emit(targets if is_instance_valid(targets) else [],
 	is_crit)
 
 # Shakes the entity's Sprite2D by tweening its position offset.

@@ -10,8 +10,6 @@ signal died(this_unit: Unit)
 signal pre_heal(target: Entity, amount: int)
 signal post_heal(target: Entity, amount: int)
 
-# Lazy getters, not @onready: stats are applied at instantiate() while the entity is
-# still detached, and @onready vars are null until the node enters the tree.
 var parent_entity: Entity:
 	get:
 		return get_parent().get_parent() as Entity
@@ -57,8 +55,6 @@ func set_stats(set_max_health: int, set_defense: int = 0):
 
 	_set_defense(defense)
 
-## The single place current_health changes. Keeps the health bar and any listening
-## UI in sync, and is safe to call while the entity is detached from the tree.
 func _set_health(value: int):
 	current_health = clamp(value, 0, max_health)
 	if health_bar:
@@ -73,7 +69,12 @@ func _set_defense(defense: int):
 			defense_value_label.text = str(defense)
 			defense_node.visible = true
 
-func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
+func take_damage_flat(
+	attacker: Entity,
+	amount: int,
+	is_crit: bool = false,
+	is_strike: bool = true
+	):
 	pre_calculate_damage.emit(attacker, amount, is_crit)
 	final_damage_taken_modifier = base_damage_taken_modifier
 	pre_damage_taken.emit(attacker, amount, is_crit)
@@ -82,29 +83,21 @@ func take_damage_flat(attacker: Entity, amount: int, is_crit: bool = false):
 	
 	post_calculate_damage.emit(attacker, amount, is_crit)
 	_set_health(current_health - final_damage_taken_amount)
-
+	
+	if attacker.id == "small_salamander":
+		print()
+	
 	damage_taken.emit(attacker, is_crit)
 	if is_instance_valid(self):
-		_flash_damage(attacker.attack_component.attack_sprite_scene)
+		if is_strike:
+			VfxManager.damage_effect(self, attacker.attack_component.attack_sprite_scene)
+		else:
+			VfxManager.damage_effect(self, {})
+		
+		VfxManager.flash_damage(parent_entity.get_node_or_null("Sprite2D"))
+		
 		if current_health <= 0:
 			die(attacker)
-
-func _flash_damage(vfx_scene: PackedScene = null) -> void:
-	var sprite: Sprite2D = parent_entity.get_node_or_null("Sprite2D")
-	if sprite == null:
-		return
-	sprite.modulate = Color.RED
-	#await get_tree().create_timer(0.15).timeout
-	if is_instance_valid(sprite):
-		sprite.modulate = Color.WHITE
-	
-	var vfx = vfx_scene.instantiate()
-	add_child(vfx)
-	vfx.play("default")
-	vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
-
-func _on_animation_finished(vfx):
-	vfx.queue_free()
 
 func heal(amount: int):
 	final_heal_modifier = base_heal_modifier

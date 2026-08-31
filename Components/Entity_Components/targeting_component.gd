@@ -66,6 +66,7 @@ func select_close_target(target_team: String):
 		targets.append(closest_enemy)
 
 func select_closest_target(target_team: String):
+	targets.clear()
 	var enemies = get_tree().get_nodes_in_group(target_team)
 	if enemies.is_empty():
 		return
@@ -89,5 +90,6 @@ func select_closest_target(target_team: String):
 	
 	if closest_enemy != null and closest_enemy.targetable_component != null and closest_enemy.targetable_component.is_targetable:
 		target = closest_enemy
+		targets.append(target)
 	else:
 		target = null

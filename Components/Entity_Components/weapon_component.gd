@@ -29,8 +29,8 @@ func _ready() -> void:
 	weapon_skill_sound.volume_db = AudioManager.get_gain(["volume_sfx"])
 
 func _connect_events():
-	entity_holding_weapon.attack_component.pre_attack_target.connect(_prep_attack)
-	entity_holding_weapon.attack_component.post_attack_target.connect(_finish_attack)
+	entity_holding_weapon.attack_component.pre_attack_targets.connect(_prep_attack)
+	entity_holding_weapon.attack_component.post_attack_targets.connect(_finish_attack)
 	entity_holding_weapon.health_component.damage_taken.connect(_on_damage_taken)
 
 func set_stats_absolute(set_added_damage: int = added_attack_damage_multiplier):
@@ -45,7 +45,7 @@ func set_weapon_energy_bar():
 func _on_damage_taken(_attacker, _is_crit):
 	adjust_energy([])
 
-func _prep_attack(target: Entity):
+func _prep_attack(targets: Array[Entity]):
 	entity_holding_weapon.attack_component.weapon_added_multiplier += added_attack_damage_multiplier
 
 func _finish_attack(targets: Array[Entity], is_crit: bool):
