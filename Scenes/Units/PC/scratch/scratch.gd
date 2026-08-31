@@ -13,7 +13,7 @@ func _init() -> void:
 func _ready() -> void:
 	super._ready()
 	_info("scratch", "Scratch", "Team 1", "Team 2")
-	attack_component.post_attack_target.connect(_on_post_attack)
+	attack_component.post_attack_targets.connect(_on_post_attack)
 
 func _set_stats() -> void:
 	health_component.set_stats(base_health*PlayerData.inner_sanctum.life, base_defense)

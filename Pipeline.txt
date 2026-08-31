@@ -96,6 +96,7 @@ Unsolved bug:
 	Decide if stats on units should be set in the exported fileds in the Inspector
 
 2026-08-26:
+	Impliment a practice_range/testing room
 	Tasks for the Pretty update:
 		Each attack_component should have their own attack sprite:
 			Flesh Mutant.
@@ -107,3 +108,4 @@ Unsolved bug:
 		take_damage_flat and take_none_strike_damage can be one function
 		dokument a bluprint for how each unit script sould look like at base.
 		Look into debuff visuals.
+		Add Exit run early button

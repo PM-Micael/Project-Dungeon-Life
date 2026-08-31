@@ -75,6 +75,23 @@ func get_tiles_two_behind(start_tile: Vector2i, target_tile: Vector2i) -> Array[
 	
 	return [target_a, target_b]
 
+## Tiles straight ahead of `origin` along `facing`, nearest first.
+## `facing` is a snapped direction from get_facing_direction(), so this covers
+## all 8 directions: a diagonal walks the diagonal, an orthogonal walks the row.
+## Stops early at the edge of the board.
+func get_tiles_ahead(origin: Vector2i, facing: Vector2i, depth: int) -> Array[Vector2i]:
+	var tiles: Array[Vector2i] = []
+	if facing == Vector2i.ZERO:
+		return tiles
+
+	var step: Vector2i = Vector2i(sign(facing.x), sign(facing.y))
+	for i in range(1, depth + 1):
+		var tile: Vector2i = origin + step * i
+		if not astar.region.has_point(tile):
+			break
+		tiles.append(tile)
+	return tiles
+
 func get_neighbor_tile(tile: Vector2i, direction: Vector2i) -> Vector2i:
 	return tile + direction
 

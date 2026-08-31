@@ -23,6 +23,36 @@ func damage_effect(node_spawn: Node, vfx_dict: Dictionary = {}) -> void:
 		vfx.play(vfx_animation)
 		vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
 
+## Spawns one copy of the sprite scene on the centre of every tile in `tiles`,
+## each rotated to point along `facing` so the effect reads the same in all 8
+## directions. Use for multi-tile directional strikes where the art marks the
+## exact tiles that got hit.
+## `sprite_scene_dict` takes an optional "rotation_offset" (radians) describing
+## which way the art points at rest — 0.0 for art that points +X, PI for -X.
+func spawn_tile_vfx(
+	node_spawn: Node2D,
+	tiles: Array[Vector2i],
+	facing: Vector2i,
+	sprite_scene_dict: Dictionary
+	):
+	if sprite_scene_dict.is_empty() or tiles.is_empty():
+		return
+
+	var anim: String = sprite_scene_dict["animation"]
+	var art_scale: Vector2 = sprite_scene_dict["scale"]
+	var rotation_offset: float = sprite_scene_dict.get("rotation_offset", 0.0)
+	var angle: float = Vector2(facing).angle() + rotation_offset
+
+	for tile in tiles:
+		var vfx: AnimatedSprite2D = sprite_scene_dict["path"].instantiate()
+		node_spawn.add_child(vfx)
+		vfx.rotation = angle
+		vfx.scale = art_scale
+		# Children are in the spawner's local space, so undo its board position.
+		vfx.position = BoardGrid.tile_to_world(tile) - node_spawn.position
+		vfx.play(anim)
+		vfx.animation_finished.connect(_on_animation_finished.bind(vfx))
+
 func spawn_cone_vfx(
 	node_spawn: Node,
 	facing: Vector2i,
