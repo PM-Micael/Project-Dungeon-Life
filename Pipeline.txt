@@ -100,9 +100,14 @@ Unsolved bug:
 	Tasks for the Pretty update:
 		Each attack_component should have their own attack sprite:
 			Flesh Mutant.
-			Scorched Juggernaut.
-			Rumble gloves.
-			Ranged attack projectiles
+			Magma Blob
+			Putrid abomination.
+			Heat Seeker
+			Cursed lantern.
+			Crag chunk
+			Ranged attack projectiles:
+				Maybe wait because they will prob need to be reworked
+				with delay
 			
 		Review the rework CLaude did the unit loadout frame.
 		take_damage_flat and take_none_strike_damage can be one function
