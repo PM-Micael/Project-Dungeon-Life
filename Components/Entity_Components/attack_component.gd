@@ -23,7 +23,6 @@ var targeting_type: int = 0
 @export var attack_speed: float = 1.1
 @export var base_critical_percent_chance: int = 0
 @export var base_critical_damage_multiplier: float = 1.0
-@export var is_aoe: bool = false ## TEMP
 
 # --- Shake settings ---
 @export var shake_strength: float = 6.0   # pixels offset at peak
@@ -78,8 +77,8 @@ func _attempt_attack():
 		match targeting_type:
 			tc.TYPE.CLOSEST:
 				targets = tc.select_closest_target(entity_parent.hostile_team)
-			tc.TYPE.ALL_CLOSE_3x3:
-				pass
+			tc.TYPE.ALL_IN_ATTACK_RANGE:
+				targets = tc.select_targets_in_attack_range(entity_parent.hostile_team)
 			
 		attack_targets(targets)
 		

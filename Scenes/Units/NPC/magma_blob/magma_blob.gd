@@ -7,7 +7,7 @@ func _init() -> void:
 	is_boss = true
 	base_health = 1000
 	attack_damage = 10
-	attack_range = 1000
+	attack_range = 100
 	base_defense = 0
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2

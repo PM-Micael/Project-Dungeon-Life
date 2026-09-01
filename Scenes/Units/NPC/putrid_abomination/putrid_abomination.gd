@@ -8,14 +8,14 @@ func _init() -> void:
 	is_boss = true
 	base_health = 800
 	attack_damage = 20
-	attack_range = 100
+	attack_range = 200
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
 
 func _ready() -> void:
 	super._ready()
 	_info("putrid_abomination", "Putrid Abomination", "Team 2", "Team 1")
-	attack_component.targeting_type = targeting_component.TYPE.ALL_CLOSE_3x3 
+	attack_component.targeting_type = targeting_component.TYPE.ALL_IN_ATTACK_RANGE 
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
 
 func _physics_process(delta: float) -> void: 
