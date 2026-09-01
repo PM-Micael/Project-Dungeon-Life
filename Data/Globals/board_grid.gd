@@ -152,8 +152,10 @@ func get_closest_walkable_tile_to(target_tile: Vector2i, from_tile: Vector2i) ->
 	return best_tile
 
 func get_facing_direction(entity: Entity) -> Vector2i:
-	if entity.targeting_component != null and entity.targeting_component.target != null:
-		var target_tile: Vector2i = world_to_tile(entity.targeting_component.target.position)
+	if entity.targeting_component != null:
+		var targets = entity.targeting_component.select_closest_target(entity.hostile_team)
+		var target = targets[0]
+		var target_tile: Vector2i = world_to_tile(target.position)
 		var my_tile: Vector2i = world_to_tile(entity.position)
 		var diff: Vector2i = target_tile - my_tile
 		if diff == Vector2i.ZERO:

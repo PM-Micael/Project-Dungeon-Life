@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bq5nx7v2rk8ta"]
+
+[ext_resource type="Texture2D" uid="uid://b7lmbsre5lbg3" path="res://Assets/Animations/Magma_Wave/77.png" id="1_pb001"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb001"]
+atlas = ExtResource("1_pb001")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb002"]
+atlas = ExtResource("1_pb001")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb003"]
+atlas = ExtResource("1_pb001")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb004"]
+atlas = ExtResource("1_pb001")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb005"]
+atlas = ExtResource("1_pb001")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb006"]
+atlas = ExtResource("1_pb001")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb007"]
+atlas = ExtResource("1_pb001")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb008"]
+atlas = ExtResource("1_pb001")
+region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb009"]
+atlas = ExtResource("1_pb001")
+region = Rect2(512, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb010"]
+atlas = ExtResource("1_pb001")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb011"]
+atlas = ExtResource("1_pb001")
+region = Rect2(640, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb012"]
+atlas = ExtResource("1_pb001")
+region = Rect2(704, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbdst"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb001")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb002")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb003")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb004")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb005")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb006")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb007")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb008")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb009")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb011")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb012")
+}],
+"loop": 0,
+"name": &"toxic",
+"speed": 30.0
+}]
+
+[node name="PutridBurst" type="AnimatedSprite2D" unique_id=1840255073]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_pbdst")
+animation = &"toxic"
+frame = 11
+frame_progress = 1.0

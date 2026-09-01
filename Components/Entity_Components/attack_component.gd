@@ -14,6 +14,8 @@ const ATTACK_TYPE = {
 }
 var attack_type: int = 0 
 
+var targeting_type: int = 0
+
 @export var base_attack_damage: int = 1
 @export var base_attack_speed: float = 1.1
 @export var attack_damage: int = 1
@@ -53,14 +55,7 @@ func _physics_process(_delta: float) -> void:
 	if entity_parent.targeting_component == null:
 		return
 	
-	if entity_parent.targeting_component.target == null:
-		return
-	
-	if timer.time_left <= 0.1:
-		entity_parent.attack_component.attack_targets(entity_parent.targeting_component.targets)
-		if is_instance_valid(timer):
-			timer.start()
-		return
+	_attempt_attack()
 
 func set_stats_absolute(
 	set_attack_damage: int,
@@ -75,6 +70,21 @@ func set_stats_absolute(
 	base_critical_percent_chance = set_crit_chance
 	base_critical_damage_multiplier = set_crit_damage
 	attack_sprite_scene = set_attack_sprite_scene
+
+func _attempt_attack():
+	if timer.time_left <= 0.1:
+		var tc = entity_parent.targeting_component
+		var targets: Array[Entity]
+		match targeting_type:
+			tc.TYPE.CLOSEST:
+				targets = tc.select_closest_target(entity_parent.hostile_team)
+			tc.TYPE.ALL_CLOSE_3x3:
+				pass
+			
+		attack_targets(targets)
+		
+		if is_instance_valid(timer):
+			timer.start()
 
 func attack_targets(
 	targets: Array[Entity],

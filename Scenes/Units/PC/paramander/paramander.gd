@@ -61,13 +61,13 @@ func _fire_cone():
 	var cone_tiles: Array[Vector2i] = BoardGrid.get_cone_tiles(my_tile, facing, CONE_DEPTH)
 
 	var damage: int = int(attack_component.get_total_attack_damage() * CONE_DAMAGE_MULTIPLIER)
-	var enemies: Array[Node] = get_tree().get_nodes_in_group(hostile_team)
+	var enemies: Array[Entity] = targeting_component.select_closest_target(hostile_team)
 
-	for entity in enemies:
-		if entity is Entity and entity.health_component != null:
-			var entity_tile: Vector2i = BoardGrid.world_to_tile(entity.position)
+	for enemy in enemies:
+		if enemy.health_component != null:
+			var entity_tile: Vector2i = BoardGrid.world_to_tile(enemy.position)
 			if entity_tile in cone_tiles:
-				entity.health_component.take_damage_flat(self, damage, false)
+				enemy.health_component.take_damage_flat(self, damage, false)
 				
 	VfxManager.spawn_cone_vfx(
 		self,

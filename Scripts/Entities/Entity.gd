@@ -3,6 +3,7 @@ class_name Entity
 
 var id: String
 var display_name: String
+var friendly_team: String
 var hostile_team: String
 
 var attack_component: AttackComponent:
