@@ -24,11 +24,13 @@ func movment_action():
 			return
 		
 		var targets = parent_entity.targeting_component.select_closest_target(parent_entity.hostile_team)
+		var target = targets[0] if targets.size() > 0 else null
 		
-		if parent_entity.attack_component != null:
-			parent_entity.attack_component.in_target_attack_range = move_to_target_tile(targets[0])
-		else:
-			move_to_target_tile(targets[0])
+		if target != null:
+			if parent_entity.attack_component != null:
+				parent_entity.attack_component.in_target_attack_range = move_to_target_tile(target)
+			else:
+				move_to_target_tile(target)
 		
 		timer.start()
 
