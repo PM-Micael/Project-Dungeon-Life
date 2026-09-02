@@ -35,9 +35,11 @@ func apply(_target: Entity):
 	shield_value = value
 	warer.health_component.post_calculate_damage.connect(effect)
 
-func effect(_unit: Unit, amount: int, _is_crit: bool):
+## Drains by the figure the damage pipeline just computed, not by a recomputation
+## from the raw amount, so defense is accounted for exactly once.
+func effect(_unit: Unit, _amount: int, _is_crit: bool):
 	var hc = warer.health_component
-	var incoming = (amount * hc.final_damage_taken_modifier)
+	var incoming = hc.final_damage_taken_amount
 
 	if shield_value >= incoming:
 		shield_value -= incoming

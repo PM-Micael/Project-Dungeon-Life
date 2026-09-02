@@ -9,7 +9,7 @@ var shield_value_percent: float = 0.15
 func _init() -> void:
 	id = "flesh_shield"
 	display_name = "Flesh Shield"
-	duration = 6
+	duration = 1000
 	stacks = 1
 	set_buffs()
 
@@ -41,6 +41,8 @@ func _on_shield_broken():
 		ghoul.is_summon = true
 		board.enemy_units.append(ghoul)
 		ghoul.health_component.died.connect(board._on_enemy_unit_died)
+	
+	duration = 0
 		
 func remove():
 	pass

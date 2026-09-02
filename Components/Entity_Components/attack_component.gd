@@ -85,17 +85,16 @@ func _attempt_attack():
 		if is_instance_valid(timer):
 			timer.start()
 
-func attack_targets(
-	targets: Array[Entity],
-	bonus_damage: int = 0,
-	):
+func attack_targets(targets: Array[Entity], bonus_damage: int = 0):
 	pre_attack_targets.emit(targets)
 	is_crit = roll_crit()
+	## Audio
 	if is_crit:
 		attack_crit_sound.play()
 	else:
 		attack_sound.play()
 
+	## Animation
 	_play_shake()
 	
 	for target in targets:
