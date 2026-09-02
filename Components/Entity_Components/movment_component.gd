@@ -16,14 +16,19 @@ func _physics_process(_delta: float) -> void:
 	movment_action()
 
 func movment_action():
-	if (timer.time_left <= 0.1 and not parent_entity.is_stunned and
-	parent_entity.targeting_component != null and 
-	parent_entity.targeting_component.target != null
-	):
+	if timer.time_left <= 0.1 :
+		if parent_entity.is_stunned:
+			return
+		
+		if parent_entity.targeting_component == null:
+			return
+		
+		var targets = parent_entity.targeting_component.select_closest_target(parent_entity.hostile_team)
+		
 		if parent_entity.attack_component != null:
-			parent_entity.attack_component.in_target_attack_range = move_to_target_tile(parent_entity.targeting_component.target)
+			parent_entity.attack_component.in_target_attack_range = move_to_target_tile(targets[0])
 		else:
-			move_to_target_tile(parent_entity.targeting_component.target)
+			move_to_target_tile(targets[0])
 		
 		timer.start()
 

@@ -83,6 +83,7 @@ func _info(_name: String, _display_name: String, _friendly_team: String, _hostil
 	name = _name
 	display_name = _display_name
 	add_to_group(_friendly_team)
+	friendly_team = _friendly_team
 	hostile_team = _hostile_team
 
 func get_total_health() -> int:
