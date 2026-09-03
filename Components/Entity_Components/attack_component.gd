@@ -6,11 +6,11 @@ signal pre_attack_targets
 signal post_attack_target
 signal post_attack_targets
 
-const ATTACK_TYPE = {
-	MELEE = 0,
-	MELEE_LONG = 1,
-	PROJECTILE = 2,
-	PROJECTILE_SPLASH = 3
+enum ATTACK_TYPE {
+	MELEE,
+	MELEE_AOE,
+	PROJECTILE,
+	PROJECTILE_SPLASH
 }
 var attack_type: int = 0 
 
@@ -85,19 +85,19 @@ func _attempt_attack():
 		if is_instance_valid(timer):
 			timer.start()
 
-func attack_targets(
-	targets: Array[Entity],
-	bonus_damage: int = 0,
-	):
+func attack_targets(targets: Array[Entity], bonus_damage: int = 0):
 	pre_attack_targets.emit(targets)
 	is_crit = roll_crit()
+	## Audio
 	if is_crit:
 		attack_crit_sound.play()
 	else:
 		attack_sound.play()
 
+	## Animation
 	_play_shake()
 	
+	## Calculate damage and attack
 	for target in targets:
 		if not is_instance_valid(target):
 			continue
@@ -108,6 +108,13 @@ func attack_targets(
 				get_total_attack_damage(is_crit) + bonus_damage, is_crit)
 	
 		match attack_type:
+			ATTACK_TYPE.MELEE_AOE:
+				var tile_pos = BoardGrid.world_to_tile(entity_parent.position)
+				VfxManager.spawn_area_vfx(
+					entity_parent,
+					tile_pos,
+					entity_parent.ATTACK_AOE_RADIUS,
+					attack_sprite_scene)
 			ATTACK_TYPE.PROJECTILE_SPLASH:
 				var target_pos = BoardGrid.world_to_tile(target.position)
 				var tiles: Array[Vector2i] = BoardGrid.get_tiles_surrounding_target(target_pos)

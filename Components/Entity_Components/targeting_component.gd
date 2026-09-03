@@ -39,7 +39,7 @@ func select_targets_in_attack_range(target_team: String):
 			continue
 		
 		if (parent_entity.position.distance_to(e.global_position) <=
-		parent_entity.attack_component.attack_range+50):
+		parent_entity.attack_component.attack_range):
 			_targets.append(e)
 	
 	return _targets

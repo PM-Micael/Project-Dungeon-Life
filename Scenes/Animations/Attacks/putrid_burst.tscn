@@ -98,5 +98,3 @@ animations = [{
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_pbdst")
 animation = &"toxic"
-frame = 11
-frame_progress = 1.0
