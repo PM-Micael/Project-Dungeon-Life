@@ -100,8 +100,6 @@ Unsolved bug:
 	Tasks for the Pretty update:
 		Each attack_component should have their own attack sprite:
 			Flesh Mutant.
-			Magma Blob
-			Putrid abomination.
 			Heat Seeker
 			Cursed lantern.
 			Crag chunk

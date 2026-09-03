@@ -1,6 +1,6 @@
 extends Unit
 
-const ATTACK_AOE_RADIUS: int = 1
+const ATTACK_AOE_RADIUS: int = 2
 
 var skill_cooldown: float = 4.0
 
@@ -9,7 +9,7 @@ func _init() -> void:
 	is_boss = true
 	base_health = 1000
 	attack_damage = 10
-	attack_range = 100
+	attack_range = 200
 	base_defense = 0
 	base_critical_percent_chance = 0
 	base_critical_damage_multiplier = 1.2
@@ -25,9 +25,9 @@ func _ready() -> void:
 	super._ready()
 	_info("magma_blob", "Magma Blob", "Team 2", "Team 1")
 	attack_component.targeting_type = targeting_component.TYPE.ALL_IN_ATTACK_RANGE
+	attack_component.attack_type = attack_component.ATTACK_TYPE.MELEE_AOE
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
-	targeting_component.select_all_targets("Team 1")
-	attack_component.post_attack_targets.connect(_wave_around_self)
+	#attack_component.post_attack_targets.connect(_wave_around_self)
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
@@ -63,6 +63,7 @@ func _set_stats() -> void:
 		get_total_attack_damage(),
 		attack_range,
 		base_critical_percent_chance,
-		base_critical_damage_multiplier
+		base_critical_damage_multiplier,
+		attack_sprite_scene
 		)
 	attack_component.attack_speed = 1.6

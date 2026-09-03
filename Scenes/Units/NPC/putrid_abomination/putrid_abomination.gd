@@ -25,12 +25,11 @@ func _ready() -> void:
 	super._ready()
 	_info("putrid_abomination", "Putrid Abomination", "Team 2", "Team 1")
 	attack_component.targeting_type = targeting_component.TYPE.ALL_IN_ATTACK_RANGE
+	attack_component.attack_type = attack_component.ATTACK_TYPE.MELEE_AOE
 	essence_value = [3, PlayerData.dungeon_layer_level*3]
-	attack_component.post_attack_targets.connect(_burst_around_self)
+	#attack_component.post_attack_targets.connect(_burst_around_self)
 
-func _physics_process(delta: float) -> void: 
-	targeting_component.select_targets_in_attack_range("Team 1") ## Placeholder before attack component rework
-	
+func _physics_process(delta: float) -> void: 	
 	for effect in effect_component.active_blessings:
 		if effect is FleshShield:
 			return
@@ -54,5 +53,10 @@ func _apply_flesh_shield():
 
 func _set_stats() -> void:
 	health_component.set_stats(get_total_health())
-	attack_component.set_stats_absolute(get_total_attack_damage(), attack_range, base_critical_percent_chance, base_critical_damage_multiplier)
+	attack_component.set_stats_absolute(
+		get_total_attack_damage(),
+		attack_range,
+		base_critical_percent_chance,
+		base_critical_damage_multiplier,
+		attack_sprite_scene)
 	attack_component.attack_speed = 1.6
